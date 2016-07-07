@@ -46,3 +46,5 @@ Depending on how your machine is configured, the command may fail with an `EACCE
 Once you've installed the CLI, use the new command to start making a new project:
 
 `foundation new`
+
+> CAVEAT this scaffolding step is for the initial setup. It may not be necessary after we start committing to the repo
