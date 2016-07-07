@@ -8,6 +8,8 @@ The following are steps to setting up a shareable Vagrant box that sets up a bas
 4. I created a directory for this called `Prototype` at `~` (but you could call it whatever you want). Inside that directory run:
 
 `$ git clone git@github.com:rjones222/spoonflower-prototype.git`
+
 `$ vagrant init hashicorp/precise64`
+
 `$ vagrant up`
 
