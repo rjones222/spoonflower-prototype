@@ -32,6 +32,8 @@ In the basic Vagrant setup instructions (at https://www.vagrantup.com/docs/) the
 
 Your URL will be different, so do not try the URL above. Instead, copy the URL that vagrant share outputted for you and visit that in a web browser. It should load the Apache page we setup earlier.
 
+Each time you `vagrant share` your files will be published and you'll be given a new funny looking URL to share with folks and your old one will be destroyed. A mixed blessing, granted.
+
 ## Create the Foundation for Sites scaffold
 [[from Zurb's Docs](http://foundation.zurb.com/sites/docs/installation.html)]
 
