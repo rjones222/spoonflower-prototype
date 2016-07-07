@@ -11,5 +11,3 @@ $ vagrant init hashicorp/precise64
 
 $ vagrant up
 
-* these steps are from https://www.vagrantup.com/docs/getting-started/
-
