@@ -13,7 +13,21 @@ The following are steps to setting up a shareable Vagrant box that sets up a bas
 7. `vagrant up`
 8. `vagrant provision`
 
-You now should have a box you can can `vagrant ssh` into.
+[You now should have a box you can can `vagrant ssh` into.]
+
+The Node-powered Foundation CLI can install the same template projects for you, this is necessary for Initial Setup (see below) and it might be necessary for running `foundation watch`, so go ahead and install it with npm:
+
+`npm install --global foundation-cli`
+
+Depending on how your machine is configured, the command may fail with an `EACCESS` error. To get around this, run the command with sudo at the beginning:
+
+`sudo npm install --global foundation-cli`
+
+Next we're going to `cd spoonflower-prototype` (yes the duplication of directory names isn't cool but whatevs)
+
+Then `npm install` followed by `bower install`
+
+The Foundation docs say run `npm start` to run the Sass compiler (so maybe this is interchangable with `foundation watch`?)
 
 ## Sharing
 
@@ -37,7 +51,7 @@ Each time you `vagrant share` your files will be published and you'll be given a
 ## Create the Foundation for Sites scaffold
 [[from Zurb's Docs](http://foundation.zurb.com/sites/docs/installation.html)]
 
-> CAVEAT this scaffolding step is for the initial setup. It may not be necessary after we start committing to the repo...
+> CAVEAT this scaffolding step is for the initial setup only
 
 The Node-powered Foundation CLI can install the same template projects for you. Install it with npm:
 
