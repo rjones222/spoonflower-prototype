@@ -32,7 +32,8 @@ In the basic Vagrant setup instructions (at https://www.vagrantup.com/docs/) the
 
 Your URL will be different, so do not try the URL above. Instead, copy the URL that vagrant share outputted for you and visit that in a web browser. It should load the Apache page we setup earlier.
 
-## Create the Foundation for Sites scaffold [from Zurb's Docs](http://foundation.zurb.com/sites/docs/installation.html)
+## Create the Foundation for Sites scaffold
+[[from Zurb's Docs](http://foundation.zurb.com/sites/docs/installation.html)]
 
 The Node-powered Foundation CLI can install the same template projects for you. Install it with npm:
 
