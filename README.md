@@ -35,6 +35,8 @@ Your URL will be different, so do not try the URL above. Instead, copy the URL t
 ## Create the Foundation for Sites scaffold
 [[from Zurb's Docs](http://foundation.zurb.com/sites/docs/installation.html)]
 
+> CAVEAT this scaffolding step is for the initial setup. It may not be necessary after we start committing to the repo...
+
 The Node-powered Foundation CLI can install the same template projects for you. Install it with npm:
 
 `npm install --global foundation-cli`
@@ -47,4 +49,23 @@ Once you've installed the CLI, use the new command to start making a new project
 
 `foundation new`
 
-> CAVEAT this scaffolding step is for the initial setup. It may not be necessary after we start committing to the repo
+```
+? What are you building today? A website (Foundation for Sites)
+? What's the project called? (no spaces) spoonflower-prototype
+```
+
+Then you'll be asked to choose a template, we're going to use the `Basic Template`
+
+```
+? Which template would you like to use? (Use arrow keys)
+❯ Basic Template: includes a Sass compiler 
+  ZURB Template: includes Handlebars templates and Sass/JS compilers 
+```
+
+It will install a bunch of stuff including gulp-sass to compile SCSS files. Notice the last line of the installation output
+
+```
+Now run `foundation watch` while inside the `spoonflower-prototype` folder.
+```
+
+Running that starts the compiler so that changes that are made instantly compiled.
