@@ -8,6 +8,7 @@ The following are steps to setting up a shareable Vagrant box that sets up a bas
 4. I created a directory for this called ~/Development (but you could call it whatever you want). Inside that directory run:
 
 $ vagrant init hashicorp/precise64
+
 $ vagrant up
 
 * these steps are from https://www.vagrantup.com/docs/getting-started/
