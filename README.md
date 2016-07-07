@@ -25,10 +25,10 @@ In the basic Vagrant setup instructions (at https://www.vagrantup.com/docs/) the
 
 `$ vagrant share`
 
-...
+```
 ==> default: Your Vagrant Share is running!
 ==> default: URL: http://frosty-weasel-0857.vagrantshare.com
-...
+```
 
 Your URL will be different, so do not try the URL above. Instead, copy the URL that vagrant share outputted for you and visit that in a web browser. It should load the Apache page we setup earlier.
 
