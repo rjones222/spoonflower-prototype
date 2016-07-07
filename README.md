@@ -7,7 +7,7 @@ The following are steps to setting up a shareable Vagrant box that sets up a bas
 3. Install Node: https://nodejs.org/en/
 4. I created a directory for this called `Prototype` at `~` (but you could call it whatever you want). Inside that directory run:
 
-$ vagrant init hashicorp/precise64
-
-$ vagrant up
+`$ git clone git@github.com:rjones222/spoonflower-prototype.git`
+`$ vagrant init hashicorp/precise64`
+`$ vagrant up`
 
