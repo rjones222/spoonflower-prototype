@@ -23,11 +23,12 @@ Depending on how your machine is configured, the command may fail with an `EACCE
 
 `sudo npm install --global foundation-cli`
 
-Next we're going to `cd spoonflower-prototype` (yes the duplication of directory names isn't cool but whatevs)
+Next we're going to `cd spoonflower-prototype` (currenly the duplication of directory names is not optimal ex. `$ pwd => 
+/Users/Spoonflower/Prototype/spoonflower-prototype/spoonflower-prototype` [note to self: ugh.])
 
 Then `npm install` followed by `bower install`
 
-The Foundation docs say run `npm start` to run the Sass compiler (so maybe this is interchangable with `foundation watch`?)
+The Foundation docs say run `npm start` to run the Sass compiler, you can also run `foundation watch`.
 
 ## Sharing
 
@@ -84,4 +85,4 @@ It will install a bunch of stuff including gulp-sass to compile SCSS files. Noti
 Now run `foundation watch` while inside the `spoonflower-prototype` folder.
 ```
 
-Running that starts the compiler so that changes that are made instantly compiled.
+Running that starts the compiler so that changes that are made instantly compiled. You can also run `npm start` which triggers the same task runner.
