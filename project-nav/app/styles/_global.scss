@@ -1,0 +1,29 @@
+// global
+
+body {
+  font-family: $font-stack;
+  font-size: 16px;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+// Navigation
+.nav {
+  li {
+      list-style-type: none;
+      padding: 0 10px;
+      display: inline;
+  }
+  a {
+    color: $nav-color;
+    &:hover {
+      color: $nav-hover;
+    }
+  }
+}
