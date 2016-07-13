@@ -1,0 +1,11 @@
+// accents, decorations, trimmings, etc
+
+// used in navigation to create virtual block element, like an <hr>
+.border_btm:after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 90%;
+  margin: 10px;
+  background: $gallery;
+}

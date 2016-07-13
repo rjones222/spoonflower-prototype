@@ -1,9 +1,27 @@
 // navigation
 
 // Utility Bar
-.utility-bar {
+.u_bar {
   background-color: $polar;
 }
-.utility-subnav {
+.u_nav {
+
+}
+.u_nav-user_subnav,
+.u_nav-studio_subnav,
+.u_nav-cart_subnav {
   display: none;
+}
+
+// Header Bar
+.h_bar {
+
+}
+
+// Global Bar
+.g_bar {
+
+}
+.g_nav {
+
 }

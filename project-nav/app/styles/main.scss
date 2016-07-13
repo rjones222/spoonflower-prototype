@@ -1,11 +1,13 @@
 // bower:scss
 // endbower
-
-@import "neat";
+@import "libraries/bourbon/bourbon.scss";
+@import "libraries/neat/neat.scss";
 
 @import "reset";
-@import "icons";
+
 @import "variables";
+@import "icons";
 @import "global";
 @import "navigation";
+@import "accents";
 @import "shame";

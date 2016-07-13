@@ -2,15 +2,16 @@
 
 @font-face {
   font-family: 'spoonflower_icons';
-  src: url('/fonts/spoonflower_icons.eot?79918174');
-  src: url('/fonts/spoonflower_icons.eot?79918174#iefix') format('embedded-opentype'),
-       url('/fonts/spoonflower_icons.woff2?79918174') format('woff2'),
-       url('/fonts/spoonflower_icons.woff?79918174') format('woff'),
-       url('/fonts/spoonflower_icons.ttf?79918174') format('truetype'),
-       url('/fonts/spoonflower_icons.svg?79918174#spoonflower_icons') format('svg');
+  src: url('/fonts/spoonflower_icons.eot?62416048');
+  src: url('/fonts/spoonflower_icons.eot?62416048#iefix') format('embedded-opentype'),
+       url('/fonts/spoonflower_icons.woff2?62416048') format('woff2'),
+       url('/fonts/spoonflower_icons.woff?62416048') format('woff'),
+       url('/fonts/spoonflower_icons.ttf?62416048') format('truetype'),
+       url('/fonts/spoonflower_icons.svg?62416048#spoonflower_icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
@@ -22,7 +23,7 @@
 }
 */
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+ [class^="icon_"]:before, [class*=" icon_"]:before {
   font-family: "spoonflower_icons";
   font-style: normal;
   font-weight: normal;
@@ -78,9 +79,9 @@
     /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-burst:before { content: '\e800'; } /* '' */
-.icon-cart:before { content: '\e801'; } /* '' */
-.icon-chevron-down {
+.icon_burst:before { content: '\e800'; }
+.icon_cart:before { content: '\e801'; }
+.icon_chevron_down {
   position: absolute;
   top: 13px;
   &:before {
@@ -88,13 +89,22 @@
     font-size: 0.4rem;
   }
 }
-.icon-roostery:before { content: '\e803'; } /* '' */
-.icon-search:before { content: '\e804'; } /* '' */
-.icon-sprout:before { content: '\e805'; } /* '' */
-.icon-studio:before { content: '\e806'; } /* '' */
-.icon-youtube:before { content: '\e807'; } /* '' */
-.icon-twitter:before { content: '\f099'; } /* '' */
-.icon-facebook:before { content: '\f09a'; } /* '' */
-.icon-instagram:before { content: '\f16d'; } /* '' */
-.icon-pinterest:before { content: '\f231'; } /* '' */
-.icon-flickr:before { content: '\f303'; } /* '' */
+.icon_close:before { content: '\e808'; }
+.icon_menu {
+  margin-right: 0.75rem;
+  &:before {
+    color: $smalt_blue;
+    content: '\e809';
+    font-size: 0.75rem;
+  }
+}
+.icon_roostery:before { content: '\e803'; }
+.icon_search:before { content: '\e804'; }
+.icon_sprout:before { content: '\e805'; }
+.icon_studio:before { content: '\e806'; }
+.icon_youtube:before { content: '\e807'; }
+.icon_twitter:before { content: '\f099'; }
+.icon_facebook:before { content: '\f09a'; }
+.icon_instagram:before { content: '\f16d'; }
+.icon_pinterest:before { content: '\f231'; }
+.icon_flickr:before { content: '\f303'; }

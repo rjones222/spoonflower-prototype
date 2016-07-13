@@ -23,42 +23,35 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div class="utility-bar">
-      <ul class="utility-sites nav">
-        <li>
-          <a href="#" class="icon icon-sprout"><span class="visuallyhidden">Sprout</span></a>
-        </li>
-        <li>
-          <a href="#">Roostery</a>
-        </li>
-      </ul>
-      <ul class="utility-user nav">
-        <li>
-          <a href="#">User Name <i class="icon icon-chevron-down" aria-hidden="true"></i></a>
-        </li>
-      </ul>
-    </div>
-    <div class="utility-subnav">
-      <ul class="nav">
-        <li>
-          <a href="#">Log Out</a>
-        </li>
-        <li>
-          <a href="#">Account Settings</a>
-        </li>
-      </ul>
-    </div>
-    <div class="global_header"></div>
-    <div class="global_nav">
-      <nav class="global_nav-primary">
-        <ul class="nav">
-          <li>
+    <header class="h_bar">
+      <div id="logo" class="h_bar-container is-collapsed">
+        <a href="#"><img class="spoonflower_logo" alt="Spoonflower" src="/images/logo.svg"></a>
 
+        <div id="navToggle" class="mobile_menu">
+          <a href="#"><i class="icon icon_menu" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li>
+              <a href="#">Blog <span class="toggle">Expand</span><span class="caret"></span></a>
+              <nav>
+                  <ul>
+                      <li><a href="#">Articles</a></li>
+                      <li><a href="#">Tutorials</a></li>
+                      <li><a href="#">Humour</a></li>
+                      <li><a href="#">Gaming</a></li>
+                      <li><a href="#">Music</a></li>
+                  </ul>
+              </nav>
           </li>
+          <li><a href="#">Forum</a></li>
+          <li><a href="#">Help</a></li>
         </ul>
       </nav>
-    </div>
-    <div class="global_nav-dropdown"></div>
+    </header>
 
 
     <!-- build:js scripts/vendor.js -->
