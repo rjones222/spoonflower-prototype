@@ -1,0 +1,25 @@
+// state rules
+
+.display_none {
+  display: none;
+}
+
+.user_btn,
+.studio_btn,
+.promos_btn {
+  display: none;
+}
+
+.is-loggedin {
+  .spoonflower_logo {
+    width: 43px;
+  }
+  .user_btn,
+  .studio_btn,
+  .promos_btn {
+    display: block;
+  }
+  .btn-login {
+    right: 13.6rem;
+  }
+}

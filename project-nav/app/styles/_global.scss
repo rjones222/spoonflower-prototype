@@ -1,228 +1,286 @@
-// global
-
-body {
-  font-family: $font-stack;
-  font-size: 16px;
-}
-
-a {
-  color: $link-color;
-  text-decoration: none;
-  &:hover {
-    color: $link-hover;
-  }
-}
+// global - temporary home for scss that may wind up elsewhere, like base.scss or navigation.scss
 
 .spoonflower_logo {
+  background: url('/images/logo.svg');
+  background-repeat: no-repeat;
+  background-size: 153px 38px;
+  display: block;
   height: 38px;
-  margin: 0.4rem;
+  margin: .4rem 0 .375rem .4rem;
   width: 153px;
 }
 
 // Navigation global rules
-.nav {
-  li {
-      list-style-type: none;
-      padding: 0 10px;
-      display: inline;
-  }
-  a {
-    color: $nav-color;
-    &:hover {
-      color: $nav-hover;
-    }
-  }
-}
+// .nav {
+//   li {
+//       list-style-type: none;
+//       padding: 0 10px;
+//       display: inline;
+//   }
+//   a {
+//     color: $nav-color;
+//     &:hover {
+//       color: $nav-hover;
+//     }
+//   }
+// }
 
 // Temp.
-
+// navigation layout
 .h_bar {
-  border-bottom: $gallery;
+  border-bottom: 1px solid $gallery;
   display: flex;
   flex-direction: column;
   text-align: left;
+  // > .is-expanded {
+  //   border-bottom: 1px solid $gallery;
+  // }
+  // > .is-collapsed {
+  //   border-bottom: none;
+  // }
 }
 
 .h_bar-container {
   position: relative;
+  .font_icon_btn {
+    color: $smalt_blue;
+    line-height: 1rem;
+  }
+  .user_btn {
+    position: absolute;
+    right: 11.8rem;
+    top: 1rem ;
+  }
+  .studio_btn {
+    position: absolute;
+    right: 8rem;
+    top: 1rem ;
+    width: 2.75rem;
+  }
+  .promos_btn {
+    position: absolute;
+    right: 5.3rem;
+    top: 1rem ;
+    width: 2.65rem;
+  }
+  .cart_btn {
+    font-size: rem(12);
+    position: absolute;
+    right: 3.05rem;
+    top: 1rem;
+    width: 2.65rem;
+  }
+  .btn-login {
+    position: absolute;
+    right: 6.6rem;
+    top: 1rem ;
+  }
 }
 
-    .h_bar > .is-expanded {
-        box-shadow: 0 3px 5px rgba(0,0,0,.15);
+.item_count {
+  display: inline-block;
+  font-size: rem(10);
+  position: absolute;
+  right: .5rem;
+  // text-align: center;
+  top: .1rem;
+  width: 1rem;
+}
+
+.menu_toggle {
+  background-color: $polar;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 300ms all ease;
+  > a {
+     display: block;
+     height: 50px;
+     transition: 300ms all ease;
+     width: 50px;
+ }
+}
+
+.h_bar > nav {
+  background-color: white;
+  border-top: 1px solid $gallery;
+  display: none;
+  flex: 1;
+  height: 100vh;
+  transform: 300ms all ease;
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  a {
+    color: $nav-color;
+  }
+}
+
+.h_bar nav > ul {
+  list-style-type: none;
+}
+
+.h_bar nav > ul > li {
+  position: relative;
+  li a {
+    padding: .8rem 2rem;
+  }
+}
+
+.h_bar nav > ul > li:last-of-type {
+  border-bottom: none;
+}
+
+.h_bar nav a {
+  display: block;
+  padding: .8rem 1rem;
+  text-decoration: none;
+  transition: 250ms all ease;
+
+}
+
+// .h_bar nav > ul > li > a span.toggle {
+// 	background-color: rgba(0,0,0,.05);
+// 	border-radius: 3rem;
+// 	color: rgba(0,0,0,.25);
+// 	font-size: .75em;
+// 	font-weight: 500;
+// 	padding: 2px 8px;
+// 	text-transform: lowercase;
+// }
+
+.h_bar nav > ul > li > a span.caret {
+  display: none;
+}
+
+.h_bar > nav > ul > li:hover > a {
+  font-weight: bold;
+}
+
+// .h_bar > nav > ul > li > nav {
+//   // background-color: rgb(51,51,51);
+//   border-radius: 1.5em;
+//   box-shadow: 0 2px 8px rgba(0,0,0,.6);
+//   display: none;
+//   overflow: hidden;
+//   position: absolute;
+//   right: 5%;
+//   width: 90%;
+//   z-index: 100;
+// }
+
+.h_bar > nav > ul > li > ul {
+  display: none;
+}
+
+// .h_bar > nav > ul > li > nav > ul > li > a {
+//   color: rgba(255,255,255,.85);
+//   transition: 300ms all ease;
+// }
+//
+// .h_bar > nav > ul > li > nav > ul > li:hover > a {
+//   background-color: rgba(0,0,0,.6);
+//   color: rgba(255,255,255,1);
+// }
+
+.spoonflower_definition {
+  max-width: 270px;
+  @include media($desktop) {
+    position: relative;
+    top: 100px;
+  }
+  dt {
+    color: $smalt_blue;
+    span {
+      border-bottom: 1px solid $smalt_blue;
+      display: inline-block;
+      position: relative;
     }
-
-    .h_bar > .is-collapsed {
-        box-shadow: none;
-    }
-
-        .mobile_menu {
-            background-color: $polar;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: 300ms all ease;
-        }
-
-            .mobile_menu:hover {
-                background-color: rgba(0,0,0,.1);
-            }
-
-            .mobile_menu > a {
-                color: rgba(255,255,255,.85);
-                display: block;
-                font-size: 0.85em;
-                font-weight: 600;
-                padding: 1.25rem 1rem;
-                text-decoration: none;
-                transition: 300ms all ease;
-            }
-
-                .mobile_menu:hover > a {
-                    color: rgba(255,255,255,1);
-                }
-
-    .h_bar > nav {
-        background-color: white;
-        display: none;
-        flex: 1;
-        transform: 300ms all ease;
-    }
-
-        .h_bar nav > ul {
-            list-style-type: none;
-        }
-
-            .h_bar nav > ul > li {
-                border-bottom: 1px dotted rgba(0,0,0,.1);
-                position: relative;
-            }
-
-                .h_bar nav > ul > li:last-of-type {
-                    border-bottom: none;
-                }
-
-                .h_bar nav > ul > li > a {
-                    display: block;
-                    color: rgba(0,0,0,.65);
-                    font-weight: 700;
-                    padding: 1.5rem 0;
-                    text-decoration: none;
-                    transition: 250ms all ease;
-                }
-
-					.h_bar nav > ul > li > a span.toggle {
-						background-color: rgba(0,0,0,.05);
-						border-radius: 3rem;
-						color: rgba(0,0,0,.25);
-						font-size: 0.75em;
-						font-weight: 500;
-						padding: 2px 8px;
-						text-transform: lowercase;
-					}
-
-					.h_bar nav > ul > li > a span.caret {
-                        display: none;
-					}
-
-                    .h_bar > nav > ul > li:hover > a {
-                        color: rgb(140, 193, 193);
-                    }
-
-            .h_bar > nav > ul > li > nav {
-                background-color: rgb(51,51,51);
-                border-radius: 1.5em;
-                box-shadow: 0 2px 8px rgba(0,0,0,.6);
-                display: none;
-                overflow: hidden;
-                position: absolute;
-                right: 5%;
-                width: 90%;
-                z-index: 100;
-            }
-
-                .h_bar > nav > ul > li > nav > ul > li > a {
-                    color: rgba(255,255,255,.85);
-                    transition: 300ms all ease;
-                }
-
-                    .h_bar > nav > ul > li > nav > ul > li:hover > a {
-                        background-color: rgba(0,0,0,.6);
-                        color: rgba(255,255,255,1);
-                    }
+  }
+  dd {
+    background-color: #ffffff;
+    border: 1px solid $gallery;
+    margin-top: 1rem;
+    max-width: 248px;
+    padding: 1rem;
+    position: fixed;
+  }
+  ul {
+    color: $smalt_blue;
+  }
+}
 
 /* Medium screens */
 @media all and (min-width: 600px) {
-    .h_bar-container > div#navToggle {
-        display: none;
-    }
+  .h_bar-container > div#navToggle {
+    display: none;
+  }
 
-    .h_bar {
-        background-color: white;
-        flex-direction: row;
-        line-height: 90px;
-        padding: 0 3rem;
-		    position: fixed;
-        text-align: left;
-		    width: 100%;
-    }
+  .h_bar {
+    background-color: white;
+    flex-direction: row;
+    line-height: 90px;
+    padding: 0 3rem;
+    position: fixed;
+    text-align: left;
+    width: 100%;
+  }
 
-        .h_bar-container {
-            background-color: transparent;
-            line-height: 90px;
-        }
+  .h_bar-container {
+    background-color: transparent;
+    line-height: 90px;
+  }
 
+  .h_bar > nav {
+    background-color: transparent;
+    display: block;
+  }
 
+  .h_bar > nav > ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
 
-    .h_bar > nav {
-        background-color: transparent;
-        display: block;
-    }
+  .h_bar nav > ul > li {
+    border-bottom: none;
+  }
 
-        .h_bar > nav > ul {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: flex-end;
-        }
+  .h_bar nav > ul > li > a {
+    padding: 0 1.25rem;
+  }
 
-            .h_bar nav > ul > li {
-                border-bottom: none;
-            }
+	.h_bar nav > ul > li > a span.toggle {
+		display: none;
+	}
 
-                .h_bar nav > ul > li > a {
-                    padding: 0 1.25rem;
-                }
+	.h_bar nav > ul > li > a span.caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid rgba(0,0,0,.65);
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+		border-radius: 1px;
+		content: "";
+		display: inline-block;
+		height: 0;
+		margin: 0 0 0 .25rem;
+		transition: 250ms all ease;
+		width: 0;
+		vertical-align: middle;
+	}
 
-					.h_bar nav > ul > li > a span.toggle {
-						display: none;
-					}
+	.h_bar nav > ul > li:hover > a span.caret {
+		border-top-color: rgb(140, 193, 193);
+		transform: rotate(270deg);
+	}
 
-					.h_bar nav > ul > li > a span.caret {
-            border-bottom: 4px solid transparent;
-            border-top: 4px solid rgba(0,0,0,.65);
-            border-right: 4px solid transparent;
-            border-left: 4px solid transparent;
-						border-radius: 1px;
-						content: "";
-						display: inline-block;
-						height: 0;
-						margin: 0 0 0 .25rem;
-						transition: 250ms all ease;
-						width: 0;
-						vertical-align: middle;
-					}
-
-						.h_bar nav > ul > li:hover > a span.caret {
-							border-top-color: rgb(140, 193, 193);
-							transform: rotate(270deg);
-						}
-
-    .h_bar > nav > ul > li:hover > nav {
-        background-color: rgb(51,51,51);
-        border-radius: .25em;
-        box-shadow: 0 2px 8px rgba(0,0,0,.6);
-        display: block;
-        line-height: 3em;
-        right: -50%;
-        width: 196px;
-    }
+  .h_bar > nav > ul > li:hover > nav {
+    background-color: rgb(51,51,51);
+    border-radius: .25em;
+    box-shadow: 0 2px 8px rgba(0,0,0,.6);
+    display: block;
+    line-height: 3em;
+    right: -50%;
+    width: 196px;
+  }
 }

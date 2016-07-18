@@ -5,7 +5,17 @@
   content: "";
   display: block;
   height: 1px;
-  width: 90%;
-  margin: 10px;
+  width: 100%;
   background: $gallery;
+}
+
+nav .border_btm:after {
+  width: 90%;
+  margin-left: 5%;
+}
+
+// ul disc style
+.disc {
+  list-style: disc;
+  padding: 1rem 1.5rem;
 }

@@ -58,7 +58,7 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: .5;
   }
 
   @warn "The button mixin is deprecated and will be removed in the next major version release";

@@ -1,0 +1,41 @@
+// base rules
+
+body {
+  font-family: $font-stack;
+  font-size: 16px;
+  @include media($desktop) {
+    padding-top: 174px;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+p, li {
+  line-height: 1.2rem;
+  font-size: rem(15);
+}
+
+img,
+embed,
+iframe {
+  max-width: 100%;
+}
+
+header,
+section,
+footer {
+  @include outer-container;
+}
+
+section,
+footer {
+  > div {
+    padding: 1rem;
+  }
+}
