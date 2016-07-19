@@ -1,7 +1,7 @@
 // accents, decorations, trimmings, etc
 
 // used in navigation to create virtual block element, like an <hr>
-.border_btm:after {
+.btm_border:after {
   content: "";
   display: block;
   height: 1px;
@@ -9,13 +9,19 @@
   background: $gallery;
 }
 
-nav .border_btm:after {
+nav .btm_border:after {
   width: 90%;
   margin-left: 5%;
 }
 
 // ul disc style
 .disc {
-  list-style: disc;
-  padding: 1rem 1.5rem;
+  padding: 1rem 0 1rem .6rem;
+  li::before {
+    content: "\2022";
+    font-size: .5rem;
+    margin-right: .6rem;
+    position: relative;
+    top: -.25rem;
+  }
 }

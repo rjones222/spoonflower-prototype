@@ -11,6 +11,15 @@
   width: 1px;
 }
 
+// wrap <span class="nowrap"> to keep words from breaking to two lines (i.e. hyphenated, 'orphans', etc.)
 .nowrap {
   white-space: nowrap;
+}
+
+/* Firefox 37+ */
+// keeps mobile navigation chevrons floated to the right without 'stepping'
+@supports (-moz-appearance:none) and (display:contents) {
+  .btn-mobile_nav {
+    height: 42px;
+  }
 }

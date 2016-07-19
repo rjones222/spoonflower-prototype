@@ -3,22 +3,40 @@ var Navigation = {
 
   init: function() {
     Navigation.navToggle();
-    Navigation.viewportResize();
-    Navigation.subnavToggle();
+    Navigation.mobileSubnavToggle();
+    // may need for desktop but causes nav to disappear when scrolled in mobile
+    // Navigation.windowResize();
     Navigation.loggedIn();
     Navigation.showDefinition();
   },
 
   navToggle: function() {
-    $('#navToggle a').click(function(e){
+    $('#navToggle button').click(function(e){
       e.preventDefault();
       $('.h_bar > nav').slideToggle('medium');
       $('#hBar').toggleClass('is-collapsed is-expanded');
       $('#navToggle i').toggleClass('icon_close icon_menu');
+      if($('#hBar').hasClass('is-expanded')) {
+        Navigation.collapseAllSubnavs();
+      }
     });
   },
 
-  viewportResize: function() {
+  mobileSubnavToggle: function() {
+    $('.btn-mobile_nav').click(function() {
+      var $this = $(this);
+      if($this.hasClass('is-expanded')) {
+        Navigation.collapseChildSubnavs($this);
+        Navigation.collapseMenu($this);
+      }
+      $this.toggleClass('is-expanded');
+			// $(this).next().slideToggle('medium');
+      $this.next().toggleClass('menu-visible');
+      $this.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
+    });
+  },
+
+  windowResize: function() {
     $(window).resize(function() {
       if($( window ).width() >= '600') {
         $('.h_bar > nav').css('display', 'block');
@@ -34,17 +52,32 @@ var Navigation = {
     });
   },
 
-  subnavToggle: function() {
-    $('.h_bar > nav > ul > li > a').click(function(e) {
-      if($( window ).width() <= '600') {
-        if($(this).siblings().size() > 0 ) {
-          $(this).siblings().slideToggle('fast')
-  				$(this).children('.toggle').html($(this).children('.toggle').html() == 'close' ? 'expand' : 'close');
-        }
-      }
-    });
+  // collapse menu
+  collapseMenu: function(toggleButton) {
+    console.log('in collapseMenu');
+    var $li = toggleButton.parent();
+    this.removeClass('is-expanded');
+    $li.find('ul').removeClass('menu-visible');
   },
 
+  // collapse all the subnavs
+  collapseAllSubnavs: function() {
+    $('.btn-mobile_nav').removeClass('is-expanded');
+    $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
+    $('ul').removeClass('menu-visible');
+  },
+
+  // collapse child subnavs
+  collapseChildSubnavs: function(button) {
+    var $buttonParent = button.parent();
+    // var $buttons = $(parentButton).find('.btn-mobile_nav'),
+    //     $lists = $(parentButton).find('.menu-visible');
+    $buttonParent.find('.btn-mobile_nav').removeClass('is-expanded');
+    $buttonParent.find('button i').attr('class', 'icon icon_chevron_down');
+    $buttonParent.find('ul').removeClass('menu-visible');
+  },
+
+  // toggles topmost header nav icon visibility, changes login button text
   loggedIn: function() {
     $('.btn-login').click(function(e){
       e.preventDefault();
@@ -53,8 +86,10 @@ var Navigation = {
     });
   },
 
+  // displays dropdown with details on what we do?
   showDefinition: function() {
     $('.spoonflower_definition dt').click(function(e){
+      $(this).find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
       $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
     })
   }

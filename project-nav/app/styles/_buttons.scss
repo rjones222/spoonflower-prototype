@@ -27,6 +27,25 @@
   line-height: 1;
 }
 
+// added to <a> for social outbound links in navigation and footer
+.btn-round {
+  border-radius: 50%;
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  width: 30px;
+  @include media($desktop) {
+    height: 25px;
+    width: 25px;
+  }
+  .icon {
+    margin: 0;
+    position: absolute;
+    right: .65rem;
+    top: .45rem;
+  }
+}
+
 .btn-login {
   border: 1px solid $smalt_blue;
   color: $smalt_blue;
@@ -39,4 +58,8 @@
 
 .font_icon_btn {
   cursor: pointer;
+}
+
+.btn-back_to_top {
+  color: $smalt_blue;
 }

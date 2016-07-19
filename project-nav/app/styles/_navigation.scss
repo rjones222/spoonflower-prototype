@@ -1,27 +1,309 @@
-// navigation
+// navigation, including some global header and footer elements that aren't strictly navigation
 
-// Utility Bar
-.u_bar {
-  background-color: $polar;
-}
-.u_nav {
 
+// Navigation global rules
+.nav {
+  li {
+    list-style-type: none;
+    display: inline;
+  }
 }
-.u_nav-user_subnav,
-.u_nav-studio_subnav,
-.u_nav-cart_subnav {
-  display: none;
+.nav-link {
+  color: $nav-color;
+  display: inline-block;
+  padding: .8rem 1rem;
+  text-decoration: none;
+  transition: 250ms all ease;
+  &:hover {
+    color: $nav-hover;
+  }
 }
 
-// Header Bar
+// navigation layout
 .h_bar {
-
+  border-bottom: 1px solid $gallery;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  // > .is-expanded {
+  //   border-bottom: 1px solid $gallery;
+  // }
+  // > .is-collapsed {
+  //   border-bottom: none;
+  // }
 }
 
-// Global Bar
-.g_bar {
-
+.h_bar-container {
+  position: relative;
+  .font_icon_btn {
+    color: $smalt_blue;
+    line-height: 1rem;
+  }
+  .user_btn {
+    position: absolute;
+    right: 11.8rem;
+    top: 1rem ;
+  }
+  .studio_btn {
+    position: absolute;
+    right: 8rem;
+    top: 1rem ;
+    width: 2.75rem;
+  }
+  .promos_btn {
+    position: absolute;
+    right: 5.3rem;
+    top: 1rem ;
+    width: 2.65rem;
+  }
+  .cart_btn {
+    font-size: rem(12);
+    position: absolute;
+    right: 3.05rem;
+    top: 1rem;
+    width: 2.65rem;
+  }
+  .btn-login {
+    position: absolute;
+    right: 6.6rem;
+    top: 1rem ;
+  }
 }
-.g_nav {
 
+.item_count {
+  display: inline-block;
+  font-size: rem(10);
+  position: absolute;
+  right: .5rem;
+  // text-align: center;
+  top: .1rem;
+  width: 1rem;
 }
+
+.menu_toggle {
+  background-color: $polar;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 300ms all ease;
+  button {
+    display: block;
+    height: 50px;
+    transition: 300ms all ease;
+    width: 50px;
+  }
+}
+
+.h_bar > nav {
+  background-color: white;
+  // border-bottom: 1px solid $gallery;
+  border-top: 1px solid $gallery;
+  box-shadow: 0px 8px 8px -8px #B8B8B8;
+  display: none;
+  flex: 1;
+  // height: 100vh;
+  overflow: scroll;
+  position: absolute;
+  transform: 300ms all ease;
+  width: 100vw;
+  z-index: 1;
+  @include media($desktop) {
+    box-shadow: none;
+  }
+}
+
+.h_bar nav > ul {
+  list-style-type: none;
+}
+
+// handles indentation of subnav items
+.h_bar nav {
+  > ul > li > ul > li > a {
+    padding: .8rem 2rem;
+  }
+  > ul > li > ul > li > ul > li > a {
+    padding: .8rem 3rem;
+  }
+  > ul > li > ul > li > ul > li > ul > li > a {
+    padding: .8rem 4rem;
+  }
+  > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+    padding: .8rem 5rem;
+  }
+}
+
+// .h_bar nav > ul > li:last-of-type {
+//   border-bottom: none;
+// }
+
+// button controls hiding showing of subnav items
+.btn-mobile_nav {
+  box-sizing: border-box;
+  float: right;
+  height: 43px;
+  margin: 1px;
+  &:focus {
+    // background: rgba(0,0,0,0.05);
+    // background-color: rgba(231,246,249,0.1);
+    outline-style: inset;
+    outline-width: 1px;
+  }
+  @include media($desktop) {
+    display: none;
+  }
+}
+
+// social subnav
+.nav-social {
+  // height: rem(48);
+  // max-height: rem(48);
+  padding: .6rem 1rem .5rem 2rem;
+  .btn-round {
+    background-color: $dusty_gray;
+    color: white;
+    margin-right: 5px;
+  }
+}
+
+// This is the "Custom printed fabric and more..." what-we-do statement
+.spoonflower_definition {
+  max-width: 270px;
+  @include media($desktop) {
+    position: relative;
+    top: 100px;
+  }
+  dt {
+    color: $smalt_blue;
+    span {
+      border-bottom: 1px solid $smalt_blue;
+      display: inline-block;
+      position: relative;
+    }
+  }
+  dd {
+    background-color: #ffffff;
+    border: 1px solid $gallery;
+    margin-top: 1rem;
+    max-width: 248px;
+    padding: 1rem;
+    position: absolute;
+    text-align: center
+  }
+  ul {
+    color: $smalt_blue;
+    text-align: left;
+  }
+  p {
+    text-align: left;
+  }
+  .btn-primary {
+    margin-right: rem(5);
+  }
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+  #navToggle {
+    display: none;
+  }
+
+  .h_bar {
+    background-color: white;
+    flex-direction: row;
+    line-height: 90px;
+    padding: 0 3rem;
+    position: fixed;
+    text-align: left;
+    width: 100%;
+  }
+
+  .h_bar-container {
+    background-color: transparent;
+    line-height: 90px;
+  }
+
+  .h_bar > nav {
+    background-color: transparent;
+    display: block;
+  }
+
+  .h_bar > nav > ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+
+  .h_bar > nav > ul > li:hover > a {
+    font-weight: bold;
+  }
+
+  .h_bar nav > ul > li {
+    border-bottom: none;
+  }
+
+  .h_bar nav > ul > li > a {
+    padding: 0 1.25rem;
+  }
+
+	.h_bar nav > ul > li > a span.toggle {
+		display: none;
+	}
+
+	.h_bar nav > ul > li > a span.caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid rgba(0,0,0,.65);
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+		border-radius: 1px;
+		content: "";
+		display: inline-block;
+		height: 0;
+		margin: 0 0 0 .25rem;
+		transition: 250ms all ease;
+		width: 0;
+		vertical-align: middle;
+	}
+
+	.h_bar nav > ul > li:hover > a span.caret {
+		border-top-color: rgb(140, 193, 193);
+		transform: rotate(270deg);
+	}
+
+  .h_bar > nav > ul > li:hover > nav {
+    background-color: rgb(51,51,51);
+    border-radius: .25em;
+    box-shadow: 0 2px 8px rgba(0,0,0,.6);
+    display: block;
+    line-height: 3em;
+    right: -50%;
+    width: 196px;
+  }
+}
+
+// // Utility Bar
+// .u_bar {
+//   background-color: $polar;
+// }
+// .u_nav {
+//
+// }
+// .u_nav-user_subnav,
+// .u_nav-studio_subnav,
+// .u_nav-cart_subnav {
+//   display: none;
+// }
+//
+// // Header Bar
+// .h_bar {
+//
+// }
+//
+// // Global Bar
+// .g_bar {
+//
+// }
+// .g_nav {
+//
+// }
+
+//

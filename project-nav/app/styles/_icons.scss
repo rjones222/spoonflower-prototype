@@ -119,18 +119,19 @@
   }
 }
 .icon_chevron_up {
-  position: absolute;
-  right: 0;
-  top: .1rem;
+  width: .3rem;
   &:before {
     content: '\e80d';
     font-size: .325rem;
+    margin: 0;
+    position: relative;
+    top: -0.2rem;
   }
 }
 .icon_close {
   position: absolute;
-  right: .9rem;
-  top: 1rem;
+  right: 1.2rem;
+  top: 1.2rem;
   &:before {
     color: $smalt_blue;
     content: '\e808';
@@ -139,8 +140,8 @@
 }
 .icon_menu {
   position: absolute;
-  right: rem(17);
-  top: rem(15);
+  right: 1.3rem;
+  top: 1.25rem;
   &:before {
     color: $smalt_blue;
     content: '\e809';
@@ -150,11 +151,27 @@
 .icon_roostery:before { content: '\e803'; }
 .icon_search:before { content: '\e804'; }
 .icon_sprout:before { content: '\e805'; }
-.icon_youtube:before { content: '\e807'; }
-.icon_twitter:before { content: '\f099'; }
+
 .icon_facebook:before { content: '\f09a'; }
+.icon_twitter:before { content: '\f099'; }
 .icon_instagram:before { content: '\f16d'; }
-.icon_pinterest:before { content: '\f231'; }
+.icon_pinterest {
+  right: .7rem !important;
+  top: .5rem !important;
+  &:before {
+    content: '\f231';
+    // font-size: .75rem;
+  }
+}
 .icon_flickr:before { content: '\f303'; }
+.icon_youtube {
+  right: .675rem !important;
+  top: .425rem !important;
+  &:before {
+    content: '\e807';
+    font-size: .75rem;
+  }
+}
+
 .icon_arrow_down:before { content: '\e80a'; }
 .icon_arrow_up:before { content: '\e80b'; }
