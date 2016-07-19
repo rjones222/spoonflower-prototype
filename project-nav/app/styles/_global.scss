@@ -10,6 +10,33 @@
   width: 153px;
 }
 
+// search
+
+.search_select-wrapper {
+  height: 20px;
+  overflow: hidden;
+  width: 80px;
+  // &:after {
+  //   font-family: 'spoonflower_icons';
+  //   content: '\e802';
+  //   font-size: .325rem;
+  //   margin: 0;
+  //   pointer-events: none;
+  //   position: relative;
+  //   top: -0.2rem;
+  // }
+}
+
+.search_select {
+  background: transparent;
+  border: 0;
+  @include appearance(none);
+  option {
+    height: 26px;
+    width: 100px;
+  }
+}
+
 // footer
 
 footer {

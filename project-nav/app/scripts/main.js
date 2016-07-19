@@ -1,13 +1,13 @@
 // Navigation
-var Navigation = {
+var SpoonflowerNavigation = {
 
   init: function() {
-    Navigation.navToggle();
-    Navigation.mobileSubnavToggle();
+    SpoonflowerNavigation.navToggle();
+    SpoonflowerNavigation.mobileSubnavToggle();
     // may need for desktop but causes nav to disappear when scrolled in mobile
     // Navigation.windowResize();
-    Navigation.loggedIn();
-    Navigation.showDefinition();
+    SpoonflowerNavigation.loggedIn();
+    SpoonflowerNavigation.showDefinition();
   },
 
   navToggle: function() {
@@ -26,8 +26,8 @@ var Navigation = {
     $('.btn-mobile_nav').click(function() {
       var $this = $(this);
       if($this.hasClass('is-expanded')) {
-        Navigation.collapseChildSubnavs($this);
-        Navigation.collapseMenu($this);
+        SpoonflowerNavigation.collapseChildSubnavs($this);
+        SpoonflowerNavigation.collapseMenu($this);
       }
       $this.toggleClass('is-expanded');
 			// $(this).next().slideToggle('medium');
@@ -96,7 +96,7 @@ var Navigation = {
 
 };
 
-Navigation.init();
+SpoonflowerNavigation.init();
 
 // from http://stackoverflow.com/a/26183153
 jQuery.fn.extend({
@@ -118,6 +118,23 @@ jQuery.fn.extend({
 });
 
 // Search
+
+var SpoonflowerSearch = {
+
+  init: function() {
+    SpoonflowerSearch.triggerSelect();
+  },
+
+  triggerSelect: function() {
+    $('.btn-select').on('click', function() {
+      console.log('in triggerSelect');
+      $('.search_select').trigger('click');
+    });
+  }
+
+};
+
+SpoonflowerSearch.init();
 
 // $("#desktop_item_fabric").click(function() {
 //   desktop_selected_name('fabric');

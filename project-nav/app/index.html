@@ -47,6 +47,28 @@
           <button><i class="icon icon_menu" aria-hidden="true"></i></button>
         </div>
       </div>
+      <!-- Start of Search Section -->
+      <div id="searchModule" class="search_module">
+        <form>
+          <div class="search_select-wrapper">
+            <select name="search_select" class="search_select">
+              <option value="fabric">Fabric</option>
+              <option value="wallpaper">Wallpaper</option>
+              <option value="gift_wrap">Gift Wrap</option>
+              <option value="designers">Designers</option>
+              <option value="collections">Collections</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-select">
+            <i class="icon icon_chevron_down" aria-hidden="true"></i>
+          </button>
+          <input type="text" class="search_input" />
+          <button type="submit" class="btn btn-search">
+            <i class="icon icon_search" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+      <!-- End of Search Section -->
       <nav>
         <ul>
           <li>
@@ -671,48 +693,6 @@
           <li><a href="#" class="nav-link">Roostery</a></li>
         </ul>
       </nav>
-      <!-- Start of Search Section -->
-      <div id="desktop_search" class="chrome_search_auth search">
-        <form accept-charset="UTF-8" action="#" id="desktop_search_form" method="get" name="desktop_search_form"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-          <input class="display_none" id="desktop_filter" name="type" type="text">
-          <input class="display_none" id="view" name="view" type="text" value="designs">
-          <input class="display_none" id="desktop_shop" name="shop" type="text" value="fabric">
-          <div class="search_dropdown_menu">
-            <div class="drop_chrome_search" id="desktop_drop_action">
-              <div id="desktop_mag" class="mag" style="width: 35%;">
-                <div id="desktop_search_selected_name" class="search_selected_name">Fabric:</div>
-              </div>
-              <input autocomplete="off" class="search_q" id="desktop_q" name="q" size="30" type="text" style="width: 44%;">
-              <!-- <div id="desktop_search_carrot" class="search_carrot">
-                <img alt="Carrot_white" id="desktop_carrot_tag" src="/assets/buttons/Carrot_White.jpg">
-              </div> -->
-            </div>
-            <div class="drop_down_chrome_search" id="desktop_drop_down_action" style="display: none;">
-              <div>
-                  <div class="single_drop_chrome_search" id="desktop_item_fabric">
-                    <span>fabric</span>
-                  </div>
-                  <div class="single_drop_chrome_search" id="desktop_item_wallpaper">
-                    <span>wallpaper</span>
-                  </div>
-                  <div class="single_drop_chrome_search" id="desktop_item_gift_wrap">
-                    <span>gift wrap</span>
-                  </div>
-                  <div class="single_drop_chrome_search" id="desktop_item_designers">
-                    <span>designers</span>
-                  </div>
-                  <div class="single_drop_chrome_search" id="desktop_item_collections">
-                    <span>collections</span>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="go_button_div">
-            <input class="go_button mobile_visibility_hide" id="desktop_go_button" name="commit" type="submit" value="Search" src="/assets/buttons/Go_ON.png">
-          </div>
-        </form>
-      </div>
-      <!-- End of Search Section -->
     </header>
     <section>
       <div>
