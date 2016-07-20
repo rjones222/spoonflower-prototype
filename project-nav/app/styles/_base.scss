@@ -31,10 +31,14 @@ iframe {
   max-width: 100%;
 }
 
-header,
-section,
-footer {
-  @include outer-container;
+body > header {
+  @include media($desktop) {
+    height: 77px;
+  };
+}
+body > section,
+body > footer {
+  @include outer-container(1200px);
 }
 
 section,

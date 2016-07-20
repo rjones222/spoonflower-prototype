@@ -23,678 +23,680 @@
     <!-- endbuild -->
   </head>
   <body>
-    <header class="h_bar">
-      <div id="hBar" class="h_bar-container is-collapsed">
-        <a href="#" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
-        <button class="btn btn-xs btn-login">Login</button>
-        <div id="userBtn" class="font_icon_btn user_btn">
-          <i class="icon icon_user" aria-hidden="true"></i>
+    <header>
+      <div class="h_bar">
+        <div id="hBar" class="h_bar-container is-collapsed">
+          <a href="#" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
+          <button class="btn btn-xs btn-login">Login</button>
+          <div class="font_icon_btn user_btn">
+            <i class="icon icon_user" aria-hidden="true"></i>
+          </div>
+          <div class="font_icon_btn studio_btn">
+            <i class="icon icon_studio" aria-hidden="true"></i>
+            <span class="item_count">121</span>
+          </div>
+          <div class="font_icon_btn promos_btn">
+            <i class="icon icon_burst" aria-hidden="true"></i>
+            <span class="item_count">3</span>
+          </div>
+          <div class="font_icon_btn cart_btn">
+            <span class="visuallyhidden">Cart</span>
+            <i class="icon icon_cart" aria-hidden="true"></i>
+            <span class="item_count">4</span>
+          </div>
+          <div id="navToggle" class="menu_toggle font_icon_btn">
+            <button><i class="icon icon_menu" aria-hidden="true"></i></button>
+          </div>
         </div>
-        <div id="studioBtn" class="font_icon_btn studio_btn">
-          <i class="icon icon_studio" aria-hidden="true"></i>
-          <span class="item_count">121</span>
-        </div>
-        <div id="promosBtn" class="font_icon_btn promos_btn">
-          <i class="icon icon_burst" aria-hidden="true"></i>
-          <span class="item_count">3</span>
-        </div>
-        <div id="cartBtn" class="font_icon_btn cart_btn">
-          <span class="visuallyhidden">Cart</span>
-          <i class="icon icon_cart" aria-hidden="true"></i>
-          <span class="item_count">4</span>
-        </div>
-        <div id="navToggle" class="menu_toggle font_icon_btn">
-          <button><i class="icon icon_menu" aria-hidden="true"></i></button>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li class="desktop_hide">
-            <!-- Start of Mobile Search Section -->
-            <div id="searchModule-mobile" class="search_module">
-              <form>
-                <div class="search_select-wrapper">
-                  <select name="search_select" class="search_select">
-                    <option value="fabric">Fabric</option>
-                    <option value="wallpaper">Wallpaper</option>
-                    <option value="gift_wrap">Gift Wrap</option>
-                    <option value="designers">Designers</option>
-                    <option value="collections">Collections</option>
-                  </select>
-                </div>
-                <button class="btn btn-select">
+        <nav>
+          <ul>
+            <li class="desktop_hide">
+              <!-- Start of Mobile Search Section -->
+              <div id="searchModule-mobile" class="search_module">
+                <form>
+                  <div class="search_select-wrapper">
+                    <select name="search_select" class="search_select">
+                      <option value="fabric">Fabric</option>
+                      <option value="wallpaper">Wallpaper</option>
+                      <option value="gift_wrap">Gift Wrap</option>
+                      <option value="designers">Designers</option>
+                      <option value="collections">Collections</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-select">
+                    <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                  </button>
+                  <input type="text" class="search_input" />
+                  <button type="submit" class="btn btn-search">
+                    <i class="icon icon_search" aria-hidden="true"></i>
+                  </button>
+                </form>
+              </div>
+              <!-- End of Search Section -->
+            </li>
+            <li>
+                <a href="#" class="nav-link">Shop</a>
+                <button class="btn btn-mobile_nav">
                   <i class="icon icon_chevron_down" aria-hidden="true"></i>
                 </button>
-                <input type="text" class="search_input" />
-                <button type="submit" class="btn btn-search">
-                  <i class="icon icon_search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </div>
-            <!-- End of Search Section -->
-          </li>
-          <li>
-              <a href="#" class="nav-link">Shop</a>
+                <ul class="subnav">
+                    <li class="btm_border">
+                      <a href="#" class="nav-link">Designs</a>
+                      <button class="btn btn-mobile_nav">
+                        <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                      </button>
+                      <ul class="subnav">
+                        <li>
+                          <a href="#" class="nav-link"><em>Top & Trending</em></a>
+                          <button class="btn btn-mobile_nav">
+                            <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                          </button>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                              <button class="btn btn-mobile_nav">
+                                <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                              </button>
+                              <ul class="subnav">
+                                <li>
+                                  <a href="#" class="nav-link"><em>All</em></a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Lorem Ipsum</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Dolor Lorem</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Consectetur</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Sed Unim</a>
+                                </li>
+                                <li>
+                                  <a href="#" class="nav-link">Etses Dium</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Lorem Ipsum</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Dolor Lorem</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Consectetur</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Sed Unim</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Etses Dium</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Lorem Ipsum</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Dolor Lorem</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Consectetur</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Sed Unim</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link">Etses Dium</a>
+                          <ul class="subnav">
+                            <li>
+                              <a href="#" class="nav-link"><em>All</em></a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Lorem Ipsum</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Dolor Lorem</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Consectetur</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Sed Unim</a>
+                            </li>
+                            <li>
+                              <a href="#" class="nav-link">Etses Dium</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link">Fabrics</a>
+                      <button class="btn btn-mobile_nav">
+                        <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                      </button>
+                      <ul class="subnav">
+                        <li>
+                          <a href="#" class="nav-link"><em>All</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Most Popular</em></a>
+                        </li>
+                        <li class="btm_border">
+                          <a href="#" class="nav-link"><em>By Use</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Light-Weight</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Medium-Weight</em></a>
+                        </li>
+                        <li class="btm_border">
+                          <a href="#" class="nav-link"><em>Heavy-Weight</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Knit</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Woven</em></a>
+                        </li>
+                        <li>
+                          <a href="#" class="nav-link"><em>Performance</em></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="#" class="nav-link">Wallpapers</a></li>
+                    <li class="btm_border"><a href="#" class="nav-link">Gift Wrap</a></li>
+                    <li><a href="#" class="nav-link">Home Decor</a></li>
+                    <li class="border-btm"><a href="#" class="nav-link">Cut & Sew</a></li>
+                    <li><a href="#" class="nav-link">Design Tools</a></li>
+                    <li><a href="#" class="nav-link">Gift Ideas</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-link">Design</a></li>
+            <li><a href="#" class="nav-link">Sell</a></li>
+            <li>
+              <a href="#" class="nav-link">Connect</a>
               <button class="btn btn-mobile_nav">
                 <i class="icon icon_chevron_down" aria-hidden="true"></i>
               </button>
               <ul class="subnav">
-                  <li class="btm_border">
-                    <a href="#" class="nav-link">Designs</a>
-                    <button class="btn btn-mobile_nav">
-                      <i class="icon icon_chevron_down" aria-hidden="true"></i>
-                    </button>
-                    <ul class="subnav">
+                <li><a href="#" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">Design Challenges</a></li>
+                <li class="btm_border"><a href="#" class="nav-link">Events</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
+                <li class="btm_border"><a href="#" class="nav-link">Join the Email List</a></li>
+                <li>
+                  <div class="nav-social">
+                    <ul class="nav">
                       <li>
-                        <a href="#" class="nav-link"><em>Top & Trending</em></a>
-                        <button class="btn btn-mobile_nav">
-                          <i class="icon icon_chevron_down" aria-hidden="true"></i>
-                        </button>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                            <button class="btn btn-mobile_nav">
-                              <i class="icon icon_chevron_down" aria-hidden="true"></i>
-                            </button>
-                            <ul class="subnav">
-                              <li>
-                                <a href="#" class="nav-link"><em>All</em></a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Lorem Ipsum</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Dolor Lorem</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Consectetur</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Sed Unim</a>
-                              </li>
-                              <li>
-                                <a href="#" class="nav-link">Etses Dium</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Facebook" class="btn-round"><i class="icon icon_facebook" aria-hidden="true"></i></a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link">Lorem Ipsum</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Twitter" class="btn-round"><i class="icon icon_twitter" aria-hidden="true"></i></a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link">Dolor Lorem</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Instagram" class="btn-round"><i class="icon icon_instagram" aria-hidden="true"></i></a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link">Consectetur</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Pinterest" class="btn-round"><i class="icon icon_pinterest" aria-hidden="true"></i></a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link">Sed Unim</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Flickr" class="btn-round"><i class="icon icon_flickr" aria-hidden="true"></i></a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link">Etses Dium</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link">Lorem Ipsum</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link">Dolor Lorem</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link">Consectetur</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link">Sed Unim</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link">Etses Dium</a>
-                        <ul class="subnav">
-                          <li>
-                            <a href="#" class="nav-link"><em>All</em></a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Lorem Ipsum</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Dolor Lorem</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Consectetur</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Sed Unim</a>
-                          </li>
-                          <li>
-                            <a href="#" class="nav-link">Etses Dium</a>
-                          </li>
-                        </ul>
+                        <a href="#" title="Youtube" class="btn-round"><i class="icon icon_youtube" aria-hidden="true"></i></a>
                       </li>
                     </ul>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link">Fabrics</a>
-                    <button class="btn btn-mobile_nav">
-                      <i class="icon icon_chevron_down" aria-hidden="true"></i>
-                    </button>
-                    <ul class="subnav">
-                      <li>
-                        <a href="#" class="nav-link"><em>All</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Most Popular</em></a>
-                      </li>
-                      <li class="btm_border">
-                        <a href="#" class="nav-link"><em>By Use</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Light-Weight</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Medium-Weight</em></a>
-                      </li>
-                      <li class="btm_border">
-                        <a href="#" class="nav-link"><em>Heavy-Weight</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Knit</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Woven</em></a>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link"><em>Performance</em></a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="#" class="nav-link">Wallpapers</a></li>
-                  <li class="btm_border"><a href="#" class="nav-link">Gift Wrap</a></li>
-                  <li><a href="#" class="nav-link">Home Decor</a></li>
-                  <li class="border-btm"><a href="#" class="nav-link">Cut & Sew</a></li>
-                  <li><a href="#" class="nav-link">Design Tools</a></li>
-                  <li><a href="#" class="nav-link">Gift Ideas</a></li>
+                  </div>
+                </li>
               </ul>
-          </li>
-          <li><a href="#" class="nav-link">Design</a></li>
-          <li><a href="#" class="nav-link">Sell</a></li>
-          <li>
-            <a href="#" class="nav-link">Connect</a>
-            <button class="btn btn-mobile_nav">
-              <i class="icon icon_chevron_down" aria-hidden="true"></i>
-            </button>
-            <ul class="subnav">
-              <li><a href="#" class="nav-link">Blog</a></li>
-              <li><a href="#" class="nav-link">Design Challenges</a></li>
-              <li class="btm_border"><a href="#" class="nav-link">Events</a></li>
-              <li><a href="#" class="nav-link">Contact Us</a></li>
-              <li class="btm_border"><a href="#" class="nav-link">Join the Email List</a></li>
-              <li>
-                <div class="nav-social">
-                  <ul class="nav">
-                    <li>
-                      <a href="#" title="Facebook" class="btn-round"><i class="icon icon_facebook" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" title="Twitter" class="btn-round"><i class="icon icon_twitter" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" title="Instagram" class="btn-round"><i class="icon icon_instagram" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" title="Pinterest" class="btn-round"><i class="icon icon_pinterest" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" title="Flickr" class="btn-round"><i class="icon icon_flickr" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" title="Youtube" class="btn-round"><i class="icon icon_youtube" aria-hidden="true"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#" class="nav-link">How It Works</a></li>
-          <li class="btm_border"><a href="#" class="nav-link">Help</a></li>
-          <li class="btm_border"><a href="#" class="nav-link">More</a></li>
-          <li><a href="#" class="nav-link">Sprout Patterns</a></li>
-          <li><a href="#" class="nav-link">Roostery</a></li>
-        </ul>
-      </nav>
+            </li>
+            <li><a href="#" class="nav-link">How It Works</a></li>
+            <li class="btm_border"><a href="#" class="nav-link">Help</a></li>
+            <li class="btm_border"><a href="#" class="nav-link">More</a></li>
+            <li><a href="#" class="nav-link">Sprout Patterns</a></li>
+            <li><a href="#" class="nav-link">Roostery</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
     <div class="u_bar mobile_hide">
       <div class="u_bar-container">

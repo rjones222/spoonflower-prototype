@@ -17,7 +17,7 @@ var SpoonflowerNavigation = {
       $('#hBar').toggleClass('is-collapsed is-expanded');
       $('#navToggle i').toggleClass('icon_close icon_menu');
       if($('#hBar').hasClass('is-expanded')) {
-        Navigation.collapseAllSubnavs();
+        SpoonflowerNavigation.collapseAllSubnavs();
       }
     });
   },
@@ -36,25 +36,25 @@ var SpoonflowerNavigation = {
     });
   },
 
-  windowResize: function() {
-    $(window).resize(function() {
-      if($( window ).width() >= '600') {
-        $('.h_bar > nav').css('display', 'block');
-        if($('#hBar').hasClass('is-expanded')){
-          $('.h_bar-container').toggleClass('is-expanded is-collapsed');
-  				$('#navToggle i').toggleClass('icon_menu icon_close');
-        }
-        $('.h_bar > nav > ul > li > a').siblings().removeAttr('style')
-      }
-      else {
-        $('.h_bar > nav').css('display', 'none');
-      }
-    });
-  },
+  // windowResize: function() {
+  //   $(window).resize(function() {
+  //     if($( window ).width() >= '600') {
+  //       $('.h_bar > nav').css('display', 'block');
+  //       if($('#hBar').hasClass('is-expanded')){
+  //         $('.h_bar-container').toggleClass('is-expanded is-collapsed');
+  // 				$('#navToggle i').toggleClass('icon_menu icon_close');
+  //       }
+  //       $('.h_bar > nav > ul > li > a').siblings().removeAttr('style')
+  //     }
+  //     else {
+  //       $('.h_bar > nav').css('display', 'none');
+  //     }
+  //   });
+  // },
 
   // collapse menu
   collapseMenu: function(toggleButton) {
-    console.log('in collapseMenu');
+    // console.log('in collapseMenu');
     var $li = toggleButton.parent();
     this.removeClass('is-expanded');
     $li.find('ul').removeClass('menu-visible');
@@ -62,6 +62,7 @@ var SpoonflowerNavigation = {
 
   // collapse all the subnavs
   collapseAllSubnavs: function() {
+    // console.log('in collapseAllSubnavs');
     $('.btn-mobile_nav').removeClass('is-expanded');
     $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
     $('ul').removeClass('menu-visible');
