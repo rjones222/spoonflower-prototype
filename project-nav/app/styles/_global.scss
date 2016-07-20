@@ -11,32 +11,62 @@
 }
 
 // search
-
-.search_select-wrapper {
-  height: 20px;
+.search_module {
+  border: 1px solid $gallery;
+  box-sizing: border-box;
+  height: 34px;
+  // position: absolute;
+  width: 297px;
   overflow: hidden;
-  width: 80px;
-  // &:after {
-  //   font-family: 'spoonflower_icons';
-  //   content: '\e802';
-  //   font-size: .325rem;
-  //   margin: 0;
-  //   pointer-events: none;
-  //   position: relative;
-  //   top: -0.2rem;
-  // }
+  @include media($desktop) {
+    width: 344px;
+  }
 }
-
+// position in mobile
+.desktop_hide .search_module {
+  margin: 1rem auto .5rem;
+}
+.search_select-wrapper {
+  background: $gallery;
+  box-sizing: inherit;
+  float: left;
+  height: 20px;
+  // padding: .475rem 0 .275rem .5rem;
+  padding: .4rem .5rem;
+  position: relative;
+  overflow: hidden;
+  width: 69px;
+}
 .search_select {
-  background: transparent;
-  border: 0;
   @include appearance(none);
+  background: $gallery;
+  border: 0;
+  box-sizing: inherit;
+  color: $punga;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: rem(13);
+  font-style: italic;
+  position: relative;
+  &:focus {
+    outline: unset;
+  }
   option {
     height: 26px;
     width: 100px;
   }
 }
-
+.search_input {
+  border: 0;
+  box-sizing: inherit;
+  font-size: .8rem;
+  height: 1.6rem;
+  padding: 0 0 0 0.3rem;
+  width: 134px;
+  &:focus {
+    outline: unset;
+  }
+}
 // footer
 
 footer {

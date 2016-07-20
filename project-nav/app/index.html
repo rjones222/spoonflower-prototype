@@ -47,30 +47,32 @@
           <button><i class="icon icon_menu" aria-hidden="true"></i></button>
         </div>
       </div>
-      <!-- Start of Search Section -->
-      <div id="searchModule" class="search_module">
-        <form>
-          <div class="search_select-wrapper">
-            <select name="search_select" class="search_select">
-              <option value="fabric">Fabric</option>
-              <option value="wallpaper">Wallpaper</option>
-              <option value="gift_wrap">Gift Wrap</option>
-              <option value="designers">Designers</option>
-              <option value="collections">Collections</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-select">
-            <i class="icon icon_chevron_down" aria-hidden="true"></i>
-          </button>
-          <input type="text" class="search_input" />
-          <button type="submit" class="btn btn-search">
-            <i class="icon icon_search" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
-      <!-- End of Search Section -->
       <nav>
         <ul>
+          <li class="desktop_hide">
+            <!-- Start of Mobile Search Section -->
+            <div id="searchModule-mobile" class="search_module">
+              <form>
+                <div class="search_select-wrapper">
+                  <select name="search_select" class="search_select">
+                    <option value="fabric">Fabric</option>
+                    <option value="wallpaper">Wallpaper</option>
+                    <option value="gift_wrap">Gift Wrap</option>
+                    <option value="designers">Designers</option>
+                    <option value="collections">Collections</option>
+                  </select>
+                </div>
+                <button class="btn btn-select">
+                  <i class="icon icon_chevron_down" aria-hidden="true"></i>
+                </button>
+                <input type="text" class="search_input" />
+                <button type="submit" class="btn btn-search">
+                  <i class="icon icon_search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+            <!-- End of Search Section -->
+          </li>
           <li>
               <a href="#" class="nav-link">Shop</a>
               <button class="btn btn-mobile_nav">
@@ -694,6 +696,33 @@
         </ul>
       </nav>
     </header>
+    <div class="u_bar mobile_hide">
+      <ul class="u_sites nav">
+        <li>
+          <a href="#" class="icon icon_sprout"><span class="visuallyhidden">Sprout</span></a>
+        </li>
+        <li>
+          <a href="#">Roostery</a>
+        </li>
+      </ul>
+      <ul class="u_nav nav">
+        <li>
+          <a href="#" class="u_nav-user_item">User Name <i class="icon icon_chevron_down" aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a href="#" class="u_nav-studio_item">My Studio
+            <i class="icon icon_studio" aria-hidden="true"></i>
+            <span>121 <i class="icon icon_chevron_down" aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="u_nav-cart_item"><span class="visuallyhidden">Cart</span>
+            <i class="icon icon_cart" aria-hidden="true"></i>
+            <span>4 <i class="icon icon_chevron_down" aria-hidden="true"></i></span>
+          </a>
+        </li>
+      </ul>
+    </div>
     <section>
       <div>
         <dl id="whatIsSpoonflower" class="spoonflower_definition">

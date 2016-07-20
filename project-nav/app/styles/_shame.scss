@@ -17,9 +17,21 @@
 }
 
 /* Firefox 37+ */
-// keeps mobile navigation chevrons floated to the right without 'stepping'
 @supports (-moz-appearance:none) and (display:contents) {
+  // keeps mobile navigation chevrons floated to the right without 'stepping'
   .btn-mobile_nav {
     height: 42px;
+  }
+  // since you cannot simulate a click on a select element we're going to remove the chevron-down icon from the search_module
+  .btn-select {
+    display: none;
+  }
+  // and we're going to restyle search_module elements to account for the removed btn-select
+  .search_select-wrapper {
+    width: 94px;
+    padding: .075rem .5rem .775rem .5rem;
+  }
+  .search_input {
+    height: 1.9rem;
   }
 }

@@ -202,6 +202,42 @@
   }
 }
 
+// end mobile
+
+// begin desktop
+
+// Utility Bar
+// is hidden from mobile devices (< 767px using .mobile_hide)
+.u_bar {
+  background-color: $polar;
+  left: 0;
+  height: 32px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.u_nav {
+
+}
+.u_nav-user_subnav,
+.u_nav-studio_subnav,
+.u_nav-cart_subnav {
+  display: none;
+}
+
+// // Header Bar
+// .h_bar {
+//
+// }
+//
+// // Global Bar
+// .g_bar {
+//
+// }
+// .g_nav {
+//
+// }
+
 /* Medium screens */
 @media all and (min-width: 600px) {
   #navToggle {
@@ -280,31 +316,3 @@
     width: 196px;
   }
 }
-
-// // Utility Bar
-// .u_bar {
-//   background-color: $polar;
-// }
-// .u_nav {
-//
-// }
-// .u_nav-user_subnav,
-// .u_nav-studio_subnav,
-// .u_nav-cart_subnav {
-//   display: none;
-// }
-//
-// // Header Bar
-// .h_bar {
-//
-// }
-//
-// // Global Bar
-// .g_bar {
-//
-// }
-// .g_nav {
-//
-// }
-
-//

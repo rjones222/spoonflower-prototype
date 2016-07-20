@@ -56,6 +56,16 @@
   color: $smalt_blue;
 }
 
+.btn-select, .btn-search {
+  background-color: $gallery;
+  color: $punga;
+  padding: .45rem .7rem .3rem .2rem;
+}
+
+.btn-search {
+  float: right;
+}
+
 .font_icon_btn {
   cursor: pointer;
 }
