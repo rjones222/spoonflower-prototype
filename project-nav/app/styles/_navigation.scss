@@ -207,7 +207,7 @@
 // begin desktop
 
 // Utility Bar
-// is hidden from mobile devices (< 767px using .mobile_hide)
+// is hidden from mobile devices (< 767px using .mobile_hide). Perhaps just put in the wrapping media query below?
 .u_bar {
   background-color: $polar;
   left: 0;
@@ -216,8 +216,14 @@
   top: 0;
   width: 100%;
 }
+.u_bar-container {
+  @include outer-container(1200px);
+}
+.u_sites {
+  float: left;
+}
 .u_nav {
-
+  float: right;
 }
 .u_nav-user_subnav,
 .u_nav-studio_subnav,
@@ -239,12 +245,13 @@
 // }
 
 /* Medium screens */
-@media all and (min-width: 600px) {
+@media all and (min-width: 767px) {
   #navToggle {
     display: none;
   }
 
   .h_bar {
+    @include outer-container(1200px);
     background-color: white;
     flex-direction: row;
     line-height: 90px;
@@ -254,7 +261,7 @@
     width: 100%;
   }
 
-  .h_bar-container {
+  .h_bar-mobile {
     background-color: transparent;
     line-height: 90px;
   }

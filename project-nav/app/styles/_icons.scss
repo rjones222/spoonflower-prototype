@@ -155,8 +155,9 @@
   }
 }
 
-.icon_roostery:before { content: '\e803'; }
+// just trying this out ... may want to do this a different way using actual SVG files
 .icon_sprout:before { content: '\e805'; }
+.icon_roostery:before { content: '\e803'; }
 
 .icon_facebook:before { content: '\f09a'; }
 .icon_twitter:before { content: '\f099'; }
