@@ -18,6 +18,19 @@
     color: $nav-hover;
   }
 }
+// handles indentation of subnav items
+.nav-link.nl-lvl2 {
+  padding: .8rem 2rem;
+}
+.nav-link.nl-lvl3 {
+  padding: .8rem 3rem;
+}
+.nav-link.nl-lvl4 {
+  padding: .8rem 4rem;
+}
+.nav-link.nl-lvl5 {
+  padding: .8rem 5rem;
+}
 
 // navigation layout
 .h_bar {
@@ -117,22 +130,6 @@
   list-style-type: none;
 }
 
-// handles indentation of subnav items
-.h_bar nav {
-  > ul > li > ul > li > a {
-    padding: .8rem 2rem;
-  }
-  > ul > li > ul > li > ul > li > a {
-    padding: .8rem 3rem;
-  }
-  > ul > li > ul > li > ul > li > ul > li > a {
-    padding: .8rem 4rem;
-  }
-  > ul > li > ul > li > ul > li > ul > li > ul > li > a {
-    padding: .8rem 5rem;
-  }
-}
-
 // .h_bar nav > ul > li:last-of-type {
 //   border-bottom: none;
 // }
@@ -171,7 +168,8 @@
   max-width: 270px;
   @include media($desktop) {
     position: relative;
-    top: 100px;
+    left: 207px;
+    top: -70px;
   }
   dt {
     color: $smalt_blue;
@@ -199,6 +197,28 @@
   }
   .btn-primary {
     margin-right: rem(5);
+  }
+}
+
+/* Only Mobile */
+@media all and (max-width: 767px) {
+  .subnav {
+    // display: none;
+    height: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow-y: hidden;
+    // http://easings.net/#easeInOutCubic
+    @include transition(all 600ms cubic-bezier(0.645, 0.045, 0.355, 1));
+  }
+  .menu-visible {
+    // background: rgba(0,0,0,0.05);
+    background-color: rgba(231,246,249,0.5); // using $polar green for bg color -- probably too subtle
+    height: auto !important;
+    max-height: 9999px !important; // hack to simulate js-based dropdown animation with only css
+    opacity: 1 !important;
+    overflow-y: visible !important;
+    width: inherit;
   }
 }
 
@@ -265,6 +285,7 @@
     display: block;
     left: 0;
     position: absolute;
+    overflow: initial;
     top: 120px;
   }
 
@@ -275,6 +296,7 @@
   // }
 
   .h_bar > nav > ul {
+    position: relative;
     @include outer-container(1200px);
   }
 
@@ -285,10 +307,9 @@
   }
 
   .nav-link {
+    box-sizing: border-box;
     padding: 1rem;
   }
-
-  
 
   // .h_bar > nav > ul > li:hover > a {
   //   font-weight: bold;
@@ -331,4 +352,113 @@
   //   right: -50%;
   //   width: 196px;
   // }
+  .subnav {
+    > li:first-child {
+      padding-top: .6rem;
+    }
+    > li:last-child {
+      padding-bottom: .6rem;
+    }
+  }
+  .subnav.subnav-primary {
+    @include outer-container(1200px);
+    background: #ffffff;
+    border-left: 1px solid $gallery;
+    border-right: 1px solid $gallery;
+    box-shadow: 0px 8px 8px -8px #B8B8B8;
+    display:none;
+    left: 0;
+    height: 348px;
+    // max-height: none;
+    position: absolute;
+    width: 100%;
+    top: 53px;
+    z-index: 1;
+    > li {
+      // border-right: 1px solid $gallery;
+      position: relative;
+      width: 20%;
+    }
+  }
+  .subnav.current {
+    display: block;
+  }
+  .nav-link.nl-lvl2,
+  .nav-link.nl-lvl3,
+  .nav-link.nl-lvl4,
+  .nav-link.nl-lvl5 {
+    padding: .333rem 1rem;
+    width: 100%;
+  }
+  // controls right arrow, usage: li.has_subnav
+  .has_subnav > a {
+    position: relative;
+    &:hover {
+      &:after {
+        font-family: 'spoonflower_icons';
+        content: '\e80e';
+        font-size: .6rem;
+        position: absolute;
+        right: 1rem;
+        top: .3rem;
+      }
+    }
+  }
+  .has_subnav > .active {
+    position: relative;
+    &:after {
+      font-family: 'spoonflower_icons';
+      content: '\e80e';
+      font-size: .6rem;
+      position: absolute;
+      right: 1rem;
+      top: .3rem;
+    }
+  }
+  // subnav level 2
+  .subnav.sn-lvl2,
+  .subnav.sn-lvl3 {
+    @include outer-container(100%);
+    background: transparent;
+    border-left: 1px solid $gallery;
+    display:none;
+    left: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    li {
+      // border-right: 1px solid $gallery;
+      border-right: 0;
+      position: relative;
+    }
+  }
+  .subnav.sn-lvl4 {
+    @include outer-container(200%);
+    @include column-count(3);
+    background: transparent;
+    border-left: 1px solid $gallery;
+    box-sizing: border-box;
+    display:none;
+    height: 348px;
+    left: 100%;
+    padding-top: .6rem;
+    position: absolute;
+    width: 300%;
+    top: 0;
+    z-index: 1;
+    left: 100%;
+    li {
+      // border-right: 1px solid $gallery;
+      display: inline-block;
+    }
+    > li:first-child {
+      padding-top: 0;
+    }
+  }
+  .subnav.sn-lvl2.current,
+  .subnav.sn-lvl3.current,
+  .subnav.sn-lvl4.current, {
+    display: block;
+  }
 }

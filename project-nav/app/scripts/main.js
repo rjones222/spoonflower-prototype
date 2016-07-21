@@ -8,6 +8,11 @@ var SpoonflowerNavigation = {
     // Navigation.windowResize();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.showDefinition();
+    // desktop
+    if($( window ).width() > '767') {
+      SpoonflowerNavigation.desktopSubnavToggle();
+      SpoonflowerNavigation.desktopFlyoutToggle();
+    }
   },
 
   navToggle: function() {
@@ -93,8 +98,64 @@ var SpoonflowerNavigation = {
       $(this).find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
       $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
     })
-  }
+  },
 
+  // begin desktop navigation functionality
+  // hover top level navigation to show subnav
+  desktopSubnavToggle: function() {
+    var timer;
+
+    $('.nav-link-primary').mouseover(function(){
+      clearTimeout(timer);
+      var getthis = $(this).parent().children('ul');
+      $('.subnav').removeClass('current');
+      // $(getthis).stop(true, false, true).fadeIn(300); // leaves behind inline style attr when rapidly mousing over
+      $(getthis).addClass('current');
+    });
+
+    $('.nav-link-primary').mouseout(function(){
+      var getthis = $(this).parent().children('ul');
+      timer = setTimeout(function() {
+        $(getthis).removeClass('current');
+        // $(getthis).stop(true, false, true).fadeOut(300);
+      }, 300);
+    });
+
+    $('.subnav').mouseover(function() {
+        clearTimeout(timer);
+        $(this).addClass('current');
+    });
+
+    $('.subnav').mouseleave(function(){
+      // console.log('in mouseleave');
+      timer = setTimeout(function() {
+        $('.subnav').removeClass('current');
+      }, 300);
+    });
+  },
+  // hover subnav links to show more menus
+  desktopFlyoutToggle: function() {
+    var timer;
+
+    $('.has_subnav').mouseover(function(){
+      clearTimeout(timer);
+      // remove previously set classes
+      $(this).parent().find('ul').removeClass('current');
+      $(this).parent().find('a').removeClass('active');
+      // set classes
+      $(this).children('ul').addClass('current');
+      $(this).children('a').addClass('active');
+      // get position and set top position of the menu
+      var $position = $(this).position();
+      $(this).children('ul').css('top', -$position.top);
+    });
+
+    $('.has_subnav').mouseout(function(){
+      timer = setTimeout(function() {
+        $(this).children('ul').removeClass('current');
+      }, 300);
+    });
+  }
 };
 
 SpoonflowerNavigation.init();

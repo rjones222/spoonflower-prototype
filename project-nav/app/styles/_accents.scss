@@ -1,14 +1,36 @@
 // accents, decorations, trimmings, etc
 
 // used in navigation to create virtual block element, like an <hr>
-.btm_border:after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: 100%;
-  background: $gallery;
+.btm_border,
+.btm_border_mobile {
+  &:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: $gallery;
+  }
 }
 
+.btm_border_mobile {
+  &:after {
+    @include media(min-width 767px) {
+      display: none;
+    }
+  }
+}
+
+// adjusting the padding between the pseudo <hr>s
+nav .btm_border > .nav-link {
+  @include media(min-width 767px) {
+    padding-bottom: .7rem;
+  }
+}
+nav .btm_border + li {
+  padding-top: .666rem;
+}
+
+// sets the width of the pseudo <hr>s
 nav .btm_border:after {
   width: 90%;
   margin-left: 5%;
