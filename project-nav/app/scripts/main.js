@@ -137,22 +137,23 @@ var SpoonflowerNavigation = {
   desktopFlyoutToggle: function() {
     var timer;
 
-    $('.has_subnav').mouseover(function(){
+    $('.has_subnav a').mouseover(function(){
       clearTimeout(timer);
       // remove previously set classes
-      $(this).parent().find('ul').removeClass('current');
-      $(this).parent().find('a').removeClass('active');
+      $(this).parent().parent().find('ul').removeClass('current');
+      $(this).parent().parent().find('a').removeClass('active');
       // set classes
-      $(this).children('ul').addClass('current');
-      $(this).children('a').addClass('active');
+      $(this).parent().children('ul').addClass('current');
+      $(this).parent().children('a').addClass('active');
       // get position and set top position of the menu
-      var $position = $(this).position();
-      $(this).children('ul').css('top', -$position.top);
+      var $position = $(this).parent().position();
+      $(this).parent().children('ul').css('top', -$position.top);
     });
 
-    $('.has_subnav').mouseout(function(){
+    $('.has_subnav a').mouseout(function(){
       timer = setTimeout(function() {
-        $(this).children('ul').removeClass('current');
+        $(this).parent().children('ul').removeClass('current');
+        $(this).parent().children('a').removeClass('active');
       }, 300);
     });
   }
