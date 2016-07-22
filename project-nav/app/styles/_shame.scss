@@ -35,3 +35,14 @@
     height: 1.9rem;
   }
 }
+
+// demo placeholder content to hold the page open
+
+.placeholder {
+  @include outer-container(1000px);
+  background-color: rgba(74,59,21,.14);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  padding: 25%
+}

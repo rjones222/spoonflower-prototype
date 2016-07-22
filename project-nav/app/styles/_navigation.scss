@@ -223,6 +223,34 @@
   }
 }
 
+.sn-panel {
+  &.menu-visible li div {
+    background-color: #ffffff;
+  }
+  .l-box {
+    max-height: 260px;
+    position: relative;
+    width: 100%;
+    div {
+      box-sizing: border-box;
+      padding: 0 1rem;
+      text-align: center;
+      width: 100%;
+    }
+    p {
+      margin-top: 1rem;
+    }
+    .roostery_logo {
+      display: block;
+      margin: 1rem auto;
+      max-width: 180px;
+    }
+    .product_image {
+      max-width: 220px;
+    }
+  }
+}
+
 // end mobile
 
 // begin desktop
@@ -375,10 +403,10 @@
     // max-height: none;
     position: absolute;
     width: 100%;
-    top: 53px;
+    top: 52px;
     z-index: 1;
     > li {
-      // border-right: 1px solid $gallery;
+      border-right: 1px solid $gallery;
       position: relative;
       width: 20%;
     }
@@ -424,6 +452,7 @@
     @include outer-container(100%);
     background: transparent;
     border-left: 1px solid $gallery;
+    border-right: 1px solid $gallery;
     display:none;
     left: 100%;
     position: absolute;
@@ -431,8 +460,25 @@
     top: 0;
     z-index: 1;
     li {
-      // border-right: 1px solid $gallery;
       border-right: 0;
+      position: relative;
+    }
+  }
+  .subnav.sn-panel {
+    @include outer-container(400%);
+    background: #ffffff;
+    border-left: 1px solid $gallery;
+    // border-right: 1px solid $gallery;
+    display:none;
+    left: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 400%;
+    top: 0;
+    z-index: 1;
+    li {
+      border-right: 0;
+      padding: 0;
       position: relative;
     }
   }
@@ -487,8 +533,10 @@
   .subnav.sn-lvl2.current,
   .subnav.sn-lvl3.current,
   .subnav.sn-last.current,
-  .subnav.sn-lvl2-last.current {
+  .subnav.sn-lvl2-last.current,
+  .subnav.sn-panel.current {
     display: block;
+    height: 348px;
   }
 
   // end megamenu
@@ -499,15 +547,30 @@
     border-right: 1px solid $gallery;
     box-shadow: 0px 8px 8px -8px #B8B8B8;
     display: none;
-    // left: 0;
-    // height: 348px;
-    // max-height: none;
     position: absolute;
-    // width: 100%;
     top: 53px;
     z-index: 1;
   }
   .subnav.subnav-dropdown.current, {
     display: block;
+  }
+  .sn-panel {
+    .l-box {
+      float: left;
+      // max-width: 50%;
+      height: 300px;
+      position: relative;
+      width: 300px;
+      p {
+        align-self: flex-start;
+        max-width: 50%;
+      }
+      .roostery_logo {
+        max-width: 180px;
+      }
+      .product_image {
+        max-width: 300px;
+      }
+    }
   }
 }

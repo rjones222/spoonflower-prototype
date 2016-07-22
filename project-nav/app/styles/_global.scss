@@ -67,6 +67,17 @@
     outline: unset;
   }
 }
+
+// layout
+
+// experimental, need to add width and height to div where this class is used.
+.l-box {
+  box-sizing: border-box;
+  display: flex;
+  @include align-items(center);
+  @include justify-content(center);
+}
+
 // footer
 
 footer {

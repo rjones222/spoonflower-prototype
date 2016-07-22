@@ -130,6 +130,7 @@ var SpoonflowerNavigation = {
       // console.log('in mouseleave');
       timer = setTimeout(function() {
         $('.subnav').removeClass('current');
+        $('.has_subnav a').removeClass('active');
       }, 300);
     });
   },
@@ -155,6 +156,11 @@ var SpoonflowerNavigation = {
         $(this).parent().children('ul').removeClass('current');
         $(this).parent().children('a').removeClass('active');
       }, 300);
+    });
+    // remove current and active classes if hovering over items without subnav
+    $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
+      $('.subnav').removeClass('current');
+      $('.has_subnav a').removeClass('active');
     });
   }
 };
