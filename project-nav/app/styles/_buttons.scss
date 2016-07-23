@@ -69,6 +69,11 @@
 .btn-shop {
   background-color: $mine_shaft;
   color: #ffffff;
+  opacity: 0.9;
+  &:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
 }
 
 .font_icon_btn {

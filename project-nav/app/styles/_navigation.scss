@@ -245,6 +245,11 @@
       margin: 1rem auto;
       max-width: 180px;
     }
+    .sprout_patterns_logo {
+      display: block;
+      margin: 1rem auto 1.3rem;
+      max-width: 100px;
+    }
     .product_image {
       max-width: 220px;
     }
@@ -399,7 +404,7 @@
     box-shadow: 0px 8px 8px -8px #B8B8B8;
     display:none;
     left: 0;
-    height: 348px;
+    height: $subnav-height;
     // max-height: none;
     position: absolute;
     width: 100%;
@@ -468,8 +473,9 @@
     @include outer-container(400%);
     background: #ffffff;
     border-left: 1px solid $gallery;
-    // border-right: 1px solid $gallery;
+    box-sizing: border-box;
     display:none;
+    height: $subnav-height;
     left: 100%;
     overflow: hidden;
     position: absolute;
@@ -489,7 +495,7 @@
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
-    height: 348px;
+    height: $subnav-height;
     left: 100%;
     overflow: hidden;
     padding-top: .6rem;
@@ -513,7 +519,7 @@
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
-    height: 348px;
+    height: $subnav-height;
     left: 100%;
     overflow: hidden;
     padding-top: .6rem;
@@ -536,7 +542,7 @@
   .subnav.sn-lvl2-last.current,
   .subnav.sn-panel.current {
     display: block;
-    height: 348px;
+    height: $subnav-height;
   }
 
   // end megamenu
@@ -548,6 +554,7 @@
     box-shadow: 0px 8px 8px -8px #B8B8B8;
     display: none;
     position: absolute;
+    min-width: 280px;
     top: 53px;
     z-index: 1;
   }
@@ -555,15 +562,16 @@
     display: block;
   }
   .sn-panel {
+    padding-left: 2rem;
+    padding-top: 2rem;
     .l-box {
       float: left;
-      // max-width: 50%;
       height: 300px;
       position: relative;
-      width: 300px;
+      width: 360px;
       p {
-        align-self: flex-start;
-        max-width: 50%;
+        margin: 0 auto;
+        max-width: 100%;
       }
       .roostery_logo {
         max-width: 180px;
@@ -572,5 +580,8 @@
         max-width: 300px;
       }
     }
+  }
+  .nav-social {
+    padding: .6rem 1rem .5rem 1rem;
   }
 }
