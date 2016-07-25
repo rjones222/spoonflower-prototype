@@ -163,43 +163,6 @@
   }
 }
 
-// This is the "Custom printed fabric and more..." what-we-do statement
-.spoonflower_definition {
-  max-width: 270px;
-  @include media($desktop) {
-    position: relative;
-    left: 207px;
-    top: -70px;
-  }
-  dt {
-    color: $smalt_blue;
-    span {
-      border-bottom: 1px solid $smalt_blue;
-      display: inline-block;
-      position: relative;
-    }
-  }
-  dd {
-    background-color: #ffffff;
-    border: 1px solid $gallery;
-    margin-top: 1rem;
-    max-width: 248px;
-    padding: 1rem;
-    position: absolute;
-    text-align: center;
-    z-index: 1;
-  }
-  ul {
-    color: $smalt_blue;
-    text-align: left;
-  }
-  p {
-    text-align: left;
-  }
-  .btn-primary {
-    margin-right: rem(5);
-  }
-}
 
 /* Only Mobile */
 @media all and (max-width: 767px) {
@@ -275,6 +238,24 @@
 }
 .u_sites {
   float: left;
+  width: 300px;
+  li a {
+    padding: 0 .3rem;
+  }
+  .sprout_patterns_logo {
+    margin: .25rem 0 0 0;
+    width: 48px;
+  }
+  .roostery_logo {
+    margin: .4rem 0 0 .5rem;
+    width: 68px;
+  }
+  li:first-child {
+    border-right: 1px solid $smalt_blue;
+    display: block;
+    float: left;
+    padding: 0 1rem;
+  }
 }
 .u_nav {
   float: right;
@@ -320,7 +301,7 @@
     left: 0;
     position: absolute;
     overflow: initial;
-    top: 120px;
+    top: 110px;
   }
 
   // .h_bar > nav > ul {
