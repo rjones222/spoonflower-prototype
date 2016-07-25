@@ -1,15 +1,8 @@
 // global
 
-body {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-}
-
 .content_wrap {
   @include outer-container(1000px);
   box-sizing: border-box;
-  flex: 1 0 auto;
   padding: 1rem;
   width: 100%;
   @include media($tablet) {
@@ -177,10 +170,6 @@ body {
   text-align: center;
   margin: auto;
   width: 100%;
-  &.sticky {
-    position: absolute;
-    bottom: 0;
-  }
   .outer-container {
     box-sizing: border-box;
     @include outer-container(1000px);
