@@ -3,8 +3,8 @@
 body {
   font-family: $font-stack;
   font-size: 16px;
-  @include media($desktop) {
-    padding-top: 32px;
+  @include media($tablet, $desktop) {
+    padding-top: $u_bar-height;
   }
 }
 
@@ -39,7 +39,7 @@ body > header {
 }
 body > section,
 body > footer {
-  @include outer-container(1200px);
+  @include outer-container(1000px);
 }
 
 section,

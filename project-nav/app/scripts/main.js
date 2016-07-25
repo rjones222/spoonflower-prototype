@@ -8,7 +8,7 @@ var SpoonflowerNavigation = {
     // Navigation.windowResize();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.showDefinition();
-    // desktop
+    // tablet and desktop
     if($( window ).width() > '767') {
       SpoonflowerNavigation.desktopSubnavToggle();
       SpoonflowerNavigation.desktopFlyoutToggle();

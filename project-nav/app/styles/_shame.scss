@@ -16,6 +16,14 @@
   white-space: nowrap;
 }
 
+// centering this button the old hacky way
+.btn-back_to_top {
+  width: 130px;
+  left: 50%;
+  margin-left: -70px;
+  position: relative;
+}
+
 /* Firefox 37+ */
 @supports (-moz-appearance:none) and (display:contents) {
   // keeps mobile navigation chevrons floated to the right without 'stepping'

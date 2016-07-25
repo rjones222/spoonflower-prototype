@@ -1,11 +1,13 @@
 // navigation, including some global header and footer elements that aren't strictly navigation
 
+// Because the styles for navigation are so different from one another this file doesn't include inline media queries but is divided into sections: mobile , tablet , desktop
 
-// Navigation global rules
+
+// mobile
 .nav {
   li {
     list-style-type: none;
-    display: inline;
+    display: inline-block;
   }
 }
 .nav-link {
@@ -121,9 +123,6 @@
   transform: 300ms all ease;
   width: 100vw;
   z-index: 1;
-  @include media($desktop) {
-    box-shadow: none;
-  }
 }
 
 .h_bar nav > ul {
@@ -184,6 +183,15 @@
     overflow-y: visible !important;
     width: inherit;
   }
+  // need to set height for the Sprout and Roostery subnav panels
+  .desktop_hide {
+    .sn-panel .l-box {
+      height: 217px;
+      .product_image {
+        max-width: 143px;
+      }
+    }
+  }
 }
 
 .sn-panel {
@@ -221,44 +229,61 @@
 
 // end mobile
 
-// begin desktop
+// begin tablet
 
 // Utility Bar
 // is hidden from mobile devices (< 767px using .mobile_hide). Perhaps just put in the wrapping media query below?
 .u_bar {
   background-color: $polar;
   left: 0;
-  height: 32px;
+  height: $u_bar-height;
   position: absolute;
   top: 0;
   width: 100%;
 }
 .u_bar-container {
-  @include outer-container(1200px);
+  @include outer-container(1000px);
 }
 .u_sites {
   float: left;
   width: 300px;
-  li a {
-    padding: 0 .3rem;
+  li {
+    padding: 0;
+    a {
+      box-sizing: border-box;
+      display: inline-block;
+      height: $u_bar-height;
+      padding: .55rem .8rem 0 .8rem;
+    }
   }
   .sprout_patterns_logo {
-    margin: .25rem 0 0 0;
-    width: 48px;
+    // margin: .25rem 0 0 0;
+    width: 50px;
   }
   .roostery_logo {
-    margin: .4rem 0 0 .5rem;
-    width: 68px;
+    // margin: .4rem 0 0 .8rem;
+    width: 74px;
   }
-  li:first-child {
-    border-right: 1px solid $smalt_blue;
-    display: block;
-    float: left;
-    padding: 0 1rem;
+  li:first-child a {
+    border-right: 1px solid $botticelli;
+    // display: block;
+    // float: left;
+    // padding: .3rem 1.1rem 0 .8rem;
   }
 }
 .u_nav {
   float: right;
+  li a {
+      border-right: 1px solid $botticelli;
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: rem(13);
+      height: $u_bar-height;
+      padding: .65rem .8rem 0 .8rem;
+  }
+  li:last-child a {
+    border-right: 0;
+  }
 }
 // .u_nav-user_subnav,
 // .u_nav-studio_subnav,
@@ -266,8 +291,12 @@
 //   display: none;
 // }
 
+// @include media($tablet, $desktop) {
+//   padding-top: $u_bar-height;
+// }
+
 /* Medium screens */
-@media all and (min-width: 768px) {
+@include media($tablet) {
 
   #navToggle {
     display: none;
@@ -275,13 +304,10 @@
   // Header Bar
 
   .h_bar {
-    @include outer-container(1200px);
+    @include outer-container(1000px);
     background-color: white;
     border-bottom: 0;
-    // flex-direction: row;
     line-height: 90px;
-    padding: 0 3rem;
-    // position: fixed;
     text-align: left;
     width: 100%;
   }
@@ -297,22 +323,17 @@
     background-color: transparent;
     border-bottom: 1px solid $gallery;
     border-top: 1px solid $gallery;
+    box-shadow: none;
     display: block;
     left: 0;
     position: absolute;
     overflow: initial;
-    top: 110px;
+    top: 111px;
   }
-
-  // .h_bar > nav > ul {
-  //   display: flex;
-  //   flex-flow: row wrap;
-  //   justify-content: flex-end;
-  // }
 
   .h_bar > nav > ul {
     position: relative;
-    @include outer-container(1200px);
+    @include outer-container(1000px);
   }
 
   .h_bar nav > ul > li {
@@ -323,50 +344,14 @@
 
   .nav-link {
     box-sizing: border-box;
+    font-size: rem(13);
     padding: 1rem;
   }
 
-  // .h_bar > nav > ul > li:hover > a {
-  //   font-weight: bold;
-  // }
-  //
-  // .h_bar nav > ul > li > a {
-  //   padding: 0 1.25rem;
-  // }
+  .nav-link.nav-link-primary {
+    font-size: rem(15);
+  }
 
-	// .h_bar nav > ul > li > a span.toggle {
-	// 	display: none;
-	// }
-
-	// .h_bar nav > ul > li > a span.caret {
-  //   border-bottom: 4px solid transparent;
-  //   border-top: 4px solid rgba(0,0,0,.65);
-  //   border-right: 4px solid transparent;
-  //   border-left: 4px solid transparent;
-	// 	border-radius: 1px;
-	// 	content: "";
-	// 	display: inline-block;
-	// 	height: 0;
-	// 	margin: 0 0 0 .25rem;
-	// 	transition: 250ms all ease;
-	// 	width: 0;
-	// 	vertical-align: middle;
-	// }
-
-	// .h_bar nav > ul > li:hover > a span.caret {
-	// 	border-top-color: rgb(140, 193, 193);
-	// 	transform: rotate(270deg);
-	// }
-
-  // .h_bar > nav > ul > li:hover > nav {
-  //   background-color: rgb(51,51,51);
-  //   border-radius: .25em;
-  //   box-shadow: 0 2px 8px rgba(0,0,0,.6);
-  //   display: block;
-  //   line-height: 3em;
-  //   right: -50%;
-  //   width: 196px;
-  // }
   .subnav {
     > li:first-child {
       padding-top: .6rem;
@@ -375,6 +360,7 @@
       padding-bottom: .6rem;
     }
   }
+
   // begin megamenu
 
   .subnav.subnav-primary {
@@ -400,11 +386,14 @@
   .subnav.current {
     display: block;
   }
-  .nav-link.nl-lvl2,
+  .nav-link.nl-lvl2 {
+    padding: .333rem 0 .5rem 1rem;
+    width: 100%;
+  }
   .nav-link.nl-lvl3,
   .nav-link.nl-lvl4,
   .nav-link.nl-lvl5 {
-    padding: .333rem 1rem;
+    padding: .333rem 0 .3rem .5rem;
     width: 100%;
   }
   // controls right arrow, usage: li.has_subnav
@@ -416,7 +405,7 @@
         content: '\e80e';
         font-size: .6rem;
         position: absolute;
-        right: 1rem;
+        right: .5rem;
         top: .3rem;
       }
     }
@@ -428,7 +417,7 @@
       content: '\e80e';
       font-size: .6rem;
       position: absolute;
-      right: 1rem;
+      right: .5rem;
       top: .3rem;
     }
   }
@@ -536,20 +525,21 @@
     display: none;
     position: absolute;
     min-width: 280px;
-    top: 53px;
+    top: 52px;
     z-index: 1;
   }
   .subnav.subnav-dropdown.current, {
     display: block;
   }
+  // layout out of 'panel' display items for roostery and sprout patterns
   .sn-panel {
-    padding-left: 2rem;
-    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-top: 3rem;
     .l-box {
       float: left;
-      height: 300px;
+      height: 238px;
       position: relative;
-      width: 360px;
+      width: 244px;
       p {
         margin: 0 auto;
         max-width: 100%;
@@ -558,11 +548,60 @@
         max-width: 180px;
       }
       .product_image {
-        max-width: 300px;
+        max-width: 200px;
       }
     }
   }
   .nav-social {
     padding: .6rem 1rem .5rem 1rem;
   }
+}
+
+/* Desktop styles */
+
+@include media($desktop) {
+
+  .h_bar > nav {
+    top: 118px;
+  }
+
+  .nav-link {
+    font-size: rem(15);
+  }
+
+  .nav-link.nl-lvl2,
+  .nav-link.nl-lvl3,
+  .nav-link.nl-lvl4,
+  .nav-link.nl-lvl5 {
+    padding: .333rem 1rem;
+    width: 100%;
+  }
+
+  // controls right arrow, usage: li.has_subnav
+  .has_subnav > a {
+    &:hover {
+      &:after {
+        right: 1rem;
+      }
+    }
+  }
+  .has_subnav > .active {
+    &:after {
+      right: 1rem;
+    }
+  }
+
+  // layout out of 'panel' display items for roostery and sprout patterns
+  .sn-panel {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    .l-box {
+      height: 300px;
+      width: 360px;
+      .product_image {
+        max-width: 220px;
+      }
+    }
+  }
+
 }

@@ -2,18 +2,30 @@
 
 $font-stack: Lato, sans-serif;
 $subnav-height: 348px;
+$u_bar-height: 40px;
 
 /* color names, names derived from http://chir.ag/projects/name-that-color */
+// grays
 $dove_gray: #666666;   // basic font color
-$gallery: #EFEFEF;    // borders
-$polar: #E7F6F9;      // utility-bar background color
-$smalt_blue: #4C8A8C; // menu icon, header font colors
-$dusty_gray: #999999; // social icon round button background color
-$punga: #4A3B15;      // used on dusty_gray background in search select
-$mine_shaft: #232323; // used for .btn-shop background color;
+$gallery: #EFEFEF;     // borders
+$dusty_gray: #999999;  // top nav link, social icon round button background color
 
-$link-color: #5f9da4;
-$link-hover: #1e5a61;
+// greens
+$polar: #E7F6F9;       // utility-bar background color
+$smalt_blue: #4C8A8C;  // menu icon, header font colors
+$botticelli: #C6E1E5;  // utility menu (the topmost green bar in desktop) right border color
+$breaker_bay: #5F9DA4; // link color in global header (not nav)
+$blue_dianne: #1E5A61; // hovered link in global header (not nav)
+
+// browns
+$punga: #4A3B15;       // used on dusty_gray background in search select
+
+// blacks
+$mine_shaft: #232323;  // used for .btn-shop background color;
+$black: #000000;       // hovered navigation
+
+$link-color: $breaker_bay;
+$link-hover: $blue_dianne;
 
 $nav-color: $dove_gray;
-$nav-hover: #000;
+$nav-hover: $black;
