@@ -31,20 +31,3 @@ embed,
 iframe {
   max-width: 100%;
 }
-
-body > header {
-  @include media($desktop) {
-    height: 77px;
-  };
-}
-body > section,
-body > footer {
-  @include outer-container(1000px);
-}
-
-section,
-footer {
-  > div {
-    padding: 1rem;
-  }
-}

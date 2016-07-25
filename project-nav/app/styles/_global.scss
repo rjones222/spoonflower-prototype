@@ -1,5 +1,30 @@
-// global - temporary home for scss that may wind up elsewhere, like base.scss or navigation.scss
+// global
 
+body {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+
+.content_wrap {
+  @include outer-container(1000px);
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  padding: 1rem;
+  width: 100%;
+  @include media($tablet) {
+    padding-top: 2rem;
+  }
+  @include media($desktop) {
+    padding-top: 1.5rem;
+  }
+}
+
+.site_header {
+  @include media($desktop) {
+    height: 77px;
+  };
+}
 .spoonflower_logo {
   background: url('/images/logo.svg');
   background-repeat: no-repeat;
@@ -23,26 +48,27 @@
 }
 
 // This is the "Custom printed fabric and more..." what-we-do statement
-.spoonflower_definition-wrappper {
-  padding: 1rem 0 0 1rem;
-  @include media($tablet) {
-    padding: 1rem 0 1rem 1rem;
-  }
-  @include media($desktop) {
-    padding: 1rem 0 .5rem 1rem;
-  }
-}
+// .spoonflower_definition-wrappper {
+//   padding: 1rem 0 0 1rem;
+//   @include media($tablet) {
+//     padding: 1rem 0 1rem 1rem;
+//   }
+//   @include media($desktop) {
+//     padding: 1rem 0 .5rem 1rem;
+//   }
+// }
 .spoonflower_definition {
   max-width: 270px;
+  padding-bottom: 1rem;
   @include media($tablet) {
     left: 25%;
     position: relative;
-    top: -45px;
+    top: -62px;
   }
   @include media($desktop) {
     // position: relative;
-    left: 26%;
-    top: -58px;
+    left: 23%;
+    top: -65px;
   }
   dt {
     color: $smalt_blue;
@@ -144,12 +170,38 @@
   @include justify-content(center);
 }
 
-// footer
+// footer layout
 
-footer {
+.site_footer {
+  background-color: $gallery;
   text-align: center;
   margin: auto;
+  width: 100%;
+  &.sticky {
+    position: absolute;
+    bottom: 0;
+  }
+  .outer-container {
+    box-sizing: border-box;
+    @include outer-container(1000px);
+  }
   .copyright {
+    box-sizing: border-box;
+    @include span-columns(12);
+    color: $nav-color;
     font-size: rem(12);
+    @include media($tablet) {
+      @include span-columns(3);
+      padding: 1.2rem 0 0 1rem;
+    };
+  }
+  // footer nav is hidden from mobile view
+  .footer_nav {
+    box-sizing: border-box;
+    @include span-columns(6);
+  }
+  .social_links {
+    box-sizing: border-box;
+    @include span-columns(3);
   }
 }

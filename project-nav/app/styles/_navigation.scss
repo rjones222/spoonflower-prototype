@@ -555,6 +555,37 @@
   .nav-social {
     padding: .6rem 1rem .5rem 1rem;
   }
+
+  // footer_nav
+  .footer_nav {
+    position: relative;
+    .nav-link-primary {
+      padding: 1rem .5em;
+    }
+  }
+  .subnav-flyup {
+    background: #ffffff;
+    border-left: 1px solid $gallery;
+    border-right: 1px solid $gallery;
+    // box-shadow: 0px 8px 8px -8px #B8B8B8;
+    display: none;
+    position: absolute;
+    min-width: 280px;
+    top: -106px;
+    z-index: 1;
+    li {
+      text-align: left;
+      width: 100%;
+    }
+    .nav-link {
+      padding: .333rem 1rem;
+      text-align: left;
+      width: 100%;
+    }
+  }
+  .subnav.subnav-flyup.current {
+    display: block;
+  }
 }
 
 /* Desktop styles */
