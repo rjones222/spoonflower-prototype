@@ -169,21 +169,21 @@
 
 .icon_facebook {
   &:before { content: '\f09a'; }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .5rem !important;
     top: .3rem !important;
   };
 }
 .icon_twitter {
   &:before { content: '\f099'; }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .45rem !important;
     top: .3rem !important;
   };
 }
 .icon_instagram {
   &:before { content: '\f16d'; }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .5rem !important;
     top: .3rem !important;
   };
@@ -195,14 +195,14 @@
     content: '\f231';
     // font-size: .75rem;
   }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .5rem !important;
     top: .35rem !important;
   };
 }
 .icon_flickr {
   &:before { content: '\f303'; }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .5rem !important;
     top: .3rem !important;
   };
@@ -213,11 +213,11 @@
   &:before {
     content: '\e807';
     font-size: .75rem;
-    @include media($desktop) {
+    @include media($tablet) {
       font-size: .65rem;
     };
   }
-  @include media($desktop) {
+  @include media($tablet) {
     right: .425rem !important;
     top: .225rem !important;
   };

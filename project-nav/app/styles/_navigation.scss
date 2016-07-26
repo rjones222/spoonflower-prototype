@@ -560,7 +560,8 @@
   .footer_nav {
     position: relative;
     .nav-link-primary {
-      padding: 1rem .5em;
+      padding: 1rem .3em;
+      font-size: rem(13);
     }
   }
   .subnav-flyup {
@@ -572,7 +573,7 @@
     position: absolute;
     min-width: 280px;
     top: -106px;
-    z-index: 1;
+    z-index: 2;
     li {
       text-align: left;
       width: 100%;
@@ -602,10 +603,12 @@
 
   .nav-link.nl-lvl2,
   .nav-link.nl-lvl3,
-  .nav-link.nl-lvl4,
-  .nav-link.nl-lvl5 {
+  .nav-link.nl-lvl4 {
     padding: .333rem 1rem;
     width: 100%;
+  }
+  .nav-link.nl-lvl5 {
+    padding: .333rem 0 .333rem 0.8rem;
   }
 
   // controls right arrow, usage: li.has_subnav
@@ -632,6 +635,14 @@
       .product_image {
         max-width: 220px;
       }
+    }
+  }
+
+  .footer_nav {
+    position: relative;
+    .nav-link-primary {
+      padding: 1rem .5em;
+      font-size: rem(15);
     }
   }
 

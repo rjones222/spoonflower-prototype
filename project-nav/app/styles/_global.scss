@@ -3,13 +3,13 @@
 .content_wrap {
   @include outer-container(1000px);
   box-sizing: border-box;
-  padding: 1rem;
   width: 100%;
   @include media($tablet) {
-    padding-top: 2rem;
+    margin-top: 2rem;
   }
   @include media($desktop) {
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 0;
   }
 }
 
@@ -41,26 +41,17 @@
 }
 
 // This is the "Custom printed fabric and more..." what-we-do statement
-// .spoonflower_definition-wrappper {
-//   padding: 1rem 0 0 1rem;
-//   @include media($tablet) {
-//     padding: 1rem 0 1rem 1rem;
-//   }
-//   @include media($desktop) {
-//     padding: 1rem 0 .5rem 1rem;
-//   }
-// }
 .spoonflower_definition {
   max-width: 270px;
-  padding-bottom: 1rem;
+  margin: 1rem;
   @include media($tablet) {
-    left: 25%;
+    left: 23%;
     position: relative;
     top: -62px;
   }
   @include media($desktop) {
     // position: relative;
-    left: 23%;
+    left: 21%;
     top: -65px;
   }
   dt {
@@ -166,10 +157,12 @@
 // footer layout
 
 .site_footer {
-  background-color: $gallery;
   text-align: center;
   margin: auto;
   width: 100%;
+  @include media($tablet) {
+    background-color: $gallery;
+  }
   .outer-container {
     box-sizing: border-box;
     @include outer-container(1000px);
@@ -182,6 +175,7 @@
     @include media($tablet) {
       @include span-columns(3);
       padding: 1.2rem 0 0 1rem;
+      text-align: left;
     };
   }
   // footer nav is hidden from mobile view
@@ -192,5 +186,20 @@
   .social_links {
     box-sizing: border-box;
     @include span-columns(3);
+  }
+}
+
+.social_links .nav-social {
+  float: right;
+  padding: 0.9rem 0 0 0;
+  @include media($tablet) {
+    .btn-round {
+      margin-right: 2px;
+    }
+  }
+  @include media($desktop) {
+    .btn-round {
+      margin-right: 5px;
+    }
   }
 }
