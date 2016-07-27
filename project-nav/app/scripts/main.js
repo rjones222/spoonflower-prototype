@@ -263,6 +263,7 @@ var SpoonflowerSearch = {
   triggerSelect: function() {
     $('.btn-select').on('click', function(e) {
       e.preventDefault();
+      console.log('in triggerSelect()');
       $('.search_select').simulate('mousedown'); // http://stackoverflow.com/a/16056763
     });
   }
