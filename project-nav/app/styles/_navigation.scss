@@ -461,7 +461,7 @@
   .subnav.sn-last {
     @include outer-container(200%);
     @include column-count(3);
-    background: transparent;
+    background: #ffffff;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
@@ -485,7 +485,7 @@
   .subnav.sn-lvl2-last {
     @include outer-container(300%);
     @include column-count(3);
-    background: transparent;
+    background: #ffffff;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
@@ -496,7 +496,7 @@
     position: absolute;
     width: 300%;
     top: 0;
-    z-index: 1;
+    z-index: 4;
     left: 100%;
     li {
       display: inline-block;
