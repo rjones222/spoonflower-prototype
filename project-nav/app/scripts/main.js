@@ -12,7 +12,7 @@ var SpoonflowerNavigation = {
     if($( window ).width() > '767') {
       SpoonflowerNavigation.desktopSubnavToggle();
       SpoonflowerNavigation.desktopFlyoutToggle();
-      SpoonflowerNavigation.handleTouchClick();
+      // SpoonflowerNavigation.handleTouchClick();
     }
   },
 
@@ -107,7 +107,7 @@ var SpoonflowerNavigation = {
     var timer;
 
     $('.nav-link-primary').mouseover(function(){
-      console.log('mouseover .nav-link-primary (1)');
+      console.log('mouseover .nav-link-primary');
       clearTimeout(timer);
       var getthis = $(this).parent().children('ul');
       $('.subnav').removeClass('current');
@@ -116,7 +116,7 @@ var SpoonflowerNavigation = {
     });
 
     $('.nav-link-primary').mouseout(function(){
-      console.log('mouseout .nav-link-primary (2)');
+      console.log('mouseout .nav-link-primary');
       var getthis = $(this).parent().children('ul');
       timer = setTimeout(function() {
         $(getthis).removeClass('current');
@@ -125,13 +125,13 @@ var SpoonflowerNavigation = {
     });
 
     $('.subnav').mouseover(function() {
-      console.log('mouseover .subnav (1)');
+      console.log('mouseover .subnav');
       clearTimeout(timer);
       $(this).addClass('current');
     });
 
     $('.subnav').mouseleave(function(){
-      console.log('mouseleave .subnav (2)');
+      console.log('mouseleave .subnav');
       // console.log('in mouseleave');
       timer = setTimeout(function() {
         $('.subnav').removeClass('current');
@@ -144,7 +144,7 @@ var SpoonflowerNavigation = {
     var timer;
 
     $('.has_subnav a').mouseover(function(){
-      console.log('mouseover .has_subnav a (1)');
+      console.log('mouseover .has_subnav a');
       clearTimeout(timer);
       // remove previously set classes
       $(this).parent().parent().find('ul').removeClass('current');
@@ -158,7 +158,7 @@ var SpoonflowerNavigation = {
     });
 
     $('.has_subnav a').mouseout(function(){
-      console.log('mouseout .has_subnav a (2)');
+      console.log('mouseout .has_subnav a');
       timer = setTimeout(function() {
         $(this).parent().children('ul').removeClass('current');
         $(this).parent().children('a').removeClass('active');
@@ -215,6 +215,7 @@ var SpoonflowerSearch = {
   triggerSelect: function() {
     $('.btn-select').on('click', function(e) {
       e.preventDefault();
+      console.log('in triggerSelect()');
       $('.search_select').simulate('mousedown'); // http://stackoverflow.com/a/16056763
     });
   }

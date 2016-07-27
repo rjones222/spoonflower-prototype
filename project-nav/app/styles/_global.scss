@@ -101,7 +101,19 @@
 // position in mobile
 .desktop_hide .search_module {
   margin: 1rem auto .5rem;
+  position: relative;
 }
+
+// position for desktop
+.search_desktop {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  @include media($desktop) {
+    top: 1.5rem;
+  };
+}
+
 .search_select-wrapper {
   background: $gallery;
   box-sizing: inherit;
@@ -123,7 +135,10 @@
   font-family: inherit;
   font-size: rem(13);
   font-style: italic;
-  position: relative;
+  // position: relative;
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
   &:focus {
     outline: unset;
   }
@@ -132,12 +147,19 @@
     width: 100px;
   }
 }
+.btn-select {
+  position: absolute;
+  top: 0px;
+}
 .search_input {
   border: 0;
   box-sizing: inherit;
   font-size: .8rem;
   height: 1.6rem;
+  left: 7.2rem;
   padding: 0 0 0 0.3rem;
+  position: absolute;
+  top: .2rem;
   width: 134px;
   &:focus {
     outline: unset;
