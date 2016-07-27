@@ -83,3 +83,16 @@
 .btn-back_to_top {
   color: $smalt_blue;
 }
+
+// navigation element add via jQuery to touch devices
+.btn-touch_close {
+  left: 172px;
+  padding: .75rem;
+  position: absolute;
+  top: 0;
+  .icon_close {
+    position: absolute;
+    right: .25rem;
+    top: .3rem;
+  }
+}

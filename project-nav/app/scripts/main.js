@@ -1,6 +1,11 @@
 // Navigation
 var SpoonflowerNavigation = {
 
+  // flag for subnav visibility
+  subnavState: false,
+  // flag for flyout visibility
+  flyoutState: false,
+
   init: function() {
     SpoonflowerNavigation.navToggle();
     SpoonflowerNavigation.mobileSubnavToggle();
@@ -10,9 +15,9 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.showDefinition();
     // tablet and desktop
     if($( window ).width() > '767') {
-      SpoonflowerNavigation.desktopSubnavToggle();
-      SpoonflowerNavigation.desktopFlyoutToggle();
-      SpoonflowerNavigation.handleTouchClick();
+      SpoonflowerNavigation.desktopSubnav();
+      SpoonflowerNavigation.desktopFlyout();
+      SpoonflowerNavigation.touchSubnav();
     }
   },
 
@@ -101,84 +106,127 @@ var SpoonflowerNavigation = {
     })
   },
 
-  // begin tablet and desktop navigation functionality
+  // begin desktop navigation functionality
   // hover top level navigation to show subnav
-  desktopSubnavToggle: function() {
-    var timer;
+  desktopSubnav: function() {
 
     $('.nav-link-primary').mouseover(function(){
-      console.log('mouseover .nav-link-primary (1)');
-      clearTimeout(timer);
-      var getthis = $(this).parent().children('ul');
-      $('.subnav').removeClass('current');
-      // $(getthis).stop(true, false, true).fadeIn(300); // leaves behind inline style attr when rapidly mousing over
-      $(getthis).addClass('current');
+      console.log('mouseover .nav-link-primary');
+      SpoonflowerNavigation.showSubnav($(this));
     });
 
     $('.nav-link-primary').mouseout(function(){
-      console.log('mouseout .nav-link-primary (2)');
-      var getthis = $(this).parent().children('ul');
-      timer = setTimeout(function() {
-        $(getthis).removeClass('current');
-        // $(getthis).stop(true, false, true).fadeOut(300);
-      }, 300);
+      console.log('mouseout .nav-link-primary');
+      SpoonflowerNavigation.closeSubnav($(this));
     });
 
     $('.subnav').mouseover(function() {
-      console.log('mouseover .subnav (1)');
-      clearTimeout(timer);
-      $(this).addClass('current');
+      console.log('mouseover .subnav');
+      SpoonflowerNavigation.stayOpen($(this));
     });
 
     $('.subnav').mouseleave(function(){
-      console.log('mouseleave .subnav (2)');
-      // console.log('in mouseleave');
-      timer = setTimeout(function() {
-        $('.subnav').removeClass('current');
-        $('.has_subnav a').removeClass('active');
-      }, 300);
+      console.log('mouseleave .subnav');
+      // if in a subnav
+      if($('.subnav:hover').length == 0) {
+        SpoonflowerNavigation.subnavState = false;
+        // console.log('in mouseleave');
+        SpoonflowerNavigation.closeAllSubnav();
+      }
     });
+  },
+
+  flyoutOpen: function($target) {
+    SpoonflowerNavigation.flyoutState = true;
+    // remove previously set classes
+    $target.parent().parent().find('ul').removeClass('current');
+    $target.parent().parent().find('a').removeClass('active');
+    // set classes
+    $target.parent().children('ul').addClass('current');
+    $target.parent().children('a').addClass('active');
+    // get position and set top position of the menu
+    var $position = $target.parent().position();
+    $target.parent().children('ul').css('top', -$position.top);
+  },
+
+  flyoutClose: function($target) {
+    // if(SpoonflowerNavigation.flyoutState == false) {
+      $(this).parent().find('ul').removeClass('current');
+      $(this).parent().find('a').removeClass('active');
+      // $('.subnav').removeClass('current');
+      // $('.has_subnav a').removeClass('active');
+    // }
   },
   // hover subnav links to show more menus
-  desktopFlyoutToggle: function() {
-    var timer;
-
-    $('.has_subnav a').mouseover(function(){
-      console.log('mouseover .has_subnav a (1)');
-      clearTimeout(timer);
-      // remove previously set classes
-      $(this).parent().parent().find('ul').removeClass('current');
-      $(this).parent().parent().find('a').removeClass('active');
-      // set classes
-      $(this).parent().children('ul').addClass('current');
-      $(this).parent().children('a').addClass('active');
-      // get position and set top position of the menu
-      var $position = $(this).parent().position();
-      $(this).parent().children('ul').css('top', -$position.top);
+  desktopFlyout: function() {
+    $('.has_subnav a').mouseenter(function(){
+      console.log('FLYOUT: mouseenter .has_subnav a');
+      SpoonflowerNavigation.flyoutOpen($(this));
     });
 
-    $('.has_subnav a').mouseout(function(){
-      console.log('mouseout .has_subnav a (2)');
-      timer = setTimeout(function() {
-        $(this).parent().children('ul').removeClass('current');
-        $(this).parent().children('a').removeClass('active');
-      }, 300);
-    });
-    // remove current and active classes if hovering over items without subnav
+    // $('.has_subnav a').mouseout(function(){
+    //   console.log('FLYOUT: mouseout .has_subnav a');
+    //   SpoonflowerNavigation.flyoutClose($(this));
+    // });
+    // // remove current and active classes if hovering over items without subnav
     $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
-      console.log('mouseover .subnav-primary > li:not(.has_subnav)');
-      $('.subnav').removeClass('current');
-      $('.has_subnav a').removeClass('active');
+      console.log('FLYOUT: mouseover .subnav-primary > li:not(.has_subnav)');
+      SpoonflowerNavigation.flyoutClose($(this));
     });
   },
-  // handle touch and click Events
-  handleTouchClick: function() {
+  // handle touch events
+  touchSubnav: function() {
     $('.nav-link').on('touchstart', function(e){
+      console.log('in handleTouchClick()');
       e.stopPropagation();
       e.preventDefault();
-      console.log('in handleTouchClick()');
-
+      var $el = $(this);
+      var link = $el.attr('href');
+      if($el.hasClass('activateTouchLink')) {
+        window.location = link;
+      }
+      else {
+        $('.nav-link').removeClass('activateTouchLink');
+        $el.addClass('activateTouchLink');
+      }
+      SpoonflowerNavigation.showSubnav($(this));
     });
+  },
+  touchCloseSubnav: function() {
+
+  },
+
+  // Desktop, Touch and Keyboard flyout behaviors
+
+  // Desktop, Touch and Keyboard subnav behaviors
+  // show subnav of a primary navigation link (1st level)
+  showSubnav: function($target) {
+    SpoonflowerNavigation.subnavState = true;
+    console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
+    var getthis = $target.parent().children('ul');
+    $('.subnav').removeClass('current');
+    $(getthis).addClass('current');
+  },
+  // close subnav of a primary navigation link (1st level)
+  closeSubnav: function($target) {
+    console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    var getthis = $target.parent().children('ul');
+    if(SpoonflowerNavigation.subnavState == false) {
+      $(getthis).removeClass('current');
+    }
+  },
+  closeAllSubnav: function() {
+    if(SpoonflowerNavigation.subnavState == false) {
+      console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
+      $('.subnav').removeClass('current');
+      $('.has_subnav a').removeClass('active');
+    }
+  },
+  // keep the subnav open if hovered
+  stayOpen: function(currentSubnav) {
+    SpoonflowerNavigation.subnavState = true;
+    console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
+    $(this).addClass('current');
   }
 };
 
