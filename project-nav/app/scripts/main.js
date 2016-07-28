@@ -1,11 +1,22 @@
-// Navigation
+/**
+ *  Navigation
+ */
+
+/**
+ * Encapsulates Navigation functions
+ * @type {Object}
+ */
 var SpoonflowerNavigation = {
 
-  // flag for subnav visibility
+  /**
+   * flag for subnav visibility
+   * @type {Boolean}
+   */
   subnavState: false,
-  // flag for flyout visibility
-  // flyoutState: false,
 
+  /**
+   * Initializes functions below
+   */
   init: function() {
     SpoonflowerNavigation.navToggle();
     SpoonflowerNavigation.mobileSubnavToggle();
@@ -20,7 +31,9 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.touchOpenSubnav();
     }
   },
-
+  /**
+   * In mobile view this toggles navigation visibility and triggers collapseAllSubnavs()
+   */
   navToggle: function() {
     $('#navToggle button').click(function(e){
       e.preventDefault();
@@ -33,6 +46,9 @@ var SpoonflowerNavigation = {
     });
   },
 
+  /**
+   * Toggles the subnav items in an accordion menu
+   */
   mobileSubnavToggle: function() {
     $('.btn-mobile_nav').click(function() {
       var $this = $(this);
@@ -63,15 +79,20 @@ var SpoonflowerNavigation = {
   //   });
   // },
 
-  // collapse menu
-  collapseMenu: function(toggleButton) {
+  /**
+   * collapse menu
+   * @param  {jQuery} $toggleButton - the mobile only arrow button in subnav
+   */
+  collapseMenu: function($toggleButton) {
     // console.log('in collapseMenu');
-    var $li = toggleButton.parent();
+    var $li = $toggleButton.parent();
     this.removeClass('is-expanded');
     $li.find('ul').removeClass('menu-visible');
   },
 
-  // collapse all the subnavs
+  /**
+   * collapse all the subnavs
+   */
   collapseAllSubnavs: function() {
     // console.log('in collapseAllSubnavs');
     $('.btn-mobile_nav').removeClass('is-expanded');
@@ -79,9 +100,12 @@ var SpoonflowerNavigation = {
     $('ul').removeClass('menu-visible');
   },
 
-  // collapse child subnavs
-  collapseChildSubnavs: function(button) {
-    var $buttonParent = button.parent();
+  /**
+   * collapse child subnavs
+   * @param  {jQuery} $button - the mobile only arrow button in subnav
+   */
+  collapseChildSubnavs: function($button) {
+    var $buttonParent = $button.parent();
     // var $buttons = $(parentButton).find('.btn-mobile_nav'),
     //     $lists = $(parentButton).find('.menu-visible');
     $buttonParent.find('.btn-mobile_nav').removeClass('is-expanded');
@@ -89,7 +113,9 @@ var SpoonflowerNavigation = {
     $buttonParent.find('ul').removeClass('menu-visible');
   },
 
-  // toggles topmost header nav icon visibility, changes login button text
+  /**
+   * toggles topmost header nav icon visibility, changes login button text
+   */
   loggedIn: function() {
     $('.btn-login').click(function(e){
       e.preventDefault();
@@ -98,7 +124,9 @@ var SpoonflowerNavigation = {
     });
   },
 
-  // displays dropdown with details on what we do?
+  /**
+   * displays dropdown with details on what we do
+   */
   showDefinition: function() {
     $('.spoonflower_definition dt').click(function(e){
       $(this).find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
@@ -106,8 +134,10 @@ var SpoonflowerNavigation = {
     })
   },
 
-  // begin desktop navigation functionality
-  // hover top level navigation to show subnav
+  /**
+   * begin desktop navigation functionality
+   * hover top level navigation to show subnav
+   */
   desktopSubnav: function() {
 
     $('.nav-link-primary').mouseover(function(){
@@ -135,7 +165,10 @@ var SpoonflowerNavigation = {
       }
     });
   },
-  // hover subnav links to show more menus
+
+  /**
+   * hover subnav links to show more menus
+   */
   desktopFlyout: function() {
     $('.has_subnav a').mouseenter(function(){
       console.log('FLYOUT: mouseenter .has_subnav a');
@@ -152,7 +185,10 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.flyoutClose($(this));
     });
   },
-  // handle touch events
+
+  /**
+   * handle touch events, create a close button
+   */
   touchOpenSubnav: function() {
     $('.nav-link-primary').on('touchstart', function(e){
       console.log('in touchOpenSubnav()');
@@ -179,6 +215,9 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.touchOpenFlyout();
     });
   },
+  /**
+   * close the subnav using generated close button
+   */
   touchCloseSubnav: function() {
     $('.btn-touch_close').on('touchstart', function(e) {
       console.log('in touchCloseSubnav()');
@@ -191,6 +230,9 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.closeSubnav($target);
     });
   },
+  /**
+   * open the flyout menu
+   */
   touchOpenFlyout: function() {
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').on('touchstart', function(e){
       console.log('in touchOpenFlyout()');
@@ -214,10 +256,18 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.touchCloseSubnav();
     });
   },
-  // Desktop, Touch and Keyboard flyout behaviors
 
-  // Desktop, Touch and Keyboard subnav behaviors
-  // show subnav of a primary navigation link (1st level)
+  /**
+   * Desktop, Touch and Keyboard flyout behaviors
+   */
+
+  /**
+   * Desktop, Touch and Keyboard subnav behaviors
+   *
+   * Show subnav of a primary navigation link (1st level) when mousing over or upon
+   * first touch of .nav-link-primary
+   * @param  {jQuery} $target - .nav-link-primary
+   */
   showSubnav: function($target) {
     SpoonflowerNavigation.subnavState = true;
     console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
@@ -225,7 +275,12 @@ var SpoonflowerNavigation = {
     $('.subnav').removeClass('current');
     $(getthis).addClass('current');
   },
-  // close subnav of a primary navigation link (1st level)
+
+  /**
+   * Close subnav of a primary navigation link (1st level) when mousing over
+   * .nav-link-primary or upon first touch of .btn-touch_close
+   * @param  {jQuery} $target - .nav-link-primary
+   */
   closeSubnav: function($target) {
     console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
@@ -234,6 +289,10 @@ var SpoonflowerNavigation = {
       $('.nav-link').removeClass('activateTouchLink, active');
     }
   },
+
+  /**
+   * If mouse leaves .subnav close all subnavs and remove arrow indicators
+   */
   closeAllSubnav: function() {
     if(SpoonflowerNavigation.subnavState == false) {
       console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
@@ -241,13 +300,21 @@ var SpoonflowerNavigation = {
       $('.has_subnav a').removeClass('active');
     }
   },
-  // keep the subnav open if hovered
-  stayOpen: function(currentSubnav) {
+
+  /**
+   * keep the subnav open if hovered
+   * @param  {jQuery} $currentSubnav - the hovered .subnav
+   */
+  stayOpen: function($currentSubnav) {
     SpoonflowerNavigation.subnavState = true;
     console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
-    $(this).addClass('current');
+    $currentSubnav.addClass('current');
   },
-  // open the flyout menus
+
+  /**
+   * open the flyout menus
+   * @param  {jQuery} $target - $('.has_subnav a') a link with a subnav
+   */
   flyoutOpen: function($target) {
     // SpoonflowerNavigation.flyoutState = true;
     // remove previously set classes
@@ -260,7 +327,12 @@ var SpoonflowerNavigation = {
     var $position = $target.parent().position();
     $target.parent().children('ul').css('top', -$position.top);
   },
-  // close the flyout menus
+  //
+  /**
+   * close the flyout menus
+   * @param  {[type]} $target [description]
+   * @return {[type]}         [description]
+   */
   flyoutClose: function($target) {
     console.log('in flyoutClose()');
     // if(SpoonflowerNavigation.flyoutState == false) {
@@ -272,9 +344,14 @@ var SpoonflowerNavigation = {
   },
 };
 
+/**
+ * Initialize SpoonflowerNavigation
+ */
 SpoonflowerNavigation.init();
 
-// from http://stackoverflow.com/a/26183153
+/**
+ * Extend jQuery to easily toggle text (from http://stackoverflow.com/a/26183153)
+ */
 jQuery.fn.extend({
   toggleText: function (a, b){
     var that = this;
@@ -293,8 +370,11 @@ jQuery.fn.extend({
   }
 });
 
-// Search
-
+/**
+ * [SpoonflowerSearch description] not much to see or say here, used to help style
+ * the select used in the search mockup.
+ * @type {Object}
+ */
 var SpoonflowerSearch = {
 
   init: function() {
@@ -313,6 +393,7 @@ var SpoonflowerSearch = {
 };
 
 SpoonflowerSearch.init();
+
 /*
  * jquery.simulate - simulate browser mouse and keyboard events
  *
