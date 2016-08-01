@@ -23,6 +23,7 @@
     <!-- endbuild -->
   </head>
   <body>
+    <a class="screen-reader screen-reader-focusable" href="#main">Skip to the main content</a>
     <header class="site_header">
       <div class="h_bar">
         <div id="hBar" class="h_bar-container is-collapsed">
@@ -59,7 +60,7 @@
                   <option value="collections">Collections</option>
                 </select>
               </div>
-              <button class="btn btn-select">
+              <button class="btn btn-select" aria-hidden="true">
                 <i class="icon icon_chevron_down" aria-hidden="true"></i>
               </button>
               <input type="text" class="search_input" />
@@ -11296,18 +11297,20 @@
             <a href="#" class="u_nav-studio_item">My Studio
               <i class="icon icon_studio" aria-hidden="true"></i>
               <span>121 </span>
+              <i class="icon icon_chevron_down"></i>
             </a>
           </li>
           <li>
             <a href="#" class="u_nav-cart_item"><span class="visuallyhidden">Cart</span>
               <i class="icon icon_cart" aria-hidden="true"></i>
               <span>4 </span>
+              <i class="icon icon_chevron_down"></i>
             </a>
           </li>
         </ul>
       </div>
     </div>
-    <div class="content_wrap">
+    <main id="main" class="content_wrap">
       <dl id="whatIsSpoonflower" class="spoonflower_definition">
         <dt>
           Custom printed <span>fabric and more <i class="icon icon_chevron_down"></i></span>
@@ -11336,7 +11339,7 @@
         </p>
       </div>
       <button class="btn btn-back_to_top"><i class="icon icon_arrow_up" aria-hidden="true"></i> Back to Top</button>
-    </div>
+    </main>
     <footer class="site_footer">
       <div class="outer-container">
         <div class="copyright">

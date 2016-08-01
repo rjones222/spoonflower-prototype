@@ -67,7 +67,7 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').on('touchstart', function(e) {
       e.stopPropagation();
-      console.log('.has_subnav on touchstart');
+      // console.log('.has_subnav on touchstart');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -83,7 +83,7 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      console.log('.nav-link-primary on touchstart');
+      // console.log('.nav-link-primary on touchstart');
       if($el.hasClass('activateTouchLink')) {
         window.location = link;
       }
@@ -106,7 +106,7 @@ var SpoonflowerNavigation = {
           }
         } else {
           // else open submenu as accordion
-          console.log("opening accordion");
+          // console.log("opening accordion");
           SpoonflowerNavigation.openMenu($navlinkParent);
         }
       }
@@ -119,23 +119,23 @@ var SpoonflowerNavigation = {
         var $el = $(this);
         var link = $el.attr('href');
         if($el.hasClass('activateTouchLink')) {
-          console.log('touched activated subnav link');
+          // console.log('touched activated subnav link');
           window.location = link;
         }
         else {
-          console.log('touched subnav link');
+          // console.log('touched subnav link');
           $('.nav-link').removeClass('activateTouchLink');
           $el.addClass('activateTouchLink');
           var $navlinkParent = $($el).parent();
           // open submenu as accordion
-          console.log("opening accordion");
+          // console.log("opening accordion");
           SpoonflowerNavigation.openMenu($navlinkParent);
         }
       });
     }
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
       e.stopPropagation();
-      console.log('stopPropagation');
+      // console.log('stopPropagation');
     });
   },
 
@@ -215,24 +215,24 @@ var SpoonflowerNavigation = {
    * hover top level navigation to show subnav
    */
   desktopSubnav: function() {
-    console.log('in desktopSubnav()');
+    // console.log('in desktopSubnav()');
     $('.nav-link-primary').mouseover(function(){
-      console.log('mouseover .nav-link-primary');
+      // console.log('mouseover .nav-link-primary');
       SpoonflowerNavigation.showSubnav($(this));
     });
 
     $('.nav-link-primary').mouseout(function(){
-      console.log('mouseout .nav-link-primary');
+      // console.log('mouseout .nav-link-primary');
       SpoonflowerNavigation.closeSubnav($(this));
     });
 
     $('.subnav').mouseover(function() {
-      console.log('mouseover .subnav');
+      // console.log('mouseover .subnav');
       SpoonflowerNavigation.stayOpen($(this));
     });
 
     $('.subnav').mouseleave(function(){
-      console.log('mouseleave .subnav');
+      // console.log('mouseleave .subnav');
       // if in a subnav
       if($('.subnav:hover').length == 0) {
         SpoonflowerNavigation.subnavState = false;
@@ -242,7 +242,7 @@ var SpoonflowerNavigation = {
     });
 
     $('nav').mouseleave(function(){
-      console.log('mouseleave nav');
+      // console.log('mouseleave nav');
       SpoonflowerNavigation.subnavState = false;
       SpoonflowerNavigation.closeAllSubnav();
     });
@@ -252,14 +252,14 @@ var SpoonflowerNavigation = {
    * hover subnav links to show more menus
    */
   desktopFlyout: function() {
-    console.log('in desktopFlyout()');
+    // console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
       // console.log('FLYOUT: mouseenter .has_subnav a');
       SpoonflowerNavigation.flyoutOpen($(this));
     });
 
     // $('.has_subnav a').mouseout(function(){
-    //   console.log('FLYOUT: mouseout .has_subnav a');
+    //   // console.log('FLYOUT: mouseout .has_subnav a');
     //   SpoonflowerNavigation.flyoutClose($(this));
     // });
     // // remove current and active classes if hovering over items without subnav
@@ -322,7 +322,7 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      console.log('in touchOpenFlyout()');
+      // console.log('in touchOpenFlyout()');
       if($el.hasClass('activateTouchLink')) {
         window.location = link;
       }
@@ -347,7 +347,7 @@ var SpoonflowerNavigation = {
    */
   showSubnav: function($target) {
     SpoonflowerNavigation.subnavState = true;
-    console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
+    // console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     $('.subnav').removeClass('current');
     $(getthis).addClass('current');
@@ -359,7 +359,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - .nav-link-primary
    */
   closeSubnav: function($target) {
-    console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
@@ -372,7 +372,7 @@ var SpoonflowerNavigation = {
    */
   closeAllSubnav: function() {
     if(SpoonflowerNavigation.subnavState == false) {
-      console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
+      // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
       $('.subnav').removeClass('current');
       $('.has_subnav a').removeClass('active activateTouchLink');
     }
@@ -384,7 +384,7 @@ var SpoonflowerNavigation = {
    */
   stayOpen: function($currentSubnav) {
     SpoonflowerNavigation.subnavState = true;
-    console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
+    // console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
     $currentSubnav.addClass('current');
   },
 
@@ -393,7 +393,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - $('.has_subnav a') a link with a subnav
    */
   flyoutOpen: function($target) {
-    console.log('in flyoutOpen()');
+    // console.log('in flyoutOpen()');
     // SpoonflowerNavigation.flyoutState = true;
     // remove previously set classes
     $target.parent().parent().find('ul').removeClass('current');
@@ -412,7 +412,7 @@ var SpoonflowerNavigation = {
    * @return {[type]}         [description]
    */
   flyoutClose: function($target) {
-    console.log('in flyoutClose()');
+    // console.log('in flyoutClose()');
     // if(SpoonflowerNavigation.flyoutState == false) {
       $target.parent().find('ul').removeClass('current');
       $target.parent().find('a').removeClass('active');
