@@ -217,28 +217,34 @@ var SpoonflowerNavigation = {
   desktopSubnav: function() {
     console.log('in desktopSubnav()');
     $('.nav-link-primary').mouseover(function(){
-      // console.log('mouseover .nav-link-primary');
+      console.log('mouseover .nav-link-primary');
       SpoonflowerNavigation.showSubnav($(this));
     });
 
     $('.nav-link-primary').mouseout(function(){
-      // console.log('mouseout .nav-link-primary');
+      console.log('mouseout .nav-link-primary');
       SpoonflowerNavigation.closeSubnav($(this));
     });
 
     $('.subnav').mouseover(function() {
-      // console.log('mouseover .subnav');
+      console.log('mouseover .subnav');
       SpoonflowerNavigation.stayOpen($(this));
     });
 
     $('.subnav').mouseleave(function(){
-      // console.log('mouseleave .subnav');
+      console.log('mouseleave .subnav');
       // if in a subnav
       if($('.subnav:hover').length == 0) {
         SpoonflowerNavigation.subnavState = false;
         // console.log('in mouseleave');
         SpoonflowerNavigation.closeAllSubnav();
       }
+    });
+
+    $('nav').mouseleave(function(){
+      console.log('mouseleave nav');
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeAllSubnav();
     });
   },
 
