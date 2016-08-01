@@ -8,9 +8,13 @@
   padding-bottom: .5em;
 }
 
+// mobile menus use a gray bg color, make darker for mobile only
 .menu-visible .btm_border,
 .menu-visible .btm_border_mobile {
   border-top: 1px solid $dusty_gray;
+  @include media($tablet) {
+    border-top: 1px solid $gallery;
+  };
 }
 
 .btm_border_mobile {
