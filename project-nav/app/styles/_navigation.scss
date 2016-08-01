@@ -19,20 +19,24 @@
   &:hover {
     color: $nav-hover;
   }
+  &.activateTouchLink {
+    background-color: $polar;
+    color: $smalt_blue;
+  }
 }
 // handles indentation of subnav items
-.nav-link.nl-lvl2 {
-  padding: .8rem 2rem;
-}
-.nav-link.nl-lvl3 {
-  padding: .8rem 3rem;
-}
-.nav-link.nl-lvl4 {
-  padding: .8rem 4rem;
-}
-.nav-link.nl-lvl5 {
-  padding: .8rem 5rem;
-}
+// .nav-link.nl-lvl2 {
+//   padding: .8rem 2rem;
+// }
+// .nav-link.nl-lvl3 {
+//   padding: .8rem 3rem;
+// }
+// .nav-link.nl-lvl4 {
+//   padding: .8rem 4rem;
+// }
+// .nav-link.nl-lvl5 {
+//   padding: .8rem 5rem;
+// }
 
 // navigation layout
 .h_bar {
@@ -165,6 +169,32 @@
 
 /* Only Mobile */
 @media all and (max-width: 767px) {
+  // controls down chevron, usage: li.has_subnav
+  .has_subnav {
+    display: block;
+    position: relative;
+    z-index: 1;
+    &:after {
+      font-family: 'spoonflower_icons';
+      content: '\e802';
+      font-size: .4rem;
+      position: absolute;
+      right: 1.2rem;
+      top: .8rem;
+    }
+  }
+  // up chevron
+  .has_subnav.is-active {
+    position: relative;
+    &:after {
+      font-family: 'spoonflower_icons';
+      content: '\e80d';
+      font-size: .4rem;
+      position: absolute;
+      right: 1.2rem;
+      top: .8rem;
+    }
+  }
   .subnav {
     // display: none;
     height: 0;
@@ -176,12 +206,17 @@
   }
   .menu-visible {
     // background: rgba(0,0,0,0.05);
-    background-color: rgba(231,246,249,0.5); // using $polar green for bg color -- probably too subtle
+    background-color: rgba(0,0,0,0.03); // using $polar green for bg color -- probably too subtle
     height: auto !important;
     max-height: 9999px !important; // hack to simulate js-based dropdown animation with only css
     opacity: 1 !important;
     overflow-y: visible !important;
     width: inherit;
+    z-index: 2;
+    > li {
+      display: block;
+      z-index: 3;
+    }
   }
   // need to set height for the Sprout and Roostery subnav panels
   .desktop_hide {
@@ -209,7 +244,8 @@
       width: 100%;
     }
     p {
-      margin-top: 1rem;
+      margin: 1rem auto;
+      max-width: 14rem;
     }
     .roostery_logo {
       display: block;
@@ -397,7 +433,7 @@
     width: 100%;
   }
   // controls right arrow, usage: li.has_subnav
-  .has_subnav > a {
+  .subnav .has_subnav > a {
     position: relative;
     &:hover {
       &:after {
@@ -410,7 +446,7 @@
       }
     }
   }
-  .has_subnav > .active {
+  .subnav .has_subnav > .active {
     position: relative;
     &:after {
       font-family: 'spoonflower_icons';
@@ -461,7 +497,7 @@
   .subnav.sn-last {
     @include outer-container(200%);
     @include column-count(3);
-    background: transparent;
+    background: #ffffff;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
@@ -485,7 +521,7 @@
   .subnav.sn-lvl2-last {
     @include outer-container(300%);
     @include column-count(3);
-    background: transparent;
+    background: #ffffff;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
     display:none;
@@ -496,7 +532,7 @@
     position: absolute;
     width: 300%;
     top: 0;
-    z-index: 1;
+    z-index: 4;
     left: 100%;
     li {
       display: inline-block;
