@@ -141,13 +141,13 @@
   }
 }
 .icon_close {
-  position: absolute;
-  right: 1.2rem;
-  top: 1.2rem;
+  // position: absolute;
+  // right: 1.2rem;
+  // top: 1.2rem;
   &:before {
     color: $smalt_blue;
     content: '\e808';
-    font-size: .85rem;
+    font-size: .65rem;
   }
 }
 .icon_menu {

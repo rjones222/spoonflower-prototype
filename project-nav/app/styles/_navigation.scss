@@ -16,6 +16,7 @@
   padding: .8rem 1rem;
   text-decoration: none;
   transition: 250ms all ease;
+  width: 100%;
   &:hover {
     color: $nav-hover;
   }
@@ -37,6 +38,11 @@
 // .nav-link.nl-lvl5 {
 //   padding: .8rem 5rem;
 // }
+
+// nav-links that open a submenu will get button styling. Width needs to be set to auto instead of 100%
+.has_subnav > .nav-link {
+  width: auto;
+}
 
 // navigation layout
 .h_bar {
