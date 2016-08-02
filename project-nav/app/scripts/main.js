@@ -251,11 +251,129 @@ var SpoonflowerNavigation = {
    */
   keyboardAccessibility: function() {
 
+    /**
+     * Back to Top
+     *
+     * Keydown on enter key (13) takes you back to top of page, specifically to 'skip to content' link
+     * @param  {jQuery} '.btn-back_to_top' - button before footer after content
+     */
     $('.btn-back_to_top').on('keydown', function(e) {
       if(e.which == 13) {
         $('.screen-reader-top').focus();
       }
     });
+
+    /**
+     * Use arrow controls to navigate subnav
+     * starting point: http://simplyaccessible.com/article/arrow-key-navigation/
+     */
+    $('.nav-link-primary').keydown(function(e){
+        // Listen for the up, down, left and right arrow keys, otherwise, end here
+        if ([13,37,38,39,40].indexOf(e.which) == -1) {
+            return;
+        }
+
+        // Store the reference to our top level link
+        var link = $(this);
+        // ... the previous top level link
+        var prevLink = link.parent('li').prev('.has_subnav').find('.nav-link-primary');
+        // ... the next top level link
+        var nextLink = link.parent('li').next('.has_subnav').find('.nav-link-primary');
+
+        switch(e.which) {
+            case 13: // enter
+                // Make sure to stop event bubbling
+                e.preventDefault();
+                e.stopPropagation();
+                SpoonflowerNavigation.closeSubnav(link);
+                SpoonflowerNavigation.showSubnav(link);
+                break;
+            case 37: // left arrow
+                // Make sure to stop event bubbling
+                e.preventDefault();
+                e.stopPropagation();
+                SpoonflowerNavigation.closeAllSubnav();
+                SpoonflowerNavigation.showSubnav(prevLink);
+                // This is the first item in the top level mega menu list
+                if(link.parent('li').prevAll('li').filter(':visible').first().length == 0) {
+                    // Focus on the last item in the top level
+                    link.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
+                } else {
+                    // Focus on the previous item in the top level
+                    link.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
+                }
+                break;
+            case 38: /// up arrow
+                // Find the nested element that acts as the menu
+                var dropdown = link.parent('li').find('.subnav');
+                // SpoonflowerNavigation.closeAllSubnav();
+
+                // If there is a UL available, place focus on the first focusable element within
+                if(dropdown.length > 0){
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    dropdown.find('.nav-link').filter(':visible').first().focus();
+                }
+
+                break;
+            case 39: // right arrow
+                // Make sure to stop event bubbling
+                e.preventDefault();
+                e.stopPropagation();
+                SpoonflowerNavigation.closeAllSubnav();
+                SpoonflowerNavigation.showSubnav(nextLink);
+
+                // This is the last item
+                if(link.parent('li').nextAll('li').filter(':visible').first().length == 0) {
+                  // SpoonflowerNavigation.closeAllSubnav();
+                  // Focus on the first item in the top level
+                  link.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
+                  // SpoonflowerNavigation.showSubnav(link);
+                } else {
+                    // Focus on the next item in the top level
+                    link.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
+                }
+                break;
+            case 40: // down arrow
+                // Find the nested element that acts as the menu
+                var dropdown = link.parent('li').find('.subnav');
+                SpoonflowerNavigation.showSubnav(link);
+
+                // If there is a UL available, place focus on the first focusable element within
+                if(dropdown.length > 0){
+                    // Make sure to stop event bubbling
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    dropdown.find('.nav-link').filter(':visible').first().focus();
+                }
+                break;
+        }
+    });
+
+
+
+    // $('.subnav').mouseover(function() {
+    //   // console.log('mouseover .subnav');
+    //   SpoonflowerNavigation.stayOpen($(this));
+    // });
+    //
+    // $('.subnav').mouseleave(function(){
+    //   // console.log('mouseleave .subnav');
+    //   // if in a subnav
+    //   if($('.subnav:hover').length == 0) {
+    //     SpoonflowerNavigation.subnavState = false;
+    //     // console.log('in mouseleave');
+    //     SpoonflowerNavigation.closeAllSubnav();
+    //   }
+    // });
+    //
+    // $('nav').mouseleave(function(){
+    //   // console.log('mouseleave nav');
+    //   SpoonflowerNavigation.subnavState = false;
+    //   SpoonflowerNavigation.closeAllSubnav();
+    // });
 
   },
 
