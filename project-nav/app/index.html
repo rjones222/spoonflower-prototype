@@ -23,7 +23,7 @@
     <!-- endbuild -->
   </head>
   <body>
-    <a class="screen-reader screen-reader-focusable" href="#main">Skip to the main content</a>
+    <a class="screen-reader screen-reader-focusable screen-reader-top" href="#main">Skip to the main content</a>
     <header class="site_header">
       <div class="h_bar">
         <div id="hBar" class="h_bar-container is-collapsed">
@@ -60,7 +60,7 @@
                   <option value="collections">Collections</option>
                 </select>
               </div>
-              <button class="btn btn-select" aria-hidden="true">
+              <button class="btn btn-select" aria-hidden="true" tabindex="-1">
                 <i class="icon icon_chevron_down" aria-hidden="true"></i>
               </button>
               <input type="text" class="search_input" />
@@ -11313,7 +11313,7 @@
     <main id="main" class="content_wrap">
       <dl id="whatIsSpoonflower" class="spoonflower_definition">
         <dt>
-          Custom printed <span>fabric and more <i class="icon icon_chevron_down"></i></span>
+          Custom printed <span tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
         </dt>
         <dd class="display_none">
           <p>The world’s largest marketplace of indie designs for custom,
@@ -11325,9 +11325,9 @@
             <li>Home Decor (via Roostery)</li>
             <li>Cut & Sew (via Sprout Patterns)</li>
           </ul>
-          <a href="#" class="btn btn-primary">Shop</a>
-          <a href="#" class="btn btn-primary">Design</a>
-          <a href="#" class="btn btn-primary">Sell</a>
+          <a href="http://www.spoonflower.com/shop" class="btn btn-primary">Shop</a>
+          <a href="http://www.spoonflower.com/create" class="btn btn-primary">Design</a>
+          <a href="http://www.spoonflower.com/sell" class="btn btn-primary">Sell</a>
         </dd>
       </dl>
       <div class="placeholder">

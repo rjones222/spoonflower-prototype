@@ -43,6 +43,7 @@ var SpoonflowerNavigation = {
      SpoonflowerNavigation.touchSubnavOpen();
      SpoonflowerNavigation.desktopSubnav();
      SpoonflowerNavigation.desktopFlyout();
+     SpoonflowerNavigation.keyboardAccessibility();
   },
   /**
    * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
@@ -201,13 +202,61 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * displays dropdown with details on what we do
+   * toggles visibility of dropdown with details on what we do
    */
-  showDefinition: function() {
-    $('.spoonflower_definition dt').click(function(e){
-      $(this).find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
+  showDefinition: function(){
+    /**
+     * the element that triggers the events
+     */
+    var $definitionToggle = $('.spoonflower_definition span');
+    /**
+     * toggles down and up icons, toggles visibility of definition
+     */
+    function showDef() {
+      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
       $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
-    })
+    }
+
+    /**
+     * click handler
+     */
+    $definitionToggle.on('click', function() {
+      showDef();
+    });
+
+    /**
+     * keydown handler
+     * 13 = 'enter' or 27 = 'esc'
+     */
+    $definitionToggle.on('keydown', function(e) {
+      if(e.which == 13 || e.which == 27) {
+        showDef();
+      }
+    });
+
+    /**
+     * Escape the box if keyboard focused on links - overkill?
+     * @param  {jQuery} '.spoonflower_definition .btn-primary:focus' - buttons within Definition block
+     */
+    $('.spoonflower_definition .btn-primary').on('keydown', function(e) {
+      if(e.which == 27) {
+        showDef();
+      }
+    });
+
+  },
+
+  /**
+   * kitchen sink accessibility functions
+   */
+  keyboardAccessibility: function() {
+
+    $('.btn-back_to_top').on('keydown', function(e) {
+      if(e.which == 13) {
+        $('.screen-reader-top').focus();
+      }
+    });
+
   },
 
   /**
