@@ -20,7 +20,7 @@
   &:hover {
     color: $nav-hover;
   }
-  &.activateTouchLink {
+  &.activateLink {
     background-color: $polar;
     color: $smalt_blue;
   }
@@ -396,7 +396,7 @@
 
   .subnav {
     > li:first-child {
-      padding-top: .6rem;
+      padding-top: .55rem;
     }
     > li:last-child {
       padding-bottom: .6rem;
@@ -431,7 +431,7 @@
   .nav-link.nl-lvl2 {
     padding: .333rem 0 .5rem 1rem;
     width: 100%;
-    &.activateTouchLink {
+    &.activateLink {
       padding: .333rem .7rem;
       width: auto;
     }
@@ -441,7 +441,7 @@
   .nav-link.nl-lvl5 {
     padding: .333rem 0 .3rem .5rem;
     width: 100%;
-    &.activateTouchLink {
+    &.activateLink {
       padding: .325rem .7rem;
       width: auto;
     }
@@ -472,7 +472,7 @@
         top: .3rem;
       }
     }
-    > .activateTouchLink.active {
+    > .activateLink.active {
       &:after {
         left: 8.5rem;
         right: auto;
@@ -685,7 +685,7 @@
   }
 
   .subnav .has_subnav {
-    > .activateTouchLink.active {
+    > .activateLink.active {
       margin-left: .3rem;
       &:after {
         left: 11.2rem;

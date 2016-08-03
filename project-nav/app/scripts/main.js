@@ -85,12 +85,12 @@ var SpoonflowerNavigation = {
       var $el = $(this);
       var link = $el.attr('href');
       // console.log('.nav-link-primary on touchstart');
-      if($el.hasClass('activateTouchLink')) {
+      if($el.hasClass('activateLink')) {
         window.location = link;
       }
       else {
-        $('.nav-link').removeClass('activateTouchLink');
-        $el.addClass('activateTouchLink');
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         // show Subnav on iPad portrait and larger touch screens,
@@ -119,14 +119,14 @@ var SpoonflowerNavigation = {
         e.preventDefault();
         var $el = $(this);
         var link = $el.attr('href');
-        if($el.hasClass('activateTouchLink')) {
+        if($el.hasClass('activateLink')) {
           // console.log('touched activated subnav link');
           window.location = link;
         }
         else {
           // console.log('touched subnav link');
-          $('.nav-link').removeClass('activateTouchLink');
-          $el.addClass('activateTouchLink');
+          $('.nav-link').removeClass('activateLink');
+          $el.addClass('activateLink');
           var $navlinkParent = $($el).parent();
           // open submenu as accordion
           // console.log("opening accordion");
@@ -152,9 +152,9 @@ var SpoonflowerNavigation = {
     $li.addClass('is-active');
     $li.children('ul').addClass('menu-visible');
     // deactivate active nav-link
-    $('.nav-link').removeClass('activateTouchLink');
+    $('.nav-link').removeClass('activateLink');
     // activate nav-link button
-    $li.children('.nav-link').addClass('activateTouchLink');
+    $li.children('.nav-link').addClass('activateLink');
   },
 
   /**
@@ -165,7 +165,7 @@ var SpoonflowerNavigation = {
     // console.log('in collapseMenu');
     // reset the class on the target
     $li.removeClass('is-active');
-    $li.find('.nav-link').removeClass('activateTouchLink');
+    $li.find('.nav-link').removeClass('activateLink');
     $li.find('ul').removeClass('menu-visible');
   },
 
@@ -175,7 +175,7 @@ var SpoonflowerNavigation = {
   collapseAllSubnavs: function() {
     // console.log('in collapseAllSubnavs');
     $('.has_subnav').removeClass('is-active');
-    $('.nav-link').removeClass('activateTouchLink');
+    $('.nav-link').removeClass('activateLink');
     // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
     $('ul').removeClass('menu-visible');
   },
@@ -264,95 +264,259 @@ var SpoonflowerNavigation = {
     });
 
     /**
-     * Use arrow controls to navigate subnav
-     * starting point: http://simplyaccessible.com/article/arrow-key-navigation/
+     * Use arrow controls to navigate primary nav
+     * inspiration: http://simplyaccessible.com/article/arrow-key-navigation/
      */
     $('.nav-link-primary').keydown(function(e){
-        // Listen for the up, down, left and right arrow keys, otherwise, end here
-        if ([13,37,38,39,40].indexOf(e.which) == -1) {
-            return;
-        }
+      // Listen for the up, down, left and right arrow keys, otherwise, end here
+      if ([13,37,38,39,40].indexOf(e.which) == -1) {
+        return;
+      }
 
-        // Store the reference to our top level link
-        var link = $(this);
-        // ... the previous top level link
-        var prevLink = link.parent('li').prev('.has_subnav').find('.nav-link-primary');
-        // ... the next top level link
-        var nextLink = link.parent('li').next('.has_subnav').find('.nav-link-primary');
+      // Store the reference to our top level link
+      var $navLink = $(this);
+      // ... the previous top level link
+      var $prevLink = $navLink.parent('li').prev('.has_subnav').find('.nav-link-primary');
+      // ... the next top level link
+      var $nextLink = $navLink.parent('li').next('.has_subnav').find('.nav-link-primary');
 
-        switch(e.which) {
-            case 13: // enter
-                // Make sure to stop event bubbling
-                e.preventDefault();
-                e.stopPropagation();
-                SpoonflowerNavigation.closeSubnav(link);
-                SpoonflowerNavigation.showSubnav(link);
-                break;
-            case 37: // left arrow
-                // Make sure to stop event bubbling
-                e.preventDefault();
-                e.stopPropagation();
-                SpoonflowerNavigation.closeAllSubnav();
-                SpoonflowerNavigation.showSubnav(prevLink);
-                // This is the first item in the top level mega menu list
-                if(link.parent('li').prevAll('li').filter(':visible').first().length == 0) {
-                    // Focus on the last item in the top level
-                    link.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
-                } else {
-                    // Focus on the previous item in the top level
-                    link.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
-                }
-                break;
-            case 38: /// up arrow
-                // Find the nested element that acts as the menu
-                var dropdown = link.parent('li').find('.subnav');
-                // SpoonflowerNavigation.closeAllSubnav();
+      switch(e.which) {
+        case 13: // enter
+          // Make sure to stop event bubbling
+          e.preventDefault();
+          e.stopPropagation();
+          SpoonflowerNavigation.closeSubnav($navLink);
+          var link = $navLink.attr('href');
+          if($navLink.hasClass('activateLink')) {
+            window.location = link;
+          }
+          else {
+            $navLink.addClass('activateLink');
+            SpoonflowerNavigation.showSubnav($navLink);
+          }
+          break;
+        case 37: // left arrow
+          // Make sure to stop event bubbling
+          e.preventDefault();
+          e.stopPropagation();
+          SpoonflowerNavigation.subnavState = false;
+          SpoonflowerNavigation.closeAllSubnav();
+          SpoonflowerNavigation.showSubnav($prevLink);
+          // This is the first item in the top level mega menu list
+          if($navLink.parent('li').prevAll('li').filter(':visible').first().length == 0) {
+            // Focus on the last item in the top level
+            $navLink.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
+          } else {
+            // Focus on the previous item in the top level
+            $navLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
+          }
+          break;
+        case 38: /// up arrow
+          // Find the nested element that acts as the menu
+          var $dropdown = $navLink.parent('li').find('.subnav');
+          // SpoonflowerNavigation.closeAllSubnav();
 
-                // If there is a UL available, place focus on the first focusable element within
-                if(dropdown.length > 0){
-                    e.preventDefault();
-                    e.stopPropagation();
+          // If there is a UL available, place focus on the first focusable element within
+          if($dropdown.length > 0){
+            e.preventDefault();
+            e.stopPropagation();
 
-                    dropdown.find('.nav-link').filter(':visible').first().focus();
-                }
+            $dropdown.find('.nav-link').filter(':visible').first().focus();
+          }
 
-                break;
-            case 39: // right arrow
-                // Make sure to stop event bubbling
-                e.preventDefault();
-                e.stopPropagation();
-                SpoonflowerNavigation.closeAllSubnav();
-                SpoonflowerNavigation.showSubnav(nextLink);
+          break;
+        case 39: // right arrow
+          // Make sure to stop event bubbling
+          e.preventDefault();
+          e.stopPropagation();
+          SpoonflowerNavigation.subnavState = false;
+          SpoonflowerNavigation.closeAllSubnav();
+          SpoonflowerNavigation.showSubnav($nextLink);
 
-                // This is the last item
-                if(link.parent('li').nextAll('li').filter(':visible').first().length == 0) {
-                  // SpoonflowerNavigation.closeAllSubnav();
-                  // Focus on the first item in the top level
-                  link.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
-                  // SpoonflowerNavigation.showSubnav(link);
-                } else {
-                    // Focus on the next item in the top level
-                    link.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
-                }
-                break;
-            case 40: // down arrow
-                // Find the nested element that acts as the menu
-                var dropdown = link.parent('li').find('.subnav');
-                SpoonflowerNavigation.showSubnav(link);
+          // This is the last item
+          if($navLink.parent('li').nextAll('li').filter(':visible').first().length == 0) {
+            // SpoonflowerNavigation.closeAllSubnav();
+            // Focus on the first item in the top level
+            $navLink.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
+            // SpoonflowerNavigation.showSubnav(link);
+          } else {
+            // Focus on the next item in the top level
+            $navLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
+          }
+          break;
+        case 40: // down arrow
+          // Find the nested element that acts as the menu
+          var $dropdown = $navLink.parent('li').find('.subnav');
+          // SpoonflowerNavigation.showSubnav($navLink);
 
-                // If there is a UL available, place focus on the first focusable element within
-                if(dropdown.length > 0){
-                    // Make sure to stop event bubbling
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    dropdown.find('.nav-link').filter(':visible').first().focus();
-                }
-                break;
-        }
+          // If there is a UL available, place focus on the first focusable element within
+          if($dropdown.length > 0){
+            // Make sure to stop event bubbling
+            // e.preventDefault();
+            // e.stopPropagation();
+            //
+            // $dropdown.find('.nav-link').filter(':visible').first().focus();
+            // $navLink.addClass('activateLink');
+            e.stopPropagation();
+            e.preventDefault();
+            var $el = $dropdown.find('.nav-link').filter(':visible').first().focus();
+            var link = $el.attr('href');
+            // console.log('in touchOpenFlyout()');
+            if($el.hasClass('activateLink')) {
+              window.location = link;
+            }
+            else {
+              $('.nav-link').removeClass('activateLink');
+              $el.addClass('activateLink');
+              SpoonflowerNavigation.flyoutOpen($el);
+              // user able to tab into submenu
+            }
+          }
+          break;
+      }
     });
 
+    /**
+     * Use arrow controls to navigate subnav menus
+     */
+    $('.nl-lvl2').keydown(function(e){
+      // Listen for the enter, up, down, left and right arrow keys, otherwise, end here
+      if ([13,37,38,39,40].indexOf(e.which) == -1) {
+        return;
+      }
 
+      // Store the reference to our top level link
+      var $subnavLink = $(this);
+      // ... the previous top level link
+      var $prevSnLink = $subnavLink.parent('li').prev('.has_subnav').children('.nav-link');
+      // ... the next top level link
+      var $nextSnLink = $subnavLink.parent('li').next('.has_subnav').children('.nav-link');
+
+      switch(e.which) {
+        // case 13: // enter
+        //   // Make sure to stop event bubbling
+        //   e.preventDefault();
+        //   e.stopPropagation();
+        //   var snLink = $subnavLink.attr('href');
+        //   if($subnavLink.hasClass('activateLink')) {
+        //     window.location = snLink;
+        //   }
+        //   else {
+        //     $subnavLink.addClass('activateLink');
+        //     SpoonflowerNavigation.flyoutOpen($subnavLink);
+        //   }
+        //   break;
+        // case 37: // left arrow
+        //   // Make sure to stop event bubbling
+        //   e.preventDefault();
+        //   e.stopPropagation();
+        //   SpoonflowerNavigation.closeAllSubnav();
+        //   SpoonflowerNavigation.showSubnav($prevLink);
+        //   // This is the first item in the top level mega menu list
+        //   if($navLink.parent('li').prevAll('li').filter(':visible').first().length == 0) {
+        //     // Focus on the last item in the top level
+        //     $navLink.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
+        //   } else {
+        //     // Focus on the previous item in the top level
+        //     $navLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
+        //   }
+        //   break;
+      //   case 38: /// up arrow
+      //     // Find the nested element that acts as the menu
+      //     var $dropdown = $navLink.parent('li').find('.subnav');
+      //     // SpoonflowerNavigation.closeAllSubnav();
+      //
+      //     // If there is a UL available, place focus on the first focusable element within
+      //     if($dropdown.length > 0){
+      //       e.preventDefault();
+      //       e.stopPropagation();
+      //
+      //       $dropdown.find('.nav-link').filter(':visible').first().focus();
+      //     }
+      //
+      //     break;
+      //   case 39: // right arrow
+      //     // Make sure to stop event bubbling
+      //     e.preventDefault();
+      //     e.stopPropagation();
+      //     SpoonflowerNavigation.closeAllSubnav();
+      //     SpoonflowerNavigation.showSubnav($nextLink);
+      //
+      //     // This is the last item
+      //     if($navLink.parent('li').nextAll('li').filter(':visible').first().length == 0) {
+      //       // SpoonflowerNavigation.closeAllSubnav();
+      //       // Focus on the first item in the top level
+      //       $navLink.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
+      //       // SpoonflowerNavigation.showSubnav(link);
+      //     } else {
+      //       // Focus on the next item in the top level
+      //       $navLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
+      //     }
+      //     break;
+        case 40: // down arrow
+          e.preventDefault();
+          e.stopPropagation();
+          var snLink = $subnavLink.attr('href');
+          if($subnavLink.hasClass('activateLink')) {
+            $subnavLink.on('keydown', function(e) {
+              if(e.which == 13) {
+                window.location = snLink;
+              }
+            });
+          }
+          else {
+            $subnavLink.addClass('activateLink');
+          }
+          // This is the last item
+          if($subnavLink.parent('li').nextAll('li').filter(':visible').first().length == 0) {
+            // SpoonflowerNavigation.closeAllSubnav();
+            // Focus on the first item in the subnav level
+            $subnavLink.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus().addClass('activateLink');
+            SpoonflowerNavigation.subnavState = false;
+            SpoonflowerNavigation.flyoutClose($subnavLink);
+            if($nextSnLink.parent().hasClass('has_subnav')) {
+              SpoonflowerNavigation.flyoutOpen($nextSnLink);
+            }
+          } else {
+            // Focus on the next item in the subnav level
+            $subnavLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus().addClass('activateLink');
+            SpoonflowerNavigation.subnavState = false;
+            SpoonflowerNavigation.flyoutClose($subnavLink);
+            if($nextSnLink.parent().hasClass('has_subnav')) {
+              SpoonflowerNavigation.flyoutOpen($nextSnLink);
+            }
+          }
+          break;
+          // // Find the nested element that acts as the menu
+          // var $dropdown = $navLink.parent('li').find('.subnav');
+          // // SpoonflowerNavigation.showSubnav($navLink);
+          //
+          // // If there is a UL available, place focus on the first focusable element within
+          // if($dropdown.length > 0){
+          //   // Make sure to stop event bubbling
+          //   // e.preventDefault();
+          //   // e.stopPropagation();
+          //   //
+          //   // $dropdown.find('.nav-link').filter(':visible').first().focus();
+          //   // $navLink.addClass('activateLink');
+          //   e.stopPropagation();
+          //   e.preventDefault();
+          //   var $el = $dropdown.find('.nav-link').filter(':visible').first().focus();
+          //   var link = $el.attr('href');
+          //   // console.log('in touchOpenFlyout()');
+          //   if($el.hasClass('activateLink')) {
+          //     window.location = link;
+          //   }
+          //   else {
+          //     $('.nav-link').removeClass('activateLink');
+          //     $el.addClass('activateLink');
+          //     SpoonflowerNavigation.flyoutOpen($el);
+          //     // user able to tab into submenu
+          //   }
+          // }
+          break;
+      }
+    });
 
     // $('.subnav').mouseover(function() {
     //   // console.log('mouseover .subnav');
@@ -447,12 +611,12 @@ var SpoonflowerNavigation = {
   //     SpoonflowerNavigation.subnavState = true;
   //     var $el = $(this);
   //     var link = $el.attr('href');
-  //     if($el.hasClass('activateTouchLink')) {
+  //     if($el.hasClass('activateLink')) {
   //       window.location = link;
   //     }
   //     else {
-  //       // $('.nav-link').removeClass('activateTouchLink');
-  //       $el.addClass('activateTouchLink');
+  //       // $('.nav-link').removeClass('activateLink');
+  //       $el.addClass('activateLink');
   //     }
   //     SpoonflowerNavigation.showSubnav($(this));
   //     // add close button
@@ -474,7 +638,7 @@ var SpoonflowerNavigation = {
       // e.stopPropagation();
       // e.preventDefault();
       var $target = $(this).parent().siblings('.nav-link');
-      $target.removeClass('activateTouchLink active');
+      $target.removeClass('activateLink active');
       SpoonflowerNavigation.subnavState = false;
       $(this).remove();
       SpoonflowerNavigation.closeAllSubnav();
@@ -490,12 +654,12 @@ var SpoonflowerNavigation = {
       var $el = $(this);
       var link = $el.attr('href');
       // console.log('in touchOpenFlyout()');
-      if($el.hasClass('activateTouchLink')) {
+      if($el.hasClass('activateLink')) {
         window.location = link;
       }
       else {
-        $('.nav-link').removeClass('activateTouchLink');
-        $el.addClass('activateTouchLink');
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
         SpoonflowerNavigation.flyoutOpen($el);
       }
     });
@@ -530,7 +694,7 @@ var SpoonflowerNavigation = {
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
-      $('.nav-link').removeClass('activateTouchLink, active');
+      $('.nav-link').removeClass('active activateLink');
     }
   },
 
@@ -541,7 +705,7 @@ var SpoonflowerNavigation = {
     if(SpoonflowerNavigation.subnavState == false) {
       // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
       $('.subnav').removeClass('current');
-      $('.has_subnav a').removeClass('active activateTouchLink');
+      $('.has_subnav a').removeClass('active activateLink');
     }
   },
 
@@ -582,7 +746,7 @@ var SpoonflowerNavigation = {
     // console.log('in flyoutClose()');
     // if(SpoonflowerNavigation.flyoutState == false) {
       $target.parent().find('ul').removeClass('current');
-      $target.parent().find('a').removeClass('active');
+      $target.parent().find('a').removeClass('active activateLink');
       // $('.subnav').removeClass('current');
       // $('.has_subnav a').removeClass('active');
     // }
