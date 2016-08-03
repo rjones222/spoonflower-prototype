@@ -379,18 +379,20 @@ var SpoonflowerNavigation = {
     /**
      * Use arrow controls to navigate subnav menus
      */
-    $('.nl-lvl2').keydown(function(e){
-      // Listen for the enter, up, down, left and right arrow keys, otherwise, end here
-      if ([13,37,38,39,40].indexOf(e.which) == -1) {
+    $('.nl-lvl2, .nl-lvl3, .nl-lvl4').keydown(function(e){
+      // Listen for the up and down arrow keys, otherwise, end here
+      if ([38,40].indexOf(e.which) == -1) {
         return;
       }
 
-      // Store the reference to our top level link
+      // Store the reference to our 2nd level link
       var $subnavLink = $(this);
-      // ... the previous top level link
+      // ... the previous 2nd level link
       var $prevSnLink = $subnavLink.parent('li').prev('.has_subnav').children('.nav-link');
-      // ... the next top level link
+      // ... the next 2nd level link
       var $nextSnLink = $subnavLink.parent('li').next('.has_subnav').children('.nav-link');
+      // // ... the first 3rd level link
+      // var $nlv3 = $subnavLink.parent('li').find('.current').children('.nav-link');
 
       switch(e.which) {
         // case 13: // enter
@@ -421,42 +423,55 @@ var SpoonflowerNavigation = {
         //     $navLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
         //   }
         //   break;
-      //   case 38: /// up arrow
-      //     // Find the nested element that acts as the menu
-      //     var $dropdown = $navLink.parent('li').find('.subnav');
-      //     // SpoonflowerNavigation.closeAllSubnav();
-      //
-      //     // If there is a UL available, place focus on the first focusable element within
-      //     if($dropdown.length > 0){
-      //       e.preventDefault();
-      //       e.stopPropagation();
-      //
-      //       $dropdown.find('.nav-link').filter(':visible').first().focus();
-      //     }
-      //
-      //     break;
-      //   case 39: // right arrow
-      //     // Make sure to stop event bubbling
-      //     e.preventDefault();
-      //     e.stopPropagation();
-      //     SpoonflowerNavigation.closeAllSubnav();
-      //     SpoonflowerNavigation.showSubnav($nextLink);
-      //
-      //     // This is the last item
-      //     if($navLink.parent('li').nextAll('li').filter(':visible').first().length == 0) {
-      //       // SpoonflowerNavigation.closeAllSubnav();
-      //       // Focus on the first item in the top level
-      //       $navLink.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
-      //       // SpoonflowerNavigation.showSubnav(link);
-      //     } else {
-      //       // Focus on the next item in the top level
-      //       $navLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
-      //     }
-      //     break;
+        case 38: /// up arrow
+          e.preventDefault();
+          e.stopPropagation();
+          // store subnavLink href
+          var snLink = $subnavLink.attr('href');
+          // follow the link on keydown enter
+          if($subnavLink.hasClass('activateLink')) {
+            $subnavLink.on('keydown', function(e) {
+              if(e.which == 13) {
+                window.location = snLink;
+              }
+            });
+          }
+          else {
+            $subnavLink.addClass('activateLink');
+          }
+          // This is the first item
+          if($subnavLink.parent('li').prevAll('li').filter(':visible').first().length == 0) {
+            // SpoonflowerNavigation.closeAllSubnav();
+            // Focus on the last item in the subnav level
+            $subnavLink.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus().addClass('activateLink');
+            SpoonflowerNavigation.subnavState = false;
+            SpoonflowerNavigation.flyoutClose($subnavLink);
+            if($prevSnLink.parent().hasClass('has_subnav')) {
+              SpoonflowerNavigation.flyoutOpen($prevSnLink);
+            }
+          } else {
+            // Focus on the previous item in the subnav level
+            $subnavLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus().addClass('activateLink');
+            SpoonflowerNavigation.subnavState = false;
+            SpoonflowerNavigation.flyoutClose($subnavLink);
+            if($prevSnLink.parent().hasClass('has_subnav')) {
+              SpoonflowerNavigation.flyoutOpen($prevSnLink);
+            }
+          }
+          break;
+        // case 39: // right arrow
+        //   // Make sure to stop event bubbling
+        //   e.preventDefault();
+        //   e.stopPropagation();
+        //   //
+        //
+        //   break;
         case 40: // down arrow
           e.preventDefault();
           e.stopPropagation();
+          // store subnavLink href
           var snLink = $subnavLink.attr('href');
+          // follow the link on keydown enter
           if($subnavLink.hasClass('activateLink')) {
             $subnavLink.on('keydown', function(e) {
               if(e.which == 13) {
@@ -487,57 +502,8 @@ var SpoonflowerNavigation = {
             }
           }
           break;
-          // // Find the nested element that acts as the menu
-          // var $dropdown = $navLink.parent('li').find('.subnav');
-          // // SpoonflowerNavigation.showSubnav($navLink);
-          //
-          // // If there is a UL available, place focus on the first focusable element within
-          // if($dropdown.length > 0){
-          //   // Make sure to stop event bubbling
-          //   // e.preventDefault();
-          //   // e.stopPropagation();
-          //   //
-          //   // $dropdown.find('.nav-link').filter(':visible').first().focus();
-          //   // $navLink.addClass('activateLink');
-          //   e.stopPropagation();
-          //   e.preventDefault();
-          //   var $el = $dropdown.find('.nav-link').filter(':visible').first().focus();
-          //   var link = $el.attr('href');
-          //   // console.log('in touchOpenFlyout()');
-          //   if($el.hasClass('activateLink')) {
-          //     window.location = link;
-          //   }
-          //   else {
-          //     $('.nav-link').removeClass('activateLink');
-          //     $el.addClass('activateLink');
-          //     SpoonflowerNavigation.flyoutOpen($el);
-          //     // user able to tab into submenu
-          //   }
-          // }
-          break;
       }
     });
-
-    // $('.subnav').mouseover(function() {
-    //   // console.log('mouseover .subnav');
-    //   SpoonflowerNavigation.stayOpen($(this));
-    // });
-    //
-    // $('.subnav').mouseleave(function(){
-    //   // console.log('mouseleave .subnav');
-    //   // if in a subnav
-    //   if($('.subnav:hover').length == 0) {
-    //     SpoonflowerNavigation.subnavState = false;
-    //     // console.log('in mouseleave');
-    //     SpoonflowerNavigation.closeAllSubnav();
-    //   }
-    // });
-    //
-    // $('nav').mouseleave(function(){
-    //   // console.log('mouseleave nav');
-    //   SpoonflowerNavigation.subnavState = false;
-    //   SpoonflowerNavigation.closeAllSubnav();
-    // });
 
   },
 
@@ -600,35 +566,6 @@ var SpoonflowerNavigation = {
     });
   },
 
-  // /**
-  //  * handle touch events, create a close button
-  //  */
-  // touchOpenSubnav: function() {
-  //   $('.nav-link-primary').on('touchstart', function(e){
-  //     // console.log('in touchOpenSubnav()');
-  //     e.stopPropagation();
-  //     e.preventDefault();
-  //     SpoonflowerNavigation.subnavState = true;
-  //     var $el = $(this);
-  //     var link = $el.attr('href');
-  //     if($el.hasClass('activateLink')) {
-  //       window.location = link;
-  //     }
-  //     else {
-  //       // $('.nav-link').removeClass('activateLink');
-  //       $el.addClass('activateLink');
-  //     }
-  //     SpoonflowerNavigation.showSubnav($(this));
-  //     // add close button
-  //     // var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i></button>';
-  //     // var $menu = $el.parent().children('ul');
-  //     // $(closeButton).appendTo($menu);
-  //     // enable close
-  //     SpoonflowerNavigation.touchCloseSubnav();
-  //     // enable flyouts
-  //     SpoonflowerNavigation.touchOpenFlyout();
-  //   });
-  // },
   /**
    * close the subnav using generated close button
    */
@@ -725,7 +662,6 @@ var SpoonflowerNavigation = {
    */
   flyoutOpen: function($target) {
     // console.log('in flyoutOpen()');
-    // SpoonflowerNavigation.flyoutState = true;
     // remove previously set classes
     $target.parent().parent().find('ul').removeClass('current');
     $target.parent().parent().find('a').removeClass('active');
