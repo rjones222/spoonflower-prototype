@@ -45,6 +45,52 @@ var SpoonflowerNavigation = {
      SpoonflowerNavigation.desktopFlyout();
      SpoonflowerNavigation.keyboardAccessibility();
   },
+
+  /**
+   * toggles visibility of dropdown with details on what we do
+   */
+  showDefinition: function(){
+    /**
+     * the element that triggers the events
+     */
+    var $definitionToggle = $('.spoonflower_definition span');
+    /**
+     * toggles down and up icons, toggles visibility of definition
+     */
+    function showDef() {
+      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
+      $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
+    }
+
+    /**
+     * click handler
+     */
+    $definitionToggle.on('click', function() {
+      showDef();
+    });
+
+    /**
+     * keydown handler
+     * 13 = 'enter' or 27 = 'esc'
+     */
+    $definitionToggle.on('keydown', function(e) {
+      if(e.which == 13 || e.which == 27) {
+        showDef();
+      }
+    });
+
+    /**
+     * Escape the box if keyboard focused on links - overkill?
+     * @param  {jQuery} '.spoonflower_definition .btn-primary:focus' - buttons within Definition block
+     */
+    $('.spoonflower_definition .btn-primary').on('keydown', function(e) {
+      if(e.which == 27) {
+        showDef();
+      }
+    });
+
+  },
+
   /**
    * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
    */
@@ -141,109 +187,58 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * open the subnav menu
-   * @param  {jQuery} $li - the subnav <li>
+   * begin desktop navigation functionality
+   * hover top level navigation to show subnav
    */
-  openMenu: function($li) {
-    // close all other open menus
-    $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
-    // set the class, make menu visible
-    // $li.attr('class', 'has_subnav is-active');
-    $li.addClass('is-active');
-    $li.children('ul').addClass('menu-visible');
-    // deactivate active nav-link
-    $('.nav-link').removeClass('activateLink');
-    // activate nav-link button
-    $li.children('.nav-link').addClass('activateLink');
-  },
-
-  /**
-   * collapse menu
-   * @param  {jQuery} $li - the subnav <li>
-   */
-  collapseMenu: function($li) {
-    // console.log('in collapseMenu');
-    // reset the class on the target
-    $li.removeClass('is-active');
-    $li.find('.nav-link').removeClass('activateLink');
-    $li.find('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * collapse all the subnavs
-   */
-  collapseAllSubnavs: function() {
-    // console.log('in collapseAllSubnavs');
-    $('.has_subnav').removeClass('is-active');
-    $('.nav-link').removeClass('activateLink');
-    // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
-    $('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * collapse child subnavs
-   * @param  {jQuery} $target - the subnav <li>
-   */
-  collapseChildSubnavs: function($target) {
-    var $li = $target;
-    $li.attr('class', 'has_subnav');
-    $li.find('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * toggles topmost header nav icon visibility, changes login button text
-   */
-  loggedIn: function() {
-    $('.btn-login').click(function(e){
-      e.preventDefault();
-      $('#hBar').toggleClass('is-loggedin');
-      $('.btn-login').toggleText('Login', 'Logout');
-    });
-  },
-
-  /**
-   * toggles visibility of dropdown with details on what we do
-   */
-  showDefinition: function(){
-    /**
-     * the element that triggers the events
-     */
-    var $definitionToggle = $('.spoonflower_definition span');
-    /**
-     * toggles down and up icons, toggles visibility of definition
-     */
-    function showDef() {
-      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
-      $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
-    }
-
-    /**
-     * click handler
-     */
-    $definitionToggle.on('click', function() {
-      showDef();
+  desktopSubnav: function() {
+    // console.log('in desktopSubnav()');
+    $('.nav-link-primary').mouseover(function(){
+      // console.log('mouseover .nav-link-primary');
+      SpoonflowerNavigation.showSubnav($(this));
     });
 
-    /**
-     * keydown handler
-     * 13 = 'enter' or 27 = 'esc'
-     */
-    $definitionToggle.on('keydown', function(e) {
-      if(e.which == 13 || e.which == 27) {
-        showDef();
+    $('.nav-link-primary').mouseout(function(){
+      // console.log('mouseout .nav-link-primary');
+      SpoonflowerNavigation.closeSubnav($(this));
+    });
+
+    $('.subnav').mouseover(function() {
+      // console.log('mouseover .subnav');
+      SpoonflowerNavigation.stayOpen($(this));
+    });
+
+    $('.subnav').mouseleave(function(){
+      // console.log('mouseleave .subnav');
+      // if in a subnav
+      if($('.subnav:hover').length == 0) {
+        SpoonflowerNavigation.subnavState = false;
+        // console.log('in mouseleave');
+        SpoonflowerNavigation.closeAllSubnav();
       }
     });
 
-    /**
-     * Escape the box if keyboard focused on links - overkill?
-     * @param  {jQuery} '.spoonflower_definition .btn-primary:focus' - buttons within Definition block
-     */
-    $('.spoonflower_definition .btn-primary').on('keydown', function(e) {
-      if(e.which == 27) {
-        showDef();
-      }
+    $('nav').mouseleave(function(){
+      // console.log('mouseleave nav');
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeAllSubnav();
+    });
+  },
+
+  /**
+   * hover subnav links to show more menus
+   */
+  desktopFlyout: function() {
+    // console.log('in desktopFlyout()');
+    $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
+      // console.log('FLYOUT: mouseenter .has_subnav a');
+      SpoonflowerNavigation.flyoutOpen($(this));
     });
 
+    // // remove current and active classes if hovering over items without subnav
+    $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
+      // console.log('FLYOUT: mouseover .subnav-primary > li:not(.has_subnav)');
+      SpoonflowerNavigation.flyoutClose($(this));
+    });
   },
 
   /**
@@ -395,34 +390,6 @@ var SpoonflowerNavigation = {
       // var $nlv3 = $subnavLink.parent('li').find('.current').children('.nav-link');
 
       switch(e.which) {
-        // case 13: // enter
-        //   // Make sure to stop event bubbling
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        //   var snLink = $subnavLink.attr('href');
-        //   if($subnavLink.hasClass('activateLink')) {
-        //     window.location = snLink;
-        //   }
-        //   else {
-        //     $subnavLink.addClass('activateLink');
-        //     SpoonflowerNavigation.flyoutOpen($subnavLink);
-        //   }
-        //   break;
-        // case 37: // left arrow
-        //   // Make sure to stop event bubbling
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        //   SpoonflowerNavigation.closeAllSubnav();
-        //   SpoonflowerNavigation.showSubnav($prevLink);
-        //   // This is the first item in the top level mega menu list
-        //   if($navLink.parent('li').prevAll('li').filter(':visible').first().length == 0) {
-        //     // Focus on the last item in the top level
-        //     $navLink.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
-        //   } else {
-        //     // Focus on the previous item in the top level
-        //     $navLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
-        //   }
-        //   break;
         case 38: /// up arrow
           e.preventDefault();
           e.stopPropagation();
@@ -459,13 +426,6 @@ var SpoonflowerNavigation = {
             }
           }
           break;
-        // case 39: // right arrow
-        //   // Make sure to stop event bubbling
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        //   //
-        //
-        //   break;
         case 40: // down arrow
           e.preventDefault();
           e.stopPropagation();
@@ -505,65 +465,6 @@ var SpoonflowerNavigation = {
       }
     });
 
-  },
-
-  /**
-   * begin desktop navigation functionality
-   * hover top level navigation to show subnav
-   */
-  desktopSubnav: function() {
-    // console.log('in desktopSubnav()');
-    $('.nav-link-primary').mouseover(function(){
-      // console.log('mouseover .nav-link-primary');
-      SpoonflowerNavigation.showSubnav($(this));
-    });
-
-    $('.nav-link-primary').mouseout(function(){
-      // console.log('mouseout .nav-link-primary');
-      SpoonflowerNavigation.closeSubnav($(this));
-    });
-
-    $('.subnav').mouseover(function() {
-      // console.log('mouseover .subnav');
-      SpoonflowerNavigation.stayOpen($(this));
-    });
-
-    $('.subnav').mouseleave(function(){
-      // console.log('mouseleave .subnav');
-      // if in a subnav
-      if($('.subnav:hover').length == 0) {
-        SpoonflowerNavigation.subnavState = false;
-        // console.log('in mouseleave');
-        SpoonflowerNavigation.closeAllSubnav();
-      }
-    });
-
-    $('nav').mouseleave(function(){
-      // console.log('mouseleave nav');
-      SpoonflowerNavigation.subnavState = false;
-      SpoonflowerNavigation.closeAllSubnav();
-    });
-  },
-
-  /**
-   * hover subnav links to show more menus
-   */
-  desktopFlyout: function() {
-    // console.log('in desktopFlyout()');
-    $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
-      // console.log('FLYOUT: mouseenter .has_subnav a');
-      SpoonflowerNavigation.flyoutOpen($(this));
-    });
-
-    // $('.has_subnav a').mouseout(function(){
-    //   // console.log('FLYOUT: mouseout .has_subnav a');
-    //   SpoonflowerNavigation.flyoutClose($(this));
-    // });
-    // // remove current and active classes if hovering over items without subnav
-    $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
-      // console.log('FLYOUT: mouseover .subnav-primary > li:not(.has_subnav)');
-      SpoonflowerNavigation.flyoutClose($(this));
-    });
   },
 
   /**
@@ -672,7 +573,7 @@ var SpoonflowerNavigation = {
     var $position = $target.parent().position();
     $target.parent().children('ul').css('top', -$position.top);
   },
-  //
+  
   /**
    * close the flyout menus
    * @param  {[type]} $target [description]
@@ -687,6 +588,67 @@ var SpoonflowerNavigation = {
       // $('.has_subnav a').removeClass('active');
     // }
   },
+
+  /**
+   * open the subnav menu
+   * @param  {jQuery} $li - the subnav <li>
+   */
+  openMenu: function($li) {
+    // close all other open menus
+    $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
+    // set the class, make menu visible
+    // $li.attr('class', 'has_subnav is-active');
+    $li.addClass('is-active');
+    $li.children('ul').addClass('menu-visible');
+    // deactivate active nav-link
+    $('.nav-link').removeClass('activateLink');
+    // activate nav-link button
+    $li.children('.nav-link').addClass('activateLink');
+  },
+
+  /**
+   * collapse menu
+   * @param  {jQuery} $li - the subnav <li>
+   */
+  collapseMenu: function($li) {
+    // console.log('in collapseMenu');
+    // reset the class on the target
+    $li.removeClass('is-active');
+    $li.find('.nav-link').removeClass('activateLink');
+    $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * collapse all the subnavs
+   */
+  collapseAllSubnavs: function() {
+    // console.log('in collapseAllSubnavs');
+    $('.has_subnav').removeClass('is-active');
+    $('.nav-link').removeClass('activateLink');
+    // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
+    $('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * collapse child subnavs
+   * @param  {jQuery} $target - the subnav <li>
+   */
+  collapseChildSubnavs: function($target) {
+    var $li = $target;
+    $li.attr('class', 'has_subnav');
+    $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * toggles topmost header nav icon visibility, changes login button text
+   */
+  loggedIn: function() {
+    $('.btn-login').click(function(e){
+      e.preventDefault();
+      $('#hBar').toggleClass('is-loggedin');
+      $('.btn-login').toggleText('Login', 'Logout');
+    });
+  }
 };
 
 /**
