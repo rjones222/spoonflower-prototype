@@ -139,9 +139,9 @@
   position: absolute;
   top: 0.5rem;
   left: 1rem;
-  &:focus {
-    outline: unset;
-  }
+  // &:focus {
+  //   outline: unset;
+  // }
   option {
     height: 26px;
     width: 100px;
@@ -224,4 +224,54 @@
       margin-right: 5px;
     }
   }
+}
+
+/**
+ * Accessibility
+ * https://gomakethings.com/hidden-content-for-better-a11y/
+ */
+
+ /**
+  * Visually hide an element, but leave it available for screen readers
+  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
+  * @link http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+  */
+.screen-reader {
+ border: 0;
+ clip: rect(0 0 0 0);
+ height: 1px;
+ margin: -1px;
+ overflow: hidden;
+ padding: 0;
+ position: absolute;
+ width: 1px;
+}
+
+ /**
+  * Extends the .screen-reader class to allow the element to be focusable when navigated to via the keyboard
+  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
+  * @link https://www.drupal.org/node/897638
+  */
+.screen-reader-focusable:active,
+.screen-reader-focusable:focus {
+ background-color: #ffffff;
+ box-sizing: border-box;
+ clip: auto;
+ height: auto;
+ overflow: visible;
+ position: static;
+}
+
+/**
+ * .screen-reader-top added to center this element at top of page
+ */
+.screen-reader-focusable.screen-reader-top:active,
+.screen-reader-focusable.screen-reader-top:focus {
+  display: block; // added to center this link
+  left: 50%;
+  margin: -30px 0 0 -100px; //
+  padding: .8rem;
+  position: absolute;
+  width: 200px; // added to center this link
+  z-index: 1;
 }

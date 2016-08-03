@@ -20,7 +20,7 @@
   &:hover {
     color: $nav-hover;
   }
-  &.activateTouchLink {
+  &.activateLink {
     background-color: $polar;
     color: $smalt_blue;
   }
@@ -396,7 +396,7 @@
 
   .subnav {
     > li:first-child {
-      padding-top: .6rem;
+      padding-top: .55rem;
     }
     > li:last-child {
       padding-bottom: .6rem;
@@ -431,12 +431,20 @@
   .nav-link.nl-lvl2 {
     padding: .333rem 0 .5rem 1rem;
     width: 100%;
+    &.activateLink {
+      padding: .333rem .7rem;
+      width: auto;
+    }
   }
   .nav-link.nl-lvl3,
   .nav-link.nl-lvl4,
   .nav-link.nl-lvl5 {
     padding: .333rem 0 .3rem .5rem;
     width: 100%;
+    &.activateLink {
+      padding: .325rem .7rem;
+      width: auto;
+    }
   }
   // controls right arrow, usage: li.has_subnav
   .subnav .has_subnav > a {
@@ -452,15 +460,24 @@
       }
     }
   }
-  .subnav .has_subnav > .active {
-    position: relative;
-    &:after {
-      font-family: 'spoonflower_icons';
-      content: '\e80e';
-      font-size: .6rem;
-      position: absolute;
-      right: .5rem;
-      top: .3rem;
+  .subnav .has_subnav {
+    > .active {
+      position: relative;
+      &:after {
+        font-family: 'spoonflower_icons';
+        content: '\e80e';
+        font-size: .6rem;
+        position: absolute;
+        right: .5rem;
+        top: .3rem;
+      }
+    }
+    > .activateLink.active {
+      &:after {
+        left: 8.5rem;
+        right: auto;
+        top: .333rem;
+      }
     }
   }
   // subnav level 2 and 3
@@ -664,6 +681,17 @@
   .has_subnav > .active {
     &:after {
       right: 1rem;
+    }
+  }
+
+  .subnav .has_subnav {
+    > .activateLink.active {
+      margin-left: .3rem;
+      &:after {
+        left: 11.2rem;
+        right: auto;
+        top: .333rem;
+      }
     }
   }
 
