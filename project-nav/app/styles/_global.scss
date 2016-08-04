@@ -8,7 +8,8 @@
     margin-top: 2rem;
   }
   @include media($desktop) {
-    margin-top: 1.5rem;
+    // margin-top: 1.45rem;
+    margin-top: 3.45rem;
     padding: 0;
   }
 }
@@ -52,7 +53,8 @@
   @include media($desktop) {
     // position: relative;
     left: 21%;
-    top: -65px;
+    top: -97px;
+    margin-bottom: -16px;
   }
   dt {
     color: $smalt_blue;

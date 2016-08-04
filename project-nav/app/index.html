@@ -11310,7 +11310,8 @@
         </ul>
       </div>
     </div>
-    <main id="main" class="content_wrap">
+    <!-- tabindex is needed here so that esc key can leave navigation and focus on structural element -->
+    <main id="main" class="content_wrap" tabindex="-1">
       <dl id="whatIsSpoonflower" class="spoonflower_definition">
         <dt>
           Custom printed <span tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
@@ -11356,7 +11357,7 @@
             <li>
               <a href="#" class="nav-link nav-link-primary">Sell</a>
             </li>
-            <li>
+            <li class="has_subnav">
               <a href="http://www.spoonflower.com/about" class="nav-link nav-link-primary">About Us</a>
               <ul class="subnav subnav-flyup">
                 <li>
@@ -11376,7 +11377,7 @@
             <li>
               <a href="http://www.spoonflower.com/privacy" class="nav-link nav-link-primary">Privacy</a>
             </li>
-            <li>
+            <li class="has_subnav">
               <a href="#" class="nav-link nav-link-primary">Terms</a>
               <ul class="subnav subnav-flyup">
                 <li>

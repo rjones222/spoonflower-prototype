@@ -40,9 +40,9 @@ var SpoonflowerNavigation = {
      * shared functions
      */
      SpoonflowerNavigation.showDefinition();
-     SpoonflowerNavigation.touchSubnavOpen();
      SpoonflowerNavigation.desktopSubnav();
      SpoonflowerNavigation.desktopFlyout();
+     SpoonflowerNavigation.touchSubnavOpen();
      SpoonflowerNavigation.keyboardAccessibility();
   },
 
@@ -107,86 +107,6 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * Opens the subnav items in an accordion menu for mobile, or as a megamenu for tablet
-   *
-   * $this - li.has_subnav
-   */
-  touchSubnavOpen: function() {
-    $('.has_subnav').on('touchstart', function(e) {
-      e.stopPropagation();
-      // console.log('.has_subnav on touchstart');
-      var $this = $(this);
-      if($this.hasClass('is-active')) {
-        // SpoonflowerNavigation.collapseChildSubnavs($this);
-        SpoonflowerNavigation.collapseMenu($this);
-      }
-      else {
-        SpoonflowerNavigation.openMenu($this);
-      }
-    });
-    $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
-    // $('.has_subnav > a').on('touchstart', function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      var $el = $(this);
-      var link = $el.attr('href');
-      // console.log('.nav-link-primary on touchstart');
-      if($el.hasClass('activateLink')) {
-        window.location = link;
-      }
-      else {
-        $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
-        // open the menu item if touched
-        var $navlinkParent = $($el).parent();
-        // show Subnav on iPad portrait and larger touch screens,
-        if(SpoonflowerNavigation.windowWidth > '767') {
-          SpoonflowerNavigation.showSubnav($el);
-          // enable touchOpenFlyout
-          SpoonflowerNavigation.touchOpenFlyout();
-          // add close button
-          var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
-          if($('.btn-touch_close').length == 0) {
-            $(closeButton).appendTo($('nav'));
-            // enable close
-            SpoonflowerNavigation.touchCloseSubnav();
-          }
-        } else {
-          // else open submenu as accordion
-          // console.log("opening accordion");
-          SpoonflowerNavigation.openMenu($navlinkParent);
-        }
-      }
-    });
-    // mobile link behaviors
-    if(SpoonflowerNavigation.windowWidth < '768') {
-      $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-        var $el = $(this);
-        var link = $el.attr('href');
-        if($el.hasClass('activateLink')) {
-          // console.log('touched activated subnav link');
-          window.location = link;
-        }
-        else {
-          // console.log('touched subnav link');
-          $('.nav-link').removeClass('activateLink');
-          $el.addClass('activateLink');
-          var $navlinkParent = $($el).parent();
-          // open submenu as accordion
-          // console.log("opening accordion");
-          SpoonflowerNavigation.openMenu($navlinkParent);
-        }
-      });
-    }
-    $('.subnav li').not('.has_subnav').on('touchstart', function(e){
-      e.stopPropagation();
-      // console.log('stopPropagation');
-    });
-  },
-
-  /**
    * begin desktop navigation functionality
    * hover top level navigation to show subnav
    */
@@ -242,9 +162,279 @@ var SpoonflowerNavigation = {
   },
 
   /**
+   * Opens the subnav items in an accordion menu for mobile, or as a megamenu for tablet
+   *
+   * $this - li.has_subnav
+   */
+  touchSubnavOpen: function() {
+    $('.has_subnav').on('touchstart', function(e) {
+      e.stopPropagation();
+      // console.log('.has_subnav on touchstart');
+      var $this = $(this);
+      if($this.hasClass('is-active')) {
+        // SpoonflowerNavigation.collapseChildSubnavs($this);
+        SpoonflowerNavigation.collapseMenu($this);
+      }
+      else {
+        SpoonflowerNavigation.openMenu($this);
+      }
+    });
+    $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
+    // $('.has_subnav > a').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      // console.log('.nav-link-primary on touchstart');
+      if($el.hasClass('activateLink')) {
+        window.location = link;
+      }
+      else {
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        // open the menu item if touched
+        var $navlinkParent = $($el).parent();
+        // show Subnav on iPad portrait and larger touch screens,
+        if(SpoonflowerNavigation.windowWidth > '767') {
+          SpoonflowerNavigation.showSubnav($el);
+          // initialize touchOpenFlyout
+          SpoonflowerNavigation.touchOpenFlyout();
+          // remove any touch close button
+          $('.btn-touch_close').remove();
+          // add close button
+          var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+          // if opened from footer append to ul.subnav-flyup else append to <nav>
+          if($el.next().hasClass('subnav-flyup')) {
+            $(closeButton).appendTo($el.next());
+          } else {
+            $(closeButton).appendTo($('nav'));
+          }
+          // initialize close
+          SpoonflowerNavigation.touchCloseSubnav();
+        } else {
+          // else open submenu as accordion
+          // console.log("opening accordion");
+          SpoonflowerNavigation.openMenu($navlinkParent);
+        }
+      }
+    });
+    // mobile link behaviors
+    if(SpoonflowerNavigation.windowWidth < '768') {
+      $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        var $el = $(this);
+        var link = $el.attr('href');
+        if($el.hasClass('activateLink')) {
+          // console.log('touched activated subnav link');
+          window.location = link;
+        }
+        else {
+          // console.log('touched subnav link');
+          $('.nav-link').removeClass('activateLink');
+          $el.addClass('activateLink');
+          var $navlinkParent = $($el).parent();
+          // open submenu as accordion
+          // console.log("opening accordion");
+          SpoonflowerNavigation.openMenu($navlinkParent);
+        }
+      });
+    }
+    $('.subnav li').not('.has_subnav').on('touchstart', function(e){
+      e.stopPropagation();
+      // console.log('stopPropagation');
+    });
+  },
+
+  /**
+   * close the subnav using generated close button
+   */
+  touchCloseSubnav: function() {
+    $('.btn-touch_close').on('touchstart', function(e) {
+      // console.log('in touchCloseSubnav()');
+      // e.stopPropagation();
+      // e.preventDefault();
+      var $target = $(this).parent().siblings('.nav-link');
+      $target.removeClass('activateLink active');
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeAllSubnav();
+    });
+  },
+  /**
+   * open the flyout menu if on touch device larger than 767px
+   */
+  touchOpenFlyout: function() {
+    $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      // console.log('in touchOpenFlyout()');
+      if($el.hasClass('activateLink')) {
+        window.location = link;
+      }
+      else {
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        SpoonflowerNavigation.flyoutOpen($el);
+      }
+    });
+  },
+
+  /**
+   * Desktop, Touch and Keyboard flyout behaviors
+   */
+
+  /**
+   * Desktop, Touch and Keyboard subnav behaviors
+   *
+   * Show subnav of a primary navigation link (1st level) when mousing over or upon
+   * first touch of .nav-link-primary
+   * @param  {jQuery} $target - .nav-link-primary
+   */
+  showSubnav: function($target) {
+    SpoonflowerNavigation.subnavState = true;
+    // console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
+    var getthis = $target.parent().children('ul');
+    $('.subnav').removeClass('current');
+    $(getthis).addClass('current');
+  },
+
+  /**
+   * Close subnav of a primary navigation link (1st level) when mousing over
+   * .nav-link-primary or upon first touch of .btn-touch_close
+   * @param  {jQuery} $target - .nav-link-primary
+   */
+  closeSubnav: function($target) {
+    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    var getthis = $target.parent().children('ul');
+    if(SpoonflowerNavigation.subnavState == false) {
+      $(getthis).removeClass('current');
+      $('.nav-link').removeClass('active activateLink');
+    }
+  },
+
+  /**
+   * If mouse leaves .subnav close all subnavs and remove arrow indicators
+   */
+  closeAllSubnav: function() {
+    if(SpoonflowerNavigation.subnavState == false) {
+      // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState);
+      $('.subnav').removeClass('current');
+      $('.has_subnav a').removeClass('active activateLink');
+    }
+  },
+
+  /**
+   * keep the subnav open if hovered
+   * @param  {jQuery} $currentSubnav - the hovered .subnav
+   */
+  stayOpen: function($currentSubnav) {
+    SpoonflowerNavigation.subnavState = true;
+    // console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
+    $currentSubnav.addClass('current');
+  },
+
+  /**
+   * open the flyout menus
+   * @param  {jQuery} $target - $('.has_subnav a') a link with a subnav
+   */
+  flyoutOpen: function($target) {
+    // console.log('in flyoutOpen()');
+    // remove previously set classes
+    $target.parent().parent().find('ul').removeClass('current');
+    $target.parent().parent().find('a').removeClass('active');
+    // set classes
+    $target.parent().children('ul').addClass('current');
+    $target.parent().children('a').addClass('active');
+    // get position and set top position of the menu
+    var $position = $target.parent().position();
+    $target.parent().children('ul').css('top', -$position.top);
+  },
+
+  /**
+   * close the flyout menus
+   * @param  {[type]} $target [description]
+   * @return {[type]}         [description]
+   */
+  flyoutClose: function($target) {
+    // console.log('in flyoutClose()');
+    // if(SpoonflowerNavigation.flyoutState == false) {
+      $target.parent().find('ul').removeClass('current');
+      $target.parent().find('a').removeClass('active activateLink');
+      // $('.subnav').removeClass('current');
+      // $('.has_subnav a').removeClass('active');
+    // }
+  },
+
+  /**
+   * open the subnav menu
+   * @param  {jQuery} $li - the subnav <li>
+   */
+  openMenu: function($li) {
+    // close all other open menus
+    $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
+    // set the class, make menu visible
+    // $li.attr('class', 'has_subnav is-active');
+    $li.addClass('is-active');
+    $li.children('ul').addClass('menu-visible');
+    // deactivate active nav-link
+    $('.nav-link').removeClass('activateLink');
+    // activate nav-link button
+    $li.children('.nav-link').addClass('activateLink');
+  },
+
+  /**
+   * collapse menu
+   * @param  {jQuery} $li - the subnav <li>
+   */
+  collapseMenu: function($li) {
+    // console.log('in collapseMenu');
+    // reset the class on the target
+    $li.removeClass('is-active');
+    $li.find('.nav-link').removeClass('activateLink');
+    $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * collapse all the subnavs
+   */
+  collapseAllSubnavs: function() {
+    // console.log('in collapseAllSubnavs');
+    $('.has_subnav').removeClass('is-active');
+    $('.nav-link').removeClass('activateLink');
+    // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
+    $('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * collapse child subnavs
+   * @param  {jQuery} $target - the subnav <li>
+   */
+  collapseChildSubnavs: function($target) {
+    var $li = $target;
+    $li.attr('class', 'has_subnav');
+    $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * toggles topmost header nav icon visibility, changes login button text
+   */
+  loggedIn: function() {
+    $('.btn-login').click(function(e){
+      e.preventDefault();
+      $('#hBar').toggleClass('is-loggedin');
+      $('.btn-login').toggleText('Login', 'Logout');
+    });
+  },
+
+  /**
    * kitchen sink accessibility functions
    */
   keyboardAccessibility: function() {
+
+    // store reference to all .nav-link
+    var $navLinks = $('.nav-link');
 
     /**
      * Back to Top
@@ -259,12 +449,80 @@ var SpoonflowerNavigation = {
     });
 
     /**
-     * Use arrow controls to navigate primary nav
+     * Tab functionality
+     * @param  {jQuery} li.nav-link-primary - when focused then show subnav
+     */
+    // $('.nav-link-primary').focus(function(){
+    //   // $(this).parent().parent().find('ul').hide();
+    //   var $this = $(this);
+    //   SpoonflowerNavigation.closeSubnav($this);
+    //   SpoonflowerNavigation.showSubnav($this);
+    // });
+    $('.nav-link-primary').focus(function(e){
+      // Make sure to stop event bubbling
+      e.preventDefault();
+      e.stopPropagation();
+      var $this = $(this);
+      // // get reference to all .nav-link
+      // var $navLinks = $('.nav-link');
+      SpoonflowerNavigation.closeSubnav($this);
+      var href = $this.attr('href');
+      if($this.hasClass('activateLink')) {
+        // follow link if enter key is pressed
+        $this.on('keydown', function(e) {
+          // e.preventDefault();
+          // e.stopPropagation();
+          if(e.which == 13) {
+            window.location = href;
+          }
+        });
+      }
+      else {
+        $navLinks.removeClass('activateLink');
+        $this.addClass('activateLink');
+        SpoonflowerNavigation.showSubnav($this);
+      }
+    });
+    // $('.nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5').focus(function(){
+    //   var $this = $(this);
+    //   SpoonflowerNavigation.flyoutClose($this);
+    //   if($this.parent().hasClass('has_subnav')) {
+    //     SpoonflowerNavigation.flyoutOpen($this);
+    //   }
+    // });
+    $('.nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5').focus(function(e){
+      // Make sure to stop event bubbling
+      e.preventDefault();
+      e.stopPropagation();
+      var $this = $(this);
+      // // get reference to all .nav-link
+      // var $navLinks = $('.nav-link');
+      SpoonflowerNavigation.flyoutClose($this);
+      var href = $this.attr('href');
+      if($this.hasClass('activateLink')) {
+        // follow link if enter key is pressed
+        $this.on('keydown', function(e) {
+          // e.preventDefault();
+          // e.stopPropagation();
+          if(e.which == 13) {
+            window.location = href;
+          }
+        });
+      }
+      else {
+        $navLinks.removeClass('activateLink');
+        $this.addClass('activateLink');
+        SpoonflowerNavigation.flyoutOpen($this);
+      }
+    });
+
+    /**
+     * Optionally use arrow controls to navigate primary nav
      * inspiration: http://simplyaccessible.com/article/arrow-key-navigation/
      */
     $('.nav-link-primary').keydown(function(e){
-      // Listen for the up, down, left and right arrow keys, otherwise, end here
-      if ([13,37,38,39,40].indexOf(e.which) == -1) {
+      // Listen for the enter, esc, up, down, left and right arrow keys, otherwise, end here
+      if ([13,27,37,38,39,40].indexOf(e.which) == -1) {
         return;
       }
 
@@ -289,6 +547,13 @@ var SpoonflowerNavigation = {
             $navLink.addClass('activateLink');
             SpoonflowerNavigation.showSubnav($navLink);
           }
+          break;
+        case 27: // esc
+          console.log('esc pressed');
+          SpoonflowerNavigation.subnavState = false;
+          SpoonflowerNavigation.closeAllSubnav();
+          // skip to content
+          $('#main').focus();
           break;
         case 37: // left arrow
           // Make sure to stop event bubbling
@@ -358,7 +623,11 @@ var SpoonflowerNavigation = {
             var link = $el.attr('href');
             // console.log('in touchOpenFlyout()');
             if($el.hasClass('activateLink')) {
-              window.location = link;
+              $el.on('keydown', function(e) {
+                if(e.which == 13) {
+                  window.location = link;
+                }
+              });
             }
             else {
               $('.nav-link').removeClass('activateLink');
@@ -374,9 +643,9 @@ var SpoonflowerNavigation = {
     /**
      * Use arrow controls to navigate subnav menus
      */
-    $('.nl-lvl2, .nl-lvl3, .nl-lvl4').keydown(function(e){
-      // Listen for the up and down arrow keys, otherwise, end here
-      if ([38,40].indexOf(e.which) == -1) {
+    $('.nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5').keydown(function(e){
+      // Listen for the esc, up and down arrow keys, otherwise, end here
+      if ([27,38,40].indexOf(e.which) == -1) {
         return;
       }
 
@@ -390,6 +659,13 @@ var SpoonflowerNavigation = {
       // var $nlv3 = $subnavLink.parent('li').find('.current').children('.nav-link');
 
       switch(e.which) {
+        case 27: // esc
+          console.log('esc pressed');
+          SpoonflowerNavigation.subnavState = false;
+          SpoonflowerNavigation.closeAllSubnav();
+          // skip to content
+          $('#main').focus();
+          break;
         case 38: /// up arrow
           e.preventDefault();
           e.stopPropagation();
@@ -467,188 +743,6 @@ var SpoonflowerNavigation = {
 
   },
 
-  /**
-   * close the subnav using generated close button
-   */
-  touchCloseSubnav: function() {
-    $('.btn-touch_close').on('touchstart', function(e) {
-      // console.log('in touchCloseSubnav()');
-      // e.stopPropagation();
-      // e.preventDefault();
-      var $target = $(this).parent().siblings('.nav-link');
-      $target.removeClass('activateLink active');
-      SpoonflowerNavigation.subnavState = false;
-      $(this).remove();
-      SpoonflowerNavigation.closeAllSubnav();
-    });
-  },
-  /**
-   * open the flyout menu if on touch device larger than 767px
-   */
-  touchOpenFlyout: function() {
-    $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      var $el = $(this);
-      var link = $el.attr('href');
-      // console.log('in touchOpenFlyout()');
-      if($el.hasClass('activateLink')) {
-        window.location = link;
-      }
-      else {
-        $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
-        SpoonflowerNavigation.flyoutOpen($el);
-      }
-    });
-  },
-
-  /**
-   * Desktop, Touch and Keyboard flyout behaviors
-   */
-
-  /**
-   * Desktop, Touch and Keyboard subnav behaviors
-   *
-   * Show subnav of a primary navigation link (1st level) when mousing over or upon
-   * first touch of .nav-link-primary
-   * @param  {jQuery} $target - .nav-link-primary
-   */
-  showSubnav: function($target) {
-    SpoonflowerNavigation.subnavState = true;
-    // console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
-    var getthis = $target.parent().children('ul');
-    $('.subnav').removeClass('current');
-    $(getthis).addClass('current');
-  },
-
-  /**
-   * Close subnav of a primary navigation link (1st level) when mousing over
-   * .nav-link-primary or upon first touch of .btn-touch_close
-   * @param  {jQuery} $target - .nav-link-primary
-   */
-  closeSubnav: function($target) {
-    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
-    var getthis = $target.parent().children('ul');
-    if(SpoonflowerNavigation.subnavState == false) {
-      $(getthis).removeClass('current');
-      $('.nav-link').removeClass('active activateLink');
-    }
-  },
-
-  /**
-   * If mouse leaves .subnav close all subnavs and remove arrow indicators
-   */
-  closeAllSubnav: function() {
-    if(SpoonflowerNavigation.subnavState == false) {
-      // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState)
-      $('.subnav').removeClass('current');
-      $('.has_subnav a').removeClass('active activateLink');
-    }
-  },
-
-  /**
-   * keep the subnav open if hovered
-   * @param  {jQuery} $currentSubnav - the hovered .subnav
-   */
-  stayOpen: function($currentSubnav) {
-    SpoonflowerNavigation.subnavState = true;
-    // console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
-    $currentSubnav.addClass('current');
-  },
-
-  /**
-   * open the flyout menus
-   * @param  {jQuery} $target - $('.has_subnav a') a link with a subnav
-   */
-  flyoutOpen: function($target) {
-    // console.log('in flyoutOpen()');
-    // remove previously set classes
-    $target.parent().parent().find('ul').removeClass('current');
-    $target.parent().parent().find('a').removeClass('active');
-    // set classes
-    $target.parent().children('ul').addClass('current');
-    $target.parent().children('a').addClass('active');
-    // get position and set top position of the menu
-    var $position = $target.parent().position();
-    $target.parent().children('ul').css('top', -$position.top);
-  },
-  
-  /**
-   * close the flyout menus
-   * @param  {[type]} $target [description]
-   * @return {[type]}         [description]
-   */
-  flyoutClose: function($target) {
-    // console.log('in flyoutClose()');
-    // if(SpoonflowerNavigation.flyoutState == false) {
-      $target.parent().find('ul').removeClass('current');
-      $target.parent().find('a').removeClass('active activateLink');
-      // $('.subnav').removeClass('current');
-      // $('.has_subnav a').removeClass('active');
-    // }
-  },
-
-  /**
-   * open the subnav menu
-   * @param  {jQuery} $li - the subnav <li>
-   */
-  openMenu: function($li) {
-    // close all other open menus
-    $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
-    // set the class, make menu visible
-    // $li.attr('class', 'has_subnav is-active');
-    $li.addClass('is-active');
-    $li.children('ul').addClass('menu-visible');
-    // deactivate active nav-link
-    $('.nav-link').removeClass('activateLink');
-    // activate nav-link button
-    $li.children('.nav-link').addClass('activateLink');
-  },
-
-  /**
-   * collapse menu
-   * @param  {jQuery} $li - the subnav <li>
-   */
-  collapseMenu: function($li) {
-    // console.log('in collapseMenu');
-    // reset the class on the target
-    $li.removeClass('is-active');
-    $li.find('.nav-link').removeClass('activateLink');
-    $li.find('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * collapse all the subnavs
-   */
-  collapseAllSubnavs: function() {
-    // console.log('in collapseAllSubnavs');
-    $('.has_subnav').removeClass('is-active');
-    $('.nav-link').removeClass('activateLink');
-    // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
-    $('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * collapse child subnavs
-   * @param  {jQuery} $target - the subnav <li>
-   */
-  collapseChildSubnavs: function($target) {
-    var $li = $target;
-    $li.attr('class', 'has_subnav');
-    $li.find('ul').removeClass('menu-visible');
-  },
-
-  /**
-   * toggles topmost header nav icon visibility, changes login button text
-   */
-  loggedIn: function() {
-    $('.btn-login').click(function(e){
-      e.preventDefault();
-      $('#hBar').toggleClass('is-loggedin');
-      $('.btn-login').toggleText('Login', 'Logout');
-    });
-  }
 };
 
 /**

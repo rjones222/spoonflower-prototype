@@ -31,3 +31,11 @@ embed,
 iframe {
   max-width: 100%;
 }
+
+:focus,
+:active,
+a:focus, 
+a:active {
+  outline-style: solid;
+  outline-width: 1px;
+}
