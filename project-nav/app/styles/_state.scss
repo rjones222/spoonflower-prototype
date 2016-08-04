@@ -45,6 +45,9 @@
 .h_bar-container.is-loggedin {
   .spoonflower_logo {
     width: 43px;
+    @include media(min-width 425px) {
+      width: 153px;
+    };
   }
   .user_btn,
   .studio_btn,
@@ -52,6 +55,6 @@
     display: block;
   }
   .btn-login {
-    right: 13.6rem;
+    right: 10.5rem;
   }
 }

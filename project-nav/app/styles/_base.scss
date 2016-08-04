@@ -32,10 +32,11 @@ iframe {
   max-width: 100%;
 }
 
-:focus,
-:active,
-a:focus, 
-a:active {
+// :focus,
+// :active,
+a:focus,
+a:active,
+#main:focus {
   outline-style: solid;
   outline-width: 1px;
 }

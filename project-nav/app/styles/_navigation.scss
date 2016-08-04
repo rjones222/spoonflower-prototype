@@ -66,31 +66,31 @@
   }
   .user_btn {
     position: absolute;
-    right: 11.8rem;
+    right: 8.9rem;
     top: 1rem ;
   }
   .studio_btn {
     position: absolute;
-    right: 8rem;
+    right: 5.4rem;
     top: 1rem ;
     width: 2.75rem;
   }
   .promos_btn {
     position: absolute;
-    right: 5.3rem;
+    right: 2.4rem;
     top: 1rem ;
     width: 2.65rem;
   }
   .cart_btn {
     font-size: rem(12);
     position: absolute;
-    right: 3.05rem;
+    right: 0;
     top: 1rem;
     width: 2.65rem;
   }
   .btn-login {
     position: absolute;
-    right: 6.6rem;
+    right: 3.6rem;
     top: 1rem ;
   }
 }
@@ -107,7 +107,7 @@
 
 .menu_toggle {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   transition: 300ms all ease;
   button {
@@ -440,11 +440,11 @@
   .nav-link.nl-lvl3,
   .nav-link.nl-lvl4,
   .nav-link.nl-lvl5 {
-    padding: .333rem 0 .3rem .5rem;
+    padding: .333rem 0 .5rem .5rem;
     width: 100%;
     &.activateLink {
       margin-left: .3rem;
-      padding: .325rem .7rem;
+      padding: .325rem .7rem .5rem .7rem;
       width: auto;
     }
   }

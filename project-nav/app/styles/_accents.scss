@@ -4,6 +4,7 @@
 .btm_border, .btm_border_mobile {
   border: 0;
   border-top: 1px solid $gallery;
+  display: none;
   margin-bottom: 0;
   padding-bottom: .5em;
 }
