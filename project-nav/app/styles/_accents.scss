@@ -7,6 +7,9 @@
   display: none;
   margin-bottom: 0;
   padding-bottom: .5em;
+  @include media($tablet) {
+    display: block;
+  }
 }
 
 // mobile menus use a gray bg color, make darker for mobile only
