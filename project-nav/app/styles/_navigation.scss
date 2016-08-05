@@ -271,74 +271,76 @@
 
 // end mobile
 
-// begin tablet
-
-// Utility Bar
-// is hidden from mobile devices (< 767px using .mobile_hide). Perhaps just put in the wrapping media query below?
-.u_bar {
-  background-color: $polar;
-  left: 0;
-  height: $u_bar-height;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.u_bar-container {
-  @include outer-container(1000px);
-}
-.u_sites {
-  float: left;
-  width: 300px;
-  li {
-    padding: 0;
-    a {
-      box-sizing: border-box;
-      display: inline-block;
-      height: $u_bar-height;
-      padding: .55rem .8rem 0 .8rem;
-    }
-  }
-  .sprout_patterns_logo {
-    // margin: .25rem 0 0 0;
-    width: 50px;
-  }
-  .roostery_logo {
-    // margin: .4rem 0 0 .8rem;
-    width: 74px;
-  }
-  li:first-child a {
-    border-right: 1px solid $botticelli;
-    // display: block;
-    // float: left;
-    // padding: .3rem 1.1rem 0 .8rem;
-  }
-}
-.u_nav {
-  float: right;
-  li a {
-      border-right: 1px solid $botticelli;
-      box-sizing: border-box;
-      display: inline-block;
-      font-size: rem(13);
-      height: $u_bar-height;
-      padding: .65rem .8rem 0 .8rem;
-  }
-  li:last-child a {
-    border-right: 0;
-  }
-}
-// .u_nav-user_subnav,
-// .u_nav-studio_subnav,
-// .u_nav-cart_subnav {
-//   display: none;
-// }
-
-// @include media($tablet, $desktop) {
-//   padding-top: $u_bar-height;
-// }
-
+// begin tablet and up
 /* Medium screens */
 @include media($tablet) {
+
+  // Utility Bar
+  // is hidden from mobile devices (< 767px using .mobile_hide).
+  .u_bar {
+    background-color: $polar;
+    left: 0;
+    height: $u_bar-height;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .u_bar-container {
+    @include outer-container(1000px);
+  }
+  .u_sites {
+    float: left;
+    width: 300px;
+    li {
+      padding: 0;
+      a {
+        box-sizing: border-box;
+        display: inline-block;
+        height: $u_bar-height;
+        padding: .55rem .8rem 0 .8rem;
+      }
+    }
+    .sprout_patterns_logo {
+      // margin: .25rem 0 0 0;
+      width: 50px;
+    }
+    .roostery_logo {
+      // margin: .4rem 0 0 .8rem;
+      width: 74px;
+    }
+    li:first-child a {
+      border-right: 1px solid $botticelli;
+      // display: block;
+      // float: left;
+      // padding: .3rem 1.1rem 0 .8rem;
+    }
+  }
+  // basic user nav
+  .u_nav {
+    display: none; // see _state.scss for .u_welcome and .is-loggedin
+    float: right;
+    li a {
+        border-right: 1px solid $botticelli;
+        box-sizing: border-box;
+        display: inline-block;
+        font-size: rem(13);
+        height: $u_bar-height;
+        padding: .65rem .8rem 0 .8rem;
+    }
+    li:last-child a {
+      border-right: 0;
+    }
+  }
+
+  // .u_nav-user_subnav,
+  // .u_nav-studio_subnav,
+  // .u_nav-cart_subnav {
+  //   display: none;
+  // }
+
+  // @include media($tablet, $desktop) {
+  //   padding-top: $u_bar-height;
+  // }
 
   #navToggle {
     display: none;
@@ -392,6 +394,24 @@
 
   .nav-link.nav-link-primary {
     font-size: rem(15);
+  }
+
+  // the promo burst icon link in nav
+  .has_subnav.promos-link {
+    float: right;
+    .btn {
+      margin-top: .5rem;
+    }
+    // the submenu positioning
+    .subnav-dropdown {
+      margin-left: -13rem;
+      &.visible {
+        display: block;
+      }
+    }
+    .icon_close:before {
+      color: inherit;
+    }
   }
 
   .subnav {

@@ -28,7 +28,9 @@
       <div class="h_bar">
         <div id="hBar" class="h_bar-container is-collapsed">
           <a href="http://spoonflower.com" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
-          <button class="btn btn-xs btn-login">Login</button>
+          <!-- default action is blocked for demo purposes -->
+          <a href="https://www.spoonflower.com/login" class="btn btn-xs btn-login">Log In</a>
+          <a href="#" class="btn btn-xs btn-login logout">Log Out</a>
           <div class="font_icon_btn user_btn">
             <i class="icon icon_user" aria-hidden="true"></i>
           </div>
@@ -71,7 +73,7 @@
           </div>
           <!-- End of Search Section -->
         </div>
-        <nav>
+        <nav role="navigation">
           <ul>
             <li class="desktop_hide">
               <!-- Start of Mobile Search Section -->
@@ -11245,7 +11247,6 @@
                 <li><a href="#" class="nav-link nl-lvl2">Sewing Guide [#]</a></li>
               </ul>
             </li>
-            <hr class="btm_border_mobile" />
             <li class="has_subnav desktop_hide">
               <a href="#" class="nav-link">More [#]</a>
               <ul class="subnav subnav-primary">
@@ -11254,7 +11255,6 @@
                 </li>
               </ul>
             </li>
-            <hr class="btm_border desktop_hide" />
             <li class="has_subnav desktop_hide">
               <a href="https://sproutpatterns.com/" class="nav-link">Sprout Patterns</a>
               <ul class="subnav sn-panel">
@@ -11297,12 +11297,28 @@
                 </li>
               </ul>
             </li>
+            <li class="has_subnav promos-link mobile_hide" tabindex="-1">
+              <button class="btn" tabindex="0">
+                <i class="icon icon_burst" aria-hidden="true"></i>
+                <span class="promo_count">3</span>
+                <span class="visuallyhidden">Promos</span>
+                <i id="iconIndicator" class="icon icon_close" aria-hidden="true"></i>
+              </button>
+              <ul class="subnav subnav-dropdown">
+                <li><a href="#" class="nav-link nl-lvl2">Want Free Shipping Every Day?</a></li>
+                <hr class="btm_border" />
+                <li><a href="#" class="nav-link nl-lvl2">New Bulk Discount</a></li>
+                <hr class="btm_border" />
+                <li><a href="#" class="nav-link nl-lvl2">20% Off Sport Lycra (2 Days Only)</a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
     <div class="u_bar mobile_hide">
-      <div class="u_bar-container">
+      <!-- tabindex is needed here so that esc key can leave navigation and focus on structural element -->
+      <div class="u_bar-container" tabindex="-1">
         <ul class="u_sites nav">
           <li>
             <a href="https://sproutpatterns.com/"><img class="sprout_patterns_logo" src="/images/sprout_patterns_logo_green.svg" alt="Sprout Patterns" /></a>
@@ -11311,9 +11327,25 @@
             <a href="https://roostery.com/"><img class="roostery_logo" src="/images/roostery_logo_green.svg" alt="Roostery Home Decor" /></a>
           </li>
         </ul>
+        <!-- utility welcome nav (i.e. user not logged in) -->
+        <ul class="u_nav u_welcome nav">
+          <li>
+            <!-- default action is blocked for demo purposes -->
+            <a href="https://www.spoonflower.com/login" class="link-login">Log In</a>
+          </li>
+          <li>
+            <a href="#">Join</a>
+          </li>
+          <li>
+            <a href="#" class="u_nav-cart_item"><span class="visuallyhidden">Cart</span>
+              <i class="icon icon_cart" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+        <!-- logged in user utility nav -->
         <ul class="u_nav nav">
           <li>
-            <a href="#" class="u_nav-user_item">User Name </a>
+            <a href="#" class="u_nav-user_item">User Name <i class="icon icon_chevron_down"></i></a>
           </li>
           <li>
             <a href="#" class="u_nav-studio_item">My Studio
@@ -11332,7 +11364,6 @@
         </ul>
       </div>
     </div>
-    <!-- tabindex is needed here so that esc key can leave navigation and focus on structural element -->
     <main id="main" class="content_wrap" tabindex="-1">
       <dl id="whatIsSpoonflower" class="spoonflower_definition">
         <dt>
