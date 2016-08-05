@@ -322,6 +322,8 @@ var SpoonflowerNavigation = {
       // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState);
       $('.subnav').removeClass('current');
       $('.has_subnav a').removeClass('active activateLink');
+      // remove any touch close button
+      $('.btn-touch_close').remove();
     }
   },
 
