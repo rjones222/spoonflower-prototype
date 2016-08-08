@@ -78,7 +78,7 @@ var SpoonflowerNavigation = {
      * toggles down and up icons, toggles visibility of definition
      */
     function showDef() {
-      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
+      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_close');
       $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
     }
 
@@ -116,10 +116,42 @@ var SpoonflowerNavigation = {
    * Log In button text
    */
   loggedIn: function() {
+    // store loggedIn state in localStorage
+    var userLoggedIn = localStorage.getItem('userLoggedIn');
+    var $u_nav = $('.u_nav');
+    // if not set...
+    if(userLoggedIn === null) {
+      // console.log('userLoggedIn is not set');
+      // set hidePromos preference
+      localStorage.setItem('userLoggedIn', 0);
+      userLoggedIn = 0;
+    }
+    else
+    if (userLoggedIn == 1){
+      // console.log('userLoggedIn is false!');
+      $u_nav.toggleClass('is-loggedin');
+    }
+    // when user clicks btn toggle u_nav loggedIn visibility
     // toggle the two navs - for demo purposes
     $('.link-login').click(function(e){
       e.preventDefault();
-      $('.u_nav').toggleClass('is-loggedin');
+      // console.log('userLoggedIn1: ' + userLoggedIn);
+      // if false
+      if (userLoggedIn == 0) {
+        // hide the submenu
+        $u_nav.toggleClass('is-loggedin');
+        // set to true
+        localStorage.setItem('userLoggedIn', 1);
+        userLoggedIn = 1;
+        // console.log('userLoggedIn2: ' + userLoggedIn);
+      }
+      else {
+       // set to false and show the u_nav welcome nav (not loggedIn)
+       localStorage.setItem('userLoggedIn', 0);
+       userLoggedIn = 0;
+       $u_nav.toggleClass('is-loggedin');
+      //  console.log('userLoggedIn3: ' + userLoggedIn);
+      }
     });
   },
 
@@ -133,7 +165,7 @@ var SpoonflowerNavigation = {
     var $iconIndicator = $('#iconIndicator');
     // if not set...
     if(promoHidden === null) {
-      console.log('promoHidden is not set');
+      // console.log('promoHidden is not set');
       // set hidePromos preference
       localStorage.setItem('hidePromos', 0);
       promoHidden = 0;
@@ -141,16 +173,16 @@ var SpoonflowerNavigation = {
     }
     else
     if (promoHidden == 0){
-      console.log('promoHidden is false!');
+      // console.log('promoHidden is false!');
       $promosList.slideToggle();
     }
     else {
-      console.log('promoHidden is true!');
+      // console.log('promoHidden is true!');
       $iconIndicator.toggleClass('icon_close icon_chevron_down');
     }
     // when user clicks btn toggle promo list visibility
     $('.promos-link .btn').click(function(){
-      console.log('promoHidden1: ' + promoHidden);
+      // console.log('promoHidden1: ' + promoHidden);
       // if false
       if (promoHidden == 0) {
         // hide the submenu
@@ -159,7 +191,7 @@ var SpoonflowerNavigation = {
         // set to true
         localStorage.setItem('hidePromos', 1);
         promoHidden = 1;
-        console.log('promoHidden2: ' + promoHidden);
+        // console.log('promoHidden2: ' + promoHidden);
       }
       else {
        // set to false and show the submenu

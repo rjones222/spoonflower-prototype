@@ -59,6 +59,9 @@
   dt {
     color: $smalt_blue;
     font-size: rem(13);
+    &:hover, &:active {
+      color: $elephant;
+    }
     span {
       border-bottom: 2px solid $polar;
       display: inline-block;
@@ -84,6 +87,16 @@
   }
   .btn-primary {
     margin-right: rem(5);
+  }
+  .icon_close {
+    // position: absolute;
+    // right: 0.2rem;
+    // top: 0.5rem;
+    margin: 0;
+    &:before {
+      color: inherit;
+      font-size: .5rem;
+    }
   }
 }
 

@@ -34,7 +34,10 @@ iframe {
 
 a:focus,
 a:active,
-#main:focus {
+button:focus,
+button:active,
+#main:focus,
+ {
   outline-style: solid;
   outline-width: 1px;
 }

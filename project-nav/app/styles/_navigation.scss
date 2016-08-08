@@ -319,19 +319,36 @@
   .u_nav {
     display: none; // see _state.scss for .u_welcome and .is-loggedin
     float: right;
-    li a {
+    > li {
+      position: relative;
+      > a {
         border-right: 1px solid $botticelli;
         box-sizing: border-box;
         display: inline-block;
         font-size: rem(13);
         height: $u_bar-height;
         padding: .65rem .8rem 0 .8rem;
+      }
     }
-    li:last-child a {
+    > li:last-child > a {
       border-right: 0;
+    }
+    .subnav.subnav-dropdown {
+      border: 1px solid $botticelli;
+      right: 0;
+      top: $u_bar-height - 4;
+      li {
+        display: block;
+        position: relative;
+      }
     }
   }
 
+  .u_nav .item_count {
+    right: 0.9rem;
+    text-align: right;
+    top: 0.4rem;
+  }
   // .u_nav-user_subnav,
   // .u_nav-studio_subnav,
   // .u_nav-cart_subnav {
@@ -400,7 +417,13 @@
   .has_subnav.promos-link {
     float: right;
     .btn {
+      color: $smalt_blue;
       margin-top: .5rem;
+      position: relative;
+      width: 80px;
+      &:hover {
+        color: $elephant;
+      }
     }
     // the submenu positioning
     .subnav-dropdown {
@@ -408,9 +431,26 @@
       &.visible {
         display: block;
       }
+      a {
+        color: $smalt_blue;
+      }
     }
-    .icon_close:before {
-      color: inherit;
+    .icon_close {
+      position: absolute;
+      right: 0.2rem;
+      top: 0.5rem;
+      &:before {
+        color: inherit;
+        font-size: .5rem;
+      }
+    }
+    .icon_chevron_down {
+      position: absolute;
+      right: 0.6rem;
+      top: 0.6rem;
+      &:before {
+        color: inherit;
+      }
     }
   }
 

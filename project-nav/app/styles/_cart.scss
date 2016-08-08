@@ -1,0 +1,17 @@
+/**
+ * cart dropdown
+ */
+
+.cart_dropdown {
+  background-color: #ffffff;
+  border: 1px solid $botticelli;
+  min-width: rem(285px);
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  top: $u_bar-height - 4;
+  z-index: 1;
+  .btm_border {
+    width: 100%;
+  }
+}
