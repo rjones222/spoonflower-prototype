@@ -2,15 +2,17 @@
 
 The following are steps to setting up using a Yeoman generator called [generator-webapp](https://github.com/yeoman/generator-webapp). 
 
-## Initial Setup
+## Setup
 
 1. Install Node: https://nodejs.org/en/
-2. Install Gulp: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
-3. Install yeoman/generator-webapp: https://github.com/yeoman/generator-webapp/blob/master/docs/README.md
+2. `git clone git@github.com:rjones222/spoonflower-prototype.git`
+3. `cd spoonflower-prototype/project-nav/`
+4. `npm install` note: you'll get some deprecated packages warnings but it should still install
+5. `bower install`
 
-## Sharing
+## Run
 
-When you run `$ gulp serve` you'll see something like this:
+When you run `gulp serve` you'll see something like this:
 
 ```
 Access URLs:
