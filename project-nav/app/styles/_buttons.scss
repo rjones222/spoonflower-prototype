@@ -1,30 +1,30 @@
 // buttons
 
 .btn {
-  font-family: inherit;
-  font-size: .875rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: inherit;
   cursor: pointer;
   display: inline-block;
-  line-height: 1.125rem;
-  padding: .5rem 1rem;
-  margin: 0;
+  font-family: inherit;
+  @include font-size(14);
   height: auto;
-  border: 1px solid transparent;
+  line-height: 1.125rem;
+  margin: 0;
+  padding: .5rem 1rem;
   vertical-align: middle;
-  color: inherit;
-  background-color: transparent;
 }
 
 .btn-sm {
-  font-size: rem(12);
-  padding: .3rem 1rem;
+  @include font-size(12);
   line-height: 1;
+  padding: .3rem 1rem;
 }
 
 .btn-xs {
-  font-size: rem(10);
-  padding: .2rem .3rem;
+  @include font-size(10);
   line-height: 1;
+  padding: .2rem .3rem;
 }
 
 // added to <a> for social outbound links in navigation and footer
@@ -56,7 +56,8 @@
   color: $smalt_blue;
 }
 
-.btn-select, .btn-search {
+.btn-select,
+.btn-search {
   background-color: $gallery;
   color: $punga;
   padding: .45rem .7rem .3rem .2rem;
@@ -68,10 +69,10 @@
 
 .btn-shop {
   background-color: $mine_shaft;
-  color: #ffffff;
-  opacity: 0.9;
+  color: $white;
+  opacity: .9;
   &:hover {
-    color: #ffffff;
+    color: $white;
     opacity: 1;
   }
 }
@@ -86,7 +87,7 @@
 
 // navigation element add via jQuery to touch devices
 .btn-touch_close {
-  font-size: .7rem;
+  @include font-size(11);
   padding: 1rem;
   position: absolute;
   right: .2rem;
@@ -102,8 +103,10 @@
   };
 }
 
-.subnav-flyup .btn-touch_close {
-  padding: .8rem;
+.subnav-flyup {
+  .btn-touch_close {
+    padding: .8rem;
+  }
 }
 
 // .subnav-primary > .btn-touch_close {

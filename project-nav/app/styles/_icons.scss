@@ -35,8 +35,8 @@
 }
 */
 
- [class^="icon_"]:before, [class*=" icon_"]:before {
-  font-family: "spoonflower_icons";
+[class^='icon_']:before, [class*=' icon_']:before {
+  font-family: 'spoonflower_icons';
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -71,24 +71,24 @@
 }
 
 .icon {
-    font-family: "spoonflower_icons";
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-    display: inline-block;
-    text-decoration: inherit;
-    width: 1em;
-    margin-right: .2em;
-    text-align: center;
-    /* opacity: .8; */
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1em;
-    margin-left: .2em;
-    /* font-size: 120%; */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, .3); */
+  font-family: 'spoonflower_icons';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  /* font-size: 120%; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, .3); */
 }
 
 .icon_user {
@@ -106,7 +106,7 @@
   }
 }
 .icon_cart {
-  font-size: 1rem;
+  @include font-size(16);
   margin: 0;
   &:before {
     content: '\e801';
@@ -124,7 +124,7 @@
   width: .3rem;
   &:before {
     content: '\e802';
-    font-size: .325rem;
+    @include font-size(6);
     margin: 0;
     position: relative;
     top: -0.2rem;
@@ -134,7 +134,7 @@
   width: .3rem;
   &:before {
     content: '\e80d';
-    font-size: .325rem;
+    @include font-size(6);
     margin: 0;
     position: relative;
     top: -0.2rem;
@@ -147,7 +147,7 @@
   &:before {
     color: $smalt_blue;
     content: '\e808';
-    font-size: .65rem;
+    @include font-size(10);
   }
 }
 .icon_menu {
@@ -157,13 +157,13 @@
   &:before {
     color: $smalt_blue;
     content: '\e809';
-    font-size: .65rem;
+    @include font-size(10);
   }
 }
 .icon_search {
   &:before {
     content: '\e804';
-    font-size: 1.1rem;
+    @include font-size(17);
   }
 }
 
@@ -212,9 +212,9 @@
   top: .425rem !important;
   &:before {
     content: '\e807';
-    font-size: .75rem;
+    @include font-size(12);
     @include media($tablet) {
-      font-size: .65rem;
+      @include font-size(11);
     };
   }
   @include media($tablet) {
@@ -223,10 +223,16 @@
   };
 }
 
-.icon_arrow_down:before { content: '\e80a'; }
-.icon_arrow_up:before { content: '\e80b'; }
+.icon_arrow_down {
+  &::before { content: '\e80a'; }
+}
+.icon_arrow_up {
+  &::before { content: '\e80b'; }
+}
 
-.icon_chevron_right:before { content: '\e80e'; }
+.icon_chevron_right {
+  &::before { content: '\e80e'; }
+}
 
 // to use an icon with a pseudoelement
 // &:after {

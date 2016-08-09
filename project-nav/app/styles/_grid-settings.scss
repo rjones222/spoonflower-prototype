@@ -1,4 +1,4 @@
-@import "libraries/neat/neat-helpers";
+@import 'libraries/neat/neat-helpers';
 
 //Grid settings
 $column: 74px;
@@ -24,3 +24,10 @@ $largedesktop: new-breakpoint(min-width $L);
 
 //Temp: override some bourbon defaults
 $border-box-sizing: false;
+
+// font-size mixin to provide px fallback for IE9 1E10
+
+@mixin font-size($size) {
+  font-size: $size * 1px;
+  font-size: ($size / 16) * 1rem;
+}

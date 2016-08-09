@@ -1,6 +1,4 @@
-/**
- * cart dropdown
- */
+// cart dropdown
 
 .cart_dropdown {
   background-color: #ffffff;
@@ -14,4 +12,31 @@
   .btm_border {
     width: 100%;
   }
+}
+
+.cart_item-image {
+  @include span-columns(3);
+}
+
+.cart_item-details {
+  box-sizing: border-box;
+  @include span-columns(9);
+  padding-left: .6rem;
+}
+
+.cart_item-name {
+  @include font-size(13);
+}
+
+.cart_item-designer {
+  @include font-size(12);
+  font-style: italic;
+}
+
+.cart_item-description {
+
+}
+
+.cart_item-price {
+
 }
