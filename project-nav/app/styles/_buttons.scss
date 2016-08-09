@@ -27,6 +27,13 @@
   padding: .2rem .3rem;
 }
 
+.btn-full {
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
 // added to <a> for social outbound links in navigation and footer
 .btn-round {
   border-radius: 50%;
