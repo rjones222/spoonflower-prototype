@@ -4,7 +4,8 @@ The following are steps to setting up using a Yeoman generator called [generator
 
 ## Setup
 
-1. Install Node: https://nodejs.org/en/
+1. Install Node via nvm. On your mac, uninstall any version of node you currently have installed, and instead use nvm (Node Version Manager). Instructions are on the GitHub page. Then use it to install a recent version of
+node, such as the 6.2.0 branch ( nvm	install	v6.2.0;	nvm	use	6.2.0 ).)
 2. `git clone git@github.com:rjones222/spoonflower-prototype.git`
 3. `cd spoonflower-prototype/project-nav/`
 4. `npm install` note: you'll get some deprecated packages warnings but it should still install
