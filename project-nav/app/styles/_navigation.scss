@@ -6,8 +6,8 @@
 // mobile
 .nav {
   li {
-    list-style-type: none;
     display: inline-block;
+    list-style-type: none;
   }
 }
 .nav-link {
@@ -50,12 +50,23 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  // > .is-expanded {
-  //   border-bottom: 1px solid $gallery;
-  // }
-  // > .is-collapsed {
-  //   border-bottom: none;
-  // }
+  > nav {
+    background-color: $white;
+    // border-bottom: 1px solid $gallery;
+    border-top: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $silver;
+    display: none;
+    flex: 1;
+    // height: 100vh;
+    overflow: scroll;
+    position: absolute;
+    transform: 300ms all ease;
+    width: 100vw;
+    z-index: 1;
+    > ul {
+      list-style-type: none;
+    }
+  }
 }
 
 .h_bar-container {
@@ -67,7 +78,7 @@
   .user_btn {
     position: absolute;
     right: 8.9rem;
-    top: 1rem ;
+    top: 1rem;
   }
   .studio_btn {
     position: absolute;
@@ -91,7 +102,7 @@
   .btn-login {
     position: absolute;
     right: 3.6rem;
-    top: 1rem ;
+    top: 1rem;
   }
 }
 
@@ -106,37 +117,18 @@
 }
 
 .menu_toggle {
-  position: absolute;
   left: 0;
+  position: absolute;
   top: 0;
-  transition: 300ms all ease;
+  // transition: 300ms all ease;
   button {
     background-color: $polar;
     border: 0;
     display: block;
     height: 50px;
-    transition: 300ms all ease;
+    // transition: 300ms all ease;
     width: 50px;
   }
-}
-
-.h_bar > nav {
-  background-color: white;
-  // border-bottom: 1px solid $gallery;
-  border-top: 1px solid $gallery;
-  box-shadow: 0px 8px 8px -8px #B8B8B8;
-  display: none;
-  flex: 1;
-  // height: 100vh;
-  overflow: scroll;
-  position: absolute;
-  transform: 300ms all ease;
-  width: 100vw;
-  z-index: 1;
-}
-
-.h_bar nav > ul {
-  list-style-type: none;
 }
 
 // .h_bar nav > ul > li:last-of-type {
@@ -167,40 +159,41 @@
   padding: .6rem 1rem .5rem 2rem;
   .btn-round {
     background-color: $dusty_gray;
-    color: white;
+    color: $white;
     margin-right: 5px;
   }
 }
 
 
-/* Only Mobile */
+// Only Mobile
 @media all and (max-width: 767px) {
   // controls down chevron, usage: li.has_subnav
   .has_subnav {
     display: block;
     position: relative;
     z-index: 1;
-    &:after {
-      font-family: 'spoonflower_icons';
+    &::after {
       content: '\e802';
-      font-size: .4rem;
-      position: absolute;
-      right: 1.2rem;
-      top: .8rem;
-    }
-  }
-  // up chevron
-  .has_subnav.is-active {
-    position: relative;
-    &:after {
       font-family: 'spoonflower_icons';
-      content: '\e80d';
       font-size: .4rem;
       position: absolute;
       right: 1.2rem;
       top: .8rem;
     }
+    // up chevron
+    &.is-active {
+      position: relative;
+      &::after {
+        content: '\e80d';
+        font-family: 'spoonflower_icons';
+        font-size: .4rem;
+        position: absolute;
+        right: 1.2rem;
+        top: .8rem;
+      }
+    }
   }
+
   .subnav {
     // display: none;
     height: 0;
@@ -208,11 +201,11 @@
     opacity: 0;
     overflow-y: hidden;
     // http://easings.net/#easeInOutCubic
-    @include transition(all 600ms cubic-bezier(0.645, 0.045, 0.355, 1));
+    @include transition(all 600ms cubic-bezier(.645, .045, .355, 1));
   }
   .menu-visible {
     // background: rgba(0,0,0,0.05);
-    background-color: rgba(0,0,0,0.03); // using $polar green for bg color -- probably too subtle
+    background-color: $semiopaque_gray;
     height: auto !important;
     max-height: 9999px !important; // hack to simulate js-based dropdown animation with only css
     opacity: 1 !important;
@@ -226,18 +219,25 @@
   }
   // need to set height for the Sprout and Roostery subnav panels
   .desktop_hide {
-    .sn-panel .l-box {
-      height: 217px;
-      .product_image {
-        max-width: 143px;
+    .sn-panel {
+      .l-box {
+        height: 217px;
+        .product_image {
+          max-width: 143px;
+        }
       }
     }
   }
+
 }
 
 .sn-panel {
-  &.menu-visible li div {
-    background-color: #ffffff;
+  &.menu-visible {
+    li {
+      div {
+        background-color: $white;
+      }
+    }
   }
   .l-box {
     max-height: 260px;
@@ -272,15 +272,15 @@
 // end mobile
 
 // begin tablet and up
-/* Medium screens */
+// Medium screens
 @include media($tablet) {
 
   // Utility Bar
   // is hidden from mobile devices (< 767px using .mobile_hide).
   .u_bar {
     background-color: $polar;
-    left: 0;
     height: $u_bar-height;
+    left: 0;
     position: absolute;
     top: 0;
     width: 100%;
@@ -297,7 +297,7 @@
         box-sizing: border-box;
         display: inline-block;
         height: $u_bar-height;
-        padding: .55rem .8rem 0 .8rem;
+        padding: .55rem .8rem 0;
       }
     }
     .sprout_patterns_logo {
@@ -308,11 +308,12 @@
       // margin: .4rem 0 0 .8rem;
       width: 74px;
     }
-    li:first-child a {
-      border-right: 1px solid $botticelli;
-      // display: block;
-      // float: left;
-      // padding: .3rem 1.1rem 0 .8rem;
+    li {
+      &:first-child {
+        a {
+          border-right: 1px solid $botticelli;
+        }
+      }
     }
   }
   // basic user nav
@@ -327,7 +328,7 @@
         display: inline-block;
         font-size: rem(13);
         height: $u_bar-height;
-        padding: .65rem .8rem 0 .8rem;
+        padding: .65rem .8rem 0;
       }
     }
     > li:last-child > a {
@@ -342,22 +343,12 @@
         position: relative;
       }
     }
+    .item_count {
+      right: .9rem;
+      text-align: right;
+      top: .4rem;
+    }
   }
-
-  .u_nav .item_count {
-    right: 0.9rem;
-    text-align: right;
-    top: 0.4rem;
-  }
-  // .u_nav-user_subnav,
-  // .u_nav-studio_subnav,
-  // .u_nav-cart_subnav {
-  //   display: none;
-  // }
-
-  // @include media($tablet, $desktop) {
-  //   padding-top: $u_bar-height;
-  // }
 
   #navToggle {
     display: none;
@@ -437,111 +428,118 @@
     }
     .icon_close {
       position: absolute;
-      right: 0.2rem;
-      top: 0.5rem;
-      &:before {
+      right: .2rem;
+      top: .5rem;
+      &::before {
         color: inherit;
         font-size: .5rem;
       }
     }
     .icon_chevron_down {
       position: absolute;
-      right: 0.6rem;
-      top: 0.6rem;
-      &:before {
+      right: .6rem;
+      top: .6rem;
+      &::before {
         color: inherit;
       }
     }
   }
 
-  .subnav {
-    > li:first-child {
-      padding-top: .55rem;
-    }
-    > li:last-child {
-      padding-bottom: .6rem;
-    }
-  }
-
   // begin megamenu
-
-  .subnav.subnav-primary {
-    @include outer-container(1200px);
-    background: #ffffff;
-    border-left: 1px solid $gallery;
-    border-right: 1px solid $gallery;
-    box-shadow: 0px 8px 8px -8px #B8B8B8;
-    display:none;
-    left: 0;
-    height: $subnav-height;
-    // max-height: none;
-    position: absolute;
-    width: 100%;
-    top: 52px;
-    z-index: 1;
+  .subnav {
     > li {
+      &:first-child {
+        padding-top: .55rem;
+      }
+      &:last-child {
+        padding-bottom: .6rem;
+      }
+    }
+    &.subnav-primary {
+      @include outer-container(1200px);
+      background: $white;
+      border-left: 1px solid $gallery;
       border-right: 1px solid $gallery;
-      position: relative;
-      width: 20%;
+      box-shadow: 0 8px 8px -8px $silver;
+      display: none;
+      height: $subnav-height;
+      left: 0;
+      // max-height: none;
+      position: absolute;
+      top: 52px;
+      width: 100%;
+      z-index: 1;
+      > li {
+        border-right: 1px solid $gallery;
+        position: relative;
+        width: 20%;
+      }
     }
-  }
-  .subnav.current {
-    display: block;
-  }
-  .nav-link.nl-lvl2 {
-    padding: .333rem 0 .5rem 1rem;
-    width: 100%;
-    &.activateLink {
-      margin-left: .3rem;
-      padding: .333rem .7rem;
-      width: auto;
+    &.current {
+      display: block;
     }
-  }
-  .nav-link.nl-lvl3,
-  .nav-link.nl-lvl4,
-  .nav-link.nl-lvl5 {
-    padding: .333rem 0 .5rem .5rem;
-    width: 100%;
-    &.activateLink {
-      margin-left: .3rem;
-      padding: .325rem .7rem .5rem .7rem;
-      width: auto;
-    }
-  }
-  // controls right arrow, usage: li.has_subnav
-  .subnav .has_subnav > a {
-    position: relative;
-    &:hover {
-      &:after {
-        font-family: 'spoonflower_icons';
-        content: '\e80e';
-        font-size: .6rem;
-        position: absolute;
-        right: .5rem;
-        top: .3rem;
+    // controls right arrow, usage: li.has_subnav
+    .has_subnav {
+      > a {
+        position: relative;
+        &:hover {
+          &::after {
+            content: '\e80e';
+            font-family: 'spoonflower_icons';
+            font-size: .6rem;
+            position: absolute;
+            right: .5rem;
+            top: .3rem;
+          }
+        }
+      }
+      > .active {
+        position: relative;
+        &::after {
+          content: '\e80e';
+          font-family: 'spoonflower_icons';
+          font-size: .6rem;
+          position: absolute;
+          right: .5rem;
+          top: .3rem;
+        }
+      }
+      > .activateLink {
+        &.active {
+          &::after {
+            left: 8.5rem;
+            right: auto;
+            top: .333rem;
+          }
+        }
       }
     }
   }
-  .subnav .has_subnav {
-    > .active {
-      position: relative;
-      &:after {
-        font-family: 'spoonflower_icons';
-        content: '\e80e';
-        font-size: .6rem;
-        position: absolute;
-        right: .5rem;
-        top: .3rem;
+
+  .nav-link {
+    &.nl-lvl2 {
+      padding: .333rem 0 .5rem 1rem;
+      width: 100%;
+      &.activateLink {
+        margin-left: .3rem;
+        padding: .333rem .7rem;
+        width: auto;
       }
     }
-    > .activateLink.active {
-      &:after {
-        left: 8.5rem;
-        right: auto;
-        top: .333rem;
+    &.nl-lvl3,
+    &.nl-lvl4,
+    &.nl-lvl5 {
+      padding: .333rem 0 .5rem .5rem;
+      width: 100%;
+      &.activateLink {
+        margin-left: .3rem;
+        padding: .325rem .7rem .5rem .7rem;
+        width: auto;
       }
     }
   }
+
+
   // subnav level 2 and 3
   .subnav.sn-lvl2,
   .subnav.sn-lvl3 {
@@ -649,7 +647,8 @@
     top: 52px;
     z-index: 1;
   }
-  .subnav.subnav-dropdown.current, {
+
+  .subnav.subnav-dropdown.current {
     display: block;
   }
   // layout out of 'panel' display items for roostery and sprout patterns
@@ -723,18 +722,22 @@
     font-size: rem(15);
   }
 
-  .nav-link.nl-lvl2,
-  .nav-link.nl-lvl3,
-  .nav-link.nl-lvl4 {
-    padding: .333rem 1rem;
-    width: 100%;
+  .nav-link {
+    &.nl-lvl2,
+    &.nl-lvl3,
+    &.nl-lvl4 {
+      padding: .333rem 1rem;
+      width: 100%;
+    }
   }
-  .nav-link.nl-lvl4 {
-    margin-bottom: .1rem;
-    margin-left: .3rem;
-    margin-top: .1rem;
-    // padding: .333rem 0 .333rem .8rem;
-    padding: .333rem .7rem .333rem .7rem;
+  .nav-link {
+    &.nl-lvl4 {
+      margin-bottom: .1rem;
+      margin-left: .3rem;
+      margin-top: .1rem;
+      // padding: .333rem 0 .333rem .8rem;
+      padding: .333rem .7rem .333rem .7rem;
+    }
   }
   .nav-link.nl-lvl5 {
     margin-bottom: .1rem;

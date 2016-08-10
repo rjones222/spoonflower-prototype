@@ -13,14 +13,14 @@
   .btm_border {
     width: 100%;
   }
-}
-
-.cart_item {
-  @include font-size(12);
-  margin-top: rem(6);
-  @include clearfix;
-  &:first-of-type {
-    margin-top: 0;
+  .cart_item {
+    @include font-size(12);
+    margin-top: rem(6);
+    @include clearfix;
+    &:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+    }
   }
 }
 
@@ -59,7 +59,6 @@
 .cart_dropdown-subtotal {
   border-top: 3px solid $gallery;
   @include font-size(13);
-  margin-bottom: rem(20);
   padding-top: rem(8);
   text-align: right;
 }
@@ -71,4 +70,5 @@
 .btn-view-cart {
   background-color: $dusty_gray;
   color: $white;
+  margin-top: rem(20);
 }
