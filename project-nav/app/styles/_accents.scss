@@ -1,7 +1,7 @@
 // accents, decorations, trimmings, etc
 
 // hr style <hr class="btm_border">
-.btm_border, .btm_border_mobile {
+.btm_border {
   border: 0;
   border-top: 1px solid $gallery;
   display: none;
@@ -9,16 +9,19 @@
   padding-bottom: .5em;
   @include media($tablet) {
     display: block;
+    width: 90%;
   }
 }
 
 // mobile menus use a gray bg color, make darker for mobile only
-.menu-visible .btm_border,
-.menu-visible .btm_border_mobile {
-  border-top: 1px solid $dusty_gray;
-  @include media($tablet) {
-    border-top: 1px solid $gallery;
-  };
+.menu-visible {
+  .btm_border,
+  .btm_border_mobile {
+    border-top: 1px solid $dusty_gray;
+    @include media($tablet) {
+      border-top: 1px solid $gallery;
+    };
+  }
 }
 
 .btm_border_mobile {
@@ -30,11 +33,13 @@
 // ul disc style
 .disc {
   padding: 1rem 0 1rem .6rem;
-  li::before {
-    content: "\2022";
-    font-size: .5rem;
-    margin-right: .6rem;
-    position: relative;
-    top: -.25rem;
+  li {
+    ::before {
+      content: '\2022';
+      @include font-size(8);
+      margin-right: .6rem;
+      position: relative;
+      top: -.25rem;
+    }
   }
 }

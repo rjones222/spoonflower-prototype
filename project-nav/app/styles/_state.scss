@@ -38,7 +38,8 @@
 // login
 .user_btn,
 .studio_btn,
-.promos_btn {
+.h_bar-container .promos_btn,
+.btn-login.logout {
   display: none;
 }
 
@@ -55,6 +56,28 @@
     display: block;
   }
   .btn-login {
-    right: 10.5rem;
+    display: none;
+    &.logout {
+      display: block;
+      right: 10.3rem;
+    }
   }
+}
+
+// begin tablet and up
+/* Medium screens */
+@include media($tablet) {
+
+  // the logged out user nav
+  .u_nav.u_welcome {
+    display: block;
+    &.is-loggedin {
+      display: none;
+    }
+  }
+  // the logged in user nav
+  .u_nav.is-loggedin {
+    display: block;
+  }
+
 }

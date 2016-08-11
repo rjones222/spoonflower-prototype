@@ -29,23 +29,43 @@ var SpoonflowerNavigation = {
      * @return {Number}        return a number
      */
     SpoonflowerNavigation.windowWidth = $(window).width();
-    /**
-     * Initial mobile functions
-     */
-    if(SpoonflowerNavigation.windowWidth < '768') {
-      SpoonflowerNavigation.navToggle();
-      SpoonflowerNavigation.loggedIn();
-    }
-    /**
-     * shared functions
-     */
-     SpoonflowerNavigation.showDefinition();
-     SpoonflowerNavigation.desktopSubnav();
-     SpoonflowerNavigation.desktopFlyout();
-     SpoonflowerNavigation.touchSubnavOpen();
-     SpoonflowerNavigation.keyboardAccessibility();
+
+    SpoonflowerNavigation.navToggle();
+    SpoonflowerNavigation.loggedInMobile();
+    SpoonflowerNavigation.showDefinition();
+    SpoonflowerNavigation.loggedIn();
+    SpoonflowerNavigation.hidePromos();
+    SpoonflowerNavigation.desktopSubnav();
+    SpoonflowerNavigation.desktopFlyout();
+    SpoonflowerNavigation.touchSubnavOpen();
+    SpoonflowerNavigation.keyboardAccessibility();
   },
 
+  /**
+   * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
+   */
+  navToggle: function() {
+    $('#navToggle button').click(function(e){
+      e.preventDefault();
+      $('.h_bar > nav').slideToggle('medium');
+      $('#hBar').toggleClass('is-collapsed is-expanded');
+      $('#navToggle i').toggleClass('icon_close icon_menu');
+      if($('#hBar').hasClass('is-expanded')) {
+        SpoonflowerNavigation.collapseAllSubnavs();
+      }
+    });
+  },
+
+  /**
+   * In mobile devices (under 767px viewport width), toggles topmost header nav
+   * icon visibility, changes login button text
+   */
+  loggedInMobile: function() {
+    $('.btn-login').click(function(e){
+      e.preventDefault();
+      $('#hBar').toggleClass('is-loggedin');
+    });
+  },
   /**
    * toggles visibility of dropdown with details on what we do
    */
@@ -58,7 +78,7 @@ var SpoonflowerNavigation = {
      * toggles down and up icons, toggles visibility of definition
      */
     function showDef() {
-      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_chevron_up');
+      $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_close');
       $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
     }
 
@@ -92,18 +112,98 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
+   * toggles visibility of Log In, Join, My Studio, in utility nav bar, changes
+   * Log In button text
    */
-  navToggle: function() {
-    $('#navToggle button').click(function(e){
+  loggedIn: function() {
+    // store loggedIn state in localStorage
+    var userLoggedIn = localStorage.getItem('userLoggedIn');
+    var $u_nav = $('.u_nav');
+    // if not set...
+    if(userLoggedIn === null) {
+      // console.log('userLoggedIn is not set');
+      // set hidePromos preference
+      localStorage.setItem('userLoggedIn', 0);
+      userLoggedIn = 0;
+    }
+    else
+    if (userLoggedIn == 1){
+      // console.log('userLoggedIn is false!');
+      $u_nav.toggleClass('is-loggedin');
+    }
+    // when user clicks btn toggle u_nav loggedIn visibility
+    // toggle the two navs - for demo purposes
+    $('.link-login').click(function(e){
       e.preventDefault();
-      $('.h_bar > nav').slideToggle('medium');
-      $('#hBar').toggleClass('is-collapsed is-expanded');
-      $('#navToggle i').toggleClass('icon_close icon_menu');
-      if($('#hBar').hasClass('is-expanded')) {
-        SpoonflowerNavigation.collapseAllSubnavs();
+      // console.log('userLoggedIn1: ' + userLoggedIn);
+      // if false
+      if (userLoggedIn == 0) {
+        // hide the submenu
+        $u_nav.toggleClass('is-loggedin');
+        // set to true
+        localStorage.setItem('userLoggedIn', 1);
+        userLoggedIn = 1;
+        // console.log('userLoggedIn2: ' + userLoggedIn);
+      }
+      else {
+       // set to false and show the u_nav welcome nav (not loggedIn)
+       localStorage.setItem('userLoggedIn', 0);
+       userLoggedIn = 0;
+       $u_nav.toggleClass('is-loggedin');
+      //  console.log('userLoggedIn3: ' + userLoggedIn);
       }
     });
+  },
+
+  /**
+   * promo subnav is shown by default, user must close it. Storing preference in localStorage
+   */
+  hidePromos: function() {
+
+    var promoHidden = localStorage.getItem('hidePromos');
+    var $promosList = $('.promos-link ul');
+    var $iconIndicator = $('#iconIndicator');
+    // if not set...
+    if(promoHidden === null) {
+      // console.log('promoHidden is not set');
+      // set hidePromos preference
+      localStorage.setItem('hidePromos', 0);
+      promoHidden = 0;
+      $promosList.slideToggle();
+    }
+    else
+    if (promoHidden == 0){
+      // console.log('promoHidden is false!');
+      $promosList.slideToggle();
+    }
+    else {
+      // console.log('promoHidden is true!');
+      $iconIndicator.toggleClass('icon_close icon_chevron_down');
+    }
+    // when user clicks btn toggle promo list visibility
+    $('.promos-link .btn').click(function(){
+      // console.log('promoHidden1: ' + promoHidden);
+      // if false
+      if (promoHidden == 0) {
+        // hide the submenu
+        $promosList.slideToggle();
+        $iconIndicator.toggleClass('icon_close icon_chevron_down');
+        // set to true
+        localStorage.setItem('hidePromos', 1);
+        promoHidden = 1;
+        // console.log('promoHidden2: ' + promoHidden);
+      }
+      else {
+       // set to false and show the submenu
+       localStorage.setItem('hidePromos', 0);
+       promoHidden = 0;
+       $promosList.slideToggle();
+       $iconIndicator.toggleClass('icon_close icon_chevron_down');
+       console.log('promoHidden3: ' + promoHidden);
+      }
+
+    });
+
   },
 
   /**
@@ -211,7 +311,8 @@ var SpoonflowerNavigation = {
           }
           // initialize close
           SpoonflowerNavigation.touchCloseSubnav();
-        } else {
+        }
+        else {
           // else open submenu as accordion
           // console.log("opening accordion");
           SpoonflowerNavigation.openMenu($navlinkParent);
@@ -420,17 +521,6 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * toggles topmost header nav icon visibility, changes login button text
-   */
-  loggedIn: function() {
-    $('.btn-login').click(function(e){
-      e.preventDefault();
-      $('#hBar').toggleClass('is-loggedin');
-      $('.btn-login').toggleText('Login', 'Logout');
-    });
-  },
-
-  /**
    * kitchen sink accessibility functions
    */
   keyboardAccessibility: function() {
@@ -554,8 +644,8 @@ var SpoonflowerNavigation = {
           console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
-          // skip to content
-          $('#main').focus();
+          // skip to utility bar
+          $('.u_bar-container').focus();
           break;
         case 37: // left arrow
           // Make sure to stop event bubbling
@@ -568,7 +658,8 @@ var SpoonflowerNavigation = {
           if($navLink.parent('li').prevAll('li').filter(':visible').first().length == 0) {
             // Focus on the last item in the top level
             $navLink.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
-          } else {
+          }
+          else {
             // Focus on the previous item in the top level
             $navLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
           }
@@ -601,7 +692,8 @@ var SpoonflowerNavigation = {
             // Focus on the first item in the top level
             $navLink.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
             // SpoonflowerNavigation.showSubnav(link);
-          } else {
+          }
+          else {
             // Focus on the next item in the top level
             $navLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
           }
@@ -665,8 +757,8 @@ var SpoonflowerNavigation = {
           console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
-          // skip to content
-          $('#main').focus();
+          // skip to utility bar
+          $('.u_bar-container').focus();
           break;
         case 38: /// up arrow
           e.preventDefault();
@@ -694,7 +786,8 @@ var SpoonflowerNavigation = {
             if($prevSnLink.parent().hasClass('has_subnav')) {
               SpoonflowerNavigation.flyoutOpen($prevSnLink);
             }
-          } else {
+          }
+          else {
             // Focus on the previous item in the subnav level
             $subnavLink.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus().addClass('activateLink');
             SpoonflowerNavigation.subnavState = false;
@@ -730,7 +823,8 @@ var SpoonflowerNavigation = {
             if($nextSnLink.parent().hasClass('has_subnav')) {
               SpoonflowerNavigation.flyoutOpen($nextSnLink);
             }
-          } else {
+          }
+          else {
             // Focus on the next item in the subnav level
             $subnavLink.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus().addClass('activateLink');
             SpoonflowerNavigation.subnavState = false;
@@ -751,27 +845,6 @@ var SpoonflowerNavigation = {
  * Initialize SpoonflowerNavigation
  */
 SpoonflowerNavigation.init();
-
-/**
- * Extend jQuery to easily toggle text (from http://stackoverflow.com/a/26183153)
- */
-jQuery.fn.extend({
-  toggleText: function (a, b){
-    var that = this;
-      if (that.text() != a && that.text() != b){
-        that.text(a);
-      }
-      else
-      if (that.text() == a){
-        that.text(b);
-      }
-      else
-      if (that.text() == b){
-        that.text(a);
-      }
-    return this;
-  }
-});
 
 /**
  * [SpoonflowerSearch description] not much to see or say here, used to help style
@@ -825,7 +898,8 @@ $.simulate = function(el, type, options) {
 
 	if (/^drag$/.test(type)) {
 		this[type].apply(this, [this.target, options]);
-	} else {
+	}
+  else {
 		this.simulateEvent(el, type, options);
 	}
 };
@@ -839,7 +913,9 @@ $.extend($.simulate.prototype, {
 	createEvent: function(type, options) {
 		if (/^mouse(over|out|down|up|move)|(dbl)?click$/.test(type)) {
 			return this.mouseEvent(type, options);
-		} else if (/^key(up|down|press)$/.test(type)) {
+		}
+    else
+    if (/^key(up|down|press)$/.test(type)) {
 			return this.keyboardEvent(type, options);
 		}
 	},
@@ -860,7 +936,9 @@ $.extend($.simulate.prototype, {
 				e.screenX, e.screenY, e.clientX, e.clientY,
 				e.ctrlKey, e.altKey, e.shiftKey, e.metaKey,
 				e.button, e.relatedTarget || document.body.parentNode);
-		} else if (document.createEventObject) {
+		}
+    else
+    if (document.createEventObject) {
 			evt = document.createEventObject();
 			$.extend(evt, e);
 			evt.button = { 0:1, 1:4, 2:2 }[evt.button] || evt.button;
@@ -889,7 +967,9 @@ $.extend($.simulate.prototype, {
 					keyCode: e.keyCode, charCode: e.charCode
 				});
 			}
-		} else if (document.createEventObject) {
+		}
+    else
+    if (document.createEventObject) {
 			evt = document.createEventObject();
 			$.extend(evt, e);
 		}
@@ -903,7 +983,9 @@ $.extend($.simulate.prototype, {
 	dispatchEvent: function(el, type, evt) {
 		if (el.dispatchEvent) {
 			el.dispatchEvent(evt);
-		} else if (el.fireEvent) {
+		}
+    else
+    if (el.fireEvent) {
 			el.fireEvent('on' + type, evt);
 		}
 		return evt;

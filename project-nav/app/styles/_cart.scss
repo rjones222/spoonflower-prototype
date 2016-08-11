@@ -1,0 +1,74 @@
+// cart dropdown
+
+.cart_dropdown {
+  background-color: $white;
+  border: 1px solid $botticelli;
+  display: none;
+  min-width: rem(278);
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  top: $u_bar-height - 4;
+  z-index: 1;
+  .btm_border {
+    width: 100%;
+  }
+  .cart_item {
+    @include font-size(12);
+    margin-top: rem(6);
+    @include clearfix;
+    &:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+}
+
+.cart_item-image {
+  @include span-columns(4);
+}
+
+.cart_item-details {
+  box-sizing: border-box;
+  font-size: inherit;
+  @include span-columns(8);
+  // padding-left: .6rem;
+}
+
+.cart_item-name {
+  @include font-size(13);
+}
+
+.cart_item-designer {
+  font-size: inherit;
+  font-style: italic;
+  margin-bottom: rem(8);
+}
+
+.cart_item-description {
+  color: $dusty_gray;
+  font-size: inherit;
+  width: 65%; // may want to remove this just using to force line breaks without <br>
+}
+
+.cart_item-price {
+  margin-bottom: rem(8);
+  text-align: right;
+}
+
+.cart_dropdown-subtotal {
+  border-top: 3px solid $gallery;
+  @include font-size(13);
+  padding-top: rem(8);
+  text-align: right;
+}
+
+.cart-subtotal {
+  font-weight: bold;
+}
+
+.btn-view-cart {
+  background-color: $dusty_gray;
+  color: $white;
+  margin-top: rem(20);
+}

@@ -2,7 +2,7 @@
 
 body {
   font-family: $font-stack;
-  font-size: 16px;
+  font-size: $base-font-size;
   @include media($tablet, $desktop) {
     padding-top: $u_bar-height;
   }
@@ -16,10 +16,11 @@ a {
   }
 }
 
-p, li {
+p,
+li {
   color: $dove_gray;
+  @include font-size(15);
   line-height: 1.2rem;
-  font-size: rem(15);
 }
 
 em {
@@ -32,9 +33,12 @@ iframe {
   max-width: 100%;
 }
 
-a:focus,
-a:active,
-#main:focus {
-  outline-style: solid;
-  outline-width: 1px;
+a,
+button,
+.content_wrap {
+  &:focus,
+  &:active {
+    outline-style: solid;
+    outline-width: 1px;
+  }
 }
