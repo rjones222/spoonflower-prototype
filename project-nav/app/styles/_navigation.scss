@@ -61,6 +61,7 @@
     // height: 100vh;
     overflow: scroll;
     position: absolute;
+    top: $h_bar-height;
     transform: 300ms all ease;
     width: 100vw;
     z-index: 1;
