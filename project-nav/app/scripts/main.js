@@ -30,6 +30,8 @@ var SpoonflowerNavigation = {
      */
     SpoonflowerNavigation.windowWidth = $(window).width();
 
+    SpoonflowerNavigation.userTesting();
+
     SpoonflowerNavigation.navToggle();
     SpoonflowerNavigation.loggedInMobile();
     SpoonflowerNavigation.showDefinition();
@@ -39,6 +41,28 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.desktopFlyout();
     SpoonflowerNavigation.touchSubnavOpen();
     SpoonflowerNavigation.keyboardAccessibility();
+  },
+
+  /**
+   * Some functionality to help with mocking up for user testing
+   */
+  userTesting: function() {
+    /**
+     * Show a mocked up product page by switching the image in the <main> section
+     */
+    console.log('in userTesting()');
+    var hash = window.location.hash.substr(1);
+
+    switch (hash) {
+      case 'dachshund':
+        $('#welcomeMock').hide();
+        $('#fabricDachshund').show();
+        break;
+      case 'welcome':
+        $('.mock_page_image').hide();
+        $('#welcomeMock').show();
+        break;
+    }
   },
 
   /**

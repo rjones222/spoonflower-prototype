@@ -5,6 +5,11 @@
   display: none;
 }
 
+// for testing demo
+.mock_page_image {
+  display: none;
+}
+
 /* hide it on small (phones & tablets) screens */
 
 @media all and (max-width: 767px) {
