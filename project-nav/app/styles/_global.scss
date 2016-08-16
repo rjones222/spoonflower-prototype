@@ -292,4 +292,16 @@
       z-index: 1;
     }
   }
+  &.screen-reader-bottom {
+    &:active,
+    &:focus {
+      display: block; // added to center this link
+      left: 50%;
+      margin: -60px 0 0 -100px; //
+      padding: .8rem;
+      position: absolute;
+      width: 200px; // added to center this link
+      z-index: 1;
+    }
+  }
 }

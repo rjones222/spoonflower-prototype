@@ -27,7 +27,7 @@
     <header class="site_header">
       <div class="h_bar">
         <div id="hBar" class="h_bar-container is-collapsed">
-          <a href="http://user1.spoonflower.com/prototype/#welcome" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
+          <a href="http://user1.spoonflower.com/prototype/?page=welcome" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
           <!-- default action is blocked for demo purposes -->
           <a href="https://www.spoonflower.com/login" class="btn btn-xs btn-login">Log In</a>
           <a href="#" class="btn btn-xs btn-login logout">Log Out</a>
@@ -66,7 +66,7 @@
                 <i class="icon icon_chevron_down" aria-hidden="true"></i>
               </button>
               <input type="text" class="search_input" />
-              <button type="submit" class="btn btn-search">
+              <button type="submit" class="btn btn-search screen-reader-focus">
                 <i class="icon icon_search" aria-hidden="true"></i>
               </button>
             </form>
@@ -846,7 +846,7 @@
                               <a href="http://www.spoonflower.com/tags/dachshund" class="nav-link nl-lvl5">Dachshund</a>
                             </li>
                             <li>
-                              <a href="http://user1.spoonflower.com/prototype/#dachshund" class="nav-link nl-lvl5">Donny the Dachshund</a>
+                              <a href="http://user1.spoonflower.com/prototype/?page=dachshund" class="nav-link nl-lvl5">Donny the Dachshund</a>
                             </li>
                             <li>
                               <a href="http://www.spoonflower.com/tags/greyhound" class="nav-link nl-lvl5">Greyhound</a>
@@ -2000,7 +2000,7 @@
               </ul>
             </li>
             <li class="has_subnav promos-link mobile_hide" tabindex="-1">
-              <button class="btn" tabindex="0">
+              <button class="btn screen-reader-focus" tabindex="0">
                 <i class="icon icon_burst" aria-hidden="true"></i>
                 <span class="promo_count">3</span>
                 <span class="visuallyhidden">Promos</span>
@@ -2026,7 +2026,7 @@
             <a href="https://sproutpatterns.com/"><img class="sprout_patterns_logo" src="/images/sprout_patterns_logo_green.svg" alt="Sprout Patterns" /></a>
           </li>
           <li>
-            <a href="https://roostery.com/"><img class="roostery_logo" src="/images/roostery_logo_green.svg" alt="Roostery Home Decor" /></a>
+            <a href="https://roostery.com/" class="screen-reader-focus"><img class="roostery_logo" src="/images/roostery_logo_green.svg" alt="Roostery Home Decor" /></a>
           </li>
         </ul>
         <!-- utility welcome nav (i.e. user not logged in) -->
@@ -2176,7 +2176,7 @@
     <main id="main" class="content_wrap" tabindex="-1">
       <dl id="whatIsSpoonflower" class="spoonflower_definition">
         <dt>
-          Custom printed <span tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
+          Custom printed <span class="screen-reader-focus" tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
         </dt>
         <dd class="display_none">
           <p>The world’s largest marketplace for eco-friendly,
@@ -2252,7 +2252,7 @@
         <div class="social_links mobile_hide">
           <ul class="nav nav-social">
             <li>
-              <a href="https://www.facebook.com/spoonflower" title="Facebook" class="btn-round"><i class="icon icon_facebook" aria-hidden="true"></i></a>
+              <a href="https://www.facebook.com/spoonflower" title="Facebook" class="btn-round screen-reader-focus"><i class="icon icon_facebook" aria-hidden="true"></i></a>
             </li>
             <li>
               <a href="https://twitter.com/spoonflower" title="Twitter" class="btn-round"><i class="icon icon_twitter" aria-hidden="true"></i></a>
@@ -2270,9 +2270,10 @@
               <a href="https://www.youtube.com/spoonflower" title="Youtube" class="btn-round"><i class="icon icon_youtube" aria-hidden="true"></i></a>
             </li>
           </ul>
-          <a class="screen-reader screen-reader-focusable" href="mailto:accessibility@spoonflower.com?subject=Accessibility%20Feedback">Accessibility Feedback</a>
         </div>
       </div>
+      <!-- there is no email address configured for this: 
+      <a class="screen-reader screen-reader-focusable screen-reader-bottom" href="mailto:accessibility@spoonflower.com?subject=Accessibility%20Feedback">Accessibility Feedback</a> -->
     </footer>
 
     <!-- build:js scripts/vendor.js -->

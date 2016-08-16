@@ -48,21 +48,42 @@ var SpoonflowerNavigation = {
    */
   userTesting: function() {
     /**
-     * Show a mocked up product page by switching the image in the <main> section
+     * Show a mocked up pages by switching the image in the <main> section. We're
+     * avoiding having to code a fully functional website with multiple pages,
+     * includes, etc.
      */
-    console.log('in userTesting()');
-    var hash = window.location.hash.substr(1);
+    var url = document.location.href;
+    showMockPage(url);
 
-    switch (hash) {
-      case 'dachshund':
-        $('#welcomeMock').hide();
-        $('#fabricDachshund').show();
-        break;
-      case 'welcome':
-        $('.mock_page_image').hide();
-        $('#welcomeMock').show();
-        break;
+    /**
+     * takes the url href string, gets the value of the 'page' url parameter and
+     * shows or hides images in the main section of the single page html app.
+     * @param  {string} url - string href value
+     */
+    function showMockPage(url) {
+      var key = 'page',
+          query_string = url.split('?'),
+          string_values = query_string[1].split('&'),
+          req_value = '';
+      for(var i=0; i < string_values.length; i++)
+      {
+        if(string_values[i].match(key)) {
+          req_value = string_values[i].split('=');
+        }
+      }
+      switch (req_value[1]) {
+        case 'dachshund':
+          $('#welcomeMock').hide();
+          $('#fabricDachshund').show();
+          break;
+        case 'welcome':
+          $('.mock_page_image').hide();
+          $('#welcomeMock').show();
+          break;
+      }
     }
+
+
   },
 
   /**
@@ -115,10 +136,16 @@ var SpoonflowerNavigation = {
 
     /**
      * keydown handler
-     * 13 = 'enter' or 27 = 'esc'
+     * 13 = 'enter', 27 = 'esc' or 32 = 'spacebar'
+     *
+     * NOTE: spacebar scrolls the page so how can spacebar key presses be used
+     * for buttons as the web accessibility recommendations say??? 
+     * see: http://webaim.org/techniques/keyboard/tabindex#zero-negative-one
      */
+
     $definitionToggle.on('keydown', function(e) {
-      if(e.which == 13 || e.which == 27) {
+      if([13, 27].indexOf(e.which) +1){
+        e.preventDefault();
         showDef();
       }
     });
@@ -481,8 +508,7 @@ var SpoonflowerNavigation = {
 
   /**
    * close the flyout menus
-   * @param  {[type]} $target [description]
-   * @return {[type]}         [description]
+   * @param {jQuery} $target - either .nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5
    */
   flyoutClose: function($target) {
     // console.log('in flyoutClose()');
@@ -562,6 +588,8 @@ var SpoonflowerNavigation = {
       if(e.which == 13) {
         $('.screen-reader-top').focus();
       }
+    }).on('click', function() { // tacking this on here
+      window.scrollTo(0,0);
     });
 
     /**
@@ -860,6 +888,18 @@ var SpoonflowerNavigation = {
           break;
       }
     });
+
+    /**
+     * Close subnav when focus changes to next element in the tab index with the
+     * added class... this is a hack but I don't see another option.
+     * @param {jQuery} .screen-reader-focus an element with this class will
+     * close any open subnavs.
+     */
+    $('.screen-reader-focus').focus(function() {
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeAllSubnav();
+    });
+
 
   },
 
