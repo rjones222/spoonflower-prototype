@@ -30,6 +30,8 @@ var SpoonflowerNavigation = {
      */
     SpoonflowerNavigation.windowWidth = $(window).width();
 
+    SpoonflowerNavigation.userTesting();
+
     SpoonflowerNavigation.navToggle();
     SpoonflowerNavigation.loggedInMobile();
     SpoonflowerNavigation.showDefinition();
@@ -39,6 +41,56 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.desktopFlyout();
     SpoonflowerNavigation.touchSubnavOpen();
     SpoonflowerNavigation.keyboardAccessibility();
+  },
+
+  /**
+   * Some functionality to help with mocking up for user testing
+   */
+  userTesting: function() {
+    /**
+     * Show a mocked up pages by switching the image in the <main> section. We're
+     * avoiding having to code a fully functional website with multiple pages,
+     * includes, etc.
+     */
+    showMockPage('page');
+
+    /**
+     * takes the url href string, gets the value of the 'page' url parameter and
+     * shows or hides images in the main section of the single page html app.
+     * @param  {string} sParam - string parameter
+     * code help: http://stackoverflow.com/a/21903119
+     */
+    function showMockPage(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+      }
+      // using switch here in case we want to add more mock pages
+      switch (sParameterName[1]) {
+        case 'dachshund':
+          $('#welcomeMock').hide();
+          $('#fabricDachshund').show();
+          break;
+        case 'welcome':
+          $('.mock_page_image').hide();
+          $('#welcomeMock').show();
+          break;
+        default:
+          $('.mock_page_image').hide();
+          $('#welcomeMock').show();
+          break;
+      }
+
+    }
+
+
   },
 
   /**
@@ -91,10 +143,16 @@ var SpoonflowerNavigation = {
 
     /**
      * keydown handler
-     * 13 = 'enter' or 27 = 'esc'
+     * 13 = 'enter', 27 = 'esc' or 32 = 'spacebar'
+     *
+     * NOTE: spacebar scrolls the page so how can spacebar key presses be used
+     * for buttons as the web accessibility recommendations say???
+     * see: http://webaim.org/techniques/keyboard/tabindex#zero-negative-one
      */
+
     $definitionToggle.on('keydown', function(e) {
-      if(e.which == 13 || e.which == 27) {
+      if([13, 27].indexOf(e.which) +1){
+        e.preventDefault();
         showDef();
       }
     });
@@ -457,8 +515,7 @@ var SpoonflowerNavigation = {
 
   /**
    * close the flyout menus
-   * @param  {[type]} $target [description]
-   * @return {[type]}         [description]
+   * @param {jQuery} $target - either .nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5
    */
   flyoutClose: function($target) {
     // console.log('in flyoutClose()');
@@ -538,6 +595,8 @@ var SpoonflowerNavigation = {
       if(e.which == 13) {
         $('.screen-reader-top').focus();
       }
+    }).on('click', function() { // tacking this on here
+      window.scrollTo(0,0);
     });
 
     /**
@@ -836,6 +895,18 @@ var SpoonflowerNavigation = {
           break;
       }
     });
+
+    /**
+     * Close subnav when focus changes to next element in the tab index with the
+     * added class... this is a hack but I don't see another option.
+     * @param {jQuery} .screen-reader-focus an element with this class will
+     * close any open subnavs.
+     */
+    $('.screen-reader-focus').focus(function() {
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeAllSubnav();
+    });
+
 
   },
 

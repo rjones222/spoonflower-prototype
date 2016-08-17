@@ -18,9 +18,7 @@
   text-transform: capitalize;
   // transition: 250ms all ease;
   width: 100%;
-  &:hover {
-    color: $nav-hover;
-  }
+  &:hover,
   &.activateLink {
     background-color: $polar;
     color: $smalt_blue;
@@ -61,6 +59,7 @@
     // height: 100vh;
     overflow: scroll;
     position: absolute;
+    top: $h_bar-height;
     transform: 300ms all ease;
     width: 100vw;
     z-index: 1;

@@ -33,11 +33,18 @@ iframe {
   max-width: 100%;
 }
 
+select {
+  padding: rem(4);
+}
+
 a,
 button,
+select,
+span,
 .content_wrap {
   &:focus,
   &:active {
+    outline-color: $link-color;
     outline-style: solid;
     outline-width: 1px;
   }
