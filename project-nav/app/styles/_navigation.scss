@@ -120,7 +120,9 @@
   left: 0;
   position: absolute;
   top: 0;
-  // transition: 300ms all ease;
+  @include media($tablet, $desktop) {
+    display: none;
+  }
   button {
     background-color: $polar;
     border: 0;
@@ -205,7 +207,7 @@
   }
   .menu-visible {
     // background: rgba(0,0,0,0.05);
-    background-color: $semiopaque_gray;
+    // background-color: $semiopaque_gray;
     height: auto !important;
     max-height: 9999px !important; // hack to simulate js-based dropdown animation with only css
     opacity: 1 !important;
@@ -350,14 +352,14 @@
     }
   }
 
-  #navToggle {
+  .menu_to {
     display: none;
   }
   // Header Bar
 
   .h_bar {
     @include outer-container(1000px);
-    background-color: white;
+    background-color: $white;
     border-bottom: 0;
     line-height: 90px;
     text-align: left;
@@ -378,8 +380,8 @@
     box-shadow: none;
     display: block;
     left: 0;
-    position: absolute;
     overflow: initial;
+    position: absolute;
     top: 111px;
   }
 
@@ -389,7 +391,7 @@
   }
 
   .h_bar nav > ul > li {
-    border-bottom: none;
+    border-bottom: 0;
     float: left;
     // width: 70px;
   }
@@ -533,7 +535,7 @@
       width: 100%;
       &.activateLink {
         margin-left: .3rem;
-        padding: .325rem .7rem .5rem .7rem;
+        padding: .325rem .7rem .5rem;
         width: auto;
       }
     }
@@ -547,11 +549,11 @@
     background: transparent;
     border-left: 1px solid $gallery;
     border-right: 1px solid $gallery;
-    display:none;
+    display: none;
     left: 100%;
     position: absolute;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 1;
     li {
       border-right: 0;
@@ -560,16 +562,16 @@
   }
   .subnav.sn-panel {
     @include outer-container(400%);
-    background: #ffffff;
+    background: $white;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
-    display:none;
+    display: none;
     height: $subnav-height;
     left: 100%;
     overflow: hidden;
     position: absolute;
-    width: 400%;
     top: 0;
+    width: 400%;
     z-index: 1;
     li {
       border-right: 0;
@@ -580,19 +582,18 @@
   .subnav.sn-last {
     @include outer-container(200%);
     @include column-count(3);
-    background: #ffffff;
+    background: $white;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
-    display:none;
+    display: none;
     height: $subnav-height;
     left: 100%;
     overflow: hidden;
     padding-top: .5rem;
     position: absolute;
-    width: 300%;
     top: 0;
+    width: 300%;
     z-index: 1;
-    left: 100%;
     li {
       display: inline-block;
       width: 100%;
@@ -604,19 +605,18 @@
   .subnav.sn-lvl2-last {
     @include outer-container(300%);
     @include column-count(3);
-    background: #ffffff;
+    background: $white;
     border-left: 1px solid $gallery;
     box-sizing: border-box;
-    display:none;
+    display: none;
     height: $subnav-height;
     left: 100%;
     overflow: hidden;
     padding-top: .5rem;
     position: absolute;
-    width: 300%;
     top: 0;
+    width: 300%;
     z-index: 4;
-    left: 100%;
     li {
       display: inline-block;
       width: 100%;
@@ -637,13 +637,13 @@
   // end megamenu
   // begin dropdown menu
   .subnav.subnav-dropdown {
-    background: #ffffff;
+    background: $white;
     border-left: 1px solid $gallery;
     border-right: 1px solid $gallery;
-    box-shadow: 0px 8px 8px -8px #B8B8B8;
+    box-shadow: 0 8px 8px -8px $silver;
     display: none;
-    position: absolute;
     min-width: 280px;
+    position: absolute;
     top: 52px;
     z-index: 1;
   }
@@ -673,26 +673,26 @@
     }
   }
   .nav-social {
-    padding: .6rem 1rem .5rem 1rem;
+    padding: .6rem 1rem .5rem;
   }
 
   // footer_nav
   .footer_nav {
     position: relative;
     .nav-link-primary {
-      padding: 1rem .3em;
       font-size: rem(13);
+      padding: 1rem .3em;
     }
   }
   .subnav-flyup {
-    background: #ffffff;
+    background: $white;
     border-left: 1px solid $gallery;
     border-right: 1px solid $gallery;
-    // box-shadow: 0px 8px 8px -8px #B8B8B8;
+    // box-shadow: 0px 8px 8px -8px $silver;
     display: none;
-    position: absolute;
-    margin-left: -0.4375rem;
+    margin-left: -.4375rem;
     min-width: 280px;
+    position: absolute;
     top: -106px;
     z-index: 2;
     li {
@@ -710,7 +710,7 @@
   }
 }
 
-/* Desktop styles */
+// Desktop styles
 
 @include media($desktop) {
 
@@ -736,7 +736,7 @@
       margin-left: .3rem;
       margin-top: .1rem;
       // padding: .333rem 0 .333rem .8rem;
-      padding: .333rem .7rem .333rem .7rem;
+      padding: .333rem .7rem;
     }
   }
   .nav-link.nl-lvl5 {
@@ -744,23 +744,23 @@
     margin-left: .1rem;
     margin-top: .1rem;
     // padding: .333rem 0 .333rem .8rem;
-    padding: .333rem .7rem .333rem .7rem;
+    padding: .333rem .7rem;
   }
   .nav-link.activateLink.nl-lvl4,
   .nav-link.activateLink.nl-lvl5 {
-    padding: .333rem .7rem .333rem .7rem;
+    padding: .333rem .7rem;
   }
 
   // controls right arrow, usage: li.has_subnav
   .has_subnav > a {
     &:hover {
-      &:after {
+      &::after {
         right: 1rem;
       }
     }
   }
   .has_subnav > .active {
-    &:after {
+    &::after {
       right: 1rem;
     }
   }
@@ -768,7 +768,7 @@
   .subnav .has_subnav {
     > .activateLink.active {
       margin-left: .3rem;
-      &:after {
+      &::after {
         left: 11.3rem;
         right: auto;
         top: .333rem;
@@ -792,8 +792,8 @@
   .footer_nav {
     position: relative;
     .nav-link-primary {
-      padding: 1rem .5em;
       font-size: rem(15);
+      padding: 1rem .5em;
     }
   }
 
