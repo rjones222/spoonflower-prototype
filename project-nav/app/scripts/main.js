@@ -52,26 +52,28 @@ var SpoonflowerNavigation = {
      * avoiding having to code a fully functional website with multiple pages,
      * includes, etc.
      */
-    var url = document.location.href;
-    showMockPage(url);
+    showMockPage('page');
 
     /**
      * takes the url href string, gets the value of the 'page' url parameter and
      * shows or hides images in the main section of the single page html app.
-     * @param  {string} url - string href value
+     * @param  {string} sParam - string parameter
+     * code help: http://stackoverflow.com/a/21903119
      */
-    function showMockPage(url) {
-      var key = 'page',
-          query_string = url.split('?'),
-          string_values = query_string[1].split('&'),
-          req_value = '';
-      for(var i=0; i < string_values.length; i++)
-      {
-        if(string_values[i].match(key)) {
-          req_value = string_values[i].split('=');
+    function showMockPage(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : sParameterName[1];
         }
       }
-      switch (req_value[1]) {
+      // using switch here in case we want to add more mock pages
+      switch (sParameterName[1]) {
         case 'dachshund':
           $('#welcomeMock').hide();
           $('#fabricDachshund').show();
@@ -80,7 +82,12 @@ var SpoonflowerNavigation = {
           $('.mock_page_image').hide();
           $('#welcomeMock').show();
           break;
+        default:
+          $('.mock_page_image').hide();
+          $('#welcomeMock').show();
+          break;
       }
+
     }
 
 
@@ -139,7 +146,7 @@ var SpoonflowerNavigation = {
      * 13 = 'enter', 27 = 'esc' or 32 = 'spacebar'
      *
      * NOTE: spacebar scrolls the page so how can spacebar key presses be used
-     * for buttons as the web accessibility recommendations say??? 
+     * for buttons as the web accessibility recommendations say???
      * see: http://webaim.org/techniques/keyboard/tabindex#zero-negative-one
      */
 
