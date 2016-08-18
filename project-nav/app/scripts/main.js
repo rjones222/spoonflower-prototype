@@ -37,10 +37,22 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.showDefinition();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
-    SpoonflowerNavigation.desktopSubnav();
-    SpoonflowerNavigation.desktopFlyout();
+    if(SpoonflowerNavigation.windowWidth > '767') {
+      SpoonflowerNavigation.desktopSubnav();
+      SpoonflowerNavigation.desktopFlyout();
+    }
     SpoonflowerNavigation.touchSubnavOpen();
     SpoonflowerNavigation.keyboardAccessibility();
+
+    /**
+     * for debugging, prevent default link following
+     */
+
+     $('.nav-link').on('click', function(e){
+       console.log('link blocked!');
+       e.preventDefault();
+     });
+
   },
 
   /**
@@ -55,28 +67,38 @@ var SpoonflowerNavigation = {
     showMockPage('page');
 
     /**
-     * takes the url href string, gets the value of the 'page' url parameter and
+     * takes the url string, gets the value of the 'page' url parameter and
      * shows or hides images in the main section of the single page html app.
      * @param  {string} sParam - string parameter
      * code help: http://stackoverflow.com/a/21903119
      */
     function showMockPage(sParam) {
+      console.log('in showMockPage');
       var sPageURL = decodeURIComponent(window.location.search.substring(1)),
           sURLVariables = sPageURL.split('&'),
           sParameterName,
           i;
+          // console.log('sURLVariables: ', sURLVariables);
       for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
+        // console.log('sParameterName: ', sParameterName[1]);
+        // this stopped working, why !?
+        // if (sParameterName[0] === sParam) {
+        //   return sParameterName[1] === undefined ? true : sParameterName[1];
+        // }
       }
+      // console.log('sParameterName[1]: ', sParameterName[1]);
       // using switch here in case we want to add more mock pages
       switch (sParameterName[1]) {
         case 'dachshund':
           $('#welcomeMock').hide();
+          $('.mock_page_image').hide();
           $('#fabricDachshund').show();
+          break;
+        case 'mobile':
+          $('#welcomeMock').hide();
+          $('.mock_page_image').hide();
+          $('#mobileMock').show();
           break;
         case 'welcome':
           $('.mock_page_image').hide();
@@ -208,7 +230,7 @@ var SpoonflowerNavigation = {
        localStorage.setItem('userLoggedIn', 0);
        userLoggedIn = 0;
        $u_nav.toggleClass('is-loggedin');
-      //  console.log('userLoggedIn3: ' + userLoggedIn);
+      //  // console.log('userLoggedIn3: ' + userLoggedIn);
       }
     });
   },
@@ -257,7 +279,7 @@ var SpoonflowerNavigation = {
        promoHidden = 0;
        $promosList.slideToggle();
        $iconIndicator.toggleClass('icon_close icon_chevron_down');
-       console.log('promoHidden3: ' + promoHidden);
+      //  // console.log('promoHidden3: ' + promoHidden);
       }
 
     });
@@ -345,6 +367,7 @@ var SpoonflowerNavigation = {
       var link = $el.attr('href');
       // console.log('.nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
         window.location = link;
       }
       else {
@@ -385,7 +408,7 @@ var SpoonflowerNavigation = {
         var $el = $(this);
         var link = $el.attr('href');
         if($el.hasClass('activateLink')) {
-          // console.log('touched activated subnav link');
+          // console.log('link blocked!');
           window.location = link;
         }
         else {
@@ -430,6 +453,7 @@ var SpoonflowerNavigation = {
       var link = $el.attr('href');
       // console.log('in touchOpenFlyout()');
       if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
         window.location = link;
       }
       else {
@@ -532,16 +556,18 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $li - the subnav <li>
    */
   openMenu: function($li) {
+    // console.log("in openMenu");
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
+    // and then hide siblings
+    $li.siblings().not('.mobile_search').hide();
     // set the class, make menu visible
     // $li.attr('class', 'has_subnav is-active');
-    $li.addClass('is-active');
-    $li.children('ul').addClass('menu-visible');
     // deactivate active nav-link
-    $('.nav-link').removeClass('activateLink');
-    // activate nav-link button
+    // $('.nav-link').removeClass('activateLink');
+    $li.addClass('is-active');
     $li.children('.nav-link').addClass('activateLink');
+    $li.children('ul').addClass('menu-visible');
   },
 
   /**
@@ -554,6 +580,9 @@ var SpoonflowerNavigation = {
     $li.removeClass('is-active');
     $li.find('.nav-link').removeClass('activateLink');
     $li.find('ul').removeClass('menu-visible');
+    $li.parent().parent().children('.nav-link').addClass('activateLink');
+    // and then show siblings
+    $li.siblings().show().removeAttr('style');
   },
 
   /**
@@ -561,7 +590,7 @@ var SpoonflowerNavigation = {
    */
   collapseAllSubnavs: function() {
     // console.log('in collapseAllSubnavs');
-    $('.has_subnav').removeClass('is-active');
+    $('.has_subnav').removeClass('is-active').removeAttr('style');
     $('.nav-link').removeClass('activateLink');
     // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
     $('ul').removeClass('menu-visible');
@@ -572,6 +601,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - the subnav <li>
    */
   collapseChildSubnavs: function($target) {
+    // console.log('in collapseChildSubnavs')
     var $li = $target;
     $li.attr('class', 'has_subnav');
     $li.find('ul').removeClass('menu-visible');
@@ -624,6 +654,7 @@ var SpoonflowerNavigation = {
           // e.preventDefault();
           // e.stopPropagation();
           if(e.which == 13) {
+            // console.log('link blocked!');
             window.location = href;
           }
         });
@@ -692,6 +723,7 @@ var SpoonflowerNavigation = {
           SpoonflowerNavigation.closeSubnav($navLink);
           var link = $navLink.attr('href');
           if($navLink.hasClass('activateLink')) {
+            // console.log('link blocked!');
             window.location = link;
           }
           else {
@@ -700,7 +732,7 @@ var SpoonflowerNavigation = {
           }
           break;
         case 27: // esc
-          console.log('esc pressed');
+          // console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
           // skip to utility bar
@@ -778,6 +810,7 @@ var SpoonflowerNavigation = {
             if($el.hasClass('activateLink')) {
               $el.on('keydown', function(e) {
                 if(e.which == 13) {
+                  // console.log('link blocked!');
                   window.location = link;
                 }
               });
@@ -813,7 +846,7 @@ var SpoonflowerNavigation = {
 
       switch(e.which) {
         case 27: // esc
-          console.log('esc pressed');
+          // console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
           // skip to utility bar
@@ -828,6 +861,7 @@ var SpoonflowerNavigation = {
           if($subnavLink.hasClass('activateLink')) {
             $subnavLink.on('keydown', function(e) {
               if(e.which == 13) {
+                // console.log('link blocked!');
                 window.location = snLink;
               }
             });
@@ -865,6 +899,7 @@ var SpoonflowerNavigation = {
           if($subnavLink.hasClass('activateLink')) {
             $subnavLink.on('keydown', function(e) {
               if(e.which == 13) {
+                // console.log('link blocked!');
                 window.location = snLink;
               }
             });

@@ -10,7 +10,7 @@
   display: none;
 }
 
-/* hide it on small (phones & tablets) screens */
+// hide it on small (phones & tablets) screens
 
 @media all and (max-width: 767px) {
   .mobile_hide {
@@ -33,7 +33,7 @@
 //     display: none !important;
 //   }
 // }
-/* hide it on large (desktop) screens */
+// hide it on large (desktop) screens
 @media all and (min-width: 768px) {
   .desktop_hide {
     display: none !important;
@@ -70,7 +70,7 @@
 }
 
 // begin tablet and up
-/* Medium screens */
+// Medium screens
 @include media($tablet) {
 
   // the logged out user nav
