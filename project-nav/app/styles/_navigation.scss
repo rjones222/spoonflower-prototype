@@ -410,17 +410,24 @@
   .has_subnav.promos-link {
     float: right;
     .btn {
+      background-color: transparent;
       color: $smalt_blue;
-      margin-top: .5rem;
+      height: 51px;
+      // margin-top: .5rem;
+      min-width: 87px;
       position: relative;
-      width: 80px;
+      @include transition(background-color .5s linear);
       &:hover {
         color: $elephant;
+      }
+      &.active {
+        background-color: $polar;
+        @include transition(background-color .5s linear);
       }
     }
     // the submenu positioning
     .subnav-dropdown {
-      margin-left: -13rem;
+      margin-left: -6.8rem;
       &.visible {
         display: block;
       }
@@ -431,7 +438,7 @@
     .icon_close {
       position: absolute;
       right: .2rem;
-      top: .5rem;
+      top: 1rem;
       &::before {
         color: inherit;
         font-size: .5rem;
@@ -440,10 +447,17 @@
     .icon_chevron_down {
       position: absolute;
       right: .6rem;
-      top: .6rem;
+      top: 1.1rem;
       &::before {
         color: inherit;
       }
+    }
+    .promo_count {
+      display: inline-block;
+      width: 22px;
+    }
+    .promo_text {
+      margin-right: .7rem;
     }
   }
 

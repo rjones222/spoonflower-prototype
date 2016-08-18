@@ -27,7 +27,7 @@
     <header class="site_header">
       <div class="h_bar">
         <div id="hBar" class="h_bar-container is-collapsed">
-          <a href="http://user1.spoonflower.com/prototype/?page=welcome" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
+          <a href="?page=welcome" class="spoonflower_logo"><span class="visuallyhidden">Spoonflower</span></a>
           <!-- default action is blocked for demo purposes -->
           <a href="https://www.spoonflower.com/login" class="btn btn-xs btn-login">Log In</a>
           <a href="#" class="btn btn-xs btn-login logout">Log Out</a>
@@ -846,7 +846,7 @@
                               <a href="http://www.spoonflower.com/tags/dachshund" class="nav-link nl-lvl5">Dachshund</a>
                             </li>
                             <li>
-                              <a href="http://user1.spoonflower.com/prototype/?page=dachshund" class="nav-link nl-lvl5">Donny the Dachshund</a>
+                              <a href="?page=dachshund" class="nav-link nl-lvl5">Donny the Dachshund</a>
                             </li>
                             <li>
                               <a href="http://www.spoonflower.com/tags/greyhound" class="nav-link nl-lvl5">Greyhound</a>
@@ -2000,10 +2000,10 @@
               </ul>
             </li>
             <li class="has_subnav promos-link mobile_hide" tabindex="-1">
-              <button class="btn screen-reader-focus" tabindex="0">
+              <button class="btn promos-link-btn screen-reader-focus" tabindex="0">
                 <i class="icon icon_burst" aria-hidden="true"></i>
                 <span class="promo_count">3</span>
-                <span class="visuallyhidden">Promos</span>
+                <span class="promo_text">Special Offers</span>
                 <i id="iconIndicator" class="icon icon_close" aria-hidden="true"></i>
               </button>
               <ul class="subnav subnav-dropdown">
@@ -2173,30 +2173,40 @@
         </ul>
       </div>
     </div>
-    <main id="main" class="content_wrap" tabindex="-1">
-      <dl id="whatIsSpoonflower" class="spoonflower_definition">
-        <dt>
-          Custom printed <span class="screen-reader-focus" tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
-        </dt>
-        <dd class="display_none">
-          <p>The world’s largest marketplace for eco-friendly,
-            <span class="nowrap">print-on-demand:</span></p>
-          <ul class="disc">
-            <li>Fabric</li>
-            <li>Wallpaper</li>
-            <li>Gift Wrap</li>
-            <li>Home Decor (via Roostery)</li>
-            <li>Cut & Sew (via Sprout Patterns)</li>
-          </ul>
-          <a href="http://www.spoonflower.com/shop" class="btn btn-primary">Shop</a>
-          <a href="http://www.spoonflower.com/create" class="btn btn-primary">Design</a>
-          <a href="http://www.spoonflower.com/sell" class="btn btn-primary">Sell</a>
-        </dd>
-      </dl>
-      <img id="welcomeMock" src="images/welcome.jpg" height="2691" width="1000" />
-      <img id="fabricDachshund" src="images/fabric-dachshund.png" height="1660" width="1000" class="mock_page_image" />
-      <img id="mobileMock" src="images/mobile.png" height="593" width="320" class="mock_page_image" />
-      <button class="btn btn-back_to_top"><i class="icon icon_arrow_up" aria-hidden="true"></i> Back to Top</button>
+    <main id="main" class="main" tabindex="-1">
+      <div class="outer_container">
+        <dl id="whatIsSpoonflower" class="spoonflower_definition">
+          <dt>
+            Custom printed <span class="screen-reader-focus" tabindex="0">fabric and more <i class="icon icon_chevron_down"></i></span>
+          </dt>
+          <dd class="display_none">
+            <p>The world’s largest marketplace for eco-friendly,
+              <span class="nowrap">print-on-demand:</span></p>
+            <ul class="disc">
+              <li>Fabric</li>
+              <li>Wallpaper</li>
+              <li>Gift Wrap</li>
+              <li>Home Decor (via Roostery)</li>
+              <li>Cut & Sew (via Sprout Patterns)</li>
+            </ul>
+            <a href="http://www.spoonflower.com/shop" class="btn btn-primary">Shop</a>
+            <a href="http://www.spoonflower.com/create" class="btn btn-primary">Design</a>
+            <a href="http://www.spoonflower.com/sell" class="btn btn-primary">Sell</a>
+          </dd>
+        </dl>
+      </div>
+      <div class="page_header">
+        <div class="outer_container">
+          <img id="welcomeMock-header" src="images/welcome-header.jpg" height="325" width="1000" style="margin-bottom: 1rem;" />
+          <img id="fabricDachshund-header" src="images/fabric-dachshund-header.png" height="103" width="1000" class="mock_page_image" style="margin-bottom: -2px" />
+        </div>
+      </div>
+      <div class="outer_container">
+        <img id="welcomeMock" src="images/welcome.jpg" height="2691" width="1000" />
+        <img id="fabricDachshund" src="images/fabric-dachshund.png" height="1660" width="1000" class="mock_page_image" />
+        <img id="mobileMock" src="images/mobile.png" height="593" width="320" class="mock_page_image" />
+        <button class="btn btn-back_to_top"><i class="icon icon_arrow_up" aria-hidden="true"></i> Back to Top</button>
+      </div>
     </main>
     <footer class="site_footer">
       <div class="outer-container">

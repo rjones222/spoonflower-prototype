@@ -1,9 +1,20 @@
 // global
 
-.content_wrap {
+// Styles from legacy site
+.outer_container {
   @include outer-container(1000px);
+}
+.page_header {
+  background: url('/images/back_topMOBILE_desat.png');
   box-sizing: border-box;
+  display: block;
+  margin: 0;
+  padding: 1rem 0 0;
+  position: relative;
   width: 100%;
+}
+
+.main {
   @include media($tablet) {
     margin-top: 2rem;
   }
@@ -46,13 +57,13 @@
   margin: 1rem;
   max-width: 270px;
   @include media($tablet) {
-    left: 23%;
+    left: rem(185);
     position: relative;
     top: -62px;
   }
   @include media($desktop) {
     // position: relative;
-    left: 21%;
+    left: rem(207);
     margin-bottom: -16px;
     top: -97px;
   }

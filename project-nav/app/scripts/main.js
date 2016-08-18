@@ -48,10 +48,10 @@ var SpoonflowerNavigation = {
      * for debugging, prevent default link following
      */
 
-     $('.nav-link').on('click', function(e){
-       console.log('link blocked!');
-       e.preventDefault();
-     });
+    //  $('.nav-link').on('click', function(e){
+    //    console.log('link blocked!');
+    //    e.preventDefault();
+    //  });
 
   },
 
@@ -91,9 +91,9 @@ var SpoonflowerNavigation = {
       // using switch here in case we want to add more mock pages
       switch (sParameterName[1]) {
         case 'dachshund':
-          $('#welcomeMock').hide();
+          $('#welcomeMock, #welcomeMock-header').hide();
           $('.mock_page_image').hide();
-          $('#fabricDachshund').show();
+          $('#fabricDachshund, #fabricDachshund-header').show();
           break;
         case 'mobile':
           $('#welcomeMock').hide();
@@ -202,7 +202,7 @@ var SpoonflowerNavigation = {
     // if not set...
     if(userLoggedIn === null) {
       // console.log('userLoggedIn is not set');
-      // set hidePromos preference
+      // set loggedIn state to false
       localStorage.setItem('userLoggedIn', 0);
       userLoggedIn = 0;
     }
@@ -240,25 +240,39 @@ var SpoonflowerNavigation = {
    */
   hidePromos: function() {
 
-    var promoHidden = localStorage.getItem('hidePromos');
-    var $promosList = $('.promos-link ul');
-    var $iconIndicator = $('#iconIndicator');
+    var promoHidden = localStorage.getItem('hidePromos'),
+        $promosList = $('.promos-link ul'),
+        $iconIndicator = $('#iconIndicator'),
+        // $burst = $('.icon_burst'),
+        $promoText = $('.promo_text'),
+        $promoButton = $('.promos-link-btn');
+
+    function delayActiveBtn() {
+      $promoButton.addClass('active');
+    }
     // if not set...
     if(promoHidden === null) {
       // console.log('promoHidden is not set');
       // set hidePromos preference
       localStorage.setItem('hidePromos', 0);
       promoHidden = 0;
-      $promosList.slideToggle();
+      // $burst.addClass('visuallyhidden');
+      $promoText.removeClass('visuallyhidden');
+      $promosList.delay(3000).slideToggle(800);
+      window.setTimeout(delayActiveBtn, 3000);
     }
     else
-    if (promoHidden == 0){
+    if (promoHidden == 0) {
       // console.log('promoHidden is false!');
-      $promosList.slideToggle();
+      // $burst.addClass('visuallyhidden');
+      $promoText.removeClass('visuallyhidden');
+      $promosList.delay(1000).slideToggle(800);
+      window.setTimeout(delayActiveBtn, 1000);
     }
     else {
       // console.log('promoHidden is true!');
       $iconIndicator.toggleClass('icon_close icon_chevron_down');
+      $promoText.addClass('visuallyhidden');
     }
     // when user clicks btn toggle promo list visibility
     $('.promos-link .btn').click(function(){
@@ -266,19 +280,24 @@ var SpoonflowerNavigation = {
       // if false
       if (promoHidden == 0) {
         // hide the submenu
-        $promosList.slideToggle();
+        $promosList.hide();
         $iconIndicator.toggleClass('icon_close icon_chevron_down');
         // set to true
         localStorage.setItem('hidePromos', 1);
         promoHidden = 1;
+        $promoButton.removeClass('active');
+        // $burst.removeClass('visuallyhidden');
+        $promoText.addClass('visuallyhidden');
         // console.log('promoHidden2: ' + promoHidden);
       }
       else {
        // set to false and show the submenu
        localStorage.setItem('hidePromos', 0);
        promoHidden = 0;
-       $promosList.slideToggle();
+       $promosList.slideToggle(400);
+       delayActiveBtn();
        $iconIndicator.toggleClass('icon_close icon_chevron_down');
+       $promoText.removeClass('visuallyhidden');
       //  // console.log('promoHidden3: ' + promoHidden);
       }
 
