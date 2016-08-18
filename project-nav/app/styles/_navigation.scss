@@ -182,15 +182,15 @@
       right: 1.2rem;
       top: .8rem;
     }
-    // up chevron
+    // close icon
     &.is-active {
       position: relative;
       &::after {
-        content: '\e80d';
+        content: '\e808';
         font-family: 'spoonflower_icons';
-        font-size: .4rem;
+        font-size: .6rem;
         position: absolute;
-        right: 1.2rem;
+        right: 1.3rem;
         top: .8rem;
       }
     }
@@ -203,7 +203,7 @@
     opacity: 0;
     overflow-y: hidden;
     // http://easings.net/#easeInOutCubic
-    @include transition(all 600ms cubic-bezier(.645, .045, .355, 1));
+    @include transition(all 1s cubic-bezier(.645, .045, .355, 1));
   }
   .menu-visible {
     // background: rgba(0,0,0,0.05);
