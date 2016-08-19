@@ -147,13 +147,19 @@ var SpoonflowerNavigation = {
     /**
      * the element that triggers the events
      */
-    var $definitionToggle = $('.spoonflower_definition span');
+    var $definitionToggle = $('.spoonflower_definition dt'),
+        $definitionDrawer = $('.spoonflower_definition dd');
     /**
      * toggles down and up icons, toggles visibility of definition
      */
     function showDef() {
+
       $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_close');
-      $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
+      $definitionDrawer.slideToggle('medium').toggleClass('display_none active');
+      if ($definitionDrawer.hasClass('active')) {
+        // initialize closeDef()
+        closeDef();
+      }
     }
 
     /**
@@ -162,6 +168,24 @@ var SpoonflowerNavigation = {
     $definitionToggle.on('click', function() {
       showDef();
     });
+
+    function closeDef() {
+      if ($definitionDrawer.hasClass('active')) {
+        $('html').click(function(e) {
+          if (e.target.id == 'hBar') {
+            closeIt();
+          }
+        });
+        $definitionDrawer.on('mouseleave', function() {
+          closeIt();
+        });
+      }
+
+      function closeIt() {
+        $definitionToggle.find('i:first-child').attr('class', 'icon icon_chevron_down');
+        $definitionDrawer.hide().attr('class', 'display_none');
+      }
+    }
 
     /**
      * keydown handler

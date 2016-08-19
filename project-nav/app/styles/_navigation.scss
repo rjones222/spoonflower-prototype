@@ -53,7 +53,7 @@
     background-color: $white;
     // border-bottom: 1px solid $gallery;
     border-top: 1px solid $gallery;
-    box-shadow: 0 8px 8px -8px $silver;
+    box-shadow: 0 8px 8px -8px $shadow;
     display: none;
     flex: 1;
     // height: 100vh;
@@ -377,7 +377,7 @@
     background-color: transparent;
     border-bottom: 1px solid $gallery;
     border-top: 1px solid $gallery;
-    box-shadow: none;
+    box-shadow: 0 4px 4px -4px $shadow;
     display: block;
     left: 0;
     overflow: initial;
@@ -404,6 +404,7 @@
 
   .nav-link.nav-link-primary {
     font-size: rem(15);
+    text-transform: uppercase;
   }
 
   // the promo burst icon link in nav
@@ -415,6 +416,8 @@
       height: 51px;
       // margin-top: .5rem;
       min-width: 87px;
+      padding-left: .7rem;
+      padding-right: 1.2rem;
       position: relative;
       @include transition(background-color .5s linear);
       &:hover {
@@ -437,7 +440,7 @@
     }
     .icon_close {
       position: absolute;
-      right: .2rem;
+      right: .4rem;
       top: 1rem;
       &::before {
         color: inherit;
@@ -446,7 +449,7 @@
     }
     .icon_chevron_down {
       position: absolute;
-      right: .6rem;
+      right: .8rem;
       top: 1.1rem;
       &::before {
         color: inherit;
@@ -474,9 +477,10 @@
     &.subnav-primary {
       @include outer-container(1200px);
       background: $white;
+      border-bottom: 1px solid $gallery;
       border-left: 1px solid $gallery;
       border-right: 1px solid $gallery;
-      box-shadow: 0 8px 8px -8px $silver;
+      box-shadow: 0 8px 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
       display: none;
       height: $subnav-height;
       left: 0;
@@ -652,9 +656,10 @@
   // begin dropdown menu
   .subnav.subnav-dropdown {
     background: $white;
+    border-bottom: 1px solid $gallery;
     border-left: 1px solid $gallery;
     border-right: 1px solid $gallery;
-    box-shadow: 0 8px 8px -8px $silver;
+    box-shadow: 0 8px 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
     display: none;
     min-width: 280px;
     position: absolute;
@@ -696,13 +701,13 @@
     .nav-link-primary {
       font-size: rem(13);
       padding: 1rem .3em;
+      text-transform: none;
     }
   }
   .subnav-flyup {
     background: $white;
-    border-left: 1px solid $gallery;
-    border-right: 1px solid $gallery;
-    // box-shadow: 0px 8px 8px -8px $silver;
+    border: 1px solid $gallery;
+    box-shadow: 8px 0 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
     display: none;
     margin-left: -.4375rem;
     min-width: 280px;

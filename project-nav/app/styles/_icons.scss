@@ -2,24 +2,12 @@
 
 @font-face {
   font-family: 'spoonflower_icons';
-  src: url('/fonts/spoonflower_icons.eot?59981066');
-  src: url('/fonts/spoonflower_icons.eot?59981066#iefix') format('embedded-opentype'),
-       url('/fonts/spoonflower_icons.woff2?59981066') format('woff2'),
-       url('/fonts/spoonflower_icons.woff?59981066') format('woff'),
-       url('/fonts/spoonflower_icons.ttf?59981066') format('truetype'),
-       url('/fonts/spoonflower_icons.svg?59981066#spoonflower_icons') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'spoonflower_icons';
-  src: url('/fonts/spoonflower_icons.eot?52557961');
-  src: url('/fonts/spoonflower_icons.eot?52557961#iefix') format('embedded-opentype'),
-       url('/fonts/spoonflower_icons.woff2?52557961') format('woff2'),
-       url('/fonts/spoonflower_icons.woff?52557961') format('woff'),
-       url('/fonts/spoonflower_icons.ttf?52557961') format('truetype'),
-       url('/fonts/spoonflower_icons.svg?52557961#spoonflower_icons') format('svg');
+  src: url('/fonts/spoonflower_icons.eot?48676305');
+  src: url('/fonts/spoonflower_icons.eot?48676305#iefix') format('embedded-opentype'),
+       url('/fonts/spoonflower_icons.woff2?48676305') format('woff2'),
+       url('/fonts/spoonflower_icons.woff?48676305') format('woff'),
+       url('/fonts/spoonflower_icons.ttf?48676305') format('truetype'),
+       url('/fonts/spoonflower_icons.svg?48676305#spoonflower_icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -113,13 +101,7 @@
     margin: 0;
   }
 }
-.icon_burst {
-  margin: 0;
-  &:before {
-    content: '\e800';
-    margin: 0;
-  }
-}
+
 .icon_chevron_down {
   width: .3rem;
   &:before {
@@ -224,14 +206,27 @@
 }
 
 .icon_arrow_down {
-  &::before { content: '\e80a'; }
+  &::before {
+    content: '\e80a';
+  }
 }
 .icon_arrow_up {
-  &::before { content: '\e80b'; }
+  &::before {
+    content: '\e80b';
+  }
 }
 
 .icon_chevron_right {
-  &::before { content: '\e80e'; }
+  &::before {
+    content: '\e80e';
+  }
+}
+
+.icon_bullhorn {
+  margin-left: 0;
+  &::before {
+    content: '\e803';
+  }
 }
 
 // to use an icon with a pseudoelement
