@@ -91,22 +91,20 @@ var SpoonflowerNavigation = {
       // using switch here in case we want to add more mock pages
       switch (sParameterName[1]) {
         case 'dachshund':
-          $('#welcomeMock, #welcomeMock-header').hide();
           $('.mock_page_image').hide();
           $('#fabricDachshund, #fabricDachshund-header').show();
           break;
         case 'mobile':
-          $('#welcomeMock').hide();
           $('.mock_page_image').hide();
-          $('#mobileMock').show();
+          $('#mobileMock, #mobile-header').show();
           break;
         case 'welcome':
           $('.mock_page_image').hide();
-          $('#welcomeMock').show();
+          $('#welcomeMock, #welcomeMock-header').show();
           break;
         default:
           $('.mock_page_image').hide();
-          $('#welcomeMock').show();
+          $('#welcomeMock, #welcomeMock-header').show();
           break;
       }
 
@@ -360,7 +358,7 @@ var SpoonflowerNavigation = {
       }
     });
 
-    $('nav').mouseleave(function(){
+    $('nav, .nav').mouseleave(function(){
       // console.log('mouseleave nav');
       SpoonflowerNavigation.subnavState = false;
       SpoonflowerNavigation.closeAllSubnav();

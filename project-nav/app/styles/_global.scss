@@ -9,14 +9,17 @@
   box-sizing: border-box;
   display: block;
   margin: 0;
-  padding: 1rem 0 0;
+  padding: 0;
   position: relative;
   width: 100%;
+  @include media($tablet) {
+    padding: 1rem 0 0;
+  }
 }
 
 .main {
   @include media($tablet) {
-    margin-top: 2rem;
+    margin-top: 1.7rem;
   }
   @include media($desktop) {
     // margin-top: 1.45rem;
@@ -211,13 +214,11 @@
 // footer layout
 
 .site_footer {
+  background-color: $gallery;
   border-top: 1px solid $shadow;
   margin: auto;
   text-align: center;
   width: 100%;
-  @include media($tablet) {
-    background-color: $gallery;
-  }
   .outer-container {
     box-sizing: border-box;
     @include outer-container(1000px);
@@ -227,28 +228,109 @@
     @include span-columns(12);
     color: $nav-color;
     @include font-size(12);
+    padding: 1rem;
     @include media($tablet) {
-      @include span-columns(3);
+      // @include span-columns(2);
+      padding: .25rem 0 1rem;
+      // text-align: left;
+    };
+    @include media($desktop) {
+      @include span-columns(2);
+      margin-top: -50px;
+      // @include shift(0);
+      margin-left: 0;
       padding: 1.2rem 0 0 1rem;
       text-align: left;
     };
   }
-  // footer nav is hidden from mobile view
-  .footer_nav {
+  .footer_main {
     box-sizing: border-box;
-    @include span-columns(6);
+    @include media($tablet) {
+      @include span-columns(8);
+    }
+    @include media($desktop) {
+      @include shift(2);
+      @include span-columns(7);
+    }
+    .nav {
+      // @include span-columns(12);
+      @include media($tablet) {
+        float: right;
+        margin-right: 5%;
+      }
+      @include media($desktop) {
+        margin-right: 0;
+      }
+      > li {
+        @include span-columns(2.75);
+        &:first-child {
+          @include span-columns(3)
+        }
+        &.is-active {
+          @include span-columns(12);
+        }
+      }
+    }
+    .nav-link {
+      font-size: .8rem;
+      padding: .2rem .5rem;
+    }
+  }
+  .email_sign_up {
+    margin: 1rem auto;
+    @include media($tablet) {
+      float: left;
+      padding: 1rem;
+    }
+    // @include media($desktop) {
+    //   padding: 1rem;
+    // }
+  }
+  .email_sign_up-input {
+    width: 167px;
   }
   .social_links {
     box-sizing: border-box;
-    @include span-columns(3);
+    @include span-columns(12);
+    @include media($tablet) {
+      margin-top: -50px;
+      @include shift(6.85);
+      @include span-columns(5);
+      // width: 167px;
+    }
+    @include media($desktop) {
+      @include shift(8.75);
+      @include span-columns(3);
+    }
+  }
+  .has_subnav {
+    &::after {
+      font-size: .3rem;
+      right: 0;
+      top: .2rem;
+    }
+    &.is-active {
+      // a {
+      //   width: 100%;
+      // }
+      &::after {
+        // font-size: .3rem;
+        left: .9rem;
+        right: -10rem;
+        top: .2rem;
+      }
+    }
+  }
+  .menu-visible {
+    width: 100%;
   }
 }
 
 .social_links {
   .nav-social {
-    float: right;
     padding: .9rem 0 0;
     @include media($tablet) {
+      float: right;
       .btn-round {
         margin-right: 2px;
       }

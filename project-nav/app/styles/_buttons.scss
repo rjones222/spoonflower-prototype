@@ -53,9 +53,15 @@
   }
 }
 
-.btn-login {
+.btn-login,
+.btn-footer {
   border: 1px solid $smalt_blue;
   color: $smalt_blue;
+  &:hover,
+  &:active {
+    background-color: $smalt_blue;
+    color: $white;
+  }
 }
 
 .btn-primary {

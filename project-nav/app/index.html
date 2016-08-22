@@ -2560,33 +2560,27 @@
       </div>
       <div class="page_header">
         <div class="outer_container">
-          <img id="welcomeMock-header" src="images/welcome-header.jpg" height="325" width="1000" style="margin-bottom: 1rem;" />
-          <img id="fabricDachshund-header" src="images/fabric-dachshund-header.png" height="103" width="1000" class="mock_page_image" style="margin-bottom: -2px" />
+          <img id="welcomeMock-header" src="images/welcome-header.jpg" style="margin-bottom: 1rem;"  class="mock_page_image" />
+          <img id="fabricDachshund-header" src="images/fabric-dachshund-header.png" class="mock_page_image" style="margin-bottom: -2px" />
+          <img id="mobile-header" src="images/mobile-header.png" class="mock_page_image" style="margin-bottom: -2px" />
         </div>
       </div>
       <div class="outer_container">
-        <img id="welcomeMock" src="images/welcome.jpg" height="2691" width="1000" />
-        <img id="fabricDachshund" src="images/fabric-dachshund.png" height="1660" width="1000" class="mock_page_image" />
-        <img id="mobileMock" src="images/mobile.png" height="593" width="320" class="mock_page_image" />
+        <img id="welcomeMock" src="images/welcome.jpg" class="mock_page_image" />
+        <img id="fabricDachshund" src="images/fabric-dachshund.png" class="mock_page_image" />
+        <img id="mobileMock" src="images/mobile.png" class="mock_page_image" />
         <button class="btn btn-back_to_top"><i class="icon icon_arrow_up" aria-hidden="true"></i> Back to Top</button>
       </div>
     </main>
     <footer class="site_footer">
       <div class="outer-container">
-        <div class="copyright">
-          © 2016 Spoonflower Inc.
-        </div>
-        <div class="footer_nav mobile_hide">
+        <div class="footer_main">
+          <div class="email_sign_up">
+            <label for="email_sign_up_id" class="screen-reader screen-reader-focusable">subscribe to community emails</label>
+            <input type="text" class="email_sign_up-input" id="email_sign_up_id" size="35" name="26148" value="subscribe to community emails" onclick="value =''">
+            <input type="submit" name="submit" value="SIGN UP" id="submit" class="btn btn-xs btn-footer screen-reader-focus" onclick="return sfValidateEmail();">
+          </div>
           <ul class="nav">
-            <li>
-              <a href="http://www.spoonflower.com/shop" class="nav-link nav-link-primary">Shop</a>
-            </li>
-            <li>
-              <a href="http://www.spoonflower.com/create" class="nav-link nav-link-primary">Design</a>
-            </li>
-            <li>
-              <a href="http://www.spoonflower.com/sell" class="nav-link nav-link-primary">Sell</a>
-            </li>
             <li class="has_subnav">
               <a href="http://www.spoonflower.com/about" class="nav-link nav-link-primary">About Us</a>
               <ul class="subnav subnav-flyup">
@@ -2623,7 +2617,7 @@
             </li>
           </ul>
         </div>
-        <div class="social_links mobile_hide">
+        <div class="social_links">
           <ul class="nav nav-social">
             <li>
               <a href="https://www.facebook.com/spoonflower" title="Facebook" class="btn-round screen-reader-focus"><i class="icon icon_facebook" aria-hidden="true"></i></a>
@@ -2644,6 +2638,9 @@
               <a href="https://www.youtube.com/spoonflower" title="Youtube" class="btn-round"><i class="icon icon_youtube" aria-hidden="true"></i></a>
             </li>
           </ul>
+        </div>
+        <div class="copyright">
+          © 2016 Spoonflower Inc.
         </div>
       </div>
       <!-- there is no email address configured for this:
