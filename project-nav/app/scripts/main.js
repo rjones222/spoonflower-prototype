@@ -371,16 +371,17 @@ var SpoonflowerNavigation = {
    * hover subnav links to show more menus
    */
   desktopFlyout: function() {
-    var timerId,
+    var timer,
         $this;
     console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
       console.log('FLYOUT: mouseenter .has_subnav a');
       $this = $(this);
-      timerId = setTimeout(function(){
+      timer = setTimeout(function(){
         SpoonflowerNavigation.flyoutOpen($this);
-        clearTimeout(timerId);
       }, 300);
+    }).mouseleave(function() {
+      clearTimeout(timer);
     });
   },
 
