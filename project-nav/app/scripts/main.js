@@ -371,16 +371,16 @@ var SpoonflowerNavigation = {
    * hover subnav links to show more menus
    */
   desktopFlyout: function() {
-    // console.log('in desktopFlyout()');
+    var timerId,
+        $this;
+    console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
-      // console.log('FLYOUT: mouseenter .has_subnav a');
-      SpoonflowerNavigation.flyoutOpen($(this));
-    });
-
-    // // remove current and active classes if hovering over items without subnav
-    $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
-      // console.log('FLYOUT: mouseover .subnav-primary > li:not(.has_subnav)');
-      SpoonflowerNavigation.flyoutClose($(this));
+      console.log('FLYOUT: mouseenter .has_subnav a');
+      $this = $(this);
+      timerId = setTimeout(function(){
+        SpoonflowerNavigation.flyoutOpen($this);
+        clearTimeout(timerId);
+      }, 300);
     });
   },
 

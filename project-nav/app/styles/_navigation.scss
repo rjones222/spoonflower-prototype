@@ -475,24 +475,23 @@
       }
     }
     &.subnav-primary {
-      @include outer-container(1200px);
       background: $white;
       border-bottom: 1px solid $gallery;
       border-left: 1px solid $gallery;
       border-right: 1px solid $gallery;
-      box-shadow: 0 8px 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
+      box-shadow: 0 8px 8px -8px $shadow-dark, -8px 0 8px -8px $shadow-dark; // bottom shadow, left shadow
       display: none;
       height: $subnav-height;
       left: 0;
       // max-height: none;
       position: absolute;
       top: 52px;
-      width: 100%;
+      width: 20%;
       z-index: 1;
       > li {
         border-right: 1px solid $gallery;
         position: relative;
-        width: 20%;
+        width: 100%;
       }
     }
     &.current {
@@ -564,9 +563,11 @@
   .subnav.sn-lvl2,
   .subnav.sn-lvl3 {
     @include outer-container(100%);
-    background: transparent;
+    background: $white;
+    border-bottom: 1px solid $gallery;
     border-left: 1px solid $gallery;
     border-right: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $shadow-dark;
     display: none;
     left: 100%;
     position: absolute;
@@ -582,6 +583,7 @@
     @include outer-container(400%);
     background: $white;
     border-left: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $shadow-dark, 8px 0 8px -8px $shadow-dark; // bottom shadow, right shadow
     box-sizing: border-box;
     display: none;
     height: $subnav-height;
@@ -601,7 +603,9 @@
     @include outer-container(200%);
     @include column-count(3);
     background: $white;
+    border-bottom: 1px solid $gallery;
     border-left: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $shadow-dark, 8px 0 8px -8px $shadow-dark; // bottom shadow, right shadow
     box-sizing: border-box;
     display: none;
     height: $subnav-height;
@@ -647,10 +651,11 @@
     @include outer-container(300%);
     @include column-count(4);
     background: $white;
+    border-bottom: 1px solid $gallery;
     border-left: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $shadow-dark, 8px 0 8px -8px $shadow-dark; // bottom shadow, right shadow
     box-sizing: border-box;
     display: none;
-    height: $subnav-height;
     left: 100%;
     overflow: hidden;
     padding-top: .5rem;
@@ -668,12 +673,17 @@
   }
   // .subnav.sn-lvl1-last.current,
   .subnav.sn-lvl2.current,
-  .subnav.sn-lvl2-last.current,
   .subnav.sn-lvl3.current,
-  .subnav.sn-last.current,
   .subnav.sn-panel.current {
     display: block;
     height: $subnav-height;
+  }
+
+  .subnav.sn-last.current,
+  .subnav.sn-lvl2-last.current,
+  .subnav.sn-panel.current {
+    display: block;
+    height: $subnav-height + 1; // not sure why this is needed
   }
 
   // end megamenu
@@ -776,10 +786,10 @@
   .nav-link {
     &.nl-lvl4 {
       margin-bottom: .1rem;
-      margin-left: .3rem;
+      // margin-left: .3rem;
       margin-top: .1rem;
       // padding: .333rem 0 .333rem .8rem;
-      padding: .333rem .7rem;
+      // padding: .333rem .7rem;
     }
   }
   .nav-link.nl-lvl5 {
