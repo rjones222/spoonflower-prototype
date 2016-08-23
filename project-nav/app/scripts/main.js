@@ -263,12 +263,11 @@ var SpoonflowerNavigation = {
    */
   hidePromos: function() {
 
-    var promoHidden = localStorage.getItem('hidePromos'),
-        $promosList = $('.promos-link ul'),
-        $iconIndicator = $('#iconIndicator'),
-        // $burst = $('.icon_burst'),
-        $promoText = $('.promo_text'),
-        $promoButton = $('.promos-link-btn');
+    var promoHidden = localStorage.getItem('hidePromos');
+    var $promosList = $('.promos-link ul');
+    var $iconIndicator = $('#iconIndicator');
+    var $promoText = $('.promo_text');
+    var $promoButton = $('.promos-link-btn');
 
     function delayActiveBtn() {
       $promoButton.addClass('active');
@@ -437,7 +436,7 @@ var SpoonflowerNavigation = {
    * $this - li.has_subnav
    */
   touchSubnavOpen: function() {
-    $('.has_subnav').on('touchstart', function(e) {
+    $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
       console.log('.has_subnav on touchstart');
       var $this = $(this);

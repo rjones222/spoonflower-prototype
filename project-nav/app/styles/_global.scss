@@ -272,6 +272,7 @@
     // }
   }
   .email_sign_up-input {
+    @include font-size(10); 
     width: 167px;
   }
   .social_links {

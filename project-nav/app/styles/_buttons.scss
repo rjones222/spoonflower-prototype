@@ -111,7 +111,7 @@
   //   right: 0;
   //   top: 0;
   // }
-  @include media($desktop) {
+  @include media($tablet) {
     right: 6.6rem;
   };
 }
@@ -121,6 +121,7 @@
     padding: .2rem;
     @include media($tablet) {
       padding: .8rem;
+      right: 0;
     };
   }
 }
