@@ -91,9 +91,12 @@
   }
   .promos_btn {
     position: absolute;
-    right: 2.4rem;
+    right: 2.6rem;
     top: 1rem ;
     width: 2.65rem;
+    .item_count {
+      right: .1rem;
+    }
   }
   .cart_btn {
     font-size: rem(12);
@@ -193,6 +196,44 @@
   display: block;
 }
 
+.sn-panel {
+  &.menu-visible {
+    li {
+      div {
+        background-color: $white;
+      }
+    }
+  }
+  .l-box {
+    max-height: 260px;
+    position: relative;
+    width: 100%;
+    div {
+      box-sizing: border-box;
+      padding: 0 1rem;
+      text-align: center;
+      width: 100%;
+    }
+    p {
+      margin: 1rem auto;
+      max-width: 14rem;
+    }
+    .roostery_logo {
+      display: block;
+      margin: 1rem auto;
+      max-width: 180px;
+    }
+    .sprout_patterns_logo {
+      display: block;
+      margin: 1rem auto 1.3rem;
+      max-width: 100px;
+    }
+    .product_image {
+      max-width: 220px;
+    }
+  }
+}
+
 // Mobile only
 @media all and (max-width: 767px) {
   // controls down chevron, usage: li.has_subnav
@@ -260,43 +301,6 @@
         .product_image {
           max-width: 143px;
         }
-      }
-    }
-  }
-  .sn-panel {
-    &.menu-visible {
-      li {
-        div {
-          background-color: $white;
-        }
-      }
-    }
-    .l-box {
-      max-height: 260px;
-      position: relative;
-      width: 100%;
-      div {
-        box-sizing: border-box;
-        padding: 0 1rem;
-        text-align: center;
-        width: 100%;
-      }
-      p {
-        margin: 1rem auto;
-        max-width: 14rem;
-      }
-      .roostery_logo {
-        display: block;
-        margin: 1rem auto;
-        max-width: 180px;
-      }
-      .sprout_patterns_logo {
-        display: block;
-        margin: 1rem auto 1.3rem;
-        max-width: 100px;
-      }
-      .product_image {
-        max-width: 220px;
       }
     }
   }
