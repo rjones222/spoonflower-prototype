@@ -37,6 +37,7 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.showDefinition();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
+    SpoonflowerNavigation.mobileUtilityMenus();
     SpoonflowerNavigation.footerSubnav();
     if(SpoonflowerNavigation.windowWidth > '767') {
       SpoonflowerNavigation.desktopSubnav();
@@ -326,7 +327,25 @@ var SpoonflowerNavigation = {
     });
 
   },
-
+  /**
+   * [mobileUtilityMenus description]
+   */
+  mobileUtilityMenus: function() {
+    $('.user_btn').on('touchstart', function() {
+      var $this = $(this);
+      // console.log('clicked .user_btn');
+      if ($this.hasClass('active')) {
+        $('.main').find('.user_menu_mobile').remove();
+        $this.removeClass('active');
+      } else {
+        $('.user_menu_mobile').removeClass('subnav').clone().prependTo('.main');
+        $this.addClass('active');
+      }
+    });
+  },
+  /**
+   * [footerSubnav description]
+   */
   footerSubnav: function() {
     // Desktop hover
     // console.log('in desktopSubnav()');
