@@ -331,14 +331,43 @@ var SpoonflowerNavigation = {
    * [mobileUtilityMenus description]
    */
   mobileUtilityMenus: function() {
-    $('.user_btn').on('touchstart', function() {
+    $('.user_btn, .studio_btn, .promos_btn, .cart_btn').on('touchstart', function() {
       var $this = $(this);
-      // console.log('clicked .user_btn');
+      var className = $this.attr('class');
+      var menuArray = ['.user_menu_mobile', '.studio_menu_mobile', '.promos_menu_mobile', '.cart_menu_mobile'];
+      var menu;
+      switch (className) {
+        case 'font_icon_btn user_btn':
+          menu = menuArray[0];
+          break;
+        case 'font_icon_btn studio_btn':
+          menu = menuArray[1];
+          break;
+        case 'font_icon_btn promos_btn':
+          menu = menuArray[2];
+          break;
+        case 'font_icon_btn cart_btn':
+          menu = menuArray[3];
+          break;
+        case 'font_icon_btn user_btn active':
+          menu = menuArray[0];
+          break;
+        case 'font_icon_btn studio_btn active':
+          menu = menuArray[1];
+          break;
+        case 'font_icon_btn promos_btn active':
+          menu = menuArray[2];
+          break;
+        case 'font_icon_btn cart_btn active':
+          menu = menuArray[3];
+          break;
+      }
+      console.log('clicked ', $this);
       if ($this.hasClass('active')) {
-        $('.main').find('.user_menu_mobile').remove();
+        $('.main').find(menu).remove();
         $this.removeClass('active');
       } else {
-        $('.user_menu_mobile').removeClass('subnav').clone().prependTo('.main');
+        $(menu).removeClass('subnav').clone().prependTo('.main');
         $this.addClass('active');
       }
     });

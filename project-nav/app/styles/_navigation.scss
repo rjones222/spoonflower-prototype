@@ -342,6 +342,26 @@
       width: 100%;
     }
   }
+  // when appended to .main by jQuery SpoonflowerNavigation.mobileUtilityMenus()
+  .main {
+    .cart_menu_mobile {
+      border: 0;
+      box-sizing: border-box;
+      display: block;
+      top: 51px;
+      width: 100%;
+    }
+    .subnav-dropdown {
+      background-color: $white;
+      border-bottom: 1px solid $gallery;
+      box-shadow: 0 4px 4px -4px $shadow-dark;
+      left: 0;
+      position: absolute;
+      top: 51px;
+      width: 100%;
+      z-index: 2;
+    }
+  }
 }
 
 // end mobile only
