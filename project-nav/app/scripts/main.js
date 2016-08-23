@@ -74,7 +74,7 @@ var SpoonflowerNavigation = {
      * code help: http://stackoverflow.com/a/21903119
      */
     function showMockPage(sParam) {
-      console.log('in showMockPage');
+      // console.log('in showMockPage');
       var sPageURL = decodeURIComponent(window.location.search.substring(1)),
           sURLVariables = sPageURL.split('&'),
           sParameterName,
@@ -320,7 +320,7 @@ var SpoonflowerNavigation = {
        delayActiveBtn();
        $iconIndicator.toggleClass('icon_close icon_chevron_down');
        $promoText.removeClass('visuallyhidden');
-      //  // console.log('promoHidden3: ' + promoHidden);
+       // console.log('promoHidden3: ' + promoHidden);
       }
 
     });
@@ -418,9 +418,9 @@ var SpoonflowerNavigation = {
   desktopFlyout: function() {
     var timer,
         $this;
-    console.log('in desktopFlyout()');
+    // console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
-      console.log('FLYOUT: mouseenter .has_subnav a');
+      // console.log('FLYOUT: mouseenter .has_subnav a');
       $this = $(this);
       timer = setTimeout(function(){
         SpoonflowerNavigation.flyoutOpen($this);
@@ -438,7 +438,7 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      console.log('.has_subnav on touchstart');
+      console.log('in touchSubnavOpen');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -449,7 +449,6 @@ var SpoonflowerNavigation = {
       }
     });
     $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
-    // $('.has_subnav > a').on('touchstart', function(e){
       e.stopPropagation();
       e.preventDefault();
       var $el = $(this);
@@ -501,7 +500,7 @@ var SpoonflowerNavigation = {
           window.location = link;
         }
         else {
-          // console.log('touched subnav link');
+          console.log('touched mobile subnav link');
           $('.nav-link').removeClass('activateLink');
           $el.addClass('activateLink');
           var $navlinkParent = $($el).parent();
@@ -522,7 +521,7 @@ var SpoonflowerNavigation = {
    */
   touchCloseSubnav: function() {
     $('.btn-touch_close').on('touchstart', function(e) {
-      // console.log('in touchCloseSubnav()');
+      console.log('in touchCloseSubnav()');
       e.stopPropagation();
       e.preventDefault();
       var $target = $(this).parent().siblings('.nav-link');
@@ -578,7 +577,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - .nav-link-primary
    */
   closeSubnav: function($target) {
-    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
@@ -591,7 +590,7 @@ var SpoonflowerNavigation = {
    */
   closeAllSubnav: function() {
     if(SpoonflowerNavigation.subnavState == false) {
-      // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState);
+      console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState);
       $('.subnav').removeClass('current');
       $('.has_subnav a').removeClass('active activateLink');
       // remove any touch close button
@@ -645,18 +644,17 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $li - the subnav <li>
    */
   openMenu: function($li) {
-    // console.log("in openMenu");
+    console.log("in openMenu");
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings
     $li.siblings().not('.mobile_search').hide();
     // set the class, make menu visible
-    // $li.attr('class', 'has_subnav is-active');
-    // deactivate active nav-link
-    // $('.nav-link').removeClass('activateLink');
     $li.addClass('is-active');
     $li.children('.nav-link').addClass('activateLink');
     $li.children('ul').addClass('menu-visible');
+    // remove active link from ancestor active link
+    $li.parent().parent().children('.nav-link').removeClass('activateLink');
   },
 
   /**
@@ -664,21 +662,23 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $li - the subnav <li>
    */
   collapseMenu: function($li) {
-    // console.log('in collapseMenu');
+    console.log('in collapseMenu');
     // reset the class on the target
     $li.removeClass('is-active');
     $li.find('.nav-link').removeClass('activateLink');
     $li.find('ul').removeClass('menu-visible');
     $li.parent().parent().children('.nav-link').addClass('activateLink');
-    // and then show siblings
-    $li.siblings().show().removeAttr('style');
+    // and then show siblings by zapping the style attribute added by .hide()
+    $li.siblings().removeAttr('style');
+    // if a submenu is active or hidden reset it
+    $li.find('li').removeAttr('style').removeClass('is-active');
   },
 
   /**
    * collapse all the subnavs
    */
   collapseAllSubnavs: function() {
-    // console.log('in collapseAllSubnavs');
+    console.log('in collapseAllSubnavs');
     $('.has_subnav').removeClass('is-active').removeAttr('style');
     $('.nav-link').removeClass('activateLink');
     // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
@@ -690,7 +690,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - the subnav <li>
    */
   collapseChildSubnavs: function($target) {
-    // console.log('in collapseChildSubnavs')
+    console.log('in collapseChildSubnavs');
     var $li = $target;
     $li.attr('class', 'has_subnav');
     $li.find('ul').removeClass('menu-visible');
