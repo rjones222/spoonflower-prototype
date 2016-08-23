@@ -236,9 +236,9 @@
     };
     @include media($desktop) {
       @include span-columns(2);
-      margin-top: -50px;
       // @include shift(0);
       margin-left: 0;
+      margin-top: -50px;
       padding: 1.2rem 0 0 1rem;
       text-align: left;
     };
@@ -256,30 +256,15 @@
       // @include span-columns(12);
       @include media($tablet) {
         float: right;
-        margin-right: 5%;
-      }
-      @include media($desktop) {
         margin-right: 0;
       }
-      > li {
-        @include span-columns(2.75);
-        &:first-child {
-          @include span-columns(3)
-        }
-        &.is-active {
-          @include span-columns(12);
-        }
-      }
-    }
-    .nav-link {
-      font-size: .8rem;
-      padding: .2rem .5rem;
     }
   }
   .email_sign_up {
     margin: 1rem auto;
     @include media($tablet) {
       float: left;
+      margin: 0;
       padding: 1rem;
     }
     // @include media($desktop) {
@@ -302,27 +287,6 @@
       @include shift(8.75);
       @include span-columns(3);
     }
-  }
-  .has_subnav {
-    &::after {
-      font-size: .3rem;
-      right: 0;
-      top: .2rem;
-    }
-    &.is-active {
-      // a {
-      //   width: 100%;
-      // }
-      &::after {
-        // font-size: .3rem;
-        left: .9rem;
-        right: -10rem;
-        top: .2rem;
-      }
-    }
-  }
-  .menu-visible {
-    width: 100%;
   }
 }
 

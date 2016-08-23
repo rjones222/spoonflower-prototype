@@ -39,8 +39,11 @@
 // }
 
 // nav-links that open a submenu will get button styling. Width needs to be set to auto instead of 100%
-.has_subnav > .nav-link {
-  width: auto;
+.has_subnav,
+.has_subnav-flyup {
+  > .nav-link {
+    width: auto;
+  }
 }
 
 // navigation layout
@@ -166,11 +169,35 @@
   }
 }
 
+.subnav-flyup {
+  background: $white;
+  border: 1px solid $gallery;
+  box-shadow: 8px 0 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
+  display: none;
+  margin-left: .7rem;
+  min-width: 220px;
+  position: absolute;
+  top: 25px;
+  z-index: 2;
+  li {
+    text-align: left;
+    width: 100%;
+  }
+  .nav-link {
+    padding: .333rem 1rem;
+    text-align: left;
+    width: auto;
+  }
+}
+.subnav.subnav-flyup.current {
+  display: block;
+}
 
-// Only Mobile
+// Mobile only
 @media all and (max-width: 767px) {
   // controls down chevron, usage: li.has_subnav
-  .has_subnav {
+  .has_subnav,
+  .has_subnav-flyup {
     display: block;
     position: relative;
     z-index: 1;
@@ -195,8 +222,7 @@
       }
     }
   }
-
-  .subnav {
+  .subnav:not(.subnav-flyup) {
     // display: none;
     height: 0;
     max-height: 0;
@@ -204,6 +230,13 @@
     overflow-y: hidden;
     // http://easings.net/#easeInOutCubic
     @include transition(all 1s cubic-bezier(.645, .045, .355, 1));
+  }
+  .has_subnav-flyup {
+    &:last-child {
+      .subnav-flyup {
+        margin-left: -200px;
+      }
+    }
   }
   .menu-visible {
     // background: rgba(0,0,0,0.05);
@@ -230,48 +263,84 @@
       }
     }
   }
-
-}
-
-.sn-panel {
-  &.menu-visible {
-    li {
+  .sn-panel {
+    &.menu-visible {
+      li {
+        div {
+          background-color: $white;
+        }
+      }
+    }
+    .l-box {
+      max-height: 260px;
+      position: relative;
+      width: 100%;
       div {
-        background-color: $white;
+        box-sizing: border-box;
+        padding: 0 1rem;
+        text-align: center;
+        width: 100%;
+      }
+      p {
+        margin: 1rem auto;
+        max-width: 14rem;
+      }
+      .roostery_logo {
+        display: block;
+        margin: 1rem auto;
+        max-width: 180px;
+      }
+      .sprout_patterns_logo {
+        display: block;
+        margin: 1rem auto 1.3rem;
+        max-width: 100px;
+      }
+      .product_image {
+        max-width: 220px;
       }
     }
   }
-  .l-box {
-    max-height: 260px;
-    position: relative;
-    width: 100%;
-    div {
-      box-sizing: border-box;
-      padding: 0 1rem;
-      text-align: center;
+  .footer_main {
+    .nav {
+      > li {
+        @include span-columns(2.75);
+        &:first-child {
+          @include span-columns(3)
+        }
+        &.is-active {
+          @include span-columns(12);
+        }
+      }
+    }
+    .nav-link {
+      font-size: .8rem;
+      padding: .2rem .5rem;
+    }
+    .has_subnav-flyup {
+      &::after {
+        font-size: .3rem;
+        right: 0;
+        top: .2rem;
+      }
+      &.is-active {
+        // a {
+        //   width: 100%;
+        // }
+        &::after {
+          // font-size: .3rem;
+          left: .9rem;
+          right: -10rem;
+          top: .2rem;
+        }
+      }
+    }
+    .menu-visible {
       width: 100%;
-    }
-    p {
-      margin: 1rem auto;
-      max-width: 14rem;
-    }
-    .roostery_logo {
-      display: block;
-      margin: 1rem auto;
-      max-width: 180px;
-    }
-    .sprout_patterns_logo {
-      display: block;
-      margin: 1rem auto 1.3rem;
-      max-width: 100px;
-    }
-    .product_image {
-      max-width: 220px;
     }
   }
 }
 
-// end mobile
+// end mobile only
 
 // begin tablet and up
 // Medium screens
@@ -498,7 +567,8 @@
       display: block;
     }
     // controls right arrow, usage: li.has_subnav
-    .has_subnav {
+    .has_subnav,
+    .has_subnav-flyup {
       > a {
         position: relative;
         &:hover {
@@ -732,34 +802,32 @@
   // footer_main
   .footer_main {
     position: relative;
-    .nav-link-primary {
+    .nav-link-footer {
       font-size: rem(13);
       padding: 1rem .3em;
       text-transform: none;
     }
   }
+
   .subnav-flyup {
-    background: $white;
-    border: 1px solid $gallery;
-    box-shadow: 8px 0 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
-    display: none;
+    // background: $white;
+    // border: 1px solid $gallery;
+    // box-shadow: 8px 0 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
+    // display: none;
     margin-left: -.4375rem;
     min-width: 280px;
-    position: absolute;
+    // position: absolute;
     top: -106px;
-    z-index: 2;
-    li {
-      text-align: left;
-      width: 100%;
-    }
+    // z-index: 2;
+    // li {
+    //   text-align: left;
+    //   width: 100%;
+    // }
     .nav-link {
-      padding: .333rem 1rem;
-      text-align: left;
+      // padding: .333rem 1rem;
+      // text-align: left;
       width: 100%;
     }
-  }
-  .subnav.subnav-flyup.current {
-    display: block;
   }
 }
 
@@ -805,26 +873,32 @@
   }
 
   // controls right arrow, usage: li.has_subnav
-  .has_subnav > a {
-    &:hover {
+  .has_subnav,
+  .has_subnav-flyup {
+    > a {
+      &:hover {
+        &::after {
+          right: 1rem;
+        }
+      }
+    }
+    > .active {
       &::after {
         right: 1rem;
       }
     }
   }
-  .has_subnav > .active {
-    &::after {
-      right: 1rem;
-    }
-  }
 
-  .subnav .has_subnav {
-    > .activateLink.active {
-      margin-left: .3rem;
-      &::after {
-        left: 11.3rem;
-        right: auto;
-        top: .333rem;
+  .subnav {
+    .has_subnav,
+    .has_subnav-flyup {
+      > .activateLink.active {
+        margin-left: .3rem;
+        &::after {
+          left: 11.3rem;
+          right: auto;
+          top: .333rem;
+        }
       }
     }
   }
@@ -844,7 +918,7 @@
 
   .footer_main {
     position: relative;
-    .nav-link-primary {
+    .nav-link-footer {
       font-size: rem(15);
       padding: 1rem .5em;
     }

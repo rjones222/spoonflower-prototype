@@ -118,7 +118,10 @@
 
 .subnav-flyup {
   .btn-touch_close {
-    padding: .8rem;
+    padding: .2rem;
+    @include media($tablet) {
+      padding: .8rem;
+    };
   }
 }
 

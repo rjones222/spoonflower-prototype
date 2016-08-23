@@ -37,6 +37,7 @@ var SpoonflowerNavigation = {
     SpoonflowerNavigation.showDefinition();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
+    SpoonflowerNavigation.footerSubnav();
     if(SpoonflowerNavigation.windowWidth > '767') {
       SpoonflowerNavigation.desktopSubnav();
       SpoonflowerNavigation.desktopFlyout();
@@ -327,6 +328,53 @@ var SpoonflowerNavigation = {
 
   },
 
+  footerSubnav: function() {
+    // Desktop hover
+    // console.log('in desktopSubnav()');
+    $('.nav-link-footer').mouseover(function(){
+      // console.log('mouseover .nav-link-primary');
+      SpoonflowerNavigation.showSubnav($(this));
+    });
+
+    $('.nav-link-footer').mouseout(function(){
+      // console.log('mouseout .nav-link-primary');
+      SpoonflowerNavigation.closeSubnav($(this));
+    });
+    // Touch behaviors
+    $('.nav-link-footer').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      // console.log('.nav-link-primary on touchstart');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+      }
+      else {
+        $('.nav-link-footer').removeClass('activateLink');
+        $el.addClass('activateLink');
+        // open the menu item if touched
+        var $navlinkParent = $($el).parent();
+        SpoonflowerNavigation.showSubnav($el);
+        // initialize touchOpenFlyout
+        // SpoonflowerNavigation.touchOpenFlyout();
+        // remove any touch close button
+        $('.btn-touch_close').remove();
+        // add close button
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+        // if opened from footer append to ul.subnav-flyup else append to <nav>
+        if($el.next().hasClass('subnav-flyup')) {
+          $(closeButton).appendTo($el.next());
+        } else {
+          $(closeButton).appendTo($('nav'));
+        }
+        // initialize close
+        SpoonflowerNavigation.touchCloseSubnav();
+      }
+    });
+  },
+
   /**
    * begin desktop navigation functionality
    * hover top level navigation to show subnav
@@ -391,7 +439,7 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').on('touchstart', function(e) {
       e.stopPropagation();
-      // console.log('.has_subnav on touchstart');
+      console.log('.has_subnav on touchstart');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -476,8 +524,8 @@ var SpoonflowerNavigation = {
   touchCloseSubnav: function() {
     $('.btn-touch_close').on('touchstart', function(e) {
       // console.log('in touchCloseSubnav()');
-      // e.stopPropagation();
-      // e.preventDefault();
+      e.stopPropagation();
+      e.preventDefault();
       var $target = $(this).parent().siblings('.nav-link');
       $target.removeClass('activateLink active');
       SpoonflowerNavigation.subnavState = false;
