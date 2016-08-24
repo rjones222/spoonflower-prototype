@@ -32,12 +32,14 @@ var SpoonflowerNavigation = {
 
     SpoonflowerNavigation.userTesting();
 
-    SpoonflowerNavigation.navToggle();
-    SpoonflowerNavigation.loggedInMobile();
+    if(SpoonflowerNavigation.windowWidth < '768') {
+      SpoonflowerNavigation.navToggle();
+      SpoonflowerNavigation.loggedInMobile();
+      SpoonflowerNavigation.mobileUtilityMenus();
+    }
     SpoonflowerNavigation.showDefinition();
     SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
-    SpoonflowerNavigation.mobileUtilityMenus();
     SpoonflowerNavigation.footerSubnav();
     if(SpoonflowerNavigation.windowWidth > '767') {
       SpoonflowerNavigation.desktopSubnav();
@@ -126,6 +128,8 @@ var SpoonflowerNavigation = {
       $('#navToggle i').toggleClass('icon_close icon_menu');
       if($('#hBar').hasClass('is-expanded')) {
         SpoonflowerNavigation.collapseAllSubnavs();
+        // remove any open mobile utility menus
+        SpoonflowerNavigation.closeUtilityMenu();
       }
     });
   },
@@ -237,7 +241,7 @@ var SpoonflowerNavigation = {
     }
     // when user clicks btn toggle u_nav loggedIn visibility
     // toggle the two navs - for demo purposes
-    $('.link-login').click(function(e){
+    $('.link-login, .link-logout').click(function(e){
       e.preventDefault();
       // console.log('userLoggedIn1: ' + userLoggedIn);
       // if false
@@ -254,7 +258,7 @@ var SpoonflowerNavigation = {
        localStorage.setItem('userLoggedIn', 0);
        userLoggedIn = 0;
        $u_nav.toggleClass('is-loggedin');
-      //  // console.log('userLoggedIn3: ' + userLoggedIn);
+       // console.log('userLoggedIn3: ' + userLoggedIn);
       }
     });
   },
@@ -336,6 +340,7 @@ var SpoonflowerNavigation = {
       var className = $this.attr('class');
       var menuArray = ['.user_menu_mobile', '.studio_menu_mobile', '.promos_menu_mobile', '.cart_menu_mobile'];
       var menu;
+      // set menu based on class name
       switch (className) {
         case 'font_icon_btn user_btn':
           menu = menuArray[0];
@@ -362,14 +367,26 @@ var SpoonflowerNavigation = {
           menu = menuArray[3];
           break;
       }
-      console.log('clicked ', $this);
+      // console.log('clicked ', $this);
       if ($this.hasClass('active')) {
         $('.main').find(menu).remove();
         $this.removeClass('active');
       } else {
+        // remove any open mobile utility menus
+        SpoonflowerNavigation.closeUtilityMenu();
         $(menu).removeClass('subnav').clone().prependTo('.main');
         $this.addClass('active');
       }
+      // access the logout link in the cloned menu, toggle the hBar and then remove the menu
+      $('.link-logout').click(function(e){
+        console.log('.link-logout clicked');
+        e.preventDefault();
+        $('#hBar').toggleClass('is-loggedin');
+        localStorage.setItem('userLoggedIn', 0);
+        $('.main').find(menu).remove();
+        $
+      });
+
     });
   },
   /**
@@ -486,7 +503,7 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      console.log('in touchSubnavOpen');
+      console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -501,10 +518,11 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('.nav-link-primary on touchstart');
+      console.log('in touchSubnavOpen .nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
         // console.log('link blocked!');
         window.location = link;
+        $el.removeClass('activateLink').siblings().removeClass('current');
       }
       else {
         $('.nav-link').removeClass('activateLink');
@@ -742,6 +760,16 @@ var SpoonflowerNavigation = {
     var $li = $target;
     $li.attr('class', 'has_subnav');
     $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * Close the mobile-only utility menu
+   */
+  closeUtilityMenu: function() {
+    console.log('in closeUtilityMenu');
+    $('.main > .subnav-dropdown').remove();
+    // remove active class from utility menu button
+    $('.font_icon_btn').removeClass('active');
   },
 
   /**

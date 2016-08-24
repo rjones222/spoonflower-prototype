@@ -75,35 +75,46 @@
 .h_bar-container {
   position: relative;
   .font_icon_btn {
+    background: transparent;
+    border: 0;
     color: $smalt_blue;
-    line-height: 1rem;
-  }
-  .user_btn {
+    height: $h_bar-height;
+    // line-height: 1rem;
     position: absolute;
-    right: 8.9rem;
-    top: 1rem;
-  }
-  .studio_btn {
-    position: absolute;
-    right: 5.4rem;
-    top: 1rem ;
-    width: 2.75rem;
-  }
-  .promos_btn {
-    position: absolute;
-    right: 2.6rem;
-    top: 1rem ;
-    width: 2.65rem;
-    .item_count {
-      right: .1rem;
+    top: 0;
+    width: rem(50);
+    &.active,
+    &:active,
+    &:focus {
+      background-color: $polar;
+      color: $elephant;
+      outline: 0;
+    }
+    .icon {
+      font-size: rem(14);
+      left: 17%;
+      position: absolute;
+      top: 33%;
     }
   }
+  .user_btn {
+    right: 47%;
+    width: rem(45);
+    .icon {
+      left: 35%;
+    }
+  }
+  .studio_btn {
+    right: 31%;
+  }
+  .promos_btn {
+    right: 15%;
+    // .item_count {
+    //   right: .1rem;
+    // }
+  }
   .cart_btn {
-    font-size: rem(12);
-    position: absolute;
     right: 0;
-    top: 1rem;
-    width: 2.65rem;
   }
   .btn-login {
     position: absolute;
@@ -116,9 +127,11 @@
   display: inline-block;
   font-size: rem(10);
   position: absolute;
-  right: .5rem;
+  // right: .5rem;
+  right: 15%;
   // text-align: center;
-  top: .1rem;
+  // top: .1rem;
+  top: 34%;
   width: 1rem;
 }
 
@@ -136,6 +149,10 @@
     height: 50px;
     // transition: 300ms all ease;
     width: 50px;
+    &:active,
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
