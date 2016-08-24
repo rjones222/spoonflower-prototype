@@ -32,21 +32,29 @@ var SpoonflowerNavigation = {
 
     SpoonflowerNavigation.userTesting();
 
-    if(SpoonflowerNavigation.windowWidth < '768') {
-      SpoonflowerNavigation.navToggle();
-      SpoonflowerNavigation.loggedInMobile();
-      SpoonflowerNavigation.mobileUtilityMenus();
-    }
+    // SpoonflowerNavigation.loggedInState();
     SpoonflowerNavigation.showDefinition();
-    SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
     SpoonflowerNavigation.footerSubnav();
+    SpoonflowerNavigation.keyboardAccessibility();
+    // mobile only
+    if(SpoonflowerNavigation.windowWidth < '768') {
+      SpoonflowerNavigation.loggedInState($('#hBar'));
+      SpoonflowerNavigation.loggedInMobile();
+      SpoonflowerNavigation.mobileUtilityMenus();
+      SpoonflowerNavigation.mobileTouchSubnavOpen();
+      $('#navToggle button').click(function(e){
+        e.preventDefault();
+        SpoonflowerNavigation.navToggle();
+      });
+    }
+    // desktop and tablet only
     if(SpoonflowerNavigation.windowWidth > '767') {
+      SpoonflowerNavigation.loggedIn();
       SpoonflowerNavigation.desktopSubnav();
       SpoonflowerNavigation.desktopFlyout();
+      SpoonflowerNavigation.touchSubnavOpen();
     }
-    SpoonflowerNavigation.touchSubnavOpen();
-    SpoonflowerNavigation.keyboardAccessibility();
 
     /**
      * for debugging, prevent default link following
@@ -121,29 +129,16 @@ var SpoonflowerNavigation = {
    * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
    */
   navToggle: function() {
-    $('#navToggle button').click(function(e){
-      e.preventDefault();
-      $('.h_bar > nav').slideToggle('medium');
-      $('#hBar').toggleClass('is-collapsed is-expanded');
-      $('#navToggle i').toggleClass('icon_close icon_menu');
-      if($('#hBar').hasClass('is-expanded')) {
-        SpoonflowerNavigation.collapseAllSubnavs();
-        // remove any open mobile utility menus
-        SpoonflowerNavigation.closeUtilityMenu();
-      }
-    });
+    $('.h_bar > nav').slideToggle('medium');
+    $('#hBar').toggleClass('is-collapsed is-expanded');
+    $('#navToggle i').toggleClass('icon_close icon_menu');
+    if($('#hBar').hasClass('is-expanded')) {
+      SpoonflowerNavigation.collapseAllSubnavs();
+      // remove any open mobile utility menus
+      SpoonflowerNavigation.closeUtilityMenu();
+    }
   },
 
-  /**
-   * In mobile devices (under 767px viewport width), toggles topmost header nav
-   * icon visibility, changes login button text
-   */
-  loggedInMobile: function() {
-    $('.btn-login').click(function(e){
-      e.preventDefault();
-      $('#hBar').toggleClass('is-loggedin');
-    });
-  },
   /**
    * toggles visibility of dropdown with details on what we do
    */
@@ -220,47 +215,92 @@ var SpoonflowerNavigation = {
   },
 
   /**
+   * In mobile devices (under 767px viewport width), toggles topmost header nav
+   * icon visibility, changes login button text
+   */
+  loggedInMobile: function() {
+    $('.btn-login').click(function(e){
+      e.preventDefault();
+      console.log('in loggedInMobile');
+      var $hBar = $('#hBar');
+      $hBar.toggleClass('is-loggedin');
+      // set loggedIn
+      localStorage.setItem('userLoggedIn', 1);
+      SpoonflowerNavigation.loggedInState($hBar);
+    });
+  },
+
+  /**
    * toggles visibility of Log In, Join, My Studio, in utility nav bar, changes
    * Log In button text
    */
   loggedIn: function() {
+    // // store loggedIn state in localStorage
+    // var userLoggedIn = localStorage.getItem('userLoggedIn');
+    var $nav = $('.u_nav');
+    // // if not set...
+    // if(userLoggedIn === null) {
+    //   // console.log('userLoggedIn is not set');
+    //   // set loggedIn state to false
+    //   localStorage.setItem('userLoggedIn', 0);
+    //   userLoggedIn = 0;
+    // }
+    // else
+    // if (userLoggedIn == 1){
+    //   // console.log('userLoggedIn is false!');
+    //   $u_nav.toggleClass('is-loggedin');
+    // }
+    // when user clicks btn toggle u_nav loggedIn visibility
+    // toggle the two navs - for demo purposes
+
+    $('.link-login, .link-logout').click(function(e){
+      e.preventDefault();
+      console.log('.link-login clicked');
+      // close open nav
+      if ($('#hBar').hasClass('is-expanded')) {
+        console.log('has class is-expanded');
+        SpoonflowerNavigation.navToggle();
+      }
+      SpoonflowerNavigation.loggedInState($nav);
+
+    });
+  },
+
+  loggedInState: function($nav) {
     // store loggedIn state in localStorage
     var userLoggedIn = localStorage.getItem('userLoggedIn');
-    var $u_nav = $('.u_nav');
+    console.log('original userLoggedIn: ', userLoggedIn);
     // if not set...
     if(userLoggedIn === null) {
-      // console.log('userLoggedIn is not set');
+      console.log('userLoggedIn is not set');
       // set loggedIn state to false
       localStorage.setItem('userLoggedIn', 0);
       userLoggedIn = 0;
     }
     else
     if (userLoggedIn == 1){
-      // console.log('userLoggedIn is false!');
-      $u_nav.toggleClass('is-loggedin');
+      console.log('userLoggedIn is true!');
+      console.log('$nav: ', $nav);
+      $nav.toggleClass('is-loggedin');
     }
-    // when user clicks btn toggle u_nav loggedIn visibility
-    // toggle the two navs - for demo purposes
-    $('.link-login, .link-logout').click(function(e){
-      e.preventDefault();
-      // console.log('userLoggedIn1: ' + userLoggedIn);
-      // if false
-      if (userLoggedIn == 0) {
-        // hide the submenu
-        $u_nav.toggleClass('is-loggedin');
-        // set to true
-        localStorage.setItem('userLoggedIn', 1);
-        userLoggedIn = 1;
-        // console.log('userLoggedIn2: ' + userLoggedIn);
-      }
-      else {
-       // set to false and show the u_nav welcome nav (not loggedIn)
-       localStorage.setItem('userLoggedIn', 0);
-       userLoggedIn = 0;
-       $u_nav.toggleClass('is-loggedin');
-       // console.log('userLoggedIn3: ' + userLoggedIn);
-      }
-    });
+    console.log('userLoggedIn1: ' + userLoggedIn);
+    // if false
+    if (userLoggedIn == 0) {
+      console.log('userLoggedIn is false!');
+      // hide the submenu
+      // $nav.toggleClass('is-loggedin');
+      // set to true
+      // localStorage.setItem('userLoggedIn', 1);
+      // userLoggedIn = 1;
+      console.log('userLoggedIn2: ' + userLoggedIn);
+    }
+    else {
+     // set to false and show the u_nav welcome nav (not loggedIn)
+     // localStorage.setItem('userLoggedIn', 0);
+    //  userLoggedIn = 0;
+    //  $nav.toggleClass('is-loggedin');
+     console.log('userLoggedIn3: ' + userLoggedIn);
+    }
   },
 
   /**
@@ -374,6 +414,10 @@ var SpoonflowerNavigation = {
       } else {
         // remove any open mobile utility menus
         SpoonflowerNavigation.closeUtilityMenu();
+        // close open nav
+        if ($('#hBar').hasClass('is-expanded')) {
+          SpoonflowerNavigation.navToggle();
+        }
         $(menu).removeClass('subnav').clone().prependTo('.main');
         $this.addClass('active');
       }
@@ -384,7 +428,6 @@ var SpoonflowerNavigation = {
         $('#hBar').toggleClass('is-loggedin');
         localStorage.setItem('userLoggedIn', 0);
         $('.main').find(menu).remove();
-        $
       });
 
     });
@@ -496,11 +539,11 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * Opens the subnav items in an accordion menu for mobile, or as a megamenu for tablet
+   * Opens the subnav items in an accordion menu for mobile
    *
    * $this - li.has_subnav
    */
-  touchSubnavOpen: function() {
+  mobileTouchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
       console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
@@ -555,27 +598,84 @@ var SpoonflowerNavigation = {
       }
     });
     // mobile link behaviors
-    if(SpoonflowerNavigation.windowWidth < '768') {
-      $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-        var $el = $(this);
-        var link = $el.attr('href');
-        if($el.hasClass('activateLink')) {
-          // console.log('link blocked!');
-          window.location = link;
+    $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+      }
+      else {
+        console.log('touched mobile subnav link');
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        var $navlinkParent = $($el).parent();
+        // open submenu as accordion
+        // console.log("opening accordion");
+        SpoonflowerNavigation.openMenu($navlinkParent);
+      }
+    });
+    $('.subnav li').not('.has_subnav').on('touchstart', function(e){
+      e.stopPropagation();
+      // console.log('stopPropagation');
+    });
+  },
+
+  /**
+   * Opens the subnav items as a megamenu for tablet
+   *
+   * $this - li.has_subnav
+   */
+  touchSubnavOpen: function() {
+    $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
+      e.stopPropagation();
+      console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
+      var $this = $(this);
+      if($this.hasClass('is-active')) {
+        // SpoonflowerNavigation.collapseChildSubnavs($this);
+        SpoonflowerNavigation.collapseMenu($this);
+      }
+      else {
+        SpoonflowerNavigation.openMenu($this);
+      }
+    });
+    $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      console.log('in touchSubnavOpen .nav-link-primary on touchstart');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+        $el.removeClass('activateLink').siblings().removeClass('current');
+        $('.btn-touch_close').remove();
+      }
+      else {
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        // open the menu item if touched
+        var $navlinkParent = $($el).parent();
+        // show Subnav
+        SpoonflowerNavigation.showSubnav($el);
+        // initialize touchOpenFlyout
+        SpoonflowerNavigation.touchOpenFlyout();
+        // remove any touch close button
+        $('.btn-touch_close').remove();
+        // add close button
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+        // if opened from footer append to ul.subnav-flyup else append to <nav>
+        if($el.next().hasClass('subnav-flyup')) {
+          $(closeButton).appendTo($el.next());
+        } else {
+          $(closeButton).appendTo($('nav'));
         }
-        else {
-          console.log('touched mobile subnav link');
-          $('.nav-link').removeClass('activateLink');
-          $el.addClass('activateLink');
-          var $navlinkParent = $($el).parent();
-          // open submenu as accordion
-          // console.log("opening accordion");
-          SpoonflowerNavigation.openMenu($navlinkParent);
-        }
-      });
-    }
+        // initialize close
+        SpoonflowerNavigation.touchCloseSubnav();
+      }
+    });
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
       e.stopPropagation();
       // console.log('stopPropagation');

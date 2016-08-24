@@ -36,20 +36,20 @@
 .spoonflower_logo {
   background: url('/images/logo.svg');
   background-repeat: no-repeat;
-  background-size: 153px 38px;
+  background-size: 139px 40px;
   display: block;
-  height: 38px;
-  margin: .4rem 0 .375rem 3.6rem;
-  width: 153px;
+  height: 40px;
+  margin: .4rem 0 .2rem 3.6rem;
+  width: 139px;
   @include media($tablet) {
-    background-size: 173px 43px;
-    height: 43px;
+    background-size: 173px 50px;
+    height: 50px;
     margin: .8rem 0 .375rem .7rem;
     width: 173px;
   }
   @include media($desktop) {
-    background-size: 193px 48px;
-    height: 48px;
+    background-size: 193px 55px;
+    height: 55px;
     margin: .8rem 0 .375rem .7rem;
     width: 193px;
   }
@@ -66,9 +66,9 @@
   }
   @include media($desktop) {
     // position: relative;
-    left: rem(207);
+    left: rem(217);
     margin-bottom: -16px;
-    top: -97px;
+    top: -88px;
   }
   dt {
     color: $smalt_blue;
@@ -272,7 +272,7 @@
     // }
   }
   .email_sign_up-input {
-    @include font-size(10); 
+    @include font-size(10);
     width: 167px;
   }
   .social_links {

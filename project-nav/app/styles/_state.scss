@@ -51,9 +51,16 @@
 
 .h_bar-container.is-loggedin {
   .spoonflower_logo {
+    background: url('/images/logo-flower.svg');
+    background-repeat: no-repeat;
+    background-size: 43px 43px;
+    margin: .2rem 0 .4rem 3.6rem;
     width: 43px;
     @include media(min-width 425px) {
-      width: 153px;
+      background: url('/images/logo.svg');
+      background-repeat: no-repeat;
+      background-size: 139px 40px;
+      width: 139px;
     };
   }
   .user_btn,
