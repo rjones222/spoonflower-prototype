@@ -11,10 +11,12 @@ $footer_height: 58px;
 
 // color names, names derived from http://chir.ag/projects/name-that-color
 // grays
-$dove_gray: #666;      // basic font color
-$gallery: #efefef;     // borders, footer background color
-$dusty_gray: #989898;  // top nav link, social icon round button background color
-$silver: #b8b8b8;      // shadow color for bottom edge of dropdown menus
+$dove_gray: #666;                 // basic font color
+$gallery: #efefef;                // borders, footer background color
+$alto: #ddd;                      // site footer top border color
+$dusty_gray: #989898;             // top nav link, social icon round button background color
+$shadow: rgba(0, 0, 0, .15);      // shadow color for bottom edge of dropdown menus, btn-footer border
+$shadow-dark: rgba(0, 0, 0, .35); // shadow color for bottom edge of dropdown menus
 $semiopaque_gray: rgba(0, 0, 0, .03); // mobile menu background color
 
 // greens

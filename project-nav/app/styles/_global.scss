@@ -1,15 +1,29 @@
 // global
 
-.content_wrap {
+// Styles from legacy site
+.outer_container {
   @include outer-container(1000px);
+}
+.page_header {
+  background: url('/images/back_topMOBILE_desat.png');
   box-sizing: border-box;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: relative;
   width: 100%;
   @include media($tablet) {
-    margin-top: 2rem;
+    padding: 1rem 0 0;
+  }
+}
+
+.main {
+  @include media($tablet) {
+    margin-top: 1.7rem;
   }
   @include media($desktop) {
     // margin-top: 1.45rem;
-    margin-top: 3.45rem;
+    margin-top: 3.15rem;
     padding: 0;
   }
 }
@@ -22,20 +36,20 @@
 .spoonflower_logo {
   background: url('/images/logo.svg');
   background-repeat: no-repeat;
-  background-size: 153px 38px;
+  background-size: 139px 40px;
   display: block;
-  height: 38px;
-  margin: .4rem 0 .375rem 3.6rem;
-  width: 153px;
+  height: 40px;
+  margin: .4rem 0 .2rem 3.6rem;
+  width: 139px;
   @include media($tablet) {
-    background-size: 173px 43px;
-    height: 43px;
+    background-size: 173px 50px;
+    height: 50px;
     margin: .8rem 0 .375rem .7rem;
     width: 173px;
   }
   @include media($desktop) {
-    background-size: 193px 48px;
-    height: 48px;
+    background-size: 193px 55px;
+    height: 55px;
     margin: .8rem 0 .375rem .7rem;
     width: 193px;
   }
@@ -46,15 +60,15 @@
   margin: 1rem;
   max-width: 270px;
   @include media($tablet) {
-    left: 23%;
+    left: rem(185);
     position: relative;
     top: -62px;
   }
   @include media($desktop) {
     // position: relative;
-    left: 21%;
+    left: rem(217);
     margin-bottom: -16px;
-    top: -97px;
+    top: -88px;
   }
   dt {
     color: $smalt_blue;
@@ -65,14 +79,18 @@
     }
     span {
       border-bottom: 2px solid $polar;
+      cursor: pointer;
       display: inline-block;
+      padding: .3rem .3rem 0 0;
       position: relative;
+      width: rem(106);
     }
   }
   dd {
     background-color: $white;
     border: 1px solid $gallery;
-    margin-top: 1rem;
+    box-shadow: 0 8px 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
+    margin-top: .5rem;
     max-width: 248px;
     padding: 1rem;
     position: absolute;
@@ -90,10 +108,9 @@
     margin-right: rem(5);
   }
   .icon_close {
-    // position: absolute;
-    // right: 0.2rem;
-    // top: 0.5rem;
-    margin: 0;
+    position: absolute;
+    right: 0;
+    top: .25rem;
     &::before {
       color: inherit;
       font-size: .5rem;
@@ -197,12 +214,11 @@
 // footer layout
 
 .site_footer {
+  background-color: $gallery;
+  border-top: 1px solid $alto;
   margin: auto;
   text-align: center;
   width: 100%;
-  @include media($tablet) {
-    background-color: $gallery;
-  }
   .outer-container {
     box-sizing: border-box;
     @include outer-container(1000px);
@@ -212,28 +228,99 @@
     @include span-columns(12);
     color: $nav-color;
     @include font-size(12);
+    padding: 1rem;
     @include media($tablet) {
-      @include span-columns(3);
+      // @include span-columns(2);
+      padding: .25rem 0 1rem;
+      // text-align: left;
+    };
+    @include media($desktop) {
+      @include span-columns(2);
+      // @include shift(0);
+      float: right;
+      margin-left: 0;
+      margin-top: -57px;
       padding: 1.2rem 0 0 1rem;
       text-align: left;
     };
   }
-  // footer nav is hidden from mobile view
-  .footer_nav {
+  .footer_main {
     box-sizing: border-box;
-    @include span-columns(6);
+    @include media($tablet) {
+      @include span-columns(8);
+    }
+    @include media($desktop) {
+      // @include shift(2.2);
+      @include span-columns(7.2);
+    }
+    .nav {
+      // @include span-columns(12);
+      @include media($tablet) {
+        float: left;
+        margin: 0;
+        padding-left: 1rem;
+        // @include span-columns(5);
+        @include shift(0);
+      }
+      @include media($desktop) {
+        // float: left;
+        padding-left: 0;
+        padding-top: .4rem;
+      }
+    }
+  }
+  .email_sign_up {
+    margin: 1rem auto;
+    @include media($tablet) {
+      float: right;
+      margin: 0;
+      padding: .75rem 0;
+      // @include span-columns(5);
+      // @include shift(6.2);
+    }
+    @include media($desktop) {
+      float: right;
+      padding: 1.1rem 1rem;
+    }
+  }
+  .email_sign_up-input {
+    // box-sizing: border-box;
+    @include font-size(12);
+    height: 22px;
+    width: 179px;
+    @include media($tablet) {
+      @include font-size(11);
+      height: 22px;
+      width: 159px;
+    }
+    @include media($desktop) {
+      @include font-size(12);
+      height: 22px;
+      width: 184px;
+    }
   }
   .social_links {
     box-sizing: border-box;
-    @include span-columns(3);
+    @include span-columns(12);
+    @include media($tablet) {
+      margin-top: -50px;
+      @include shift(8.75);
+      @include span-columns(3);
+      // width: 167px;
+    }
+    @include media($desktop) {
+      margin-top: -57px;
+      @include shift(6.75);
+      @include span-columns(3);
+    }
   }
 }
 
 .social_links {
   .nav-social {
-    float: right;
     padding: .9rem 0 0;
     @include media($tablet) {
+      float: right;
       .btn-round {
         margin-right: 2px;
       }

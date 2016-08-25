@@ -13,12 +13,19 @@
   margin: 0;
   padding: .5rem 1rem;
   vertical-align: middle;
+  // &:hover,
+  // &:focus,
+  // &:active {
+  //   background-color: $polar;
+  //   color: $smalt_blue;
+  //   outline: none;
+  // }
 }
 
 .btn-sm {
   @include font-size(12);
   line-height: 1;
-  padding: .3rem 1rem;
+  padding: .5rem 1rem .4rem;
 }
 
 .btn-xs {
@@ -56,11 +63,35 @@
 .btn-login {
   border: 1px solid $smalt_blue;
   color: $smalt_blue;
+  &:hover,
+  &:active {
+    background-color: $smalt_blue;
+    color: $white;
+  }
+}
+
+.btn-footer {
+  background-color: $polar;
+  color: $elephant;
+  border: 1px solid $shadow;
+  // margin-top: -1px; // position in chrome browser is off by one pixel
+  padding-left: .4rem;
+  padding-right: .4rem;
+  &:hover,
+  &:active {
+    background-color: $smalt_blue;
+    color: $white;
+  }
 }
 
 .btn-primary {
   background-color: $polar;
   color: $smalt_blue;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $elephant;
+  }
 }
 
 .btn-select,
@@ -105,14 +136,18 @@
   //   right: 0;
   //   top: 0;
   // }
-  @include media($desktop) {
+  @include media($tablet) {
     right: 6.6rem;
   };
 }
 
 .subnav-flyup {
   .btn-touch_close {
-    padding: .8rem;
+    padding: .2rem;
+    @include media($tablet) {
+      padding: .8rem;
+      right: 0;
+    };
   }
 }
 

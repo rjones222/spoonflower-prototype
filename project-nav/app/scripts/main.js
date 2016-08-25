@@ -32,26 +32,39 @@ var SpoonflowerNavigation = {
 
     SpoonflowerNavigation.userTesting();
 
-    SpoonflowerNavigation.navToggle();
-    SpoonflowerNavigation.loggedInMobile();
+    // SpoonflowerNavigation.loggedInState();
     SpoonflowerNavigation.showDefinition();
-    SpoonflowerNavigation.loggedIn();
     SpoonflowerNavigation.hidePromos();
+    SpoonflowerNavigation.footerSubnav();
+    SpoonflowerNavigation.keyboardAccessibility();
+    // mobile only
+    if(SpoonflowerNavigation.windowWidth < '768') {
+      SpoonflowerNavigation.loggedInState($('#hBar'));
+      SpoonflowerNavigation.loggedInMobile();
+      SpoonflowerNavigation.mobileUtilityMenus();
+      SpoonflowerNavigation.mobileTouchSubnavOpen();
+      $('#navToggle button').click(function(e){
+        e.preventDefault();
+        SpoonflowerNavigation.navToggle();
+      });
+    }
+    // desktop and tablet only
     if(SpoonflowerNavigation.windowWidth > '767') {
+      SpoonflowerNavigation.loggedInState($('.u_nav'));
+      SpoonflowerNavigation.loggedIn();
       SpoonflowerNavigation.desktopSubnav();
       SpoonflowerNavigation.desktopFlyout();
+      SpoonflowerNavigation.touchSubnavOpen();
     }
-    SpoonflowerNavigation.touchSubnavOpen();
-    SpoonflowerNavigation.keyboardAccessibility();
 
     /**
      * for debugging, prevent default link following
      */
 
-     $('.nav-link').on('click', function(e){
-       console.log('link blocked!');
-       e.preventDefault();
-     });
+    //  $('.nav-link').on('click', function(e){
+    //    // console.log('link blocked!');
+    //    e.preventDefault();
+    //  });
 
   },
 
@@ -73,7 +86,7 @@ var SpoonflowerNavigation = {
      * code help: http://stackoverflow.com/a/21903119
      */
     function showMockPage(sParam) {
-      console.log('in showMockPage');
+      // console.log('in showMockPage');
       var sPageURL = decodeURIComponent(window.location.search.substring(1)),
           sURLVariables = sPageURL.split('&'),
           sParameterName,
@@ -91,27 +104,23 @@ var SpoonflowerNavigation = {
       // using switch here in case we want to add more mock pages
       switch (sParameterName[1]) {
         case 'dachshund':
-          $('#welcomeMock').hide();
           $('.mock_page_image').hide();
-          $('#fabricDachshund').show();
+          $('#fabricDachshund, #fabricDachshund-header').show();
           break;
         case 'mobile':
-          $('#welcomeMock').hide();
           $('.mock_page_image').hide();
-          $('#mobileMock').show();
+          $('#mobileMock, #mobile-header').show();
           break;
         case 'welcome':
           $('.mock_page_image').hide();
-          $('#welcomeMock').show();
+          $('#welcomeMock, #welcomeMock-header').show();
           break;
         default:
           $('.mock_page_image').hide();
-          $('#welcomeMock').show();
+          $('#welcomeMock, #welcomeMock-header').show();
           break;
       }
-
     }
-
 
   },
 
@@ -119,27 +128,16 @@ var SpoonflowerNavigation = {
    * In mobile view this toggles navigation visibility and if already visible triggers collapseAllSubnavs()
    */
   navToggle: function() {
-    $('#navToggle button').click(function(e){
-      e.preventDefault();
-      $('.h_bar > nav').slideToggle('medium');
-      $('#hBar').toggleClass('is-collapsed is-expanded');
-      $('#navToggle i').toggleClass('icon_close icon_menu');
-      if($('#hBar').hasClass('is-expanded')) {
-        SpoonflowerNavigation.collapseAllSubnavs();
-      }
-    });
+    $('.h_bar > nav').slideToggle('medium');
+    $('#hBar').toggleClass('is-collapsed is-expanded');
+    $('#navToggle i').toggleClass('icon_close icon_menu');
+    if($('#hBar').hasClass('is-expanded')) {
+      SpoonflowerNavigation.collapseAllSubnavs();
+      // remove any open mobile utility menus
+      SpoonflowerNavigation.closeUtilityMenu();
+    }
   },
 
-  /**
-   * In mobile devices (under 767px viewport width), toggles topmost header nav
-   * icon visibility, changes login button text
-   */
-  loggedInMobile: function() {
-    $('.btn-login').click(function(e){
-      e.preventDefault();
-      $('#hBar').toggleClass('is-loggedin');
-    });
-  },
   /**
    * toggles visibility of dropdown with details on what we do
    */
@@ -147,13 +145,19 @@ var SpoonflowerNavigation = {
     /**
      * the element that triggers the events
      */
-    var $definitionToggle = $('.spoonflower_definition span');
+    var $definitionToggle = $('.spoonflower_definition dt'),
+        $definitionDrawer = $('.spoonflower_definition dd');
     /**
      * toggles down and up icons, toggles visibility of definition
      */
     function showDef() {
+
       $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_close');
-      $('.spoonflower_definition dd').slideToggle('medium').toggleClass('display_none');
+      $definitionDrawer.slideToggle('medium').toggleClass('display_none active');
+      if ($definitionDrawer.hasClass('active')) {
+        // initialize closeDef()
+        closeDef();
+      }
     }
 
     /**
@@ -162,6 +166,24 @@ var SpoonflowerNavigation = {
     $definitionToggle.on('click', function() {
       showDef();
     });
+
+    function closeDef() {
+      if ($definitionDrawer.hasClass('active')) {
+        $('html').click(function(e) {
+          if (e.target.id == 'hBar') {
+            closeIt();
+          }
+        });
+        $definitionDrawer.on('mouseleave', function() {
+          closeIt();
+        });
+      }
+
+      function closeIt() {
+        $definitionToggle.find('i:first-child').attr('class', 'icon icon_chevron_down');
+        $definitionDrawer.hide().attr('class', 'display_none');
+      }
+    }
 
     /**
      * keydown handler
@@ -192,47 +214,80 @@ var SpoonflowerNavigation = {
   },
 
   /**
+   * In mobile devices (under 767px viewport width), toggles topmost header nav
+   * icon visibility, changes login button text
+   */
+  loggedInMobile: function() {
+    var $hBar = $('#hBar');
+    $('.btn-login').click(function(e){
+      e.preventDefault();
+      // console.log('in loggedInMobile');
+      $('.user_btn').removeClass('active');
+      // $hBar.toggleClass('is-loggedin');
+      // set loggedIn
+      localStorage.setItem('userLoggedIn', 1);
+      SpoonflowerNavigation.loggedInState($hBar);
+    });
+    $('.link-logout').click(function() {
+      // set logged out
+      // console.log('.link-logout clicked');
+      localStorage.setItem('userLoggedIn', 0);
+      SpoonflowerNavigation.loggedInState($hBar);
+    });
+  },
+
+  /**
    * toggles visibility of Log In, Join, My Studio, in utility nav bar, changes
    * Log In button text
    */
   loggedIn: function() {
+    var $nav = $('.u_nav');
+
+    $('.link-login').click(function(e){
+      e.preventDefault();
+      // console.log('desktop .link-login clicked');
+      localStorage.setItem('userLoggedIn', 1);
+      SpoonflowerNavigation.loggedInState($nav);
+    });
+    $('.link-logout').click(function() {
+      // set logged out
+      // console.log('.link-logout clicked');
+      localStorage.setItem('userLoggedIn', 0);
+      SpoonflowerNavigation.loggedInState($nav);
+    });
+  },
+
+  /**
+   * Reads from and sets localStorage, toggles .is-loggedin accordingly
+   * @param  {jQuery Object} $nav - either the mobile #hBar or the .u_bar utility nav containers
+   */
+  loggedInState: function($nav) {
     // store loggedIn state in localStorage
     var userLoggedIn = localStorage.getItem('userLoggedIn');
-    var $u_nav = $('.u_nav');
+    // console.log('original userLoggedIn: ', userLoggedIn);
     // if not set...
     if(userLoggedIn === null) {
       // console.log('userLoggedIn is not set');
-      // set hidePromos preference
+      // set loggedIn state to false
       localStorage.setItem('userLoggedIn', 0);
       userLoggedIn = 0;
     }
     else
     if (userLoggedIn == 1){
-      // console.log('userLoggedIn is false!');
-      $u_nav.toggleClass('is-loggedin');
+      // console.log('userLoggedIn is true!');
+      // console.log('$nav: ', $nav);
+      $nav.toggleClass('is-loggedin');
     }
-    // when user clicks btn toggle u_nav loggedIn visibility
-    // toggle the two navs - for demo purposes
-    $('.link-login').click(function(e){
-      e.preventDefault();
-      // console.log('userLoggedIn1: ' + userLoggedIn);
-      // if false
-      if (userLoggedIn == 0) {
+    // console.log('userLoggedIn1: ' + userLoggedIn);
+    // if false
+    if (userLoggedIn == 0) {
+      // console.log('userLoggedIn is false!');
+      if ($nav.hasClass('is-loggedin')) {
         // hide the submenu
-        $u_nav.toggleClass('is-loggedin');
-        // set to true
-        localStorage.setItem('userLoggedIn', 1);
-        userLoggedIn = 1;
-        // console.log('userLoggedIn2: ' + userLoggedIn);
+        $nav.toggleClass('is-loggedin');
       }
-      else {
-       // set to false and show the u_nav welcome nav (not loggedIn)
-       localStorage.setItem('userLoggedIn', 0);
-       userLoggedIn = 0;
-       $u_nav.toggleClass('is-loggedin');
-      //  // console.log('userLoggedIn3: ' + userLoggedIn);
-      }
-    });
+      // console.log('userLoggedIn2: ' + userLoggedIn);
+    }
   },
 
   /**
@@ -243,22 +298,33 @@ var SpoonflowerNavigation = {
     var promoHidden = localStorage.getItem('hidePromos');
     var $promosList = $('.promos-link ul');
     var $iconIndicator = $('#iconIndicator');
+    var $promoText = $('.promo_text');
+    var $promoButton = $('.promos-link-btn');
+
+    function delayActiveBtn() {
+      $promoButton.addClass('active');
+    }
     // if not set...
     if(promoHidden === null) {
       // console.log('promoHidden is not set');
       // set hidePromos preference
       localStorage.setItem('hidePromos', 0);
       promoHidden = 0;
-      $promosList.slideToggle();
+      $promoText.removeClass('visuallyhidden');
+      $promosList.delay(3000).slideToggle(800);
+      window.setTimeout(delayActiveBtn, 3000);
     }
     else
-    if (promoHidden == 0){
+    if (promoHidden == 0) {
       // console.log('promoHidden is false!');
-      $promosList.slideToggle();
+      $promoText.removeClass('visuallyhidden');
+      $promosList.delay(1000).slideToggle(800);
+      window.setTimeout(delayActiveBtn, 1000);
     }
     else {
       // console.log('promoHidden is true!');
       $iconIndicator.toggleClass('icon_close icon_chevron_down');
+      $promoText.addClass('visuallyhidden');
     }
     // when user clicks btn toggle promo list visibility
     $('.promos-link .btn').click(function(){
@@ -266,24 +332,143 @@ var SpoonflowerNavigation = {
       // if false
       if (promoHidden == 0) {
         // hide the submenu
-        $promosList.slideToggle();
+        $promosList.hide();
         $iconIndicator.toggleClass('icon_close icon_chevron_down');
         // set to true
         localStorage.setItem('hidePromos', 1);
         promoHidden = 1;
+        $promoButton.removeClass('active');
+        // $burst.removeClass('visuallyhidden');
+        $promoText.addClass('visuallyhidden');
         // console.log('promoHidden2: ' + promoHidden);
       }
       else {
        // set to false and show the submenu
        localStorage.setItem('hidePromos', 0);
        promoHidden = 0;
-       $promosList.slideToggle();
+       $promosList.slideToggle(400);
+       delayActiveBtn();
        $iconIndicator.toggleClass('icon_close icon_chevron_down');
-      //  // console.log('promoHidden3: ' + promoHidden);
+       $promoText.removeClass('visuallyhidden');
+       // console.log('promoHidden3: ' + promoHidden);
       }
 
     });
 
+  },
+  /**
+   * Handles cloning utility menus, and their visibility
+   */
+  mobileUtilityMenus: function() {
+    $('.user_btn, .studio_btn, .promos_btn, .cart_btn').on('touchstart', function() {
+      var $this = $(this);
+      var className = $this.attr('class');
+      var menuArray = ['.user_menu_mobile', '.studio_menu_mobile', '.promos_menu_mobile', '.cart_menu_mobile'];
+      var menu;
+      // set menu based on class name
+      switch (className) {
+        case 'font_icon_btn user_btn':
+          menu = menuArray[0];
+          break;
+        case 'font_icon_btn studio_btn':
+          menu = menuArray[1];
+          break;
+        case 'font_icon_btn promos_btn':
+          menu = menuArray[2];
+          break;
+        case 'font_icon_btn cart_btn':
+          menu = menuArray[3];
+          break;
+        case 'font_icon_btn user_btn active':
+          menu = menuArray[0];
+          break;
+        case 'font_icon_btn studio_btn active':
+          menu = menuArray[1];
+          break;
+        case 'font_icon_btn promos_btn active':
+          menu = menuArray[2];
+          break;
+        case 'font_icon_btn cart_btn active':
+          menu = menuArray[3];
+          break;
+      }
+      // console.log('clicked ', $this);
+      if ($this.hasClass('active')) {
+        $('.main').find(menu).remove();
+        $this.removeClass('active');
+      } else {
+        // remove any open mobile utility menus
+        SpoonflowerNavigation.closeUtilityMenu();
+        // close open nav
+        if ($('#hBar').hasClass('is-expanded')) {
+          SpoonflowerNavigation.navToggle();
+        }
+        // if promos menu is hidden remove inline style added by jQuery
+        if (menu == menuArray[2]) {
+          $('.promos_menu_mobile').removeAttr('style');
+        }
+        $(menu).removeClass('subnav').clone().prependTo('.main');
+        $this.addClass('active');
+      }
+      // access the logout link in the cloned menu, toggle the hBar and then remove the menu
+      $('.link-logout').click(function(e){
+        // console.log('.link-logout clicked');
+        e.preventDefault();
+        $('#hBar').toggleClass('is-loggedin');
+        localStorage.setItem('userLoggedIn', 0);
+        $('.main').find(menu).remove();
+      });
+
+    });
+  },
+  /**
+   * [footerSubnav description]
+   */
+  footerSubnav: function() {
+    // Desktop hover
+    // console.log('in desktopSubnav()');
+    $('.nav-link-footer').mouseover(function(){
+      // console.log('mouseover .nav-link-primary');
+      SpoonflowerNavigation.showSubnav($(this));
+    });
+
+    $('.nav-link-footer').mouseout(function(){
+      // console.log('mouseout .nav-link-primary');
+      SpoonflowerNavigation.closeSubnav($(this));
+    });
+    // Touch behaviors
+    $('.nav-link-footer').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      // console.log('.nav-link-primary on touchstart');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+      }
+      else {
+        $('.nav-link-footer').removeClass('activateLink');
+        $el.addClass('activateLink');
+        // open the menu item if touched
+        var $navlinkParent = $($el).parent();
+        SpoonflowerNavigation.showSubnav($el);
+        // initialize touchOpenFlyout
+        // SpoonflowerNavigation.touchOpenFlyout();
+        // remove any touch close button
+        $('.btn-touch_close').remove();
+        // add close button
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> <span class="visuallyhidden">Close Menu</span></button>';
+        // if opened from footer append to ul.subnav-flyup else append to <nav>
+        if($el.next().hasClass('subnav-flyup')) {
+          $(closeButton).appendTo($el.next());
+        } else {
+          $(closeButton).appendTo($('nav'));
+        }
+        // initialize close
+        SpoonflowerNavigation.touchCloseSubnav();
+      }
+    });
   },
 
   /**
@@ -317,7 +502,7 @@ var SpoonflowerNavigation = {
       }
     });
 
-    $('nav').mouseleave(function(){
+    $('nav, .nav').mouseleave(function(){
       // console.log('mouseleave nav');
       SpoonflowerNavigation.subnavState = false;
       SpoonflowerNavigation.closeAllSubnav();
@@ -328,28 +513,29 @@ var SpoonflowerNavigation = {
    * hover subnav links to show more menus
    */
   desktopFlyout: function() {
+    var timer,
+        $this;
     // console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
       // console.log('FLYOUT: mouseenter .has_subnav a');
-      SpoonflowerNavigation.flyoutOpen($(this));
-    });
-
-    // // remove current and active classes if hovering over items without subnav
-    $('.subnav-primary > li:not(.has_subnav)').mouseover(function(){
-      // console.log('FLYOUT: mouseover .subnav-primary > li:not(.has_subnav)');
-      SpoonflowerNavigation.flyoutClose($(this));
+      $this = $(this);
+      timer = setTimeout(function(){
+        SpoonflowerNavigation.flyoutOpen($this);
+      }, 300);
+    }).mouseleave(function() {
+      clearTimeout(timer);
     });
   },
 
   /**
-   * Opens the subnav items in an accordion menu for mobile, or as a megamenu for tablet
+   * Opens the subnav items in an accordion menu for mobile
    *
    * $this - li.has_subnav
    */
-  touchSubnavOpen: function() {
-    $('.has_subnav').on('touchstart', function(e) {
+  mobileTouchSubnavOpen: function() {
+    $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      // console.log('.has_subnav on touchstart');
+      // console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -360,15 +546,15 @@ var SpoonflowerNavigation = {
       }
     });
     $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
-    // $('.has_subnav > a').on('touchstart', function(e){
       e.stopPropagation();
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('.nav-link-primary on touchstart');
+      // console.log('in touchSubnavOpen .nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
         // console.log('link blocked!');
         window.location = link;
+        $el.removeClass('activateLink').siblings().removeClass('current');
       }
       else {
         $('.nav-link').removeClass('activateLink');
@@ -401,27 +587,84 @@ var SpoonflowerNavigation = {
       }
     });
     // mobile link behaviors
-    if(SpoonflowerNavigation.windowWidth < '768') {
-      $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-        var $el = $(this);
-        var link = $el.attr('href');
-        if($el.hasClass('activateLink')) {
-          // console.log('link blocked!');
-          window.location = link;
+    $('.has_subnav > .nl-lvl2, .has_subnav > .nl-lvl3, .has_subnav > .nl-lvl4').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+      }
+      else {
+        // console.log('touched mobile subnav link');
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        var $navlinkParent = $($el).parent();
+        // open submenu as accordion
+        // console.log("opening accordion");
+        SpoonflowerNavigation.openMenu($navlinkParent);
+      }
+    });
+    $('.subnav li').not('.has_subnav').on('touchstart', function(e){
+      e.stopPropagation();
+      // console.log('stopPropagation');
+    });
+  },
+
+  /**
+   * Opens the subnav items as a megamenu for tablet
+   *
+   * $this - li.has_subnav
+   */
+  touchSubnavOpen: function() {
+    $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
+      e.stopPropagation();
+      // console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
+      var $this = $(this);
+      if($this.hasClass('is-active')) {
+        // SpoonflowerNavigation.collapseChildSubnavs($this);
+        SpoonflowerNavigation.collapseMenu($this);
+      }
+      else {
+        SpoonflowerNavigation.openMenu($this);
+      }
+    });
+    $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var $el = $(this);
+      var link = $el.attr('href');
+      // console.log('in touchSubnavOpen .nav-link-primary on touchstart');
+      if($el.hasClass('activateLink')) {
+        // console.log('link blocked!');
+        window.location = link;
+        $el.removeClass('activateLink').siblings().removeClass('current');
+        $('.btn-touch_close').remove();
+      }
+      else {
+        $('.nav-link').removeClass('activateLink');
+        $el.addClass('activateLink');
+        // open the menu item if touched
+        var $navlinkParent = $($el).parent();
+        // show Subnav
+        SpoonflowerNavigation.showSubnav($el);
+        // initialize touchOpenFlyout
+        SpoonflowerNavigation.touchOpenFlyout();
+        // remove any touch close button
+        $('.btn-touch_close').remove();
+        // add close button
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+        // if opened from footer append to ul.subnav-flyup else append to <nav>
+        if($el.next().hasClass('subnav-flyup')) {
+          $(closeButton).appendTo($el.next());
+        } else {
+          $(closeButton).appendTo($('nav'));
         }
-        else {
-          // console.log('touched subnav link');
-          $('.nav-link').removeClass('activateLink');
-          $el.addClass('activateLink');
-          var $navlinkParent = $($el).parent();
-          // open submenu as accordion
-          // console.log("opening accordion");
-          SpoonflowerNavigation.openMenu($navlinkParent);
-        }
-      });
-    }
+        // initialize close
+        SpoonflowerNavigation.touchCloseSubnav();
+      }
+    });
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
       e.stopPropagation();
       // console.log('stopPropagation');
@@ -434,8 +677,8 @@ var SpoonflowerNavigation = {
   touchCloseSubnav: function() {
     $('.btn-touch_close').on('touchstart', function(e) {
       // console.log('in touchCloseSubnav()');
-      // e.stopPropagation();
-      // e.preventDefault();
+      e.stopPropagation();
+      e.preventDefault();
       var $target = $(this).parent().siblings('.nav-link');
       $target.removeClass('activateLink active');
       SpoonflowerNavigation.subnavState = false;
@@ -552,22 +795,21 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * open the subnav menu
+   * open the mobile subnav menu
    * @param  {jQuery} $li - the subnav <li>
    */
   openMenu: function($li) {
-    // console.log("in openMenu");
+    console.log("in openMenu");
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings
-    $li.siblings().not('.mobile_search').hide();
+    $li.siblings().not('.mobile_search').fadeOut(300);
     // set the class, make menu visible
-    // $li.attr('class', 'has_subnav is-active');
-    // deactivate active nav-link
-    // $('.nav-link').removeClass('activateLink');
+    $li.children('ul').addClass('menu-visible');
     $li.addClass('is-active');
     $li.children('.nav-link').addClass('activateLink');
-    $li.children('ul').addClass('menu-visible');
+    // remove active link from ancestor active link
+    $li.parent().parent().children('.nav-link').removeClass('activateLink');
   },
 
   /**
@@ -581,8 +823,10 @@ var SpoonflowerNavigation = {
     $li.find('.nav-link').removeClass('activateLink');
     $li.find('ul').removeClass('menu-visible');
     $li.parent().parent().children('.nav-link').addClass('activateLink');
-    // and then show siblings
-    $li.siblings().show().removeAttr('style');
+    // and then show siblings by zapping the style attribute added by .hide()
+    $li.siblings().removeAttr('style');
+    // if a submenu is active or hidden reset it
+    $li.find('li').removeAttr('style').removeClass('is-active');
   },
 
   /**
@@ -601,10 +845,20 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - the subnav <li>
    */
   collapseChildSubnavs: function($target) {
-    // console.log('in collapseChildSubnavs')
+    // console.log('in collapseChildSubnavs');
     var $li = $target;
     $li.attr('class', 'has_subnav');
     $li.find('ul').removeClass('menu-visible');
+  },
+
+  /**
+   * Close the mobile-only utility menu
+   */
+  closeUtilityMenu: function() {
+    // console.log('in closeUtilityMenu');
+    $('.main > .subnav-dropdown').remove();
+    // remove active class from utility menu button
+    $('.font_icon_btn').removeClass('active');
   },
 
   /**
@@ -796,12 +1050,6 @@ var SpoonflowerNavigation = {
 
           // If there is a UL available, place focus on the first focusable element within
           if($dropdown.length > 0){
-            // Make sure to stop event bubbling
-            // e.preventDefault();
-            // e.stopPropagation();
-            //
-            // $dropdown.find('.nav-link').filter(':visible').first().focus();
-            // $navLink.addClass('activateLink');
             e.stopPropagation();
             e.preventDefault();
             var $el = $dropdown.find('.nav-link').filter(':visible').first().focus();
