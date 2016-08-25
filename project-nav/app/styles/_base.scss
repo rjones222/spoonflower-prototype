@@ -39,9 +39,7 @@ select {
 
 a,
 button,
-select,
-span,
-.content_wrap {
+select {
   &:focus,
   &:active {
     outline-color: $link-color;

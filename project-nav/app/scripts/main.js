@@ -357,7 +357,7 @@ var SpoonflowerNavigation = {
 
   },
   /**
-   * [mobileUtilityMenus description]
+   * Handles cloning utility menus, and their visibility
    */
   mobileUtilityMenus: function() {
     $('.user_btn, .studio_btn, .promos_btn, .cart_btn').on('touchstart', function() {
@@ -402,6 +402,10 @@ var SpoonflowerNavigation = {
         // close open nav
         if ($('#hBar').hasClass('is-expanded')) {
           SpoonflowerNavigation.navToggle();
+        }
+        // if promos menu is hidden remove inline style added by jQuery
+        if (menu == menuArray[2]) {
+          $('.promos_menu_mobile').removeAttr('style');
         }
         $(menu).removeClass('subnav').clone().prependTo('.main');
         $this.addClass('active');
@@ -791,11 +795,11 @@ var SpoonflowerNavigation = {
   },
 
   /**
-   * open the subnav menu
+   * open the mobile subnav menu
    * @param  {jQuery} $li - the subnav <li>
    */
   openMenu: function($li) {
-    // console.log("in openMenu");
+    console.log("in openMenu");
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings

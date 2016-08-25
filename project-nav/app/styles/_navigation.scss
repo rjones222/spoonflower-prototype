@@ -19,9 +19,11 @@
   // transition: 250ms all ease;
   width: 100%;
   &:hover,
+  &:focus,
   &.activateLink {
     background-color: $polar;
-    color: $smalt_blue;
+    color: $elephant;
+    outline: none;
   }
 }
 // handles indentation of subnav items
@@ -119,23 +121,22 @@
 .h_bar-container {
   position: relative;
   .user_btn {
-    right: 47%;
-    width: rem(45);
+    right: rem(138);
     .icon {
       left: 35%;
     }
   }
   .studio_btn {
-    right: 31%;
+    right: rem(92);
   }
   .promos_btn {
-    right: 15%;
+    right: rem(48);
     // .item_count {
     //   right: .1rem;
     // }
   }
   .cart_btn {
-    right: 3px;
+    right: rem(3);
   }
   .btn-login {
     position: absolute;
@@ -271,9 +272,7 @@
   // controls down chevron, usage: li.has_subnav
   .has_subnav,
   .has_subnav-flyup {
-    display: block;
     position: relative;
-    z-index: 1;
     &::after {
       content: '\e802';
       font-family: 'spoonflower_icons';
@@ -543,7 +542,7 @@
   // the promo burst icon link in nav
   .has_subnav.promos-link {
     float: right;
-    .btn {
+    .promos-link-btn {
       background-color: transparent;
       color: $smalt_blue;
       height: 51px;
@@ -553,11 +552,16 @@
       padding-right: 1.2rem;
       position: relative;
       @include transition(background-color .5s linear);
-      &:hover {
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $polar;
         color: $elephant;
+        outline: none;
       }
       &.active {
         background-color: $polar;
+        color: $elephant;
         @include transition(background-color .5s linear);
       }
     }
@@ -569,6 +573,11 @@
       }
       a {
         color: $smalt_blue;
+        &:hover,
+        &:focus,
+        &:active {
+          color: $elephant;
+        }
       }
     }
     .icon_close {
@@ -676,7 +685,8 @@
       &.activateLink {
         margin-left: .3rem;
         padding: .333rem .7rem;
-        width: auto;
+        outline: none;
+        width: 96%;
       }
     }
     &.nl-lvl3,
@@ -686,8 +696,9 @@
       width: 100%;
       &.activateLink {
         margin-left: .3rem;
-        padding: .325rem .7rem .5rem;
-        width: auto;
+        padding: .325rem .7rem .35rem;
+        outline: none;
+        width: 96%;
       }
     }
   }
@@ -870,6 +881,12 @@
       font-size: rem(13);
       padding: 1rem .3em;
       text-transform: none;
+      &:focus,
+      &:active {
+        outline-color: $link-color;
+        outline-style: solid;
+        outline-width: 1px;
+      }
     }
   }
 

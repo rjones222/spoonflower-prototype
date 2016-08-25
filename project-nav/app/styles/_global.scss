@@ -215,7 +215,7 @@
 
 .site_footer {
   background-color: $gallery;
-  border-top: 1px solid $shadow;
+  border-top: 1px solid $alto;
   margin: auto;
   text-align: center;
   width: 100%;
@@ -238,7 +238,7 @@
       @include span-columns(2);
       // @include shift(0);
       margin-left: 0;
-      margin-top: -50px;
+      margin-top: -57px;
       padding: 1.2rem 0 0 1rem;
       text-align: left;
     };
@@ -249,7 +249,7 @@
       @include span-columns(8);
     }
     @include media($desktop) {
-      @include shift(2);
+      @include shift(2.2);
       @include span-columns(7);
     }
     .nav {
@@ -258,6 +258,11 @@
         float: right;
         margin-right: 0;
       }
+      @include media($desktop) {
+        // position: absolute;
+        float: left;
+        padding-top: .4rem;
+      }
     }
   }
   .email_sign_up {
@@ -265,15 +270,28 @@
     @include media($tablet) {
       float: left;
       margin: 0;
-      padding: 1rem;
+      padding: .55rem 1rem;
     }
-    // @include media($desktop) {
-    //   padding: 1rem;
-    // }
+    @include media($desktop) {
+      float: right;
+      padding: 1.1rem 1rem;
+    }
   }
   .email_sign_up-input {
-    @include font-size(10);
-    width: 167px;
+    // box-sizing: border-box;
+    @include font-size(12);
+    height: 22px;
+    width: 179px;
+    @include media($tablet) {
+      @include font-size(11);
+      height: 22px;
+      width: 159px;
+    }
+    @include media($desktop) {
+      @include font-size(12);
+      height: 22px;
+      width: 184px;
+    }
   }
   .social_links {
     box-sizing: border-box;
@@ -285,6 +303,7 @@
       // width: 167px;
     }
     @include media($desktop) {
+      margin-top: -57px;
       @include shift(8.75);
       @include span-columns(3);
     }
