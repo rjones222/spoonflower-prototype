@@ -237,6 +237,7 @@
     @include media($desktop) {
       @include span-columns(2);
       // @include shift(0);
+      float: right;
       margin-left: 0;
       margin-top: -57px;
       padding: 1.2rem 0 0 1rem;
@@ -249,18 +250,21 @@
       @include span-columns(8);
     }
     @include media($desktop) {
-      @include shift(2.2);
-      @include span-columns(7);
+      // @include shift(2.2);
+      @include span-columns(7.2);
     }
     .nav {
       // @include span-columns(12);
       @include media($tablet) {
-        float: right;
-        margin-right: 0;
+        float: left;
+        margin: 0;
+        padding-left: 1rem;
+        // @include span-columns(5);
+        @include shift(0);
       }
       @include media($desktop) {
-        // position: absolute;
-        float: left;
+        // float: left;
+        padding-left: 0;
         padding-top: .4rem;
       }
     }
@@ -268,9 +272,11 @@
   .email_sign_up {
     margin: 1rem auto;
     @include media($tablet) {
-      float: left;
+      float: right;
       margin: 0;
-      padding: .55rem 1rem;
+      padding: .75rem 0;
+      // @include span-columns(5);
+      // @include shift(6.2);
     }
     @include media($desktop) {
       float: right;
@@ -298,13 +304,13 @@
     @include span-columns(12);
     @include media($tablet) {
       margin-top: -50px;
-      @include shift(6.85);
-      @include span-columns(5);
+      @include shift(8.75);
+      @include span-columns(3);
       // width: 167px;
     }
     @include media($desktop) {
       margin-top: -57px;
-      @include shift(8.75);
+      @include shift(6.75);
       @include span-columns(3);
     }
   }

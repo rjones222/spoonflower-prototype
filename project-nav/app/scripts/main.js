@@ -458,7 +458,7 @@ var SpoonflowerNavigation = {
         // remove any touch close button
         $('.btn-touch_close').remove();
         // add close button
-        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> <span class="visuallyhidden">Close Menu</span></button>';
         // if opened from footer append to ul.subnav-flyup else append to <nav>
         if($el.next().hasClass('subnav-flyup')) {
           $(closeButton).appendTo($el.next());
@@ -803,11 +803,11 @@ var SpoonflowerNavigation = {
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings
-    $li.siblings().not('.mobile_search').hide();
+    $li.siblings().not('.mobile_search').fadeOut(300);
     // set the class, make menu visible
+    $li.children('ul').addClass('menu-visible');
     $li.addClass('is-active');
     $li.children('.nav-link').addClass('activateLink');
-    $li.children('ul').addClass('menu-visible');
     // remove active link from ancestor active link
     $li.parent().parent().children('.nav-link').removeClass('activateLink');
   },

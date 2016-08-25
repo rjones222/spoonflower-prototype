@@ -270,6 +270,11 @@
 // Mobile only
 @media all and (max-width: 767px) {
   // controls down chevron, usage: li.has_subnav
+  nav {
+    .subnav {
+      background-color: $semiopaque_gray;
+    }
+  }
   .has_subnav,
   .has_subnav-flyup {
     position: relative;
@@ -301,7 +306,7 @@
     opacity: 0;
     overflow-y: hidden;
     // http://easings.net/#easeInOutCubic
-    @include transition(all 1s cubic-bezier(.645, .045, .355, 1));
+    @include transition(all 1s cubic-bezier(.645, .045, .355, 6));
   }
   .has_subnav-flyup {
     &:last-child {
@@ -314,7 +319,7 @@
     // background: rgba(0,0,0,0.05);
     // background-color: $semiopaque_gray;
     height: auto !important;
-    max-height: 9999px !important; // hack to simulate js-based dropdown animation with only css
+    max-height: 2400px !important; // hack to simulate js-based dropdown animation with only css
     opacity: 1 !important;
     overflow-y: visible !important;
     width: inherit;
@@ -535,8 +540,13 @@
   }
 
   .nav-link.nav-link-primary {
-    font-size: rem(15);
-    text-transform: uppercase;
+    color: $smalt_blue;
+    font-size: rem(17);
+    &:hover,
+    &:focus,
+    &:active {
+      color: $elephant;
+    }
   }
 
   // the promo burst icon link in nav
@@ -684,8 +694,8 @@
       width: 100%;
       &.activateLink {
         margin-left: .3rem;
-        padding: .333rem .7rem;
         outline: none;
+        padding: .333rem .7rem;
         width: 96%;
       }
     }
@@ -696,8 +706,8 @@
       width: 100%;
       &.activateLink {
         margin-left: .3rem;
-        padding: .325rem .7rem .35rem;
         outline: none;
+        padding: .325rem .7rem .35rem;
         width: 96%;
       }
     }
@@ -917,6 +927,7 @@
 @include media($desktop) {
 
   .h_bar > nav {
+    background-color: $semiopaque_gray;
     top: 118px;
   }
 
