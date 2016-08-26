@@ -449,7 +449,8 @@ var SpoonflowerNavigation = {
       }
       else {
         $('.nav-link-footer').removeClass('activateLink');
-        $el.addClass('activateLink');
+        // delay adding the activateLink class to prevent triggering on initial touch
+        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         SpoonflowerNavigation.showSubnav($el);
@@ -558,7 +559,8 @@ var SpoonflowerNavigation = {
       }
       else {
         $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
+        // delay adding the activateLink class to prevent triggering on initial touch
+        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         // show Subnav on iPad portrait and larger touch screens,
@@ -599,7 +601,8 @@ var SpoonflowerNavigation = {
       else {
         // console.log('touched mobile subnav link');
         $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
+        // delay adding the activateLink class to prevent triggering on initial touch
+        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         var $navlinkParent = $($el).parent();
         // open submenu as accordion
         // console.log("opening accordion");
@@ -644,7 +647,8 @@ var SpoonflowerNavigation = {
       }
       else {
         $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
+        // delay adding the activateLink class to prevent triggering on initial touch
+        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         // show Subnav
@@ -701,7 +705,8 @@ var SpoonflowerNavigation = {
       }
       else {
         $('.nav-link').removeClass('activateLink');
-        $el.addClass('activateLink');
+        // delay adding the activateLink class to prevent triggering on initial touch
+        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         SpoonflowerNavigation.flyoutOpen($el);
       }
     });
@@ -807,7 +812,8 @@ var SpoonflowerNavigation = {
     // set the class, make menu visible
     $li.children('ul').addClass('menu-visible');
     $li.addClass('is-active');
-    $li.children('.nav-link').addClass('activateLink');
+    // delay adding the activateLink class to prevent triggering on initial touch
+    window.setTimeout(function(){$li.children('.nav-link').addClass('activateLink');}, 300);
     // remove active link from ancestor active link
     $li.parent().parent().children('.nav-link').removeClass('activateLink');
   },
@@ -822,7 +828,8 @@ var SpoonflowerNavigation = {
     $li.removeClass('is-active');
     $li.find('.nav-link').removeClass('activateLink');
     $li.find('ul').removeClass('menu-visible');
-    $li.parent().parent().children('.nav-link').addClass('activateLink');
+    // delay adding the activateLink class to prevent triggering on initial touch
+    window.setTimeout(function(){$li.parent().parent().children('.nav-link').addClass('activateLink');}, 300);
     // and then show siblings by zapping the style attribute added by .hide()
     $li.siblings().removeAttr('style');
     // if a submenu is active or hidden reset it
