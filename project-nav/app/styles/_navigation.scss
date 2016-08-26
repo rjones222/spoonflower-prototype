@@ -521,7 +521,7 @@
   }
 
   .h_bar > nav {
-    background-color: transparent;
+    background-color: $semiopaque_gray;
     border-bottom: 1px solid $gallery;
     border-top: 1px solid $gallery;
     box-shadow: 0 4px 4px -4px $shadow;
@@ -962,7 +962,6 @@
 @include media($desktop) {
 
   .h_bar > nav {
-    background-color: $semiopaque_gray;
     top: 118px;
   }
 
