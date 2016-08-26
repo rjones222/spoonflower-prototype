@@ -13,6 +13,7 @@
 .nav-link {
   color: $nav-color;
   display: inline-block;
+  line-height: 1.2rem;
   padding: .8rem 1rem;
   text-decoration: none;
   text-transform: capitalize;
@@ -25,6 +26,15 @@
     color: $elephant;
     outline: none;
   }
+}
+
+.swatch {
+  border: 1px solid transparent;
+  display: inline-block;
+  height: 16px;
+  vertical-align: top;
+  margin-right: rem(6);
+  width: 16px;
 }
 // handles indentation of subnav items
 // .nav-link.nl-lvl2 {
@@ -826,6 +836,30 @@
       padding-top: 0;
     }
   }
+  .subnav.sn-lvl3-2col {
+    @include outer-container(200%);
+    @include column-count(2);
+    background: $white;
+    border-bottom: 1px solid $gallery;
+    border-left: 1px solid $gallery;
+    box-shadow: 0 8px 8px -8px $shadow-dark, 8px 0 8px -8px $shadow-dark; // bottom shadow, right shadow
+    box-sizing: border-box;
+    display: none;
+    left: 100%;
+    overflow: hidden;
+    padding-top: .5rem;
+    position: absolute;
+    top: 0;
+    width: 200%;
+    z-index: 4;
+    li {
+      display: inline-block;
+      width: 100%;
+    }
+    > li:first-child {
+      padding-top: 0;
+    }
+  }
   // .subnav.sn-lvl1-last.current,
   .subnav.sn-lvl2.current,
   .subnav.sn-lvl3.current,
@@ -836,6 +870,7 @@
 
   .subnav.sn-last.current,
   .subnav.sn-lvl2-last.current,
+  .subnav.sn-lvl3-2col.current,
   .subnav.sn-panel.current {
     display: block;
     height: $subnav-height + 1; // not sure why this is needed
