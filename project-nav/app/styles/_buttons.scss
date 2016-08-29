@@ -125,10 +125,13 @@
 
 // navigation element add via jQuery to touch devices
 .btn-touch_close {
+  background-color: $polar;
   @include font-size(11);
-  padding: 1rem;
+  padding: .5rem;
   position: absolute;
-  right: .2rem;
+  // right: .2rem;
+  // top: 0;
+  right: 0;
   top: 0;
   z-index: 1;
   // .icon_close {
@@ -136,16 +139,19 @@
   //   right: 0;
   //   top: 0;
   // }
-  @include media($tablet) {
-    right: 6.6rem;
-  };
+  // @include media($tablet) {
+  //   right: 10rem;
+  // };
+  // @include media($desktop) {
+  //   right: 23.6rem;
+  // };
 }
 
 .subnav-flyup {
   .btn-touch_close {
     padding: .2rem;
     @include media($tablet) {
-      padding: .8rem;
+      padding: .5rem;
       right: 0;
     };
   }

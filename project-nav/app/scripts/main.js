@@ -144,14 +144,18 @@ var SpoonflowerNavigation = {
   showDefinition: function(){
     /**
      * the element that triggers the events
+     * @type {jQuery}
      */
-    var $definitionToggle = $('.spoonflower_definition dt'),
-        $definitionDrawer = $('.spoonflower_definition dd');
+    var $definitionToggle = $('.spoonflower_definition dt');
+    /**
+     * the hidden drawer that slides open
+     * @type {jQuery}
+     */
+    var $definitionDrawer = $('.spoonflower_definition dd');
     /**
      * toggles down and up icons, toggles visibility of definition
      */
     function showDef() {
-
       $definitionToggle.find('i:first-child').toggleClass('icon_chevron_down icon_close');
       $definitionDrawer.slideToggle('medium').toggleClass('display_none active');
       if ($definitionDrawer.hasClass('active')) {
@@ -165,6 +169,9 @@ var SpoonflowerNavigation = {
      */
     $definitionToggle.on('click', function() {
       showDef();
+      SpoonflowerNavigation.closePromos();
+    }).on('mouseleave', function() {
+      this.blur();
     });
 
     function closeDef() {
@@ -176,9 +183,9 @@ var SpoonflowerNavigation = {
         });
         $definitionDrawer.on('mouseleave', function() {
           closeIt();
+          $definitionToggle.blur();
         });
       }
-
       function closeIt() {
         $definitionToggle.find('i:first-child').attr('class', 'icon icon_chevron_down');
         $definitionDrawer.hide().attr('class', 'display_none');
@@ -301,6 +308,9 @@ var SpoonflowerNavigation = {
     var $promoText = $('.promo_text');
     var $promoButton = $('.promos-link-btn');
 
+    /**
+     * add .active to the promoButton
+     */
     function delayActiveBtn() {
       $promoButton.addClass('active');
     }
@@ -327,20 +337,21 @@ var SpoonflowerNavigation = {
       $promoText.addClass('visuallyhidden');
     }
     // when user clicks btn toggle promo list visibility
-    $('.promos-link .btn').click(function(){
+    $('.promos-link-btn').click(function(){
       // console.log('promoHidden1: ' + promoHidden);
       // if false
       if (promoHidden == 0) {
         // hide the submenu
-        $promosList.hide();
-        $iconIndicator.toggleClass('icon_close icon_chevron_down');
-        // set to true
-        localStorage.setItem('hidePromos', 1);
-        promoHidden = 1;
-        $promoButton.removeClass('active');
-        // $burst.removeClass('visuallyhidden');
-        $promoText.addClass('visuallyhidden');
-        // console.log('promoHidden2: ' + promoHidden);
+        $promosList.slideToggle(400, function() {
+          $iconIndicator.toggleClass('icon_close icon_chevron_down');
+          // set to true
+          localStorage.setItem('hidePromos', 1);
+          promoHidden = 1;
+          $promoButton.removeClass('active');
+          // $burst.removeClass('visuallyhidden');
+          $promoText.addClass('visuallyhidden');
+          // console.log('promoHidden2: ' + promoHidden);
+        });
       }
       else {
        // set to false and show the submenu
@@ -352,10 +363,28 @@ var SpoonflowerNavigation = {
        $promoText.removeClass('visuallyhidden');
        // console.log('promoHidden3: ' + promoHidden);
       }
+    }).on('mouseenter', function() {
+      var $openSubnav = $('.subnav-dropdown.current');
+      // close open subnav
+      SpoonflowerNavigation.subnavState = false;
+      SpoonflowerNavigation.closeSubnav($openSubnav);
+    });
 
+    $promosList.on('mouseleave', function() {
+      SpoonflowerNavigation.closePromos();
     });
 
   },
+
+  /**
+   * if promo menu is open, close it.
+   */
+  closePromos: function() {
+    if($('.promos-link-btn').hasClass('active')) {
+      $('.promos-link-btn').trigger('click');
+    }
+  },
+
   /**
    * Handles cloning utility menus, and their visibility
    */
@@ -658,13 +687,15 @@ var SpoonflowerNavigation = {
         // remove any touch close button
         $('.btn-touch_close').remove();
         // add close button
-        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i> Close Menu</button>';
+        var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i><span class="visuallyhidden">Close Menu</span></button>';
         // if opened from footer append to ul.subnav-flyup else append to <nav>
-        if($el.next().hasClass('subnav-flyup')) {
-          $(closeButton).appendTo($el.next());
-        } else {
-          $(closeButton).appendTo($('nav'));
-        }
+        // if($el.next().hasClass('subnav-flyup')) {
+        //   $(closeButton).appendTo($el.next());
+        // } else {
+        //   $(closeButton).appendTo($('nav'));
+        // }
+        // append closeButton to
+        $(closeButton).appendTo($el.next());
         // initialize close
         SpoonflowerNavigation.touchCloseSubnav();
       }
@@ -729,6 +760,7 @@ var SpoonflowerNavigation = {
     var getthis = $target.parent().children('ul');
     $('.subnav').removeClass('current');
     $(getthis).addClass('current');
+    SpoonflowerNavigation.closePromos();
   },
 
   /**
@@ -737,7 +769,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - .nav-link-primary
    */
   closeSubnav: function($target) {
-    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
@@ -779,7 +811,8 @@ var SpoonflowerNavigation = {
     $target.parent().parent().find('a').removeClass('active');
     // set classes
     $target.parent().children('ul').addClass('current');
-    $target.parent().children('a').addClass('active');
+    // delay adding the active class to coincide with adding .activateLink
+    window.setTimeout(function(){$target.parent().children('a').addClass('active');}, 300);
     // get position and set top position of the menu
     var $position = $target.parent().position();
     $target.parent().children('ul').css('top', -$position.top);
