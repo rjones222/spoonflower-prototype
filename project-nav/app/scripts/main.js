@@ -565,7 +565,7 @@ var SpoonflowerNavigation = {
   mobileTouchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      // console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
+      console.log('in mobileTouchSubnavOpen');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
@@ -652,22 +652,22 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      // console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
+      console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
       var $this = $(this);
       if($this.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
         SpoonflowerNavigation.collapseMenu($this);
       }
-      else {
-        SpoonflowerNavigation.openMenu($this);
-      }
+      // else {
+      //   SpoonflowerNavigation.openSubnav($this);
+      // }
     });
     $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
       e.stopPropagation();
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('in touchSubnavOpen .nav-link-primary on touchstart');
+      console.log('in touchSubnavOpen .nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
         // console.log('link blocked!');
         window.location = link;
@@ -675,9 +675,10 @@ var SpoonflowerNavigation = {
         $('.btn-touch_close').remove();
       }
       else {
-        $('.nav-link').removeClass('activateLink');
+        $('.nav-link').removeClass('active activateLink').css('background-color', 'transparent');
         // delay adding the activateLink class to prevent triggering on initial touch
-        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
+        window.setTimeout(function(){$el.addClass('activateLink').removeAttr('style');}, 300);
+        console.log('in touchSubnavOpen else');
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         // show Subnav
@@ -701,8 +702,8 @@ var SpoonflowerNavigation = {
       }
     });
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
-      e.stopPropagation();
-      // console.log('stopPropagation');
+      console.log('no subnav');
+      $('.nav-link').removeClass('active activateLink').css('background-color', 'transparent');
     });
   },
 
@@ -737,7 +738,7 @@ var SpoonflowerNavigation = {
       else {
         $('.nav-link').removeClass('activateLink');
         // delay adding the activateLink class to prevent triggering on initial touch
-        window.setTimeout(function(){$el.addClass('activateLink');}, 300);
+        window.setTimeout(function(){$el.addClass('activateLink').removeAttr('style');}, 300);
         SpoonflowerNavigation.flyoutOpen($el);
       }
     });

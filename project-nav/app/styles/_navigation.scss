@@ -11,6 +11,7 @@
   }
 }
 .nav-link {
+  // background-color: transparent;
   box-sizing: border-box;
   color: $nav-color;
   display: inline-block;
@@ -20,9 +21,17 @@
   text-transform: capitalize;
   // transition: 250ms all ease;
   width: 100%;
-  &:hover,
-  &:focus,
   &.activateLink {
+    background-color: $polar;
+    color: $elephant;
+    outline: none;
+  }
+  &:hover {
+    background-color: $polar;
+    color: $elephant;
+    outline: none;
+  }
+  &:focus {
     background-color: $polar;
     color: $elephant;
     outline: none;
@@ -103,7 +112,7 @@
   // line-height: 1rem;
   position: absolute;
   top: 3px;
-  width: rem(44);
+  width: 48px;
   &.active,
   &:active,
   &:focus {
@@ -112,10 +121,10 @@
     outline: 0;
   }
   .icon {
-    font-size: rem(14);
+    font-size: rem(18);
     left: rem(8);
     position: absolute;
-    top: rem(16);
+    top: rem(14);
   }
   .item_count {
     // font-size: rem(10);
@@ -132,16 +141,16 @@
 .h_bar-container {
   position: relative;
   .user_btn {
-    right: rem(138);
+    right: rem(150);
     .icon {
       left: 35%;
     }
   }
   .studio_btn {
-    right: rem(92);
+    right: rem(100);
   }
   .promos_btn {
-    right: rem(48);
+    right: rem(50);
     // .item_count {
     //   right: .1rem;
     // }
@@ -630,6 +639,7 @@
 
   // begin megamenu
   .subnav {
+    box-sizing: border-box;
     > li {
       &:first-child {
         padding-top: .55rem;
@@ -979,6 +989,7 @@
       width: 100%;
       &.activateLink {
         padding: .333rem .3rem .333rem .6rem;
+        width: 95.3%;
       }
     }
   }
