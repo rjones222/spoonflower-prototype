@@ -20,7 +20,6 @@
   text-decoration: none;
   text-transform: capitalize;
   // transition: 250ms all ease;
-  width: 100%;
   &.activateLink {
     background-color: $polar;
     color: $elephant;
@@ -558,6 +557,7 @@
     box-sizing: border-box;
     font-size: rem(13);
     padding: 1rem;
+    // width: 100%;
   }
 
   .nav-link.nav-link-primary {
