@@ -11,6 +11,8 @@
   }
 }
 .nav-link {
+  // background-color: transparent;
+  box-sizing: border-box;
   color: $nav-color;
   display: inline-block;
   line-height: 1.2rem;
@@ -18,10 +20,17 @@
   text-decoration: none;
   text-transform: capitalize;
   // transition: 250ms all ease;
-  width: 100%;
-  &:hover,
-  &:focus,
   &.activateLink {
+    background-color: $polar;
+    color: $elephant;
+    outline: none;
+  }
+  &:hover {
+    background-color: $polar;
+    color: $elephant;
+    outline: none;
+  }
+  &:focus {
     background-color: $polar;
     color: $elephant;
     outline: none;
@@ -102,7 +111,7 @@
   // line-height: 1rem;
   position: absolute;
   top: 3px;
-  width: rem(44);
+  width: 48px;
   &.active,
   &:active,
   &:focus {
@@ -111,10 +120,10 @@
     outline: 0;
   }
   .icon {
-    font-size: rem(14);
+    font-size: rem(18);
     left: rem(8);
     position: absolute;
-    top: rem(16);
+    top: rem(14);
   }
   .item_count {
     // font-size: rem(10);
@@ -131,16 +140,16 @@
 .h_bar-container {
   position: relative;
   .user_btn {
-    right: rem(138);
+    right: rem(150);
     .icon {
       left: 35%;
     }
   }
   .studio_btn {
-    right: rem(92);
+    right: rem(100);
   }
   .promos_btn {
-    right: rem(48);
+    right: rem(50);
     // .item_count {
     //   right: .1rem;
     // }
@@ -469,6 +478,7 @@
   .u_nav {
     display: none; // see _state.scss for .u_welcome and .is-loggedin
     float: right;
+    margin-right: .5rem;
     > li {
       position: relative;
       > a {
@@ -547,6 +557,7 @@
     box-sizing: border-box;
     font-size: rem(13);
     padding: 1rem;
+    // width: 100%;
   }
 
   .nav-link.nav-link-primary {
@@ -566,7 +577,7 @@
       background-color: transparent;
       color: $smalt_blue;
       height: 51px;
-      // margin-top: .5rem;
+      margin-right: .5rem;
       min-width: 87px;
       padding-left: .7rem;
       padding-right: 1.2rem;
@@ -628,6 +639,7 @@
 
   // begin megamenu
   .subnav {
+    box-sizing: border-box;
     > li {
       &:first-child {
         padding-top: .55rem;
@@ -689,8 +701,7 @@
       > .activateLink {
         &.active {
           &::after {
-            left: 8.5rem;
-            right: auto;
+            right: .5rem;
             top: .333rem;
           }
         }
@@ -700,24 +711,25 @@
 
   .nav-link {
     &.nl-lvl2 {
-      padding: .333rem 0 .5rem 1rem;
-      width: 100%;
+      padding: .333rem .3rem .333rem .7rem;
+      width: 99%;
       &.activateLink {
         margin-left: .3rem;
         outline: none;
-        padding: .333rem .7rem;
+        padding: .333rem .3rem .333rem .4rem;
         width: 96%;
       }
     }
     &.nl-lvl3,
     &.nl-lvl4,
     &.nl-lvl5 {
-      padding: .333rem 0 .5rem .5rem;
+      margin-bottom: .1rem;
+      padding: .333rem 0 .25rem .5rem;
       width: 100%;
       &.activateLink {
-        margin-left: .3rem;
+        margin-left: .275rem;
         outline: none;
-        padding: .325rem .7rem .35rem;
+        padding: .325rem .7rem .25rem .25rem;
         width: 96%;
       }
     }
@@ -973,8 +985,12 @@
     &.nl-lvl2,
     &.nl-lvl3,
     &.nl-lvl4 {
-      padding: .333rem 1rem;
+      padding: .333rem 1rem .333rem .9rem;
       width: 100%;
+      &.activateLink {
+        padding: .333rem .3rem .333rem .6rem;
+        width: 95.3%;
+      }
     }
   }
   .nav-link {
@@ -1004,13 +1020,13 @@
     > a {
       &:hover {
         &::after {
-          right: 1rem;
+          right: .5rem;
         }
       }
     }
     > .active {
       &::after {
-        right: 1rem;
+        right: .5rem;
       }
     }
   }
@@ -1021,8 +1037,7 @@
       > .activateLink.active {
         margin-left: .3rem;
         &::after {
-          left: 11.3rem;
-          right: auto;
+          right: .5rem;
           top: .333rem;
         }
       }

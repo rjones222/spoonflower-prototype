@@ -62,20 +62,28 @@
   @include media($tablet) {
     left: rem(185);
     position: relative;
-    top: -62px;
+    top: -68px;
   }
   @include media($desktop) {
     // position: relative;
     left: rem(217);
-    margin-bottom: -16px;
-    top: -88px;
+    margin-bottom: -32px;
+    top: -96px;
   }
   dt {
     color: $smalt_blue;
     @include font-size(13);
-    &:hover,
+    padding: .5rem;
+    width: rem(203);
+    &:hover {
+      color: $elephant;
+    }
+    &:focus,
     &:active {
       color: $elephant;
+      outline-color: $link-color;
+      outline-style: solid;
+      outline-width: 1px;
     }
     span {
       border-bottom: 2px solid $polar;
