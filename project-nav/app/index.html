@@ -53,17 +53,21 @@
           <div id="searchModule-desktop" class="search_module search_desktop mobile_hide">
             <form>
               <div class="search_select-wrapper">
-                <select name="search_select" class="search_select">
-                  <option value="fabric">Fabric</option>
-                  <option value="wallpaper">Wallpaper</option>
-                  <option value="gift_wrap">Gift Wrap</option>
-                  <option value="designers">Designers</option>
-                  <option value="collections">Collections</option>
-                </select>
+                <div id="search_selection" class="search_select" data-search_select="Fabric">
+                  Fabric
+                </div>
               </div>
+              <ul class="search_select-dropdown">
+                <li><span class="search_select-item" data-select-item="fabric">Fabric</span></li>
+                <li><span class="search_select-item" data-select-item="wallpaper">Wallpaper</span></li>
+                <li><span class="search_select-item" data-select-item="giftwrap">Gift Wrap</span></li>
+                <li><span class="search_select-item" data-select-item="designers">Designers</span></li>
+                <li><span class="search_select-item" data-select-item="collection">Collections</span></li>
+              </ul>
               <button class="btn btn-select" aria-hidden="true" tabindex="-1">
                 <i class="icon icon_chevron_down" aria-hidden="true"></i>
               </button>
+
               <input type="text" class="search_input" />
               <button type="submit" class="btn btn-search screen-reader-focus">
                 <i class="icon icon_search" aria-hidden="true"></i>
@@ -2568,7 +2572,7 @@
       <div class="u_bar-container" tabindex="-1">
         <ul class="u_sites nav">
           <li>
-            <a href="https://sproutpatterns.com/"><img class="sprout_patterns_logo" src="/images/sprout_patterns_logo_green.svg" alt="Sprout Patterns" /></a>
+            <a href="https://sproutpatterns.com/"><img class="sprout_patterns_logo" src="/images/sprout_logo.svg" alt="Sprout Patterns" /></a>
           </li>
           <li>
             <a href="https://roostery.com/" class="screen-reader-focus"><img class="roostery_logo" src="/images/roostery_logo_green.svg" alt="Roostery Home Decor" /></a>
@@ -2725,7 +2729,7 @@
       <div class="outer_container">
         <dl id="whatIsSpoonflower" class="spoonflower_definition">
           <dt class="screen-reader-focus" tabindex="0">
-            Custom printed <span>fabric and more <i class="icon icon_chevron_down"></i></span>
+            Custom printed <span>fabric and more</span><i class="icon icon_chevron_down"></i>
           </dt>
           <dd class="display_none">
             <p>The world’s largest marketplace for eco-friendly,

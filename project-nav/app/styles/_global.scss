@@ -86,12 +86,12 @@
       outline-width: 1px;
     }
     span {
-      border-bottom: 2px solid $polar;
+      border-bottom: 1px solid $link-color;
       cursor: pointer;
       display: inline-block;
-      padding: .3rem .3rem 0 0;
+      padding: .3rem .3rem .1rem 0;
       position: relative;
-      width: rem(106);
+      width: rem(89);
     }
   }
   dd {
@@ -115,6 +115,11 @@
   .btn-primary {
     margin-right: rem(5);
   }
+  .icon_chevron_down {
+    &::before {
+      @include font-size(5);
+    }
+  }
   .icon_close {
     position: absolute;
     right: 0;
@@ -133,7 +138,7 @@
   box-sizing: border-box;
   height: 34px;
   // position: absolute;
-  overflow: hidden;
+  // overflow: hidden;
   width: 297px;
   @include media($desktop) {
     width: 344px;
@@ -163,10 +168,28 @@
   float: left;
   height: 20px;
   // padding: .475rem 0 .275rem .5rem;
-  overflow: hidden;
+  // overflow: hidden;
   padding: .4rem .5rem;
   position: relative;
   width: 69px;
+}
+.search_select-dropdown {
+  background: $white;
+  border-bottom: 1px solid $gallery;
+  border-left: 1px solid $gallery;
+  border-right: 1px solid $gallery;
+  box-shadow: 0 8px 8px -8px $shadow, 0 4px 4px 0 $shadow, 0 4px 4px 0 $shadow;
+  display: none;
+  left: 0;
+  width: 110px;
+  position: absolute;
+  top: 35px;
+  z-index: 2;
+  li {
+    box-sizing: border-box;
+    font-size: rem(13);
+    padding: .25rem .5rem;
+  }
 }
 .search_select {
   @include appearance(none);
@@ -180,15 +203,16 @@
   font-style: italic;
   // position: relative;
   left: 1rem;
+  line-height: 1.3rem;
   position: absolute;
-  top: .3rem;
+  top: .1rem;
   // &:focus {
   //   outline: unset;
   // }
-  option {
-    height: 26px;
-    width: 100px;
-  }
+  // option {
+  //   height: 26px;
+  //   width: 100px;
+  // }
 }
 .btn-select {
   position: absolute;
