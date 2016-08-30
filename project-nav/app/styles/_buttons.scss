@@ -123,6 +123,22 @@
   color: $smalt_blue;
 }
 
+// mobile only submenu trigger
+.btn-open-subnav {
+  background: transparent;
+  border: 0;
+  height: 44px;
+  margin-right: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 44px;
+  z-index: 1;
+  @include media($tablet) {
+    display: none;
+  };
+}
+
 // navigation element add via jQuery to touch devices
 .btn-touch_close {
   background-color: $polar;
