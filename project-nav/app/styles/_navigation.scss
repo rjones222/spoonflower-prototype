@@ -440,6 +440,15 @@
       }
     }
   }
+  .nav-social {
+    ul {
+      li {
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
 
 // end mobile only

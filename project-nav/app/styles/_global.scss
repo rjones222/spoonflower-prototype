@@ -220,6 +220,10 @@
   &:focus {
     outline: unset;
   }
+  @include media($tablet) {
+    left: 39%;
+    max-width: 100px;
+  }
 }
 
 // layout

@@ -842,9 +842,9 @@ var SpoonflowerNavigation = {
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings
-    $li.siblings().not('.mobile_search').fadeOut(300);
+    $li.siblings().not('.mobile_search').fadeOut(700);
     // set the class, make menu visible
-    $li.children('ul').addClass('menu-visible');
+    window.setTimeout(function(){$li.children('ul').fadeIn(700).addClass('menu-visible');}, 800);
     $li.addClass('is-active');
     // delay adding the activateLink class to prevent triggering on initial touch
     window.setTimeout(function(){$li.children('.nav-link').addClass('activateLink');}, 300);
