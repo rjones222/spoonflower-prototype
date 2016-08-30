@@ -134,15 +134,20 @@
   height: 34px;
   // position: absolute;
   overflow: hidden;
-  width: 297px;
+  max-width: 297px;
+  width: 95%;
   @include media($desktop) {
     width: 344px;
   }
 }
 // position in mobile
+.mobile_search {
+  padding: .5rem 0 .5rem;
+}
 .desktop_hide {
   .search_module {
-    margin: 1rem auto .5rem;
+    background-color: $white;
+    margin: 0 auto;
     position: relative;
   }
 }
@@ -162,11 +167,14 @@
   box-sizing: inherit;
   float: left;
   height: 20px;
-  // padding: .475rem 0 .275rem .5rem;
+  max-width: 69px;
   overflow: hidden;
-  padding: .4rem .5rem;
+  padding: .4rem .25rem;
   position: relative;
-  width: 69px;
+  width: 23%;
+  @include media($tablet) {
+    padding: .4rem .5rem;
+  }
 }
 .search_select {
   @include appearance(none);
@@ -179,15 +187,19 @@
   @include font-size(13);
   font-style: italic;
   // position: relative;
-  left: 1rem;
+  left: .25rem;
   position: absolute;
   top: .3rem;
-  // &:focus {
-  //   outline: unset;
-  // }
+  @include media($tablet) {
+    left: 1rem;
+  }
   option {
     height: 26px;
-    width: 100px;
+    max-width: 70px;
+    width: 20%;
+    @include media($tablet) {
+      max-width: 100px;
+    }
   }
 }
 .btn-select {
@@ -199,11 +211,12 @@
   box-sizing: inherit;
   @include font-size(13);
   height: 1.6rem;
-  left: 7.2rem;
+  left: 35%;
+  max-width: 134px;
   padding: 0 0 0 .3rem;
   position: absolute;
   top: .2rem;
-  width: 134px;
+  width: 38%;
   &:focus {
     outline: unset;
   }

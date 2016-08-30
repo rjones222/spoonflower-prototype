@@ -9,14 +9,16 @@ $default-feature: max-width;
 $golden: 1.618%;
 
 //Breakpoints
-$XS:em(320);
-$S:em(768);
-$M:em(960);
-$L:em(1050);
+$XXS: em(320);
+$XS: em(375);
+$S: em(768);
+$M: em(960);
+$L: em(1050);
 // $XL:em(1200);
 // $XXL:em(1440);
 
 // Bourbon Neat Breakpoints
+$mobile-small: new-breakpoint(min-width $XXS);
 $mobile: new-breakpoint(min-width $XS);
 $tablet: new-breakpoint(min-width $S);
 $desktop: new-breakpoint(min-width $M);

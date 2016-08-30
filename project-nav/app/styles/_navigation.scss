@@ -293,6 +293,13 @@
     .subnav {
       background-color: $semiopaque_gray;
     }
+    > ul {
+      background: url('/images/back_topMOBILE_desat.png');
+      padding-right: 40px;
+      > li {
+        background-color: $white;
+      }
+    }
   }
   .has_subnav,
   .has_subnav-flyup {

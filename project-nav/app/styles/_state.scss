@@ -17,23 +17,8 @@
   .mobile_hide {
     display: none !important;
   }
-
-  // .mobile_visibility_hide {
-  //   visibility: hidden;
-  // }
 }
 
-// @include media($mobile) {
-//   .refresh_mobile_hide {
-//     display: none !important;
-//   }
-// }
-//
-// @media all and (max-width: 768px) {
-//   .tablet_hide {
-//     display: none !important;
-//   }
-// }
 // hide it on large (desktop) screens
 @media all and (min-width: 768px) {
   .desktop_hide {
