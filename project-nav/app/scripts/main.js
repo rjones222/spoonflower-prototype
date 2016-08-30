@@ -563,16 +563,16 @@ var SpoonflowerNavigation = {
    * $this - li.has_subnav
    */
   mobileTouchSubnavOpen: function() {
-    $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
+    $('.btn-open-subnav').on('touchstart', function(e) {
       e.stopPropagation();
       console.log('in mobileTouchSubnavOpen');
-      var $this = $(this);
-      if($this.hasClass('is-active')) {
+      var $li = $(this).parent();
+      if($li.hasClass('is-active')) {
         // SpoonflowerNavigation.collapseChildSubnavs($this);
-        SpoonflowerNavigation.collapseMenu($this);
+        SpoonflowerNavigation.collapseMenu($li);
       }
       else {
-        SpoonflowerNavigation.openMenu($this);
+        SpoonflowerNavigation.openMenu($li);
       }
     });
     $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
