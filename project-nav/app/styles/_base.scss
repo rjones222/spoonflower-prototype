@@ -39,7 +39,8 @@ select {
 
 a,
 button,
-select {
+select,
+.screen-reader-focus {
   &:focus,
   &:active {
     outline-color: $link-color;

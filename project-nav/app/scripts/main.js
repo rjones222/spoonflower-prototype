@@ -770,7 +770,7 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - .nav-link-primary
    */
   closeSubnav: function($target) {
-    console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
+    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
@@ -1242,21 +1242,96 @@ var SpoonflowerNavigation = {
 SpoonflowerNavigation.init();
 
 /**
- * [SpoonflowerSearch description] not much to see or say here, used to help style
- * the select used in the search mockup.
+ * Refactored inline desktop search
  * @type {Object}
  */
 var SpoonflowerSearch = {
 
   init: function() {
-    SpoonflowerSearch.triggerSelect();
+    SpoonflowerSearch.triggerSelectDropdown();
+    SpoonflowerSearch.searchFilter();
   },
 
-  triggerSelect: function() {
-    $('.btn-select').on('click', function(e) {
+  /**
+   * Toggle the dropdown
+   */
+  triggerSelectDropdown: function() {
+    // toggle when chevron button or the search select filter  is clicked
+    $('.btn-select, .search_select-wrapper').on('click', function(e) {
       e.preventDefault();
-      $('.search_select-dropdown').slideToggle('medium');
+      if (!$('.search_select-dropdown').hasClass('active')) {
+        $('.search_select-dropdown').slideToggle('medium').addClass('active');
+      }
     });
+    // if keyboard 'enter'
+    $('.search_select-wrapper').on('keydown', function(e) {
+      if(e.which == 13) {
+        $('.search_select-dropdown').slideToggle('medium').addClass('active');
+        $('.search_select-item').focus();
+      }
+    });
+  },
+
+  /**
+   * select the search filter
+   */
+  searchFilter: function() {
+
+    $(".search_select-item").click(function() {
+      var searchType = $(this).attr('data-filter');
+      // console.log('searchType: ', searchType);
+      SpoonflowerSearch.selectedName(searchType);
+      SpoonflowerSearch.selectedForm(searchType);
+      $('.search_input').focus();
+    });
+    // if keyboard 'enter'
+    $('.search_select-item').on('keydown', function(e) {
+      if(e.which == 13) {
+        var searchType = $(this).attr('data-filter');
+        // console.log('searchType: ', searchType);
+        SpoonflowerSearch.selectedName(searchType);
+        SpoonflowerSearch.selectedForm(searchType);
+        $('.search_input').focus();
+      }
+    });
+    // if keyboard 'enter' inside search_input go forth and search
+    $('.search_input').on('keydown', function(e) {
+      if(e.which == 13) {
+        console.log('return key pressed');
+        $('.search_form').submit();
+      }
+    });
+  },
+
+  selectedName: function(search){
+    // console.log('in selectedName');
+    $('.search_filter').val(search);
+    if (search == 'gift_wrap') {
+      $('.search_shop').val('gift_wrap');
+      $('.search_selected').html('Gift Wrap');
+    }
+    else {
+      $('.search_shop').val(search);
+      var str = search.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+          return letter.toUpperCase();
+      });
+      $('.search_selected').html(str);
+    }
+    if ($('.search_select-dropdown').hasClass('active')) {
+      $('.search_select-dropdown').slideToggle('medium');
+    }
+  },
+
+  selectedForm: function(search){
+    if (search == "collections") {
+      document.search_form.action = "http://www.spoonflower.com/spelunks"
+    }
+    else if (search == "designers") {
+      document.search_form.action = "http://www.spoonflower.com/spelunks"
+    }
+    else {
+      document.search_form.action = "http://www.spoonflower.com/shop"
+    }
   }
 
 };

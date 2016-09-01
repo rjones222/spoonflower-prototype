@@ -191,7 +191,7 @@
     padding: .25rem .5rem;
   }
 }
-.search_select {
+.search_selected {
   @include appearance(none);
   background: $gallery;
   border: 0;
@@ -205,7 +205,7 @@
   left: 1rem;
   line-height: 1.3rem;
   position: absolute;
-  top: .1rem;
+  top: .4rem;
   // &:focus {
   //   outline: unset;
   // }
