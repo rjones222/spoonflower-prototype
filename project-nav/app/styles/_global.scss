@@ -57,10 +57,11 @@
 
 // This is the "Custom printed fabric and more..." what-we-do statement
 .spoonflower_definition {
-  margin: 1rem;
+  margin: .5rem;
   max-width: 270px;
   @include media($tablet) {
     left: rem(185);
+    margin-bottom: -14px;
     position: relative;
     top: -68px;
   }
