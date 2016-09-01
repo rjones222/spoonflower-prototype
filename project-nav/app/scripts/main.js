@@ -56,16 +56,6 @@ var SpoonflowerNavigation = {
       SpoonflowerNavigation.desktopFlyout();
       SpoonflowerNavigation.touchSubnavOpen();
     }
-
-    /**
-     * for debugging, prevent default link following
-     */
-
-    //  $('.nav-link').on('click', function(e){
-    //    // console.log('link blocked!');
-    //    e.preventDefault();
-    //  });
-
   },
 
   /**
@@ -86,22 +76,13 @@ var SpoonflowerNavigation = {
      * code help: http://stackoverflow.com/a/21903119
      */
     function showMockPage(sParam) {
-      // console.log('in showMockPage');
       var sPageURL = decodeURIComponent(window.location.search.substring(1)),
           sURLVariables = sPageURL.split('&'),
           sParameterName,
           i;
-          // console.log('sURLVariables: ', sURLVariables);
       for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
-        // console.log('sParameterName: ', sParameterName[1]);
-        // this stopped working, why !?
-        // if (sParameterName[0] === sParam) {
-        //   return sParameterName[1] === undefined ? true : sParameterName[1];
-        // }
       }
-      // console.log('sParameterName[1]: ', sParameterName[1]);
-      // using switch here in case we want to add more mock pages
       switch (sParameterName[1]) {
         case 'dachshund':
           $('.mock_page_image').hide();
@@ -228,16 +209,13 @@ var SpoonflowerNavigation = {
     var $hBar = $('#hBar');
     $('.btn-login').click(function(e){
       e.preventDefault();
-      // console.log('in loggedInMobile');
       $('.user_btn').removeClass('active');
-      // $hBar.toggleClass('is-loggedin');
       // set loggedIn
       localStorage.setItem('userLoggedIn', 1);
       SpoonflowerNavigation.loggedInState($hBar);
     });
     $('.link-logout').click(function() {
       // set logged out
-      // console.log('.link-logout clicked');
       localStorage.setItem('userLoggedIn', 0);
       SpoonflowerNavigation.loggedInState($hBar);
     });
@@ -252,13 +230,11 @@ var SpoonflowerNavigation = {
 
     $('.link-login').click(function(e){
       e.preventDefault();
-      // console.log('desktop .link-login clicked');
       localStorage.setItem('userLoggedIn', 1);
       SpoonflowerNavigation.loggedInState($nav);
     });
     $('.link-logout').click(function() {
       // set logged out
-      // console.log('.link-logout clicked');
       localStorage.setItem('userLoggedIn', 0);
       SpoonflowerNavigation.loggedInState($nav);
     });
@@ -271,29 +247,22 @@ var SpoonflowerNavigation = {
   loggedInState: function($nav) {
     // store loggedIn state in localStorage
     var userLoggedIn = localStorage.getItem('userLoggedIn');
-    // console.log('original userLoggedIn: ', userLoggedIn);
     // if not set...
     if(userLoggedIn === null) {
-      // console.log('userLoggedIn is not set');
       // set loggedIn state to false
       localStorage.setItem('userLoggedIn', 0);
       userLoggedIn = 0;
     }
     else
     if (userLoggedIn == 1){
-      // console.log('userLoggedIn is true!');
-      // console.log('$nav: ', $nav);
       $nav.toggleClass('is-loggedin');
     }
-    // console.log('userLoggedIn1: ' + userLoggedIn);
     // if false
     if (userLoggedIn == 0) {
-      // console.log('userLoggedIn is false!');
       if ($nav.hasClass('is-loggedin')) {
         // hide the submenu
         $nav.toggleClass('is-loggedin');
       }
-      // console.log('userLoggedIn2: ' + userLoggedIn);
     }
   },
 
@@ -316,7 +285,6 @@ var SpoonflowerNavigation = {
     }
     // if not set...
     if(promoHidden === null) {
-      // console.log('promoHidden is not set');
       // set hidePromos preference
       localStorage.setItem('hidePromos', 0);
       promoHidden = 0;
@@ -326,19 +294,16 @@ var SpoonflowerNavigation = {
     }
     else
     if (promoHidden == 0) {
-      // console.log('promoHidden is false!');
       $promoText.removeClass('visuallyhidden');
       $promosList.delay(1000).slideToggle(800);
       window.setTimeout(delayActiveBtn, 1000);
     }
     else {
-      // console.log('promoHidden is true!');
       $iconIndicator.toggleClass('icon_close icon_chevron_down');
       $promoText.addClass('visuallyhidden');
     }
     // when user clicks btn toggle promo list visibility
     $('.promos-link-btn').click(function(){
-      // console.log('promoHidden1: ' + promoHidden);
       // if false
       if (promoHidden == 0) {
         // hide the submenu
@@ -350,7 +315,6 @@ var SpoonflowerNavigation = {
           $promoButton.removeClass('active');
           // $burst.removeClass('visuallyhidden');
           $promoText.addClass('visuallyhidden');
-          // console.log('promoHidden2: ' + promoHidden);
         });
       }
       else {
@@ -361,7 +325,6 @@ var SpoonflowerNavigation = {
        delayActiveBtn();
        $iconIndicator.toggleClass('icon_close icon_chevron_down');
        $promoText.removeClass('visuallyhidden');
-       // console.log('promoHidden3: ' + promoHidden);
       }
     }).on('mouseenter', function() {
       var $openSubnav = $('.subnav-dropdown.current');
@@ -421,7 +384,6 @@ var SpoonflowerNavigation = {
           menu = menuArray[3];
           break;
       }
-      // console.log('clicked ', $this);
       if ($this.hasClass('active')) {
         $('.main').find(menu).remove();
         $this.removeClass('active');
@@ -441,7 +403,6 @@ var SpoonflowerNavigation = {
       }
       // access the logout link in the cloned menu, toggle the hBar and then remove the menu
       $('.link-logout').click(function(e){
-        // console.log('.link-logout clicked');
         e.preventDefault();
         $('#hBar').toggleClass('is-loggedin');
         localStorage.setItem('userLoggedIn', 0);
@@ -455,14 +416,11 @@ var SpoonflowerNavigation = {
    */
   footerSubnav: function() {
     // Desktop hover
-    // console.log('in desktopSubnav()');
     $('.nav-link-footer').mouseover(function(){
-      // console.log('mouseover .nav-link-primary');
       SpoonflowerNavigation.showSubnav($(this));
     });
 
     $('.nav-link-footer').mouseout(function(){
-      // console.log('mouseout .nav-link-primary');
       SpoonflowerNavigation.closeSubnav($(this));
     });
     // Touch behaviors
@@ -471,9 +429,7 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('.nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
-        // console.log('link blocked!');
         window.location = link;
       }
       else {
@@ -506,34 +462,27 @@ var SpoonflowerNavigation = {
    * hover top level navigation to show subnav
    */
   desktopSubnav: function() {
-    // console.log('in desktopSubnav()');
     $('.nav-link-primary').mouseover(function(){
-      // console.log('mouseover .nav-link-primary');
       SpoonflowerNavigation.showSubnav($(this));
     });
 
     $('.nav-link-primary').mouseout(function(){
-      // console.log('mouseout .nav-link-primary');
       SpoonflowerNavigation.closeSubnav($(this));
     });
 
     $('.subnav').mouseover(function() {
-      // console.log('mouseover .subnav');
       SpoonflowerNavigation.stayOpen($(this));
     });
 
     $('.subnav').mouseleave(function(){
-      // console.log('mouseleave .subnav');
       // if in a subnav
       if($('.subnav:hover').length == 0) {
         SpoonflowerNavigation.subnavState = false;
-        // console.log('in mouseleave');
         SpoonflowerNavigation.closeAllSubnav();
       }
     });
 
     $('nav, .nav').mouseleave(function(){
-      // console.log('mouseleave nav');
       SpoonflowerNavigation.subnavState = false;
       SpoonflowerNavigation.closeAllSubnav();
     });
@@ -545,9 +494,7 @@ var SpoonflowerNavigation = {
   desktopFlyout: function() {
     var timer,
         $this;
-    // console.log('in desktopFlyout()');
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4').mouseenter(function(){
-      // console.log('FLYOUT: mouseenter .has_subnav a');
       $this = $(this);
       timer = setTimeout(function(){
         SpoonflowerNavigation.flyoutOpen($this);
@@ -565,10 +512,8 @@ var SpoonflowerNavigation = {
   mobileTouchSubnavOpen: function() {
     $('.btn-open-subnav').on('touchstart', function(e) {
       e.stopPropagation();
-      console.log('in mobileTouchSubnavOpen');
       var $li = $(this).parent();
       if($li.hasClass('is-active')) {
-        // SpoonflowerNavigation.collapseChildSubnavs($this);
         SpoonflowerNavigation.collapseMenu($li);
       }
       else {
@@ -580,9 +525,7 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('in touchSubnavOpen .nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
-        // console.log('link blocked!');
         window.location = link;
         $el.removeClass('activateLink').siblings().removeClass('current');
       }
@@ -612,7 +555,6 @@ var SpoonflowerNavigation = {
         }
         else {
           // else open submenu as accordion
-          // console.log("opening accordion");
           SpoonflowerNavigation.openMenu($navlinkParent);
         }
       }
@@ -624,23 +566,19 @@ var SpoonflowerNavigation = {
       var $el = $(this);
       var link = $el.attr('href');
       if($el.hasClass('activateLink')) {
-        // console.log('link blocked!');
         window.location = link;
       }
       else {
-        // console.log('touched mobile subnav link');
         $('.nav-link').removeClass('activateLink');
         // delay adding the activateLink class to prevent triggering on initial touch
         window.setTimeout(function(){$el.addClass('activateLink');}, 300);
         var $navlinkParent = $($el).parent();
         // open submenu as accordion
-        // console.log("opening accordion");
         SpoonflowerNavigation.openMenu($navlinkParent);
       }
     });
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
       e.stopPropagation();
-      // console.log('stopPropagation');
     });
   },
 
@@ -652,24 +590,17 @@ var SpoonflowerNavigation = {
   touchSubnavOpen: function() {
     $('.has_subnav').not('.promos-link').on('touchstart', function(e) {
       e.stopPropagation();
-      console.log('in touchSubnavOpen .has_subnav.not(\'.promos-link\')');
       var $this = $(this);
       if($this.hasClass('is-active')) {
-        // SpoonflowerNavigation.collapseChildSubnavs($this);
         SpoonflowerNavigation.collapseMenu($this);
       }
-      // else {
-      //   SpoonflowerNavigation.openSubnav($this);
-      // }
     });
     $('.has_subnav > .nav-link-primary').on('touchstart', function(e){
       e.stopPropagation();
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      console.log('in touchSubnavOpen .nav-link-primary on touchstart');
       if($el.hasClass('activateLink')) {
-        // console.log('link blocked!');
         window.location = link;
         $el.removeClass('activateLink').siblings().removeClass('current');
         $('.btn-touch_close').remove();
@@ -678,7 +609,6 @@ var SpoonflowerNavigation = {
         $('.nav-link').removeClass('active activateLink').css('background-color', 'transparent');
         // delay adding the activateLink class to prevent triggering on initial touch
         window.setTimeout(function(){$el.addClass('activateLink').removeAttr('style');}, 300);
-        console.log('in touchSubnavOpen else');
         // open the menu item if touched
         var $navlinkParent = $($el).parent();
         // show Subnav
@@ -689,12 +619,6 @@ var SpoonflowerNavigation = {
         $('.btn-touch_close').remove();
         // add close button
         var closeButton = '<button class="btn btn-touch_close"><i class="icon icon_close" aria-hidden="true"></i><span class="visuallyhidden">Close Menu</span></button>';
-        // if opened from footer append to ul.subnav-flyup else append to <nav>
-        // if($el.next().hasClass('subnav-flyup')) {
-        //   $(closeButton).appendTo($el.next());
-        // } else {
-        //   $(closeButton).appendTo($('nav'));
-        // }
         // append closeButton to
         $(closeButton).appendTo($el.next());
         // initialize close
@@ -702,7 +626,6 @@ var SpoonflowerNavigation = {
       }
     });
     $('.subnav li').not('.has_subnav').on('touchstart', function(e){
-      console.log('no subnav');
       $('.nav-link').removeClass('active activateLink').css('background-color', 'transparent');
     });
   },
@@ -712,7 +635,6 @@ var SpoonflowerNavigation = {
    */
   touchCloseSubnav: function() {
     $('.btn-touch_close').on('touchstart', function(e) {
-      // console.log('in touchCloseSubnav()');
       e.stopPropagation();
       e.preventDefault();
       var $target = $(this).parent().siblings('.nav-link');
@@ -730,9 +652,7 @@ var SpoonflowerNavigation = {
       e.preventDefault();
       var $el = $(this);
       var link = $el.attr('href');
-      // console.log('in touchOpenFlyout()');
       if($el.hasClass('activateLink')) {
-        // console.log('link blocked!');
         window.location = link;
       }
       else {
@@ -757,7 +677,6 @@ var SpoonflowerNavigation = {
    */
   showSubnav: function($target) {
     SpoonflowerNavigation.subnavState = true;
-    // console.log('in showSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     $('.subnav').removeClass('current');
     $(getthis).addClass('current');
@@ -770,7 +689,6 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - .nav-link-primary
    */
   closeSubnav: function($target) {
-    // console.log('in closeSubnav()', + SpoonflowerNavigation.subnavState);
     var getthis = $target.parent().children('ul');
     if(SpoonflowerNavigation.subnavState == false) {
       $(getthis).removeClass('current');
@@ -783,7 +701,6 @@ var SpoonflowerNavigation = {
    */
   closeAllSubnav: function() {
     if(SpoonflowerNavigation.subnavState == false) {
-      // console.log('in closeAllSubnav()', + SpoonflowerNavigation.subnavState);
       $('.subnav').removeClass('current');
       $('.has_subnav a').removeClass('active activateLink');
       // remove any touch close button
@@ -797,7 +714,6 @@ var SpoonflowerNavigation = {
    */
   stayOpen: function($currentSubnav) {
     SpoonflowerNavigation.subnavState = true;
-    // console.log('in stayOpen()', + SpoonflowerNavigation.subnavState);
     $currentSubnav.addClass('current');
   },
 
@@ -806,7 +722,6 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - $('.has_subnav a') a link with a subnav
    */
   flyoutOpen: function($target) {
-    // console.log('in flyoutOpen()');
     // remove previously set classes
     $target.parent().parent().find('ul').removeClass('current');
     $target.parent().parent().find('a').removeClass('active');
@@ -824,13 +739,8 @@ var SpoonflowerNavigation = {
    * @param {jQuery} $target - either .nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5
    */
   flyoutClose: function($target) {
-    // console.log('in flyoutClose()');
-    // if(SpoonflowerNavigation.flyoutState == false) {
-      $target.parent().find('ul').removeClass('current');
-      $target.parent().find('a').removeClass('active activateLink');
-      // $('.subnav').removeClass('current');
-      // $('.has_subnav a').removeClass('active');
-    // }
+    $target.parent().find('ul').removeClass('current');
+    $target.parent().find('a').removeClass('active activateLink');
   },
 
   /**
@@ -838,7 +748,6 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $li - the subnav <li>
    */
   openMenu: function($li) {
-    console.log("in openMenu");
     // close all other open menus
     $li.siblings('.is-active').attr('class', 'has_subnav').find('ul').removeClass('menu-visible');
     // and then hide siblings
@@ -857,7 +766,6 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $li - the subnav <li>
    */
   collapseMenu: function($li) {
-    // console.log('in collapseMenu');
     // reset the class on the target
     $li.removeClass('is-active');
     $li.find('.nav-link').removeClass('activateLink');
@@ -874,10 +782,8 @@ var SpoonflowerNavigation = {
    * collapse all the subnavs
    */
   collapseAllSubnavs: function() {
-    // console.log('in collapseAllSubnavs');
     $('.has_subnav').removeClass('is-active').removeAttr('style');
     $('.nav-link').removeClass('activateLink');
-    // $('.btn-mobile_nav button i').attr('class', 'icon icon_chevron_down');
     $('ul').removeClass('menu-visible');
   },
 
@@ -886,7 +792,6 @@ var SpoonflowerNavigation = {
    * @param  {jQuery} $target - the subnav <li>
    */
   collapseChildSubnavs: function($target) {
-    // console.log('in collapseChildSubnavs');
     var $li = $target;
     $li.attr('class', 'has_subnav');
     $li.find('ul').removeClass('menu-visible');
@@ -896,7 +801,6 @@ var SpoonflowerNavigation = {
    * Close the mobile-only utility menu
    */
   closeUtilityMenu: function() {
-    // console.log('in closeUtilityMenu');
     $('.main > .subnav-dropdown').remove();
     // remove active class from utility menu button
     $('.font_icon_btn').removeClass('active');
@@ -946,10 +850,7 @@ var SpoonflowerNavigation = {
       if($this.hasClass('activateLink')) {
         // follow link if enter key is pressed
         $this.on('keydown', function(e) {
-          // e.preventDefault();
-          // e.stopPropagation();
           if(e.which == 13) {
-            // console.log('link blocked!');
             window.location = href;
           }
         });
@@ -960,27 +861,16 @@ var SpoonflowerNavigation = {
         SpoonflowerNavigation.showSubnav($this);
       }
     });
-    // $('.nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5').focus(function(){
-    //   var $this = $(this);
-    //   SpoonflowerNavigation.flyoutClose($this);
-    //   if($this.parent().hasClass('has_subnav')) {
-    //     SpoonflowerNavigation.flyoutOpen($this);
-    //   }
-    // });
     $('.nl-lvl2, .nl-lvl3, .nl-lvl4, .nl-lvl5').focus(function(e){
       // Make sure to stop event bubbling
       e.preventDefault();
       e.stopPropagation();
       var $this = $(this);
-      // // get reference to all .nav-link
-      // var $navLinks = $('.nav-link');
       SpoonflowerNavigation.flyoutClose($this);
       var href = $this.attr('href');
       if($this.hasClass('activateLink')) {
         // follow link if enter key is pressed
         $this.on('keydown', function(e) {
-          // e.preventDefault();
-          // e.stopPropagation();
           if(e.which == 13) {
             window.location = href;
           }
@@ -1018,7 +908,6 @@ var SpoonflowerNavigation = {
           SpoonflowerNavigation.closeSubnav($navLink);
           var link = $navLink.attr('href');
           if($navLink.hasClass('activateLink')) {
-            // console.log('link blocked!');
             window.location = link;
           }
           else {
@@ -1027,7 +916,6 @@ var SpoonflowerNavigation = {
           }
           break;
         case 27: // esc
-          // console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
           // skip to utility bar
@@ -1095,11 +983,9 @@ var SpoonflowerNavigation = {
             e.preventDefault();
             var $el = $dropdown.find('.nav-link').filter(':visible').first().focus();
             var link = $el.attr('href');
-            // console.log('in touchOpenFlyout()');
             if($el.hasClass('activateLink')) {
               $el.on('keydown', function(e) {
                 if(e.which == 13) {
-                  // console.log('link blocked!');
                   window.location = link;
                 }
               });
@@ -1135,13 +1021,12 @@ var SpoonflowerNavigation = {
 
       switch(e.which) {
         case 27: // esc
-          // console.log('esc pressed');
           SpoonflowerNavigation.subnavState = false;
           SpoonflowerNavigation.closeAllSubnav();
           // skip to utility bar
           $('.u_bar-container').focus();
           break;
-        case 38: /// up arrow
+        case 38: // up arrow
           e.preventDefault();
           e.stopPropagation();
           // store subnavLink href
@@ -1150,7 +1035,6 @@ var SpoonflowerNavigation = {
           if($subnavLink.hasClass('activateLink')) {
             $subnavLink.on('keydown', function(e) {
               if(e.which == 13) {
-                // console.log('link blocked!');
                 window.location = snLink;
               }
             });
@@ -1188,7 +1072,6 @@ var SpoonflowerNavigation = {
           if($subnavLink.hasClass('activateLink')) {
             $subnavLink.on('keydown', function(e) {
               if(e.which == 13) {
-                // console.log('link blocked!');
                 window.location = snLink;
               }
             });
@@ -1261,6 +1144,8 @@ var SpoonflowerSearch = {
       e.preventDefault();
       if (!$('.search_select-dropdown').hasClass('active')) {
         $('.search_select-dropdown').slideToggle('medium').addClass('active');
+      } else {
+        $('.search_select-dropdown').slideToggle('medium').removeClass('active');
       }
     });
     // if keyboard 'enter'
@@ -1276,35 +1161,40 @@ var SpoonflowerSearch = {
    * select the search filter
    */
   searchFilter: function() {
-
+    var searchSelected = $('.search_filter').val();
+    var searchSelectedText = searchSelected == 'gift_wrap' ? 'Gift Wrap' : searchSelected;
+    // set search selected to whatever is in the hidden search_filter input
+    $('.search_selected').text(searchSelectedText);
     $(".search_select-item").click(function() {
       var searchType = $(this).attr('data-filter');
-      // console.log('searchType: ', searchType);
       SpoonflowerSearch.selectedName(searchType);
       SpoonflowerSearch.selectedForm(searchType);
+      if ($('.search_select-dropdown').hasClass('active')) {
+        $('.search_select-dropdown').hide('fast').removeClass('active');
+      }
       $('.search_input').focus();
     });
     // if keyboard 'enter'
     $('.search_select-item').on('keydown', function(e) {
       if(e.which == 13) {
         var searchType = $(this).attr('data-filter');
-        // console.log('searchType: ', searchType);
         SpoonflowerSearch.selectedName(searchType);
         SpoonflowerSearch.selectedForm(searchType);
+        if ($('.search_select-dropdown').hasClass('active')) {
+          $('.search_select-dropdown').hide('fast').removeClass('active');
+        }
         $('.search_input').focus();
       }
     });
     // if keyboard 'enter' inside search_input go forth and search
     $('.search_input').on('keydown', function(e) {
       if(e.which == 13) {
-        console.log('return key pressed');
-        $('.search_form').submit();
+        $('.btn-search').focus().trigger('click');
       }
     });
   },
 
   selectedName: function(search){
-    // console.log('in selectedName');
     $('.search_filter').val(search);
     if (search == 'gift_wrap') {
       $('.search_shop').val('gift_wrap');
@@ -1318,7 +1208,7 @@ var SpoonflowerSearch = {
       $('.search_selected').html(str);
     }
     if ($('.search_select-dropdown').hasClass('active')) {
-      $('.search_select-dropdown').slideToggle('medium');
+      $('.search_select-dropdown').hide('fast').removeClass('active');
     }
   },
 
